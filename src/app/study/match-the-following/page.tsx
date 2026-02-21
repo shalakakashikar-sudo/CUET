@@ -186,10 +186,13 @@ const FIGURES = [
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 const HOMONYMS = [
+  { w1: "Accept", m1: "To receive", w2: "Except", m2: "Excluding" },
   { w1: "Affect", m1: "To impact (verb)", w2: "Effect", m2: "The result (noun)" },
   { w1: "Altar", m1: "Sacred table in a church", w2: "Alter", m2: "To change" },
   { w1: "Ascent", m1: "A climb/upward path", w2: "Assent", m2: "Agreement" },
+  { w1: "Bare", m1: "Uncovered", w2: "Bear", m2: "Large animal / To carry" },
   { w1: "Berth", m1: "A sleeping place in a train/ship", w2: "Birth", m2: "Coming into life" },
+  { w1: "Brake", m1: "To stop a vehicle", w2: "Break", m2: "To shatter / A rest" },
   { w1: "Canvas", m1: "Strong cloth", w2: "Canvass", m2: "To seek votes/opinions" },
   { w1: "Complement", m1: "Enhances or completes", w2: "Compliment", m2: "Praise" },
   { w1: "Council", m1: "Advisory group", w2: "Counsel", m2: "Advice or a lawyer" },
@@ -205,7 +208,155 @@ const HOMONYMS = [
   { w1: "Stationary", m1: "Not moving", w2: "Stationery", m2: "Writing materials" },
   { w1: "Weak", m1: "Not strong", w2: "Week", m2: "Seven days" },
   { w1: "Weather", m1: "Atmospheric state", w2: "Whether", m2: "If / Choice" },
-]
+  { w1: "Advice", m1: "A suggestion (noun)", w2: "Advise", m2: "To give a suggestion (verb)" },
+  { w1: "Allowed", m1: "Permitted", w2: "Aloud", m2: "Out loud" },
+  { w1: "Board", m1: "A piece of wood / To get on", w2: "Bored", m2: "Uninterested" },
+  { w1: "By", m1: "Near / Through", w2: "Buy", m2: "To purchase" },
+  { w1: "Cell", m1: "Small room / Basic unit", w2: "Sell", m2: "To exchange for money" },
+  { w1: "Cite", m1: "To quote", w2: "Site", m2: "Place or location" },
+  { w1: "Coarse", m1: "Rough in texture", w2: "Course", m2: "Path or direction / A subject" },
+  { w1: "Deer", m1: "Animal", w2: "Dear", m2: "Beloved / Expensive" },
+  { w1: "Die", m1: "To stop living", w2: "Dye", m2: "To color" },
+  { w1: "Feat", m1: "An achievement", w2: "Feet", m2: "Plural of foot" },
+  { w1: "Flour", m1: "Powder for baking", w2: "Flower", m2: "Part of a plant" },
+  { w1: "For", m1: "Because of / In favor of", w2: "Four", m2: "The number 4" },
+  { w1: "Grate", m1: "To shred / Metal frame", w2: "Great", m2: "Large / Excellent" },
+  { w1: "Hair", m1: "On the head", w2: "Hare", m2: "Fast animal like a rabbit" },
+  { w1: "Heal", m1: "To cure", w2: "Heel", m2: "Back of the foot" },
+  { w1: "Hear", m1: "To listen", w2: "Here", m2: "In this place" },
+  { w1: "Heard", m1: "Past of hear", w2: "Herd", m2: "Group of animals" },
+  { w1: "Hole", m1: "An opening", w2: "Whole", m2: "Entire" },
+  { w1: "Hour", m1: "60 minutes", w2: "Our", m2: "Belonging to us" },
+  { w1: "Idle", m1: "Inactive", w2: "Idol", m2: "A statue / Person of worship" },
+  { w1: "Knew", m1: "Past of know", w2: "New", m2: "Recent" },
+  { w1: "Knight", m1: "Medieval warrior", w2: "Night", m2: "Time of darkness" },
+  { w1: "Know", m1: "To understand", w2: "No", m2: "Negative response" },
+  { w1: "Lead", m1: "Metal (noun)", w2: "Led", m2: "Past of lead (verb)" },
+  { w1: "Mail", m1: "Post", w2: "Male", m2: "Man" },
+  { w1: "Meat", m1: "Flesh of an animal", w2: "Meet", m2: "To encounter" },
+  { w1: "Medal", m1: "An award", w2: "Meddle", m2: "To interfere" },
+  { w1: "Morning", m1: "Early part of the day", w2: "Mourning", m2: "Grief after death" },
+  { w1: "One", m1: "The number 1", w2: "Won", m2: "Past of win" },
+  { w1: "Pail", m1: "A bucket", w2: "Pale", m2: "Light in color" },
+  { w1: "Pain", m1: "Physical suffering", w2: "Pane", m2: "Sheet of glass" },
+  { w1: "Pair", m1: "Two of a kind", w2: "Pear", m2: "A fruit" },
+  { w1: "Passed", m1: "Past of pass", w2: "Past", m2: "Time gone by" },
+  { w1: "Plain", m1: "Simple / Flat land", w2: "Plane", m2: "Airplane / Flat surface" },
+  { w1: "Pray", m1: "To talk to God", w2: "Prey", m2: "Hunted animal" },
+  { w1: "Rain", m1: "Water from sky", w2: "Reign", m2: "Rule of a monarch" },
+  { w1: "Read", m1: "To scan text", w2: "Reed", m2: "Tall grass" },
+  { w1: "Right", m1: "Correct / Direction", w2: "Write", m2: "To mark words" },
+  { w1: "Road", m1: "Path for vehicles", w2: "Rode", m2: "Past of ride" },
+  { w1: "Root", m1: "Base of a plant", w2: "Route", m2: "A path or way" },
+  { w1: "Sail", m1: "To travel on water", w2: "Sale", m2: "Transaction of selling" },
+  { w1: "Sea", m1: "Large body of salt water", w2: "See", m2: "To look" },
+  { w1: "Sew", m1: "To stitch", w2: "So", m2: "Therefore" },
+  { w1: "Stair", m1: "A step", w2: "Stare", m2: "To look intensely" },
+  { w1: "Steal", m1: "To take without permission", w2: "Steel", m2: "A strong metal" },
+  { w1: "Tail", m1: "End of an animal", w2: "Tale", m2: "A story" },
+  { w1: "Threw", m1: "Past of throw", w2: "Through", m2: "From one side to other" },
+  { w1: "To", m1: "Direction marker", w2: "Too", m2: "Also / Excessive" },
+  { w1: "Waist", m1: "Part of the body", w2: "Waste", m2: "Useless material / To misuse" },
+  { w1: "Wait", m1: "To stay in anticipation", w2: "Weight", m2: "Heaviness" },
+  { w1: "Ware", m1: "Goods or items", w2: "Wear", m2: "To have on body" },
+  { w1: "Which", m1: "Asking for choice", w2: "Witch", m2: "Person with magic" },
+  { w1: "Wood", m1: "Material from trees", w2: "Would", m2: "Past of will" },
+  { w1: "Your", m1: "Belonging to you", w2: "You're", m2: "Contraction of you are" },
+  { w1: "Heir", m1: "Inheritor", w2: "Air", m2: "Atmosphere" },
+  { w1: "Berry", m1: "Small fruit", w2: "Bury", m2: "To put in ground" },
+  { w1: "Blue", m1: "The color", w2: "Blew", m2: "Past of blow" },
+  { w1: "Bore", m1: "To drill / Not interesting", w2: "Boar", m2: "Wild pig" },
+  { w1: "Chew", m1: "To grind with teeth", w2: "Choose", m2: "To pick" },
+  { w1: "Days", m1: "24-hour periods", w2: "Daze", m2: "Stunned state" },
+  { w1: "Done", m1: "Finished", w2: "Dun", m2: "Grayish-brown color" },
+  { w1: "Ewe", m1: "Female sheep", w2: "You", m2: "The second person" },
+  { w1: "Eye", m1: "Organ of sight", w2: "I", m2: "First person pronoun" },
+  { w1: "Flea", m1: "Biting insect", w2: "Flee", m2: "To run away" },
+  { w1: "Foul", m1: "Dirty / Unfair", w2: "Fowl", m2: "A bird" },
+  { w1: "Gait", m1: "Way of walking", w2: "Gate", m2: "Entrance door" },
+  { w1: "Gilt", m1: "Covered in gold", w2: "Guilt", m2: "Feeling of blame" },
+  { w1: "Gnaw", m1: "To bite steadily", w2: "Know", m2: "To be aware" },
+  { w1: "Groan", m1: "Moan in pain", w2: "Grown", m2: "Fully developed" },
+  { w1: "Hail", m1: "Ice from sky", w2: "Hale", m2: "Strong and healthy" },
+  { w1: "Hall", m1: "Corridor", w2: "Haul", m2: "To pull or drag" },
+  { w1: "Heed", m1: "Pay attention", w2: "He'd", m2: "Contraction of he would" },
+  { w1: "Hi", m1: "Greeting", w2: "High", m2: "Tall / Upward" },
+  { w1: "Hire", m1: "To employ", w2: "Higher", m2: "More elevated" },
+  { w1: "Hoarse", m1: "Rough voice", w2: "Horse", m2: "Equine animal" },
+  { w1: "Inn", m1: "A small hotel", w2: "In", m2: "Inside" },
+  { w1: "Its", m1: "Belonging to it", w2: "It's", m2: "Contraction of it is" },
+  { w1: "Jam", m1: "Fruit spread / Stuck", w2: "Jamb", m2: "Side of a door" },
+  { w1: "Knead", m1: "Work dough", w2: "Need", m2: "Necessity" },
+  { w1: "Knot", m1: "Tied string", w2: "Not", m2: "Negative" },
+  { w1: "Lain", m1: "Past participle of lie", w2: "Lane", m2: "Narrow road" },
+  { w1: "Lax", m1: "Careless", w2: "Lacks", m2: "Does not have" },
+  { w1: "Leek", m1: "Type of onion", w2: "Leak", m2: "Escape of fluid" },
+  { w1: "Lesson", m1: "Unit of study", w2: "Lessen", m2: "To reduce" },
+  { w1: "Lie", m1: "To recline / Untruth", w2: "Lye", m2: "Strong chemical" },
+  { w1: "Links", m1: "Connections", w2: "Lynx", m2: "Wild cat" },
+  { w1: "Loan", m1: "Borrowed money", w2: "Lone", m2: "Single" },
+  { w1: "Maid", m1: "Female servant", w2: "Made", m2: "Past of make" },
+  { w1: "Main", m1: "Most important", w2: "Mane", m2: "Hair on neck of lion/horse" },
+  { w1: "Maze", m1: "Labyrinth", w2: "Maize", m2: "Corn" },
+  { w1: "Minor", m1: "Underage", w2: "Miner", m2: "Worker in a mine" },
+  { w1: "Mist", m1: "Light fog", w2: "Missed", m2: "Failed to catch/see" },
+  { w1: "Navel", m1: "Belly button", w2: "Naval", m2: "Relating to ships" },
+  { w1: "None", m1: "Not any", w2: "Nun", m2: "Religious woman" },
+  { w1: "Oar", m1: "Paddle", w2: "Ore", m2: "Metal-bearing rock" },
+  { w1: "Our", m1: "Belonging to us", w2: "Hour", m2: "Unit of time" },
+  { w1: "Pale", m1: "White / Light color", w2: "Pail", m2: "Bucket" },
+  { w1: "Pane", m1: "Window glass", w2: "Pain", m2: "Ache" },
+  { w1: "Peak", m1: "Top of mountain", w2: "Peek", m2: "Secret look" },
+  { w1: "Peel", m1: "Skin of fruit", w2: "Peal", m2: "Loud sound of bells" },
+  { w1: "Pier", m1: "Structure into water", w2: "Peer", m2: "A look / An equal" },
+  { w1: "Plum", m1: "Type of fruit", w2: "Plumb", m2: "To measure depth" },
+  { w1: "Pole", m1: "Long rod", w2: "Poll", m2: "A survey" },
+  { w1: "Pore", m1: "Tiny opening / To study", w2: "Poor", m2: "Lacking money" },
+  { w1: "Presents", m1: "Gifts", w2: "Presence", m2: "State of being here" },
+  { w1: "Profit", m1: "Financial gain", w2: "Prophet", m2: "Spiritual leader" },
+  { w1: "Rain", m1: "Water from clouds", w2: "Rein", m2: "Control for horse" },
+  { w1: "Raise", m1: "To lift", w2: "Rays", m2: "Beams of light" },
+  { w1: "Read", m1: "To interpret text", w2: "Red", m2: "The color" },
+  { w1: "Real", m1: "Actual", w2: "Reel", m2: "Cylinder for winding" },
+  { w1: "Review", m1: "To examine again", w2: "Revue", m2: "Theatrical show" },
+  { w1: "Right", m1: "Correct / Not left", w2: "Rite", m2: "Ceremony" },
+  { w1: "Ring", m1: "Circle / Sound", w2: "Wring", m2: "To twist" },
+  { w1: "Role", m1: "Part in a play", w2: "Roll", m2: "To turn / Bread unit" },
+  { w1: "Rough", m1: "Not smooth", w2: "Ruff", m2: "Frilled collar" },
+  { w1: "Sale", m1: "Selling of goods", w2: "Sail", m2: "Canvas on ship" },
+  { w1: "Scene", m1: "Setting", w2: "Seen", m2: "Past of see" },
+  { w1: "Some", m1: "An amount", w2: "Sum", m2: "Total" },
+  { w1: "Son", m1: "Male child", w2: "Sun", m2: "The star" },
+  { w1: "Sole", m1: "Bottom of foot / Only", w2: "Soul", m2: "Spiritual part" },
+  { w1: "Stake", m1: "Post in ground / Risk", w2: "Steak", m2: "Slice of meat" },
+  { w1: "Steel", m1: "Metal alloy", w2: "Steal", m2: "To thieve" },
+  { w1: "Sun", m1: "The star", w2: "Son", m2: "Male child" },
+  { w1: "Tail", m1: "End of animal", w2: "Tale", m2: "Story" },
+  { w1: "Team", m1: "Group of people", w2: "Teem", m2: "To swarm" },
+  { w1: "Their", m1: "Belonging to them", w2: "There", m2: "In that place" },
+  { w1: "Threw", m1: "Past of throw", w2: "Through", m2: "By way of" },
+  { w1: "Time", m1: "Progression of events", w2: "Thyme", m2: "Herb" },
+  { w1: "Told", m1: "Past of tell", w2: "Tolled", m2: "Past of toll (bell)" },
+  { w1: "Tow", m1: "To pull", w2: "Toe", m2: "Digit of foot" },
+  { w1: "Two", m1: "Number 2", w2: "Too", m2: "Excessive / Also" },
+  { w1: "Vain", m1: "Conceited / Unsuccessful", w2: "Vane", m2: "Weather blade" },
+  { w1: "Vein", m1: "Blood vessel", w2: "Vain", m2: "Conceited" },
+  { w1: "Vice", m1: "Bad habit", w2: "Vise", m2: "Gripping tool" },
+  { w1: "Wait", m1: "Stay expecting", w2: "Weight", m2: "Heaviness" },
+  { w1: "War", m1: "Conflict", w2: "Wore", m2: "Past of wear" },
+  { w1: "Waste", m1: "Trash / Misuse", w2: "Waist", m2: "Middle of body" },
+  { w1: "Wave", m1: "Gesture / Water surge", w2: "Waive", m2: "To give up rights" },
+  { w1: "Wear", m1: "To have on", w2: "Where", m2: "In what place" },
+  { w1: "Weather", m1: "Climate state", w2: "Whether", m2: "Choice indicator" },
+  { w1: "Week", m1: "7 days", w2: "Weak", m2: "Lacking strength" },
+  { w1: "Wet", m1: "Soaked", w2: "Whet", m2: "To sharpen" },
+  { w1: "Which", m1: "Which one", w2: "Witch", m2: "Sorceress" },
+  { w1: "Wine", m1: "Alcoholic drink", w2: "Whine", m2: "High-pitched cry" },
+  { w1: "Wood", m1: "Timber", w2: "Would", m2: "Auxiliary verb" },
+  { w1: "Write", m1: "Mark words", w2: "Right", m2: "Correct" },
+  { w1: "Yoke", m1: "Wooden beam for oxen", w2: "Yolk", m2: "Yellow of egg" },
+  { w1: "You're", m1: "You are", w2: "Your", m2: "Belonging to you" },
+].sort((a, b) => a.w1.localeCompare(b.w1));
 
 const PROVERBS = [
   { p: "A bird in the hand is worth two in the bush", m: "What you have for certain is better than risking it for more." },
@@ -413,28 +564,39 @@ export default function MatchPage() {
               </TabsContent>
 
               <TabsContent value="homonyms" className="mt-8">
-                <ScrollArea className="h-[600px] pr-4">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {HOMONYMS.map((item, i) => (
-                      <div key={i} className="p-5 border border-primary/10 rounded-2xl bg-white shadow-sm space-y-3 hover:border-primary/30 transition-colors">
-                        <div className="flex justify-between items-start gap-4">
-                          <div className="flex flex-col">
-                            <span className="font-bold text-primary text-base">{item.w1}</span>
-                            <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">{item.m1}</span>
+                <Card className="shadow-sm overflow-hidden rounded-2xl border-none">
+                  <CardHeader className="bg-primary/5">
+                    <CardTitle className="flex items-center gap-2 text-primary font-bold">
+                      <Star className="w-5 h-5" />
+                      Elite Homonyms Repository
+                    </CardTitle>
+                    <CardDescription className="text-primary/70 font-medium">Over 150 critical word pairs for Subject Code 101.</CardDescription>
+                  </CardHeader>
+                  <CardContent className="p-0 bg-white">
+                    <ScrollArea className="h-[600px]">
+                      <div className="grid md:grid-cols-2 gap-px bg-border">
+                        {HOMONYMS.map((item, i) => (
+                          <div key={i} className="p-5 bg-white space-y-3 hover:bg-primary/5 transition-colors">
+                            <div className="flex justify-between items-start gap-4">
+                              <div className="flex flex-col">
+                                <span className="font-bold text-primary text-base">{item.w1}</span>
+                                <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">{item.m1}</span>
+                              </div>
+                              <Info className="w-3 h-3 text-primary/30 shrink-0 mt-1" />
+                            </div>
+                            <div className="flex justify-between items-start gap-4 border-t pt-3">
+                              <div className="flex flex-col">
+                                <span className="font-bold text-accent text-base">{item.w2}</span>
+                                <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">{item.m2}</span>
+                              </div>
+                              <Sparkles className="w-3 h-3 text-accent/30 shrink-0 mt-1" />
+                            </div>
                           </div>
-                          <Info className="w-3 h-3 text-primary/30 shrink-0 mt-1" />
-                        </div>
-                        <div className="flex justify-between items-start gap-4 border-t pt-3">
-                          <div className="flex flex-col">
-                            <span className="font-bold text-accent text-base">{item.w2}</span>
-                            <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">{item.m2}</span>
-                          </div>
-                          <Sparkles className="w-3 h-3 text-accent/30 shrink-0 mt-1" />
-                        </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </ScrollArea>
+                    </ScrollArea>
+                  </CardContent>
+                </Card>
               </TabsContent>
 
               <TabsContent value="proverbs" className="mt-8">
@@ -512,16 +674,16 @@ export default function MatchPage() {
             <Card className="bg-white border-primary/20 shadow-sm rounded-2xl">
               <CardHeader>
                 <CardTitle className="text-lg text-foreground font-bold">Daily Protocol</CardTitle>
-                <CardDescription>Master 5 proverbs every morning.</CardDescription>
+                <CardDescription>Master 5 homonyms every morning.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
                 {[
-                  "A stitch in time saves nine",
-                  "Better late than never",
-                  "Don't judge a book by its cover",
-                  "Haste makes waste",
-                  "Necessity is the mother of invention",
-                  "Rome wasn't built in a day"
+                  "Affect vs Effect",
+                  "Principal vs Principle",
+                  "Stationary vs Stationery",
+                  "Elicit vs Illicit",
+                  "Complement vs Compliment",
+                  "Council vs Counsel"
                 ].map((p, i) => (
                   <div key={i} className="flex gap-2 text-xs font-bold text-foreground/80 p-2 hover:bg-primary/5 rounded-lg transition-colors">
                     <Sparkles className="w-3 h-3 text-primary shrink-0 mt-0.5" />
