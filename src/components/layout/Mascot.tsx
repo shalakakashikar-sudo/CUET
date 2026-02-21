@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion"
 import { usePathname } from "next/navigation"
 import { Heart } from "lucide-react"
 
-type Expression = "happy" | "wink" | "cool" | "surprised" | "determined" | "bitten"
+type Expression = "happy" | "wink" | "cool" | "surprised" | "determined"
 
 const COMMENTS = {
   default: [
@@ -29,6 +29,12 @@ const COMMENTS = {
     "One question at a time! Keep your cool.",
     "Mistakes are just flavor text. Keep going!",
   ],
+  melting: [
+    "I'm melting! Study faster or I'll be a puddle!",
+    "Quick! Finish this module before I lose my shape!",
+    "The heat is on! Let's pick up the pace!",
+    "I'm dripping away! Don't leave me hanging, study up!",
+  ]
 }
 
 export function Mascot() {
@@ -50,8 +56,8 @@ export function Mascot() {
     return "default"
   }, [pathname])
 
-  const getRandomComment = useCallback(() => {
-    const context = getPageContext()
+  const getRandomComment = useCallback((type?: 'melting') => {
+    const context = type || getPageContext()
     const list = COMMENTS[context as keyof typeof COMMENTS] || COMMENTS.default
     const randomIndex = Math.floor(Math.random() * list.length)
     return list[randomIndex]
@@ -103,9 +109,14 @@ export function Mascot() {
   useEffect(() => {
     const dripRoutine = async () => {
       if (isBitten) return
+      
+      // Trigger melting comment
+      setMessage(getRandomComment('melting'))
+      setIsVisible(true)
       setIsDripping(true)
+      
       // Look towards the drip side (left)
-      setEyeOffset({ x: -4, y: 6 })
+      setEyeOffset({ x: -6, y: 8 })
       
       await dripControls.start({
         y: 120,
@@ -117,11 +128,14 @@ export function Mascot() {
       setEyeOffset({ x: 0, y: 0 })
       setIsDripping(false)
       dripControls.set({ y: 0, opacity: 0 })
+      
+      // Hide message shortly after drip ends
+      setTimeout(() => setIsVisible(false), 1000)
     }
 
-    const interval = setInterval(dripRoutine, 12000)
+    const interval = setInterval(dripRoutine, 15000)
     return () => clearInterval(interval)
-  }, [dripControls, isBitten])
+  }, [dripControls, isBitten, getRandomComment])
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -154,7 +168,7 @@ export function Mascot() {
         whileTap={{ scale: 0.9 }}
         animate={{
           y: isBitten ? [0, 15, 0] : [0, -10, 0],
-          rotate: isBitten ? [0, -10, 0] : 0
+          rotate: isBitten ? [0, -5, 5, 0] : 0
         }}
         transition={{
           y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
@@ -169,14 +183,24 @@ export function Mascot() {
           xmlns="http://www.w3.org/2000/svg"
           className="drop-shadow-2xl"
         >
-          {/* Wooden Stick (Inserted into the base) */}
+          <defs>
+            <clipPath id="biteClip">
+              {isBitten ? (
+                // Subtract a bite from the top right corner
+                <path d="M0 0 H75 C70 5 65 15 70 25 C75 35 85 30 90 35 C95 40 100 45 100 45 V140 H0 V0Z" />
+              ) : (
+                <rect width="100" height="140" />
+              )}
+            </clipPath>
+          </defs>
+
+          {/* Wooden Stick */}
           <g>
             <rect x="42" y="102" width="16" height="32" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
             <path d="M42 110C42 110 45 106 50 106C55 106 58 110 58 110" stroke="#1A1A1A" strokeWidth="2" opacity="0.3" />
           </g>
 
-          {/* Main Body */}
-          <g>
+          <g clipPath="url(#biteClip)">
             {/* White Body Base */}
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V95C85 103 78 110 70 110H30C22 110 15 103 15 95V40Z"
@@ -193,28 +217,13 @@ export function Mascot() {
               strokeWidth="4"
             />
 
-            {/* Side Bite Mark Animation */}
-            <AnimatePresence>
-              {isBitten && (
-                <motion.path
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0 }}
-                  d="M85 35C78 35 74 40 74 45C74 50 78 55 85 55C85 55 80 60 80 65C80 70 85 75 85 75V35Z"
-                  fill="hsl(var(--background))"
-                  stroke="#1A1A1A"
-                  strokeWidth="3"
-                />
-              )}
-            </AnimatePresence>
-
-            {/* Face Group (Positioned High) */}
+            {/* Face Group */}
             <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - (isBitten ? 2 : 0) }}>
               {/* Blushing Cheeks */}
               <circle cx="30" cy="52" r="6" fill="#FF85C0" fillOpacity="0.5" />
               <circle cx="70" cy="52" r="6" fill="#FF85C0" fillOpacity="0.5" />
 
-              {/* Kawaii Eyes */}
+              {/* Eyes */}
               <g>
                 {isBlinking ? (
                   <>
@@ -244,11 +253,11 @@ export function Mascot() {
                 )}
               </g>
 
-              {/* Tiny Cute Mouth */}
+              {/* Mouth */}
               <motion.path
                 animate={{
                   d: isBitten 
-                    ? "M44 60Q50 70 56 60" 
+                    ? "M44 60Q50 72 56 60" 
                     : "M47 58Q50 62 53 58"
                 }}
                 stroke="#1A1A1A"
@@ -262,21 +271,21 @@ export function Mascot() {
             <motion.path
               animate={dripControls}
               initial={{ opacity: 0 }}
-              d="M20 75C20 85 25 90 30 90C35 90 40 85 40 75C40 65 20 65 20 75Z"
+              d="M18 78C18 88 23 93 28 93C33 93 38 88 38 78C38 68 18 68 18 78Z"
               fill="#FF85C0"
               stroke="#1A1A1A"
               strokeWidth="2"
             />
           </g>
 
-          {/* Body Shine Highlights */}
+          {/* Highlights */}
           <rect x="22" y="18" width="12" height="5" rx="3" fill="white" fillOpacity="0.4" />
           <circle cx="75" cy="22" r="3" fill="white" fillOpacity="0.3" />
         </svg>
 
-        {/* Floating Heart Effect */}
+        {/* Heart Effect */}
         <AnimatePresence>
-          {!isBitten && (
+          {!isBitten && !isDripping && (
             <motion.div
               initial={{ opacity: 0, y: 0 }}
               animate={{ opacity: [0, 1, 0], y: -50 }}
