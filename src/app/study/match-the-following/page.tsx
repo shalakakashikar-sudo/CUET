@@ -5,7 +5,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
-import { Info, MessageCircle, RefreshCw, Star, Book, Sparkles, Lightbulb } from "lucide-react"
+import { Info, MessageCircle, RefreshCw, Star, Book, Sparkles, Lightbulb, Zap } from "lucide-react"
 import Link from "next/link"
 
 const IDIOMS = [
@@ -27,6 +27,16 @@ const FIGURES = [
   { name: "Personification", def: "Human qualities to non-human things.", eg: "The trees whispered." },
   { name: "Hyperbole", def: "Extreme exaggeration.", eg: "Told you a million times!" },
   { name: "Oxymoron", def: "Two contradictory terms together.", eg: "Deafening silence." },
+  { name: "Onomatopoeia", def: "A word that imitates the sound it describes.", eg: "The clock ticked." },
+]
+
+const HOMONYMS = [
+  { w1: "Principal", m1: "Head of school", w2: "Principle", m2: "Fundamental rule" },
+  { w1: "Stationery", m1: "Writing materials", w2: "Stationary", m2: "Not moving" },
+  { w1: "Potable", m1: "Safe to drink", w2: "Portable", m2: "Easy to carry" },
+  { w1: "Complement", m1: "Enhances", w2: "Compliment", m2: "Praise" },
+  { w1: "Elicit", m1: "To draw out", w2: "Illicit", m2: "Illegal" },
+  { w1: "Affect", m1: "To impact (verb)", w2: "Effect", m2: "The result (noun)" }
 ]
 
 export default function MatchPage() {
@@ -37,8 +47,8 @@ export default function MatchPage() {
           <div className="flex justify-between items-start">
             <div>
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Section 4 (50 Marks)</Badge>
-              <h1 className="text-4xl font-headline font-bold mb-4 text-foreground">Match the Following</h1>
-              <p className="text-muted-foreground text-lg max-w-2xl">Idioms, Figures of Speech, and Phrasal Verbs. Deduction is key—start with what you are 100% certain about.</p>
+              <h1 className="text-4xl font-headline font-bold mb-4 text-foreground">Match Proficiency</h1>
+              <p className="text-muted-foreground text-lg max-w-2xl">Idioms, Figures of Speech, and Homonyms. Deduction is key—start with what you are 100% certain about.</p>
             </div>
             <Button size="lg" className="rounded-2xl font-bold shadow-lg" asChild>
               <Link href="/study/match-the-following/quiz">Start Topic Quiz</Link>
@@ -49,9 +59,10 @@ export default function MatchPage() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <Tabs defaultValue="idioms" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 h-12 bg-muted/50 p-1 rounded-xl">
-                <TabsTrigger value="idioms" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary">Idioms & Proverbs</TabsTrigger>
-                <TabsTrigger value="figures" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary">Figures of Speech</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3 h-12 bg-muted/50 p-1 rounded-xl">
+                <TabsTrigger value="idioms" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary font-bold">Idioms</TabsTrigger>
+                <TabsTrigger value="figures" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary font-bold">Figures</TabsTrigger>
+                <TabsTrigger value="homonyms" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary font-bold">Homonyms</TabsTrigger>
               </TabsList>
 
               <TabsContent value="idioms" className="mt-8">
@@ -59,7 +70,7 @@ export default function MatchPage() {
                   <CardHeader className="bg-primary/5">
                     <CardTitle className="flex items-center gap-2 text-primary font-bold">
                       <MessageCircle className="w-5 h-5" />
-                      Idioms Prime List
+                      Essential Idioms List
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-0 bg-white">
@@ -98,28 +109,42 @@ export default function MatchPage() {
                   ))}
                 </div>
               </TabsContent>
+
+              <TabsContent value="homonyms" className="mt-8">
+                <div className="grid md:grid-cols-2 gap-4">
+                  {HOMONYMS.map((item, i) => (
+                    <div key={i} className="p-4 border border-secondary/20 rounded-xl bg-white shadow-sm space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="font-bold text-primary">{item.w1}</span>
+                        <span className="text-[10px] text-muted-foreground uppercase font-bold">{item.m1}</span>
+                      </div>
+                      <div className="flex justify-between items-center border-t pt-2">
+                        <span className="font-bold text-secondary-foreground">{item.w2}</span>
+                        <span className="text-[10px] text-muted-foreground uppercase font-bold">{item.m2}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </TabsContent>
             </Tabs>
 
             <Card className="bg-secondary/10 border-none shadow-sm rounded-2xl">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2 text-secondary-foreground font-bold">
                   <Star className="w-5 h-5" />
-                  Homonyms Trap
+                  Match Strategy
                 </CardTitle>
-                <CardDescription className="text-secondary-foreground/70">Words that sound the same but mean different things.</CardDescription>
+                <CardDescription className="text-secondary-foreground/70 font-medium">Always start with the item you are MOST certain about to eliminate options.</CardDescription>
               </CardHeader>
               <CardContent className="grid md:grid-cols-2 gap-4">
-                {[
-                  { w1: "Principal", m1: "Head of school", w2: "Principle", m2: "Fundamental rule" },
-                  { w1: "Stationery", m1: "Writing materials", w2: "Stationary", m2: "Not moving" },
-                  { w1: "Potable", m1: "Safe to drink", w2: "Portable", m2: "Easy to carry" },
-                  { w1: "Complement", m1: "Enhances", w2: "Compliment", m2: "Praise" }
-                ].map((item, i) => (
-                  <div key={i} className="p-4 border border-secondary/20 rounded-xl bg-white shadow-sm space-y-1">
-                    <div className="text-[10px] font-bold text-primary uppercase">{item.w1}: <span className="text-foreground normal-case font-medium">{item.m1}</span></div>
-                    <div className="text-[10px] font-bold text-primary uppercase">{item.w2}: <span className="text-foreground normal-case font-medium">{item.m2}</span></div>
-                  </div>
-                ))}
+                <div className="p-4 bg-white rounded-xl shadow-sm border border-secondary/20">
+                  <div className="text-xs font-bold text-primary uppercase mb-1">Step 1</div>
+                  <p className="text-sm font-medium">Match the 100% known idioms/words.</p>
+                </div>
+                <div className="p-4 bg-white rounded-xl shadow-sm border border-secondary/20">
+                  <div className="text-xs font-bold text-primary uppercase mb-1">Step 2</div>
+                  <p className="text-sm font-medium">Deduce remaining from remaining slots.</p>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -127,14 +152,14 @@ export default function MatchPage() {
           <aside className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <Card className="bg-foreground text-background shadow-lg rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-lg text-primary flex items-center gap-2">
+                <CardTitle className="text-lg text-primary flex items-center gap-2 font-bold">
                   <Lightbulb className="w-5 h-5" />
                   Strategic View
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-sm font-medium">
-                <p>Start with the match you are <strong>MOST certain</strong> about.</p>
                 <p>A correct match eliminates an option from the other column, making the rest easier. Accuracy is paramount.</p>
+                <p className="text-primary italic">"Check both columns carefully before confirming."</p>
               </CardContent>
             </Card>
             

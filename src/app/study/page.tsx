@@ -9,23 +9,23 @@ import { cn } from "@/lib/utils"
 
 const syllabus = [
   {
-    category: "Comprehension & Logic",
+    category: "Linguistic Comprehension",
     topics: [
-      { name: "Reading Comprehension", icon: MessageSquare, desc: "Factual, Narrative and Discursive (Argumentative) passages.", modules: 3, href: "/study/reading-comprehension", color: "bg-blue-100 text-blue-600" },
-      { name: "Sentence Rearrangement", icon: Layers, desc: "Subject-Verb core logic and sequence patterns.", modules: 1, href: "/study/sentence-rearrangement", color: "bg-purple-100 text-purple-600" },
+      { name: "Reading Comprehension", icon: MessageSquare, desc: "Factual, Narrative and Discursive patterns from 2024-25 papers.", modules: 3, href: "/study/reading-comprehension", color: "bg-blue-100 text-blue-600" },
+      { name: "Sentence Rearrangement", icon: Layers, desc: "Subject-Verb core logic and setting-action sequence patterns.", modules: 1, href: "/study/sentence-rearrangement", color: "bg-purple-100 text-purple-600" },
     ]
   },
   {
-    category: "Vocabulary & Idioms",
+    category: "Lexical & Idiomatic Proficiency",
     topics: [
-      { name: "Synonyms & Antonyms", icon: Hash, desc: "Master the 50+ essential word list with prefix/suffix decoding.", modules: 5, href: "/study/synonyms-antonyms", color: "bg-amber-100 text-amber-600" },
-      { name: "Match the Following", icon: PenTool, desc: "Idioms, Phrasal Verbs, Proverbs, and Figures of Speech.", modules: 4, href: "/study/match-the-following", color: "bg-emerald-100 text-emerald-600" },
+      { name: "Synonyms & Antonyms", icon: Hash, desc: "Elite word list with prefix/suffix decoding strategies.", modules: 5, href: "/study/synonyms-antonyms", color: "bg-amber-100 text-amber-600" },
+      { name: "Match the Following", icon: PenTool, desc: "Idioms, Homonyms Trap, and Proverbs proficiency.", modules: 4, href: "/study/match-the-following", color: "bg-emerald-100 text-emerald-600" },
     ]
   },
   {
-    category: "Grammar & Structure",
+    category: "Syntactic Structure",
     topics: [
-      { name: "Fill in the Blanks", icon: BookOpen, desc: "Tenses, Conjunctions, Adverbs, and Prepositions.", modules: 4, href: "/study/fill-in-the-blanks", color: "bg-rose-100 text-rose-600" },
+      { name: "Fill in the Blanks", icon: BookOpen, desc: "Advanced tenses, conjunction logic, and fixed prepositions.", modules: 4, href: "/study/fill-in-the-blanks", color: "bg-rose-100 text-rose-600" },
     ]
   }
 ]
@@ -37,16 +37,16 @@ export default function StudyPage() {
         <div className="max-w-6xl mx-auto">
           <header className="mb-16 text-center animate-fade-in-up">
             <Badge variant="outline" className="mb-6 py-2 px-6 border-primary/40 text-primary font-bold uppercase tracking-widest rounded-full">Section 1: English (101)</Badge>
-            <h1 className="text-5xl font-headline font-bold mb-6">Commanding the Curriculum</h1>
+            <h1 className="text-5xl font-headline font-bold mb-6">Curriculum Excellence</h1>
             <p className="text-muted-foreground text-xl max-w-2xl mx-auto">
-              Dive deep into every rule, trap, and pattern required for a perfect 100th percentile.
+              Master the elite techniques required to decode the specific patterns of the CUET English examination.
             </p>
           </header>
 
           <div className="space-y-16">
             {syllabus.map((section, idx) => (
               <div key={idx} className="animate-fade-in-up" style={{ animationDelay: `${idx * 0.1}s` }}>
-                <h2 className="text-2xl font-headline font-bold mb-8 flex items-center gap-4">
+                <h2 className="text-2xl font-headline font-bold mb-8 flex items-center gap-4 text-foreground">
                   <div className="w-2 h-8 bg-primary rounded-full shadow-sm shadow-primary/40"></div>
                   {section.category}
                 </h2>
@@ -85,7 +85,7 @@ export default function StudyPage() {
             <div className="relative z-10 text-center md:text-left">
               <h3 className="text-3xl font-bold mb-4">Strategic Competitive Edge</h3>
               <p className="text-white/80 text-xl mb-8 max-w-xl">
-                Knowledge alone isn't enough. Gain the accuracy required for a perfect 50/50 attempt.
+                Knowledge alone isn't enough. Gain the clinical accuracy required for a perfect 50/50 attempt.
               </p>
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-10 rounded-2xl font-bold text-lg" asChild>
                 <Link href="/strategy">View Strategy Guide</Link>

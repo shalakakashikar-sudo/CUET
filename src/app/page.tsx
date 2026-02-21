@@ -1,21 +1,21 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { BookOpen, Compass, ArrowRight, Target, ShieldCheck, Trophy } from "lucide-react"
+import { BookOpen, Compass, ArrowRight, Target, ShieldCheck, Trophy, Zap } from "lucide-react"
 import Link from "next/link"
 
 export default function Dashboard() {
   const primaryActions = [
     {
       title: "Strategy Guide",
-      desc: "Master the 'Perfect 50' blueprint for 250/250.",
+      desc: "Master the logic for a perfect 250/250 score.",
       icon: Compass,
       link: "/strategy",
       color: "bg-amber-100 text-amber-600",
-      btnText: "Learn Strategy"
+      btnText: "View Blueprint"
     },
     {
-      title: "Study Material",
-      desc: "Complete English Code 101 syllabus.",
+      title: "Curriculum",
+      desc: "Deep dive into Code 101 rules and traps.",
       icon: BookOpen,
       link: "/study",
       color: "bg-primary/10 text-primary",
@@ -23,7 +23,7 @@ export default function Dashboard() {
     },
     {
       title: "Adaptive Quiz",
-      desc: "Test your readiness with +5/-1 scoring.",
+      desc: "Simulate the 60-min exam with +5/-1 scoring.",
       icon: Trophy,
       link: "/quiz",
       color: "bg-emerald-100 text-emerald-600",
@@ -36,10 +36,10 @@ export default function Dashboard() {
       <main className="container mx-auto px-4 py-12 max-w-6xl">
         <header className="mb-12 text-center animate-fade-in-up">
           <div className="inline-flex items-center gap-2 mb-4 bg-primary/10 text-primary px-4 py-1.5 rounded-full border border-primary/20 text-xs font-bold uppercase tracking-widest">
-            Subject Code: 101
+            CUET 2026 | Subject Code: 101
           </div>
           <h1 className="text-5xl font-headline font-bold text-foreground tracking-tight mb-4">The Verbal Vantage</h1>
-          <p className="text-muted-foreground text-xl max-w-2xl mx-auto">Your streamlined blueprint for a perfect 250/250 score in CUET 2026.</p>
+          <p className="text-muted-foreground text-xl max-w-2xl mx-auto">Precision-engineered preparation for the 100th percentile in CUET English.</p>
         </header>
 
         {/* Action Grid */}
@@ -73,14 +73,14 @@ export default function Dashboard() {
             <div className="relative z-10">
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
                 <Target className="w-6 h-6" />
-                Target: 100th Percentile
+                Mission: 250/250
               </h2>
               <p className="text-white/80 text-lg mb-6 leading-relaxed">
-                Aim for 50/50 correct answers. Every question is an opportunity to reach the maximum score.
+                In Subject Code 101, accuracy is your greatest asset. Every correct answer maintains your momentum toward the maximum score.
               </p>
               <div className="flex items-center gap-4 bg-white/20 px-6 py-3 rounded-2xl backdrop-blur-sm border border-white/30 w-fit font-bold">
-                <span className="text-3xl">250</span>
-                <span className="text-white/60">/ 250</span>
+                <span className="text-3xl">50 / 50</span>
+                <span className="text-white/60">Correct Answers</span>
               </div>
             </div>
           </Card>
@@ -88,14 +88,14 @@ export default function Dashboard() {
           <Card className="border-none shadow-sm bg-white/70 backdrop-blur-sm rounded-[2rem] p-8">
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-foreground">
               <ShieldCheck className="w-6 h-6 text-primary" />
-              Exam Essentials
+              Elite Standards
             </h2>
             <div className="space-y-4">
               {[
-                "50 Total Questions (Subject Code 101)",
-                "Attempt 50 (All Compulsory)",
-                "60 Minutes Total Duration",
-                "+5 for Correct | -1 for Wrong"
+                "All 50 Questions Compulsory",
+                "60 Minutes Total Time",
+                "+5 for Accuracy | -1 for Errors",
+                "Zero Guesswork Strategy"
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 text-foreground font-medium">
                   <div className="w-2 h-2 rounded-full bg-primary" />

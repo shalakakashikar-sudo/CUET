@@ -3,23 +3,23 @@
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Compass, Clock, CheckCircle, AlertTriangle, Calculator, ListOrdered, Target, Zap } from "lucide-react"
+import { Compass, Clock, CheckCircle, AlertTriangle, Calculator, ListOrdered, Target, Zap, TrendingUp } from "lucide-react"
 import Link from "next/link"
 
 export default function StrategyPage() {
   const timePlan = [
-    { section: "Reading Comprehension (RC)", time: "15 min", q: "12-15" },
-    { section: "Synonyms & Antonyms", time: "8 min", q: "10" },
-    { section: "Fill in the Blanks", time: "10 min", q: "10" },
-    { section: "Match the Following", time: "12 min", q: "10" },
-    { section: "Sentence Rearrangement", time: "10 min", q: "5-8" },
-    { section: "Review / Buffer", time: "5 min", q: "-" },
+    { section: "Reading Comprehension", time: "15 min", q: "12" },
+    { section: "Vocabulary (Syn/Ant)", time: "8 min", q: "10" },
+    { section: "Grammar & Structure", time: "10 min", q: "10" },
+    { section: "Match & Idioms", time: "12 min", q: "10" },
+    { section: "Rearrangement", time: "10 min", q: "8" },
+    { section: "Final Review", time: "5 min", q: "-" },
   ]
 
-  const approachStrategy = [
+  const markingStrategy = [
     { cond: "70%+ Confident", action: "Confirm and lock answer.", color: "text-green-600", bg: "bg-green-50" },
-    { cond: "50-70% Confident", action: "Eliminate 2 options -> Select best fit.", color: "text-blue-600", bg: "bg-blue-50" },
-    { cond: "Below 50% Confident", action: "Double check context clues.", color: "text-amber-600", bg: "bg-amber-50" },
+    { cond: "50-70% Confident", action: "Eliminate 2 options -> Solve.", color: "text-blue-600", bg: "bg-blue-50" },
+    { cond: "Below 50% Confident", action: "Re-read context clues immediately.", color: "text-amber-600", bg: "bg-amber-50" },
   ]
 
   return (
@@ -32,10 +32,10 @@ export default function StrategyPage() {
           </div>
           <h1 className="text-4xl font-headline font-bold flex items-center gap-3">
             <Compass className="w-10 h-10 text-primary" />
-            250/250 Strategic Blueprint
+            Strategic Exam Blueprint
           </h1>
           <p className="text-muted-foreground text-lg mt-4">
-            Master all 50 questions with precision. In Subject Code 101, every question counts toward your 100th percentile goal.
+            The road to 250/250 requires a clinical approach to all 50 questions. Accuracy over speed is the elite differentiator.
           </p>
         </header>
 
@@ -46,15 +46,15 @@ export default function StrategyPage() {
                 <Zap className="w-24 h-24 text-primary" />
               </div>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-2xl text-primary">
-                  <Zap className="w-6 h-6" />
-                  The Compulsory 50
+                <CardTitle className="flex items-center gap-2 text-2xl text-primary font-bold">
+                  <TrendingUp className="w-6 h-6" />
+                  Accuracy Maintenance
                 </CardTitle>
-                <CardDescription className="text-foreground/70 font-medium">For a perfect 250, you must master the logic behind all 50 questions.</CardDescription>
+                <CardDescription className="text-foreground/70 font-medium">For a perfect 250, you must neutralize the -1 penalty with logical deduction.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid sm:grid-cols-3 gap-4">
-                  {approachStrategy.map((item, i) => (
+                  {markingStrategy.map((item, i) => (
                     <div key={i} className={`${item.bg} p-4 rounded-xl border border-primary/10 flex flex-col justify-center`}>
                       <div className={`text-xs font-bold ${item.color} uppercase mb-1`}>{item.cond}</div>
                       <div className="text-sm font-semibold leading-tight text-foreground">{item.action}</div>
@@ -66,11 +66,11 @@ export default function StrategyPage() {
 
             <Card className="border-border shadow-sm">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl">
+                <CardTitle className="flex items-center gap-2 text-xl font-bold">
                   <Calculator className="w-6 h-6 text-primary" />
-                  The Maths of a Perfect Score
+                  The Scoring Formula
                 </CardTitle>
-                <CardDescription>Accuracy is the key to maintaining your +5 momentum.</CardDescription>
+                <CardDescription>Visualizing the impact of Subject Code 101 marking.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="bg-muted/30 p-6 rounded-2xl border shadow-sm">
@@ -90,7 +90,7 @@ export default function StrategyPage() {
                   </div>
                   <p className="mt-4 text-xs text-muted-foreground italic flex items-center gap-2">
                     <AlertTriangle className="w-3 h-3 text-orange-500" />
-                    Wrong answers result in a -1 penalty. Focus on context clues to avoid errors.
+                    Every wrong attempt costs you real momentum. Use the "Trap Decoder" in modules to stay sharp.
                   </p>
                 </div>
               </CardContent>
@@ -98,11 +98,11 @@ export default function StrategyPage() {
 
             <Card className="shadow-sm">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 font-bold">
                   <ListOrdered className="w-6 h-6 text-primary" />
-                  Exam Day Time Plan
+                  Optimal 60-Min Timeline
                 </CardTitle>
-                <CardDescription>Recommended 60-minute allocation for Subject Code 101.</CardDescription>
+                <CardDescription>Battle-tested allocation for the English paper.</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -114,10 +114,10 @@ export default function StrategyPage() {
                         </div>
                         <div>
                           <div className="font-bold text-sm text-foreground">{item.section}</div>
-                          {item.q !== "-" && <div className="text-[10px] text-muted-foreground uppercase">{item.q} Questions</div>}
+                          {item.q !== "-" && <div className="text-[10px] text-muted-foreground uppercase font-bold">{item.q} Questions</div>}
                         </div>
                       </div>
-                      <Badge variant="outline" className="font-mono text-primary border-primary/20">{item.time}</Badge>
+                      <Badge variant="outline" className="font-mono text-primary border-primary/20 font-bold">{item.time}</Badge>
                     </div>
                   ))}
                 </div>
@@ -126,36 +126,36 @@ export default function StrategyPage() {
           </div>
 
           <aside className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            <Card className="bg-foreground text-background shadow-xl">
+            <Card className="bg-foreground text-background shadow-xl rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
+                <CardTitle className="text-lg flex items-center gap-2 font-bold">
                   <Target className="w-5 h-5 text-primary" />
-                  Order of Attempt
+                  Order of Operations
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 text-sm">
+              <CardContent className="space-y-4 text-sm font-medium">
                 <ol className="space-y-3 list-decimal list-inside text-background/80">
-                  <li><strong>RC:</strong> Fastest safe marks (answers are IN the passage).</li>
-                  <li><strong>Syn/Ant:</strong> Quick if you've studied the list.</li>
-                  <li><strong>Fill in Blanks:</strong> Grammar-based and logical.</li>
-                  <li><strong>Match:</strong> Requires specific knowledge (idioms).</li>
-                  <li><strong>Rearrangement:</strong> Complex logic; ensure focus.</li>
+                  <li><strong>RC:</strong> Secure the 60/60 base first.</li>
+                  <li><strong>Vocab:</strong> High-speed marks for studied lists.</li>
+                  <li><strong>Grammar:</strong> Logical structures; fast to solve.</li>
+                  <li><strong>Match:</strong> Use elimination to avoid traps.</li>
+                  <li><strong>Logic:</strong> Rearrangement takes time; save for last.</li>
                 </ol>
                 <div className="pt-4 border-t border-background/20 space-y-2">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-emerald-400" />
-                    <span>Accuracy over speed.</span>
+                    <span>Focus on context over memory.</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-emerald-400" />
-                    <span>Target: 250/250.</span>
+                    <span>Target: 50 Compulsory Correct.</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             <Button className="w-full h-14 text-lg font-bold rounded-2xl shadow-lg" asChild>
-              <Link href="/quiz">Practice All 50 Questions</Link>
+              <Link href="/quiz">Start Full Practice Set</Link>
             </Button>
           </aside>
         </div>
