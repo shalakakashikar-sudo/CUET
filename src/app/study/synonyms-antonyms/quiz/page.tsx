@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react"
@@ -37,6 +36,11 @@ export default function VocabQuizPage() {
   useEffect(() => {
     setQuestions([...VOCAB_QUIZ_DATA].sort(() => Math.random() - 0.5))
   }, [])
+
+  // Scroll to top when question changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [currentStep, isFinished])
 
   const handleAnswer = (val: string) => {
     setAnswers({ ...answers, [questions[currentStep].id]: parseInt(val) })

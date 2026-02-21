@@ -44,6 +44,9 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground min-h-screen flex flex-col;
     /* Soft crystal gradient background */
