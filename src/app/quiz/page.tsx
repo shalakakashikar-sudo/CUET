@@ -8,7 +8,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Trophy, AlertCircle, ArrowRight, RefreshCw, ChevronLeft, Target, Award } from "lucide-react"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Trophy, AlertCircle, ArrowRight, RefreshCw, ChevronLeft, Target, Award, CheckCircle2, XCircle, Info } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 
@@ -19,6 +20,7 @@ type Question = {
   correct: number
   difficulty: 'Easy' | 'Medium' | 'Hard'
   section: string
+  explanation: string
 }
 
 const ENGLISH_CODE_101_SET: Question[] = [
@@ -28,7 +30,8 @@ const ENGLISH_CODE_101_SET: Question[] = [
     difficulty: "Medium",
     text: "According to the passage on 'Flow', what state is described as athletes being 'in the zone'?",
     options: ["Boredom", "Anxiety", "Flow", "Immersion"],
-    correct: 2
+    correct: 2,
+    explanation: "The passage explicitly defines 'Flow' as the state of complete immersion, which athletes colloquially refer to as being 'in the zone'."
   },
   {
     id: 2,
@@ -36,7 +39,8 @@ const ENGLISH_CODE_101_SET: Question[] = [
     difficulty: "Hard",
     text: "Choose the synonym for 'MUNIFICENT':",
     options: ["Stingy", "Bountiful", "Fragile", "Wisely"],
-    correct: 1
+    correct: 1,
+    explanation: "'Munificent' refers to great generosity. 'Bountiful' is its direct synonym. 'Stingy' is an antonym."
   },
   {
     id: 3,
@@ -44,7 +48,8 @@ const ENGLISH_CODE_101_SET: Question[] = [
     difficulty: "Medium",
     text: "Choose the antonym for 'LOQUACIOUS':",
     options: ["Talkative", "Verbose", "Garrulous", "Reticent"],
-    correct: 3
+    correct: 3,
+    explanation: "'Loquacious' means talkative. 'Reticent' means reserved or inclined to be silent, making it the correct antonym."
   },
   {
     id: 4,
@@ -52,7 +57,8 @@ const ENGLISH_CODE_101_SET: Question[] = [
     difficulty: "Hard",
     text: "By the time the ambulance arrived, the patient ______ unconscious for twenty minutes.",
     options: ["was", "has been", "had been", "is"],
-    correct: 2
+    correct: 2,
+    explanation: "When two actions happen in the past, the one that occurred first uses 'Past Perfect' (had + V3)."
   },
   {
     id: 5,
@@ -60,7 +66,8 @@ const ENGLISH_CODE_101_SET: Question[] = [
     difficulty: "Medium",
     text: "______ being a handicapped person, he is very co-operative.",
     options: ["Because", "Despite", "Although", "Basically"],
-    correct: 1
+    correct: 1,
+    explanation: "'Despite' is followed by a noun/gerund to show contrast. 'Although' would require a full clause (subject + verb)."
   },
   {
     id: 6,
@@ -68,7 +75,8 @@ const ENGLISH_CODE_101_SET: Question[] = [
     difficulty: "Easy",
     text: "Meaning of 'At the eleventh hour':",
     options: ["Important time", "At the last moment", "Exactly at 11:00", "Too early"],
-    correct: 1
+    correct: 1,
+    explanation: "This idiom refers to doing something at the very last possible moment before it is too late."
   },
   {
     id: 7,
@@ -76,7 +84,8 @@ const ENGLISH_CODE_101_SET: Question[] = [
     difficulty: "Medium",
     text: "'Time is a thief' is an example of:",
     options: ["Simile", "Metaphor", "Personification", "Hyperbole"],
-    correct: 1
+    correct: 1,
+    explanation: "This is a direct comparison between Time and a thief without using 'like' or 'as', which defines a Metaphor."
   },
   {
     id: 8,
@@ -84,7 +93,8 @@ const ENGLISH_CODE_101_SET: Question[] = [
     difficulty: "Hard",
     text: "Rearrange: A: were arrested / B: four criminals / C: in Varanasi",
     options: ["B-A-C", "C-A-B", "A-B-C", "C-B-A"],
-    correct: 0
+    correct: 0,
+    explanation: "The logical sequence is Subject (four criminals) -> Verb (were arrested) -> Location (in Varanasi)."
   },
   {
     id: 9,
@@ -92,7 +102,8 @@ const ENGLISH_CODE_101_SET: Question[] = [
     difficulty: "Medium",
     text: "Synonym of 'EPHEMERAL':",
     options: ["Permanent", "Transient", "Eternal", "Enduring"],
-    correct: 1
+    correct: 1,
+    explanation: "'Ephemeral' means lasting for a very short time. 'Transient' is the closest synonym."
   },
   {
     id: 10,
@@ -100,7 +111,8 @@ const ENGLISH_CODE_101_SET: Question[] = [
     difficulty: "Hard",
     text: "The head of a school is the ______:",
     options: ["Principle", "Principal", "Prince", "Precis"],
-    correct: 1
+    correct: 1,
+    explanation: "'Principal' refers to the head of a school or a main amount. 'Principle' refers to a fundamental rule or belief."
   }
 ]
 
@@ -115,7 +127,6 @@ export default function QuizPage() {
     setQuestions([...ENGLISH_CODE_101_SET].sort(() => Math.random() - 0.5))
   }, [])
 
-  // Scroll to top when question changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [currentStep, isFinished])
@@ -148,16 +159,16 @@ export default function QuizPage() {
   if (isFinished) {
     const { correct, wrong, total } = calculateScore()
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <Card className="w-full max-w-xl text-center p-10 border-none shadow-2xl rounded-[3rem] animate-fade-in-up bg-white">
-          <div className="bg-primary/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8">
-            <Award className="w-12 h-12 text-primary" />
-          </div>
-          <CardTitle className="text-4xl font-headline mb-2 font-bold">Elite Performance</CardTitle>
-          <CardDescription className="text-lg mb-10 font-medium">Subject Code 101 Official Marking Applied</CardDescription>
-          
-          <div className="space-y-6 mb-10 text-left">
-            <div className="grid grid-cols-2 gap-4">
+      <div className="min-h-screen bg-background py-12 px-4">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <Card className="text-center p-10 border-none shadow-2xl rounded-[3rem] animate-fade-in-up bg-white">
+            <div className="bg-primary/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8">
+              <Award className="w-12 h-12 text-primary" />
+            </div>
+            <CardTitle className="text-4xl font-headline mb-2 font-bold">Elite Performance</CardTitle>
+            <CardDescription className="text-lg mb-10 font-medium">Subject Code 101 Official Marking Applied</CardDescription>
+            
+            <div className="grid grid-cols-2 gap-4 mb-10">
               <div className="p-5 bg-green-50 rounded-2xl border border-green-100 text-center shadow-sm">
                 <div className="text-xs font-bold text-green-700 uppercase mb-1">Correct (+5)</div>
                 <div className="text-3xl font-bold text-green-700">+{correct * 5}</div>
@@ -167,24 +178,75 @@ export default function QuizPage() {
                 <div className="text-3xl font-bold text-red-700">-{wrong}</div>
               </div>
             </div>
-            <div className="flex justify-between items-center p-8 bg-foreground text-background rounded-[2rem] shadow-xl">
-              <div className="flex flex-col">
+
+            <div className="flex justify-between items-center p-8 bg-foreground text-background rounded-[2rem] shadow-xl mb-10">
+              <div className="flex flex-col text-left">
                 <span className="text-base opacity-70 font-bold">Net Marks</span>
                 <span className="text-[10px] font-bold uppercase tracking-widest opacity-50">Scaled to 50 questions</span>
               </div>
               <span className="text-5xl font-bold">{total} <span className="text-xl opacity-40">/ 250</span></span>
             </div>
-          </div>
 
-          <div className="flex flex-col gap-4">
-            <Button size="lg" className="w-full h-14 text-xl font-bold rounded-2xl" onClick={() => window.location.reload()}>
-              <RefreshCw className="w-5 h-5 mr-3" /> Re-attempt randomized set
-            </Button>
-            <Button variant="outline" size="lg" className="w-full h-14 text-lg font-bold rounded-2xl" asChild>
-              <Link href="/">Return to Dashboard</Link>
-            </Button>
-          </div>
-        </Card>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button size="lg" className="flex-1 h-14 text-xl font-bold rounded-2xl" onClick={() => window.location.reload()}>
+                <RefreshCw className="w-5 h-5 mr-3" /> Re-attempt
+              </Button>
+              <Button variant="outline" size="lg" className="flex-1 h-14 text-lg font-bold rounded-2xl" asChild>
+                <Link href="/">Dashboard</Link>
+              </Button>
+            </div>
+          </Card>
+
+          <section className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <h2 className="text-2xl font-bold flex items-center gap-2 px-4">
+              <Info className="w-6 h-6 text-primary" />
+              Detailed Item Analysis
+            </h2>
+            <div className="space-y-4">
+              {questions.map((q, idx) => {
+                const userAns = answers[q.id]
+                const isCorrect = userAns === q.correct
+                return (
+                  <Card key={idx} className="border-none shadow-md overflow-hidden rounded-[2rem]">
+                    <div className={cn("px-8 py-4 flex items-center justify-between", isCorrect ? "bg-green-50" : "bg-red-50")}>
+                      <Badge variant={isCorrect ? "default" : "destructive"} className="rounded-full px-4">
+                        {isCorrect ? "CORRECT (+5)" : "ERROR (-1)"}
+                      </Badge>
+                      <span className="text-xs font-bold uppercase tracking-widest opacity-40">{q.section}</span>
+                    </div>
+                    <CardContent className="p-8 space-y-4">
+                      <p className="text-lg font-bold leading-relaxed">{q.text}</p>
+                      <div className="grid gap-2">
+                        <div className={cn("p-4 rounded-xl flex items-center gap-3 border", isCorrect ? "bg-green-100/30 border-green-200" : "bg-red-100/30 border-red-200")}>
+                          {isCorrect ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-red-600" />}
+                          <div className="text-sm">
+                            <span className="font-bold">Your Answer: </span>
+                            {userAns !== undefined ? q.options[userAns] : "Not Attempted"}
+                          </div>
+                        </div>
+                        {!isCorrect && (
+                          <div className="p-4 rounded-xl flex items-center gap-3 border bg-green-100/30 border-green-200">
+                            <CheckCircle2 className="w-5 h-5 text-green-600" />
+                            <div className="text-sm">
+                              <span className="font-bold">Correct Answer: </span>
+                              {q.options[q.correct]}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <div className="pt-4 border-t border-dashed">
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          <strong className="text-foreground">Clinical Strategy: </strong>
+                          {q.explanation}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )
+              })}
+            </div>
+          </section>
+        </div>
       </div>
     )
   }

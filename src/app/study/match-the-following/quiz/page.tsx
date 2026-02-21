@@ -8,19 +8,68 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Trophy, RefreshCw, ChevronLeft, Target, MessageCircle } from "lucide-react"
+import { Trophy, RefreshCw, ChevronLeft, Target, MessageCircle, Info } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 const MATCH_QUIZ_DATA = [
-  { id: 1, q: "Meaning of the idiom 'Turn a blind eye':", options: ["To look carefully", "To deliberately ignore something wrong", "To be physically impaired", "To close one eye while aiming"], correct: 1 },
-  { id: 2, q: "Correct meaning of 'A stitch in time saves nine':", options: ["Sewing quickly is better", "Nine stitches are better than one", "Dealing with a small problem early prevents it growing", "Time spent sewing is valuable"], correct: 2 },
-  { id: 3, q: "Meaning of 'At the eleventh hour':", options: ["Important time", "At the last moment", "Without saving", "Day before yesterday"], correct: 1 },
-  { id: 4, q: "Figure of speech in 'Time is a thief':", options: ["Simile", "Metaphor", "Personification", "Hyperbole"], correct: 1 },
-  { id: 5, q: "Example of an Oxymoron:", options: ["Time is money", "Life is a journey", "Deafening silence", "Fast as the wind"], correct: 2 },
-  { id: 6, q: "Meaning of 'Small talk':", options: ["Gossip", "Brief discussion", "Polite conversation about unimportant things", "Talk of children"], correct: 2 },
-  { id: 7, q: "Meaning of 'Bite the bullet':", options: ["Eat something dangerous", "Endure a painful situation with courage", "Speak aggressively", "Refuse a risk"], correct: 1 },
-  { id: 8, q: "Figure of speech in 'The pen is mightier than the sword':", options: ["Onomatopoeia", "Pun", "Irony", "Metaphor"], correct: 3 }
+  { 
+    id: 1, 
+    q: "Meaning of the idiom 'Turn a blind eye':", 
+    options: ["To look carefully", "To deliberately ignore something wrong", "To be physically impaired", "To close one eye while aiming"], 
+    correct: 1,
+    explanation: "This idiom originates from Admiral Nelson who supposedly put his telescope to his blind eye to avoid seeing a signal to withdraw from battle. It means to intentionally ignore something."
+  },
+  { 
+    id: 2, 
+    q: "Correct meaning of 'A stitch in time saves nine':", 
+    options: ["Sewing quickly is better", "Nine stitches are better than one", "Dealing with a small problem early prevents it growing", "Time spent sewing is valuable"], 
+    correct: 2,
+    explanation: "This proverb suggests that fixing a small issue now prevents it from becoming a much larger, harder-to-fix problem later."
+  },
+  { 
+    id: 3, 
+    q: "Meaning of 'At the eleventh hour':", 
+    options: ["Important time", "At the last moment", "Without saving", "Day before yesterday"], 
+    correct: 1,
+    explanation: "In the biblical parable, laborers were hired at the 'eleventh hour' of a twelve-hour workday. It means the very last possible moment."
+  },
+  { 
+    id: 4, 
+    q: "Figure of speech in 'Time is a thief':", 
+    options: ["Simile", "Metaphor", "Personification", "Hyperbole"], 
+    correct: 1,
+    explanation: "This is a direct comparison between Time and a thief without using 'like' or 'as'. It's a Metaphor."
+  },
+  { 
+    id: 5, 
+    q: "Example of an Oxymoron:", 
+    options: ["Time is money", "Life is a journey", "Deafening silence", "Fast as the wind"], 
+    correct: 2,
+    explanation: "An oxymoron combines two contradictory terms. 'Deafening' (loud) and 'silence' (quiet) are opposites used together."
+  },
+  { 
+    id: 6, 
+    q: "Meaning of 'Small talk':", 
+    options: ["Gossip", "Brief discussion", "Polite conversation about unimportant things", "Talk of children"], 
+    correct: 2,
+    explanation: "'Small talk' refers to social conversation about minor topics like the weather, intended to build rapport."
+  },
+  { 
+    id: 7, 
+    q: "Meaning of 'Bite the bullet':", 
+    options: ["Eat something dangerous", "Endure a painful situation with courage", "Speak aggressively", "Refuse a risk"], 
+    correct: 1,
+    explanation: "Before anesthesia, soldiers were given bullets to bite on during surgery to endure the pain. It means to accept something unpleasant bravely."
+  },
+  { 
+    id: 8, 
+    q: "Figure of speech in 'The pen is mightier than the sword':", 
+    options: ["Onomatopoeia", "Pun", "Irony", "Metaphor"], 
+    correct: 3,
+    explanation: "While 'Metonymy' is the specific type here, in the context of general categories, it serves as a powerful Metaphor for the influence of communication over force."
+  }
 ]
 
 export default function MatchQuizPage() {
@@ -34,7 +83,6 @@ export default function MatchQuizPage() {
     setQuestions([...MATCH_QUIZ_DATA].sort(() => Math.random() - 0.5))
   }, [])
 
-  // Scroll to top when question changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [currentStep, isFinished])
@@ -66,35 +114,73 @@ export default function MatchQuizPage() {
   if (isFinished) {
     const { correct, wrong, total } = calculateScore()
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <Card className="w-full max-w-lg text-center p-8 border-none shadow-2xl rounded-[2rem]">
-          <div className="bg-primary/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <MessageCircle className="w-10 h-10 text-primary" />
-          </div>
-          <CardTitle className="text-3xl font-headline mb-2">Matching Quiz Results</CardTitle>
-          <div className="grid grid-cols-2 gap-4 my-8">
-            <div className="p-4 bg-green-50 rounded-2xl border border-green-100">
-              <div className="text-xs font-bold text-green-700 uppercase">Correct</div>
-              <div className="text-2xl font-bold text-green-700">+{correct * 5}</div>
+      <div className="min-h-screen bg-background py-12 px-4">
+        <div className="max-w-2xl mx-auto space-y-8">
+          <Card className="text-center p-8 border-none shadow-2xl rounded-[2rem] bg-white">
+            <div className="bg-primary/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <MessageCircle className="w-10 h-10 text-primary" />
             </div>
-            <div className="p-4 bg-red-50 rounded-2xl border border-red-100">
-              <div className="text-xs font-bold text-red-700 uppercase">Wrong</div>
-              <div className="text-2xl font-bold text-red-700">-{wrong}</div>
+            <CardTitle className="text-3xl font-headline mb-2">Matching Quiz Results</CardTitle>
+            <div className="grid grid-cols-2 gap-4 my-8">
+              <div className="p-4 bg-green-50 rounded-2xl border border-green-100">
+                <div className="text-xs font-bold text-green-700 uppercase">Correct</div>
+                <div className="text-2xl font-bold text-green-700">+{correct * 5}</div>
+              </div>
+              <div className="p-4 bg-red-50 rounded-2xl border border-red-100">
+                <div className="text-xs font-bold text-red-700 uppercase">Wrong</div>
+                <div className="text-2xl font-bold text-red-700">-{wrong}</div>
+              </div>
             </div>
-          </div>
-          <div className="p-6 bg-foreground text-background rounded-[1.5rem] mb-8">
-            <div className="text-sm opacity-70">Total Score</div>
-            <div className="text-4xl font-bold">{total} / {questions.length * 5}</div>
-          </div>
-          <div className="flex flex-col gap-3">
-            <Button size="lg" className="rounded-xl h-12 font-bold" onClick={() => window.location.reload()}>
-              <RefreshCw className="w-4 h-4 mr-2" /> Retake randomized quiz
-            </Button>
-            <Button variant="outline" size="lg" className="rounded-xl h-12" asChild>
-              <Link href="/study/match-the-following">Back to Material</Link>
-            </Button>
-          </div>
-        </Card>
+            <div className="p-6 bg-foreground text-background rounded-[1.5rem] mb-8">
+              <div className="text-sm opacity-70">Total Score</div>
+              <div className="text-4xl font-bold">{total} / {questions.length * 5}</div>
+            </div>
+            <div className="flex flex-col gap-3">
+              <Button size="lg" className="rounded-xl h-12 font-bold" onClick={() => window.location.reload()}>
+                <RefreshCw className="w-4 h-4 mr-2" /> Retake
+              </Button>
+              <Button variant="outline" size="lg" className="rounded-xl h-12" asChild>
+                <Link href="/study/match-the-following">Back to Material</Link>
+              </Button>
+            </div>
+          </Card>
+
+          <section className="space-y-4">
+            <h3 className="text-xl font-bold flex items-center gap-2 px-2">
+              <Info className="w-5 h-5 text-primary" />
+              Detailed Item Analysis
+            </h3>
+            {questions.map((q, idx) => {
+              const userAns = answers[q.id]
+              const isCorrect = userAns === q.correct
+              return (
+                <Card key={idx} className="border-none shadow-md overflow-hidden rounded-[1.5rem] bg-white">
+                  <div className={cn("px-6 py-3 flex items-center justify-between", isCorrect ? "bg-green-50" : "bg-red-50")}>
+                    <Badge variant={isCorrect ? "default" : "destructive"}>
+                      {isCorrect ? "Correct" : "Error"}
+                    </Badge>
+                  </div>
+                  <CardContent className="p-6 space-y-3">
+                    <p className="font-bold">{q.q}</p>
+                    <div className="grid gap-2 text-sm">
+                      <div className={cn("p-3 rounded-lg", isCorrect ? "bg-green-50" : "bg-red-50")}>
+                        <span className="font-bold">Your answer:</span> {q.options[userAns]}
+                      </div>
+                      {!isCorrect && (
+                        <div className="p-3 rounded-lg bg-green-50 border border-green-200">
+                          <span className="font-bold">Correct answer:</span> {q.options[q.correct]}
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-xs text-muted-foreground pt-2 border-t">
+                      <strong className="text-foreground">Insight:</strong> {q.explanation}
+                    </p>
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </section>
+        </div>
       </div>
     )
   }

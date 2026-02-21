@@ -8,9 +8,10 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Trophy, RefreshCw, ChevronLeft, Target, BookOpen } from "lucide-react"
+import { Trophy, RefreshCw, ChevronLeft, Target, BookOpen, Info, CheckCircle2, XCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 const RC_QUIZ_DATA = [
   {
@@ -23,7 +24,8 @@ const RC_QUIZ_DATA = [
       "Flow is a state of deep engagement that produces the most satisfying experiences in life.",
       "Boredom and anxiety are the primary psychological problems faced by professionals."
     ],
-    correct: 2
+    correct: 2,
+    explanation: "The passage describes Flow as a state of 'complete immersion' and 'energised focus', suggesting it's about the depth of engagement in an activity."
   },
   {
     id: 2,
@@ -35,7 +37,8 @@ const RC_QUIZ_DATA = [
       "The challenge of the task and the skill of the person must be roughly balanced.",
       "The activity must provide external rewards."
     ],
-    correct: 2
+    correct: 2,
+    explanation: "The passage states that flow happens when there is a 'balance between the challenge of the task and the skill of the person'."
   },
   {
     id: 3,
@@ -43,23 +46,25 @@ const RC_QUIZ_DATA = [
     question: "What made manuscripts more than just texts, according to the passage?",
     options: [
       "They were written in Latin.",
-      "They were decorated with illustrations and gold leaf.",
+      "They were painstakingly produced handmade works of preservation.",
       "They were produced in monasteries.",
       "They were copied by monks who had taken vows of silence."
     ],
-    correct: 1
+    correct: 1,
+    explanation: "The passage highlights the 'painstakingly copied by hand' process and that monks 'devoted their lives' to this preservation, making them more than just simple texts."
   },
   {
     id: 4,
     passage: "Gutenberg introduced the movable-type printing press in the 1440s. Books became affordable and accessible. Ideas spread rapidly across Europe, and some historians argue the printing press was one of the key catalysts for the Renaissance and Scientific Revolution.",
-    question: "In the passage about the printing press, the word 'redundant' most closely means:",
+    question: "According to the passage, what was a result of the printing press?",
     options: [
-      "Highly skilled and specialised",
-      "No longer needed or useful",
-      "Extremely rare and precious",
-      "Busy and overworked"
+      "Books became more expensive due to demand.",
+      "Ideas spread rapidly across Europe.",
+      "It caused the end of the Scientific Revolution.",
+      "Monasteries gained more power over information."
     ],
-    correct: 1
+    correct: 1,
+    explanation: "The text explicitly states: 'Ideas spread rapidly across Europe' as a result of books becoming affordable and accessible."
   }
 ]
 
@@ -74,7 +79,6 @@ export default function RCQuizPage() {
     setQuestions([...RC_QUIZ_DATA].sort(() => Math.random() - 0.5))
   }, [])
 
-  // Scroll to top when question changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [currentStep, isFinished])
@@ -106,35 +110,78 @@ export default function RCQuizPage() {
   if (isFinished) {
     const { correct, wrong, total } = calculateScore()
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <Card className="w-full max-w-lg text-center p-8 border-none shadow-2xl rounded-[2rem]">
-          <div className="bg-primary/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Trophy className="w-10 h-10 text-primary" />
-          </div>
-          <CardTitle className="text-3xl font-headline mb-2">RC Excellence Score</CardTitle>
-          <div className="grid grid-cols-2 gap-4 my-8">
-            <div className="p-4 bg-green-50 rounded-2xl border border-green-100">
-              <div className="text-xs font-bold text-green-700 uppercase">Correct</div>
-              <div className="text-2xl font-bold text-green-700">+{correct * 5}</div>
+      <div className="min-h-screen bg-background py-12 px-4">
+        <div className="max-w-3xl mx-auto space-y-8">
+          <Card className="text-center p-8 border-none shadow-2xl rounded-[2rem] bg-white">
+            <div className="bg-primary/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Trophy className="w-10 h-10 text-primary" />
             </div>
-            <div className="p-4 bg-red-50 rounded-2xl border border-red-100">
-              <div className="text-xs font-bold text-red-700 uppercase">Wrong</div>
-              <div className="text-2xl font-bold text-red-700">-{wrong}</div>
+            <CardTitle className="text-3xl font-headline mb-2">RC Excellence Score</CardTitle>
+            <div className="grid grid-cols-2 gap-4 my-8">
+              <div className="p-4 bg-green-50 rounded-2xl border border-green-100">
+                <div className="text-xs font-bold text-green-700 uppercase">Correct</div>
+                <div className="text-2xl font-bold text-green-700">+{correct * 5}</div>
+              </div>
+              <div className="p-4 bg-red-50 rounded-2xl border border-red-100">
+                <div className="text-xs font-bold text-red-700 uppercase">Wrong</div>
+                <div className="text-2xl font-bold text-red-700">-{wrong}</div>
+              </div>
             </div>
-          </div>
-          <div className="p-6 bg-foreground text-background rounded-[1.5rem] mb-8">
-            <div className="text-sm opacity-70">Total Section Marks</div>
-            <div className="text-4xl font-bold">{total} / {questions.length * 5}</div>
-          </div>
-          <div className="flex flex-col gap-3">
-            <Button size="lg" className="rounded-xl h-12 font-bold" onClick={() => window.location.reload()}>
-              <RefreshCw className="w-4 h-4 mr-2" /> Retake randomized quiz
-            </Button>
-            <Button variant="outline" size="lg" className="rounded-xl h-12" asChild>
-              <Link href="/study/reading-comprehension">Back to Material</Link>
-            </Button>
-          </div>
-        </Card>
+            <div className="p-6 bg-foreground text-background rounded-[1.5rem] mb-8">
+              <div className="text-sm opacity-70">Total Section Marks</div>
+              <div className="text-4xl font-bold">{total} / {questions.length * 5}</div>
+            </div>
+            <div className="flex flex-col gap-3">
+              <Button size="lg" className="rounded-xl h-12 font-bold" onClick={() => window.location.reload()}>
+                <RefreshCw className="w-4 h-4 mr-2" /> Retake randomized quiz
+              </Button>
+              <Button variant="outline" size="lg" className="rounded-xl h-12" asChild>
+                <Link href="/study/reading-comprehension">Back to Material</Link>
+              </Button>
+            </div>
+          </Card>
+
+          <section className="space-y-6">
+            <h3 className="text-xl font-bold flex items-center gap-2 px-2">
+              <Info className="w-5 h-5 text-primary" />
+              Detailed Item Analysis
+            </h3>
+            {questions.map((q, idx) => {
+              const userAns = answers[q.id]
+              const isCorrect = userAns === q.correct
+              return (
+                <Card key={idx} className="border-none shadow-md overflow-hidden rounded-[2rem] bg-white">
+                  <div className={cn("px-6 py-3 flex items-center justify-between", isCorrect ? "bg-green-50" : "bg-red-50")}>
+                    <Badge variant={isCorrect ? "default" : "destructive"}>
+                      {isCorrect ? "Correct" : "Error"}
+                    </Badge>
+                  </div>
+                  <CardContent className="p-8 space-y-4">
+                    <div className="bg-muted/30 p-4 rounded-xl text-sm italic border-l-4 border-primary">
+                      {q.passage}
+                    </div>
+                    <p className="font-bold text-lg">{q.question}</p>
+                    <div className="grid gap-2 text-sm">
+                      <div className={cn("p-4 rounded-xl flex items-center gap-2 border", isCorrect ? "bg-green-100/30 border-green-200" : "bg-red-100/30 border-red-200")}>
+                        {isCorrect ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-red-600" />}
+                        <span><strong className="text-foreground">Your answer:</strong> {q.options[userAns]}</span>
+                      </div>
+                      {!isCorrect && (
+                        <div className="p-4 rounded-xl flex items-center gap-2 border bg-green-100/30 border-green-200">
+                          <CheckCircle2 className="w-5 h-5 text-green-600" />
+                          <span><strong className="text-foreground">Correct answer:</strong> {q.options[q.correct]}</span>
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-sm text-muted-foreground pt-4 border-t border-dashed">
+                      <strong className="text-foreground">Clinical Strategy:</strong> {q.explanation}
+                    </p>
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </section>
+        </div>
       </div>
     )
   }
