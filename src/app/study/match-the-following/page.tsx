@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
@@ -60,7 +59,7 @@ export default function MatchPage() {
                   <CardHeader className="bg-primary/5">
                     <CardTitle className="flex items-center gap-2 text-primary font-bold">
                       <MessageCircle className="w-5 h-5" />
-                      Idioms Master List
+                      Idioms Prime List
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-0 bg-white">
@@ -130,7 +129,7 @@ export default function MatchPage() {
               <CardHeader>
                 <CardTitle className="text-lg text-primary flex items-center gap-2">
                   <Lightbulb className="w-5 h-5" />
-                  Strategy
+                  Strategic View
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-sm font-medium">

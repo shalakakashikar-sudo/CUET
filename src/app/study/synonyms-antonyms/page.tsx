@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react"
@@ -45,7 +44,7 @@ export default function SynonymsPage() {
             <div>
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Section 3 (50 Marks)</Badge>
               <h1 className="text-4xl font-headline font-bold mb-4 text-foreground">Synonyms & Antonyms</h1>
-              <p className="text-muted-foreground text-lg max-w-2xl">Study 8-10 words per day with their opposites. Master the Trap Decoder to avoid the -1 penalty.</p>
+              <p className="text-muted-foreground text-lg max-w-2xl">Study 8-10 words per day with their opposites. Use the Trap Decoder to avoid the -1 penalty.</p>
             </div>
             <Button size="lg" className="rounded-2xl font-bold shadow-lg" asChild>
               <Link href="/study/synonyms-antonyms/quiz">Start Topic Quiz</Link>
@@ -62,7 +61,7 @@ export default function SynonymsPage() {
                     <Search className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-2xl">Master Word List</CardTitle>
+                    <CardTitle className="text-2xl">Elite Word List</CardTitle>
                     <CardDescription>The 50+ essential words for CUET 2026 Code 101.</CardDescription>
                   </div>
                 </div>

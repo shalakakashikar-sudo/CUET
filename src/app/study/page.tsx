@@ -37,7 +37,7 @@ export default function StudyPage() {
         <div className="max-w-6xl mx-auto">
           <header className="mb-16 text-center animate-fade-in-up">
             <Badge variant="outline" className="mb-6 py-2 px-6 border-primary/40 text-primary font-bold uppercase tracking-widest rounded-full">Section 1: English (101)</Badge>
-            <h1 className="text-5xl font-headline font-bold mb-6">Mastering the Curriculum</h1>
+            <h1 className="text-5xl font-headline font-bold mb-6">Commanding the Curriculum</h1>
             <p className="text-muted-foreground text-xl max-w-2xl mx-auto">
               Dive deep into every rule, trap, and pattern required for a perfect 100th percentile.
             </p>
@@ -85,7 +85,7 @@ export default function StudyPage() {
             <div className="relative z-10 text-center md:text-left">
               <h3 className="text-3xl font-bold mb-4">Strategic Competitive Edge</h3>
               <p className="text-white/80 text-xl mb-8 max-w-xl">
-                Knowledge alone isn't enough. Master the timing and accuracy required for a perfect 50/50 attempt.
+                Knowledge alone isn't enough. Gain the accuracy required for a perfect 50/50 attempt.
               </p>
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-10 rounded-2xl font-bold text-lg" asChild>
                 <Link href="/strategy">View Strategy Guide</Link>

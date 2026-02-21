@@ -38,7 +38,7 @@ export default function Dashboard() {
           <div className="inline-flex items-center gap-2 mb-4 bg-primary/10 text-primary px-4 py-1.5 rounded-full border border-primary/20 text-xs font-bold uppercase tracking-widest">
             Subject Code: 101
           </div>
-          <h1 className="text-5xl font-headline font-bold text-foreground tracking-tight mb-4">English Mastery Hub</h1>
+          <h1 className="text-5xl font-headline font-bold text-foreground tracking-tight mb-4">The Verbal Vantage</h1>
           <p className="text-muted-foreground text-xl max-w-2xl mx-auto">Your streamlined blueprint for a perfect 250/250 score in CUET 2026.</p>
         </header>
 

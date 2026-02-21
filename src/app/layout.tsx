@@ -4,8 +4,8 @@ import { Toaster } from "@/components/ui/toaster"
 import { Navbar } from "@/components/layout/Navbar"
 
 export const metadata: Metadata = {
-  title: 'CUET Prep 2026 | English Mastery',
-  description: 'Master the CUET 2026 English Exam with Subject Code 101 experts.',
+  title: 'CUET Prep 2026 | English Excellence',
+  description: 'Excel in the CUET 2026 English Exam with Subject Code 101 experts.',
 };
 
 export default function RootLayout({

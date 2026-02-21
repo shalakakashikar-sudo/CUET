@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react"
@@ -106,7 +105,7 @@ export default function RCQuizPage() {
           <div className="bg-primary/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
             <Trophy className="w-10 h-10 text-primary" />
           </div>
-          <CardTitle className="text-3xl font-headline mb-2">RC Mastery Score</CardTitle>
+          <CardTitle className="text-3xl font-headline mb-2">RC Excellence Score</CardTitle>
           <div className="grid grid-cols-2 gap-4 my-8">
             <div className="p-4 bg-green-50 rounded-2xl border border-green-100">
               <div className="text-xs font-bold text-green-700 uppercase">Correct</div>

@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
@@ -30,7 +29,7 @@ export default function FillersPage() {
               <CardHeader>
                 <div className="flex items-center gap-2 mb-2">
                   <Clock className="w-5 h-5 text-primary" />
-                  <Badge variant="outline" className="rounded-full bg-white text-primary border-primary/20">Tense Master Guide</Badge>
+                  <Badge variant="outline" className="rounded-full bg-white text-primary border-primary/20">Tense Expert Guide</Badge>
                 </div>
                 <CardTitle className="text-2xl font-bold">The Most Tested Structures</CardTitle>
               </CardHeader>
