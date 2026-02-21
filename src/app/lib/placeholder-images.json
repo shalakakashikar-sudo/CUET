@@ -1,23 +1,16 @@
-
 {
   "placeholderImages": [
     {
-      "id": "study-english",
-      "description": "English language study materials and books",
-      "imageUrl": "https://picsum.photos/seed/cuet-english/800/600",
-      "imageHint": "books language"
+      "id": "hero-bg",
+      "description": "Abstract sky blue gradient background",
+      "imageUrl": "https://picsum.photos/seed/sky-blue/1920/1080",
+      "imageHint": "sky blue gradient"
     },
     {
-      "id": "study-logic",
-      "description": "Logical reasoning and mental math illustrations",
-      "imageUrl": "https://picsum.photos/seed/cuet-logic/800/600",
-      "imageHint": "logic math"
-    },
-    {
-      "id": "study-exam",
-      "description": "Students preparing for a competitive exam",
-      "imageUrl": "https://picsum.photos/seed/cuet-exam/800/600",
-      "imageHint": "exam students"
+      "id": "study-dashboard",
+      "description": "Clean minimal study workspace",
+      "imageUrl": "https://picsum.photos/seed/study/800/600",
+      "imageHint": "study workspace"
     }
   ]
 }
