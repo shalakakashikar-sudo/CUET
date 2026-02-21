@@ -9,6 +9,7 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { MessageCircle, Star, Sparkles, Lightbulb, Info, BookOpen } from "lucide-react"
 import Link from "next/link"
+import { useEffect } from "react"
 
 const IDIOMS = [
   { idiom: "A blessing in disguise", meaning: "A misfortune that eventually results in something good happening later." },
@@ -154,21 +155,35 @@ const IDIOMS = [
 
 const FIGURES = [
   { name: "Alliteration", def: "Repetition of initial consonant sounds.", eg: "Peter Piper picked a peck of pickled peppers." },
+  { name: "Anaphora", def: "Repetition of a word or phrase at the beginning of successive clauses.", eg: "Every breath you take, every move you make..." },
+  { name: "Antithesis", def: "Contrast of ideas expressed by parallel arrangement of words.", eg: "Speech is silver, but silence is gold." },
+  { name: "Apostrophe", def: "Addressing an absent person or personified object.", eg: "O wild West Wind, thou breath of Autumn's being." },
   { name: "Assonance", def: "Repetition of vowel sounds within nearby words.", eg: "The rain in Spain stays mainly in the plain." },
+  { name: "Asyndeton", def: "Omission of conjunctions between parts of a sentence.", eg: "I came, I saw, I conquered." },
+  { name: "Chiasmus", def: "Concepts are repeated in reverse order.", eg: "Never let a Fool Kiss You or a Kiss Fool You." },
   { name: "Consonance", def: "Repetition of consonant sounds within or at the end of words.", eg: "The lock stuck back in the crack." },
+  { name: "Epistrophe", def: "Repetition of a word at the end of successive clauses.", eg: "Government of the people, by the people, for the people." },
+  { name: "Euphemism", def: "A mild word used in place of a harsh one.", eg: "Passed away instead of died." },
+  { name: "Hyperbaton", def: "Inversion of normal word order.", eg: "This is the sort of nonsense up with which I will not put." },
   { name: "Hyperbole", def: "Extreme exaggeration for emphasis.", eg: "I've told you a million times!" },
   { name: "Irony", def: "Contrast between expectation and reality.", eg: "A pilot has a fear of heights." },
+  { name: "Litotes", def: "Understatement by using double negatives.", eg: "He is not the brightest bulb in the box." },
   { name: "Metaphor", def: "Direct comparison without using 'like' or 'as'.", eg: "Life is a roller coaster." },
   { name: "Metonymy", def: "Replacing a name with something closely associated.", eg: "The White House issued a statement (meaning the President)." },
   { name: "Onomatopoeia", def: "Words that imitate sounds.", eg: "The bees buzzed; the clock ticked." },
   { name: "Oxymoron", def: "Two contradictory terms used together.", eg: "Original copy; bittersweet." },
   { name: "Paradox", def: "A statement that seems contradictory but reveals a truth.", eg: "This is the beginning of the end." },
   { name: "Personification", def: "Giving human qualities to non-human things.", eg: "The stars winked at us." },
+  { name: "Pleonasm", def: "Use of more words than necessary.", eg: "I saw it with my own eyes." },
+  { name: "Polysyndeton", def: "Use of many conjunctions for effect.", eg: "He ran and jumped and laughed and cried." },
   { name: "Pun", def: "A play on words with multiple meanings or similar sounds.", eg: "I was wondering why the ball was getting bigger. Then it hit me." },
+  { name: "Rhetorical Question", def: "A question asked for effect, not for an answer.", eg: "Do you want to be a failure for the rest of your life?" },
   { name: "Simile", def: "Comparison using 'like' or 'as'.", eg: "He is as brave as a lion." },
   { name: "Synecdoche", def: "A part used to represent the whole.", eg: "All hands on deck (meaning the whole crew)." },
-  { name: "Euphemism", def: "A mild word used in place of a harsh one.", eg: "Passed away instead of died." },
-]
+  { name: "Tautology", def: "Saying the same thing twice in different words.", eg: "It's free of charge." },
+  { name: "Understatement", def: "Presenting something as less important than it is.", eg: "It's just a flesh wound (after losing an arm)." },
+  { name: "Zeugma", def: "A word applies to two others in different senses.", eg: "He took his hat and his leave." },
+].sort((a, b) => a.name.localeCompare(b.name));
 
 const HOMONYMS = [
   { w1: "Affect", m1: "To impact (verb)", w2: "Effect", m2: "The result (noun)" },
@@ -315,6 +330,10 @@ const PROVERBS = [
 ].sort((a, b) => a.p.localeCompare(b.p));
 
 export default function MatchPage() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   return (
     <div className="min-h-screen bg-background">
       <main className="container mx-auto px-4 py-12 max-w-5xl">
