@@ -66,7 +66,7 @@ export default function Dashboard() {
 
         {/* Quick Stats/Checklist */}
         <section className="grid md:grid-cols-2 gap-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-          <Card className="border-none bg-primary text-white rounded-[2rem] shadow-xl p-8 overflow-hidden relative">
+          <Card className="border-none bg-primary text-primary-foreground rounded-[2rem] shadow-xl p-8 overflow-hidden relative">
             <div className="absolute right-0 bottom-0 opacity-10 translate-x-1/4 translate-y-1/4">
               <Target className="w-64 h-64" />
             </div>
@@ -75,12 +75,12 @@ export default function Dashboard() {
                 <Target className="w-6 h-6" />
                 Mission: 250/250
               </h2>
-              <p className="text-white/80 text-lg mb-6 leading-relaxed">
+              <p className="text-primary-foreground/80 text-lg mb-6 leading-relaxed">
                 In Subject Code 101, accuracy is your greatest asset. Every correct answer maintains your momentum toward the maximum score.
               </p>
               <div className="flex items-center gap-4 bg-white/20 px-6 py-3 rounded-2xl backdrop-blur-sm border border-white/30 w-fit font-bold">
                 <span className="text-3xl">50 / 50</span>
-                <span className="text-white/60">Correct Answers</span>
+                <span className="text-primary-foreground/60">Correct Answers</span>
               </div>
             </div>
           </Card>

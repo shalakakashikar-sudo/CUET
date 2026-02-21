@@ -14,17 +14,19 @@
     --popover: 0 0% 100%;
     --popover-foreground: 197 60% 10%;
     
-    /* Primary is the vibrant mascot blue */
-    --primary: 197 100% 72%; 
-    --primary-foreground: 197 60% 10%; /* Dark blue text for contrast on light blue */
+    /* Primary is a darkened version of the mascot blue for better contrast with white text */
+    --primary: 197 100% 45%; 
+    --primary-foreground: 0 0% 100%; 
     
-    --secondary: 197 100% 92%; /* Lighter version for subtle backgrounds */
+    /* Secondary uses the light mascot blue for subtle backgrounds */
+    --secondary: 197 100% 92%; 
     --secondary-foreground: 197 60% 20%;
     
     --muted: 197 30% 95%;
     --muted-foreground: 197 20% 40%;
     
-    --accent: 197 100% 50%; /* Darker blue for call-to-actions */
+    /* Accent is a very dark, professional blue */
+    --accent: 197 100% 30%; 
     --accent-foreground: 0 0% 100%;
     
     --destructive: 0 84.2% 60.2%;
@@ -32,7 +34,7 @@
     
     --border: 197 30% 90%;
     --input: 197 30% 90%;
-    --ring: 197 100% 72%;
+    --ring: 197 100% 45%;
     
     --radius: 1.5rem;
   }
