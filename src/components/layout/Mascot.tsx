@@ -6,7 +6,7 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion"
 import { usePathname } from "next/navigation"
 import { Heart, Stars, Zap, BookOpen, Lightbulb } from "lucide-react"
 
-type Expression = "happy" | "wink" | "cool" | "surprised" | "determined" | "thinking"
+type Expression = "happy" | "wink" | "surprised" | "determined" | "thinking"
 
 const COMMENTS = {
   default: [
@@ -39,6 +39,7 @@ const COMMENTS = {
     "Grammar Tip: 'Despite' needs a noun, 'Although' needs a clause!",
     "Suffixes are like tails; they tell you where the word is going.",
     "Word of the Day: 'Sagacious' means wise. Be sagacious, study hard!",
+    "Idiom Alert: 'Spill the beans' means to reveal a secret. I prefer spills to melts!",
   ],
   quiz: [
     "Focus mode: ACTIVATED. Let's get that 250!",
@@ -59,7 +60,7 @@ const COMMENTS = {
   ]
 }
 
-const SKY_BLUE = "#70D6FF"
+const CRYSTAL_BLUE = "#70D6FF"
 
 export function Mascot() {
   const pathname = usePathname()
@@ -96,13 +97,13 @@ export function Mascot() {
   const handleClick = () => {
     if (isBitten || !mounted) return
 
-    const expressions: Expression[] = ["wink", "cool", "surprised", "happy"]
+    const expressions: Expression[] = ["wink", "surprised", "happy"]
     const randomExpr = expressions[Math.floor(Math.random() * expressions.length)]
     
     setMessage(getRandomComment())
     setIsVisible(true)
     setIsBitten(true)
-    setExpression(randomExpr)
+    setExpression("surprised")
     setShowHands(true)
 
     setTimeout(() => {
@@ -113,10 +114,9 @@ export function Mascot() {
 
     setTimeout(() => {
       setIsVisible(false)
-    }, 8000)
+    }, 10000)
   }
 
-  // Handle random hand gestures (hugs/joy)
   useEffect(() => {
     if (!mounted) return
     const gestureInterval = setInterval(() => {
@@ -133,7 +133,6 @@ export function Mascot() {
     if (!isBitten && !isDripping) {
       const context = getPageContext()
       if (context === "quiz") setExpression("determined")
-      else if (context === "strategy") setExpression("cool")
       else setExpression("happy")
     }
   }, [pathname, isBitten, isDripping, getPageContext, mounted])
@@ -151,8 +150,8 @@ export function Mascot() {
     if (!mounted) return
     const lookInterval = setInterval(() => {
       if (!isDripping && !isBitten) {
-        const x = (Math.random() - 0.5) * 10
-        const y = (Math.random() - 0.5) * 8
+        const x = (Math.random() - 0.5) * 8
+        const y = (Math.random() - 0.5) * 6
         setEyeOffset({ x, y })
         setTimeout(() => setEyeOffset({ x: 0, y: 0 }), 1500)
       }
@@ -168,28 +167,26 @@ export function Mascot() {
       setMessage(getRandomComment('melting'))
       setIsVisible(true)
       setIsDripping(true)
-      setExpression("surprised")
       
-      setEyeOffset({ x: -6, y: 4 })
+      setEyeOffset({ x: -4, y: 4 })
       
       await dripControls.start({
-        y: 130,
+        y: 120,
         opacity: [0, 1, 1, 0],
-        scale: [0.7, 1.2, 1.4, 0.8],
+        scale: [0.8, 1.1, 1.2, 0.9],
         transition: { duration: 3, ease: "easeIn" }
       })
       
       setEyeOffset({ x: 0, y: 0 })
       setIsDripping(false)
-      setExpression(getPageContext() === "quiz" ? "determined" : "happy")
       dripControls.set({ y: 0, opacity: 0 })
       
-      setTimeout(() => setIsVisible(false), 6000)
+      setTimeout(() => setIsVisible(false), 8000)
     }
 
-    const interval = setInterval(dripRoutine, 22000)
+    const interval = setInterval(dripRoutine, 25000)
     return () => clearInterval(interval)
-  }, [dripControls, isBitten, getRandomComment, getPageContext, mounted])
+  }, [dripControls, isBitten, getRandomComment, mounted])
 
   useEffect(() => {
     if (!mounted) return
@@ -199,7 +196,7 @@ export function Mascot() {
         : `Let's master ${pathname.split('/').pop()?.replace(/-/g, ' ')}!`
       setMessage(intro)
       setIsVisible(true)
-      setTimeout(() => setIsVisible(false), 10000)
+      setTimeout(() => setIsVisible(false), 12000)
     }, 2000)
     return () => clearTimeout(timer)
   }, [pathname, mounted])
@@ -214,7 +211,7 @@ export function Mascot() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="mb-4 bg-white p-4 rounded-[2.5rem] shadow-2xl border-4 border-blue-200 max-w-[220px] text-sm font-black text-blue-600 relative pointer-events-auto text-center"
+            className="mb-4 bg-white p-4 rounded-[2rem] shadow-2xl border-4 border-blue-200 max-w-[220px] text-sm font-black text-blue-600 relative pointer-events-auto text-center"
           >
             {message}
             <div className="absolute -bottom-2 right-10 w-4 h-4 bg-white border-r-4 border-b-4 border-blue-200 rotate-45" />
@@ -225,9 +222,9 @@ export function Mascot() {
       <motion.div
         className="cursor-pointer pointer-events-auto relative"
         whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.9 }}
+        whileTap={{ scale: 0.95 }}
         animate={{
-          y: isBitten ? [0, 15] : [0, -10],
+          y: isBitten ? [0, 15] : [0, -8],
           rotate: isBitten ? -5 : 0
         }}
         transition={{
@@ -237,9 +234,9 @@ export function Mascot() {
         onClick={handleClick}
       >
         <svg
-          width="180"
-          height="220"
-          viewBox="-20 0 140 140"
+          width="160"
+          height="200"
+          viewBox="-10 0 120 140"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="drop-shadow-2xl"
@@ -247,50 +244,46 @@ export function Mascot() {
           <defs>
             <clipPath id="biteClip">
               {isBitten ? (
-                <path d="M0 0 H75 C70 5 65 15 70 25 C75 35 85 32 90 35 C95 38 100 45 100 45 V140 H0 V0Z" />
+                // Bite from the top right corner
+                <path d="M0 0 H65 Q75 15 62 25 Q50 35 65 45 T85 55 V140 H0 V0Z" />
               ) : (
                 <rect width="100" height="140" />
               )}
             </clipPath>
           </defs>
 
-          {/* Stick */}
+          {/* Stick - Realistically inserted */}
           <g>
-            <rect x="42" y="102" width="16" height="32" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
-            <path d="M42 110C42 110 45 106 50 106C55 106 58 110 58 110" stroke="#1A1A1A" strokeWidth="2" opacity="0.3" />
-            <rect x="44" y="100" width="12" height="6" fill="#1A1A1A" opacity="0.1" />
+            <rect x="42" y="102" width="16" height="30" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
+            <path d="M42 108C42 108 45 104 50 104C55 104 58 108 58 108" stroke="#1A1A1A" strokeWidth="2" opacity="0.3" />
+            <rect x="44" y="100" width="12" height="4" fill="#1A1A1A" opacity="0.1" />
           </g>
 
-          {/* Hands */}
+          {/* Tiny Kawaii Hands */}
           <motion.g
             animate={{
-              x: showHands ? -15 : 0,
+              x: showHands ? -12 : 0,
               opacity: showHands ? 1 : 0,
-              rotate: showHands ? -10 : 0
+              rotate: showHands ? -15 : 0
             }}
-            transition={{ 
-              x: { type: "spring", stiffness: 300, damping: 20 },
-              rotate: { repeat: showHands ? Infinity : 0, repeatType: "reverse", duration: 0.5 }
-            }}
+            transition={{ type: "spring", stiffness: 400, damping: 15 }}
           >
-            <circle cx="15" cy="75" r="6" fill={SKY_BLUE} stroke="#1A1A1A" strokeWidth="3" />
+            <circle cx="12" cy="75" r="5" fill={CRYSTAL_BLUE} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
           <motion.g
             animate={{
-              x: showHands ? 15 : 0,
+              x: showHands ? 12 : 0,
               opacity: showHands ? 1 : 0,
-              rotate: showHands ? 10 : 0
+              rotate: showHands ? 15 : 0
             }}
-            transition={{ 
-              x: { type: "spring", stiffness: 300, damping: 20 },
-              rotate: { repeat: showHands ? Infinity : 0, repeatType: "reverse", duration: 0.5 }
-            }}
+            transition={{ type: "spring", stiffness: 400, damping: 15 }}
           >
-            <circle cx="85" cy="75" r="6" fill={SKY_BLUE} stroke="#1A1A1A" strokeWidth="3" />
+            <circle cx="88" cy="75" r="5" fill={CRYSTAL_BLUE} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
 
-          {/* Body */}
+          {/* Body with Bite Clipping */}
           <g clipPath="url(#biteClip)">
+            {/* Vanilla Base */}
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V95C85 103 78 110 70 110H30C22 110 15 103 15 95V40Z"
               fill="white"
@@ -298,48 +291,44 @@ export function Mascot() {
               strokeWidth="4"
             />
 
+            {/* Crystal Blue Coating */}
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V72C85 72 78 80 70 74C62 68 55 88 45 76C35 64 25 82 15 70V40Z"
-              fill={SKY_BLUE}
+              fill={CRYSTAL_BLUE}
               stroke="#1A1A1A"
               strokeWidth="4"
             />
 
-            <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - 12 }}>
-              {/* Eye Blushes */}
-              <circle cx="30" cy="55" r="7" fill={SKY_BLUE} fillOpacity="0.4" />
-              <circle cx="70" cy="55" r="7" fill={SKY_BLUE} fillOpacity="0.4" />
+            {/* Face - Stays high even during drip */}
+            <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - 10 }}>
+              {/* Blushes */}
+              <circle cx="30" cy="52" r="6" fill={CRYSTAL_BLUE} fillOpacity="0.4" />
+              <circle cx="70" cy="52" r="6" fill={CRYSTAL_BLUE} fillOpacity="0.4" />
 
               <g>
                 {isBlinking ? (
                   <>
-                    <path d="M25 48Q32.5 43 40 48" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
-                    <path d="M60 48Q67.5 43 75 48" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
-                  </>
-                ) : expression === "wink" ? (
-                  <>
-                    <circle cx="32" cy="48" r="9" fill="#1A1A1A" />
-                    <circle cx="29" cy="44" r="3.5" fill="white" />
-                    <path d="M60 48Q67.5 43 75 48" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    <path d="M25 45Q32.5 40 40 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    <path d="M60 45Q67.5 40 75 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
                   </>
                 ) : expression === "determined" ? (
                   <g>
-                    <path d="M22 42L40 48" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" />
-                    <path d="M78 42L60 48" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" />
-                    <circle cx="32" cy="52" r="7" fill="#1A1A1A" />
-                    <circle cx="68" cy="52" r="7" fill="#1A1A1A" />
+                    <path d="M22 40L40 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" />
+                    <path d="M78 40L60 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" />
+                    <circle cx="32" cy="48" r="7" fill="#1A1A1A" />
+                    <circle cx="68" cy="48" r="7" fill="#1A1A1A" />
                   </g>
                 ) : (
                   <>
-                    <g transform="translate(32, 48)">
-                      <circle r="9" fill="#1A1A1A" />
-                      <circle cx="-3" cy="-4" r="3.5" fill="white" />
-                      <circle cx="4" cy="4" r="1.5" fill="white" />
+                    <g transform="translate(32, 45)">
+                      <circle r="8" fill="#1A1A1A" />
+                      <circle cx="-3" cy="-3" r="3" fill="white" />
+                      <circle cx="3" cy="3" r="1" fill="white" />
                     </g>
-                    <g transform="translate(68, 48)">
-                      <circle r="9" fill="#1A1A1A" />
-                      <circle cx="-3" cy="-4" r="3.5" fill="white" />
-                      <circle cx="4" cy="4" r="1.5" fill="white" />
+                    <g transform="translate(68, 45)">
+                      <circle r="8" fill="#1A1A1A" />
+                      <circle cx="-3" cy="-3" r="3" fill="white" />
+                      <circle cx="3" cy="3" r="1" fill="white" />
                     </g>
                   </>
                 )}
@@ -347,56 +336,57 @@ export function Mascot() {
 
               <motion.path
                 animate={{
-                  d: isBitten || expression === "surprised" 
-                    ? "M42 65Q50 78 58 65" 
+                  d: isBitten || isDripping 
+                    ? "M42 62Q50 75 58 62" 
                     : expression === "thinking"
-                    ? "M45 65H55"
-                    : "M46 62Q50 68 54 62"
+                    ? "M45 62H55"
+                    : "M46 60Q50 65 54 60"
                 }}
                 stroke="#1A1A1A"
                 strokeWidth="3"
                 strokeLinecap="round"
-                fill={expression === "surprised" ? "#FFB7C5" : "none"}
+                fill={isDripping ? "#FFB7C5" : "none"}
               />
             </motion.g>
 
-            {/* Side Drip */}
+            {/* Side Drip Animation */}
             <motion.path
               animate={dripControls}
               initial={{ opacity: 0 }}
-              d="M18 82C18 92 23 97 28 97C33 97 38 92 38 82C38 72 18 72 18 82Z"
-              fill={SKY_BLUE}
+              d="M18 78C18 88 23 93 28 93C33 93 38 88 38 78C38 68 18 68 18 78Z"
+              fill={CRYSTAL_BLUE}
               stroke="#1A1A1A"
               strokeWidth="2"
             />
           </g>
 
-          {(expression === "determined" || expression === "cool") && !isBitten && (
+          {expression === "determined" && !isBitten && (
             <motion.g
-              animate={{ opacity: [0, 1], scale: [0.5, 1.2] }}
+              animate={{ opacity: [0, 1], scale: [0.8, 1.2] }}
               transition={{ repeat: Infinity, repeatType: "reverse", duration: 1 }}
             >
-              <path d="M85 15L88 22L95 25L88 28L85 35L82 28L75 25L82 22Z" fill={SKY_BLUE} />
-              <path d="M15 15L18 22L25 25L18 28L15 35L12 28L5 25L12 22Z" fill={SKY_BLUE} />
+              <path d="M85 15L88 20L95 23L88 26L85 31L82 26L75 23L82 20Z" fill={CRYSTAL_BLUE} />
+              <path d="M15 15L18 20L25 23L18 26L15 31L12 26L5 23L12 20Z" fill={CRYSTAL_BLUE} />
             </motion.g>
           )}
 
-          <rect x="22" y="18" width="12" height="5" rx="3" fill="white" fillOpacity="0.4" />
-          <circle cx="75" cy="22" r="3" fill="white" fillOpacity="0.3" />
+          {/* Highlights */}
+          <rect x="22" y="18" width="10" height="4" rx="2" fill="white" fillOpacity="0.4" />
+          <circle cx="75" cy="22" r="2.5" fill="white" fillOpacity="0.3" />
         </svg>
 
         <AnimatePresence>
           {!isBitten && !isDripping && (
             <motion.div
               initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: [0, 1], y: -60 }}
+              animate={{ opacity: [0, 1], y: -50 }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
-              className="absolute -top-12 left-1/2 -translate-x-1/2 flex gap-2"
+              className="absolute -top-10 left-1/2 -translate-x-1/2"
             >
               {expression === "determined" ? (
-                <Zap className="w-6 h-6 text-blue-400 fill-blue-400" />
+                <Zap className="w-5 h-5 text-blue-400 fill-blue-400" />
               ) : (
-                <Heart className="w-6 h-6 text-blue-400 fill-blue-400" />
+                <Heart className="w-5 h-5 text-blue-400 fill-blue-400" />
               )}
             </motion.div>
           )}
