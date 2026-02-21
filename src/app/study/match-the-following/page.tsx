@@ -43,43 +43,42 @@ const FIGURES = [
 export default function MatchTheFollowingPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <main className="container mx-auto px-4 py-12 max-w-5xl">
-        <header className="mb-12">
-          <Badge className="mb-4">Section 4 (50 Marks)</Badge>
-          <h1 className="text-4xl font-headline font-bold mb-4">Match the Following</h1>
+        <header className="mb-12 animate-fade-in-up">
+          <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Section 4 (50 Marks)</Badge>
+          <h1 className="text-4xl font-headline font-bold mb-4 text-foreground">Match the Following</h1>
           <p className="text-muted-foreground text-lg">Idioms, Phrasal Verbs, and Figures of Speech: Master Column A to Column B.</p>
         </header>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <Tabs defaultValue="idioms" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 h-12">
-                <TabsTrigger value="idioms">Idioms</TabsTrigger>
-                <TabsTrigger value="phrasal">Phrasal Verbs</TabsTrigger>
-                <TabsTrigger value="figures">Figures</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3 h-12 bg-muted/50 p-1 rounded-xl">
+                <TabsTrigger value="idioms" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary">Idioms</TabsTrigger>
+                <TabsTrigger value="phrasal" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary">Phrasal Verbs</TabsTrigger>
+                <TabsTrigger value="figures" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary">Figures</TabsTrigger>
               </TabsList>
 
               <TabsContent value="idioms" className="mt-8">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <MessageCircle className="w-5 h-5 text-primary" />
+                <Card className="shadow-sm overflow-hidden">
+                  <CardHeader className="bg-primary/5">
+                    <CardTitle className="flex items-center gap-2 text-primary">
+                      <MessageCircle className="w-5 h-5" />
                       Idioms Master List
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="p-0">
                     <Table>
-                      <TableHeader>
+                      <TableHeader className="bg-muted/30">
                         <TableRow>
-                          <TableHead>Idiom</TableHead>
-                          <TableHead>Meaning</TableHead>
+                          <TableHead className="text-foreground font-bold">Idiom</TableHead>
+                          <TableHead className="text-foreground font-bold">Meaning</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         {IDIOMS.map((item, i) => (
                           <TableRow key={i}>
-                            <TableCell className="font-bold text-primary-foreground text-xs">{item.idiom}</TableCell>
+                            <TableCell className="font-bold text-primary text-xs">{item.idiom}</TableCell>
                             <TableCell className="text-[10px] text-muted-foreground">{item.meaning}</TableCell>
                           </TableRow>
                         ))}
@@ -92,8 +91,8 @@ export default function MatchTheFollowingPage() {
               <TabsContent value="phrasal" className="mt-8">
                 <div className="grid md:grid-cols-2 gap-4">
                   {PHRASAL_VERBS.map((item, i) => (
-                    <div key={i} className="p-4 border rounded-xl bg-card hover:border-primary/50 transition-colors">
-                      <div className="font-bold text-primary-foreground text-sm">{item.pv}</div>
+                    <div key={i} className="p-4 border border-primary/10 rounded-xl bg-white shadow-sm hover:border-primary transition-colors group">
+                      <div className="font-bold text-primary text-sm group-hover:translate-x-1 transition-transform">{item.pv}</div>
                       <p className="text-xs text-muted-foreground mt-1">{item.m}</p>
                     </div>
                   ))}
@@ -105,10 +104,10 @@ export default function MatchTheFollowingPage() {
                   {FIGURES.map((item, i) => (
                     <Card key={i} className="border-none shadow-sm bg-primary/5">
                       <CardHeader className="pb-2">
-                        <CardTitle className="text-sm text-primary-foreground font-bold">{item.name}</CardTitle>
+                        <CardTitle className="text-sm text-primary font-bold">{item.name}</CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-[10px] font-medium leading-tight">{item.def}</p>
+                        <p className="text-[10px] font-medium leading-tight text-foreground">{item.def}</p>
                         <p className="text-[10px] text-muted-foreground mt-1 italic">Example: {item.eg}</p>
                       </CardContent>
                     </Card>
@@ -117,41 +116,41 @@ export default function MatchTheFollowingPage() {
               </TabsContent>
             </Tabs>
 
-            <Card className="bg-secondary/10 border-none">
+            <Card className="bg-secondary/10 border-none shadow-sm">
               <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <Star className="w-5 h-5 text-secondary-foreground" />
+                <CardTitle className="text-lg flex items-center gap-2 text-secondary-foreground">
+                  <Star className="w-5 h-5" />
                   Homonyms Trap
                 </CardTitle>
-                <CardDescription>Words that sound same, mean different.</CardDescription>
+                <CardDescription className="text-secondary-foreground/70">Words that sound same, mean different.</CardDescription>
               </CardHeader>
-              <CardContent className="grid md:grid-cols-2 gap-4 text-[10px] font-mono">
-                <div className="p-3 border rounded bg-white">
-                  <span className="font-bold text-primary-foreground uppercase">potable:</span> Safe to drink<br/>
-                  <span className="font-bold text-primary-foreground uppercase">portable:</span> Easy to carry
+              <CardContent className="grid md:grid-cols-2 gap-4 text-[10px] font-mono text-foreground">
+                <div className="p-3 border border-secondary/20 rounded bg-white shadow-sm">
+                  <span className="font-bold text-primary uppercase">potable:</span> Safe to drink<br/>
+                  <span className="font-bold text-primary uppercase">portable:</span> Easy to carry
                 </div>
-                <div className="p-3 border rounded bg-white">
-                  <span className="font-bold text-primary-foreground uppercase">principal:</span> Head of school<br/>
-                  <span className="font-bold text-primary-foreground uppercase">principle:</span> Fundamental rule
+                <div className="p-3 border border-secondary/20 rounded bg-white shadow-sm">
+                  <span className="font-bold text-primary uppercase">principal:</span> Head of school<br/>
+                  <span className="font-bold text-primary uppercase">principle:</span> Fundamental rule
                 </div>
-                <div className="p-3 border rounded bg-white">
-                  <span className="font-bold text-primary-foreground uppercase">stationery:</span> Writing materials<br/>
-                  <span className="font-bold text-primary-foreground uppercase">stationary:</span> Not moving
+                <div className="p-3 border border-secondary/20 rounded bg-white shadow-sm">
+                  <span className="font-bold text-primary uppercase">stationery:</span> Writing materials<br/>
+                  <span className="font-bold text-primary uppercase">stationary:</span> Not moving
                 </div>
-                <div className="p-3 border rounded bg-white">
-                  <span className="font-bold text-primary-foreground uppercase">complement:</span> Completes/enhances<br/>
-                  <span className="font-bold text-primary-foreground uppercase">compliment:</span> Praise
+                <div className="p-3 border border-secondary/20 rounded bg-white shadow-sm">
+                  <span className="font-bold text-primary uppercase">complement:</span> Completes/enhances<br/>
+                  <span className="font-bold text-primary uppercase">compliment:</span> Praise
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          <aside className="space-y-6">
-            <Card className="bg-foreground text-background">
+          <aside className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <Card className="bg-foreground text-background shadow-lg">
               <CardHeader>
                 <CardTitle className="text-lg">Matching Strategy</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 text-sm">
+              <CardContent className="space-y-4 text-sm text-background/80">
                 <div className="flex gap-3">
                   <RefreshCw className="w-5 h-5 shrink-0 text-primary" />
                   <p>Start with the item you are <strong>MOST certain</strong> about. Deduction is key.</p>
@@ -163,9 +162,9 @@ export default function MatchTheFollowingPage() {
               </CardContent>
             </Card>
             
-            <Card className="bg-muted/50 border-border">
+            <Card className="bg-muted/50 border-border shadow-sm">
               <CardHeader>
-                <CardTitle className="text-lg">Essential Proverbs</CardTitle>
+                <CardTitle className="text-lg text-foreground">Essential Proverbs</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 {[
@@ -174,7 +173,7 @@ export default function MatchTheFollowingPage() {
                   "Don't judge a book by its cover",
                   "Every cloud has a silver lining"
                 ].map((p, i) => (
-                  <div key={i} className="flex gap-2 text-xs font-medium">
+                  <div key={i} className="flex gap-2 text-xs font-medium text-foreground/80">
                     <Sparkles className="w-3 h-3 text-secondary-foreground shrink-0 mt-0.5" />
                     {p}
                   </div>

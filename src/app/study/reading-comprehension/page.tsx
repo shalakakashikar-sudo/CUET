@@ -30,37 +30,36 @@ const STEPS = [
 export default function RCPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <main className="container mx-auto px-4 py-12 max-w-5xl">
-        <header className="mb-12">
-          <Badge className="mb-4">Section 2 (60 Marks)</Badge>
-          <h1 className="text-4xl font-headline font-bold mb-4">Reading Comprehension</h1>
+        <header className="mb-12 animate-fade-in-up">
+          <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Section 2 (60 Marks)</Badge>
+          <h1 className="text-4xl font-headline font-bold mb-4 text-foreground">Reading Comprehension</h1>
           <p className="text-muted-foreground text-lg">Master the art of extracting answers from 3 passages and 12 total questions.</p>
         </header>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <Tabs defaultValue="approach" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 h-12">
-                <TabsTrigger value="approach">5-Step Method</TabsTrigger>
-                <TabsTrigger value="types">4 Question Types</TabsTrigger>
-                <TabsTrigger value="traps">Trap Decoder</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3 h-12 bg-muted/50 p-1 rounded-xl">
+                <TabsTrigger value="approach" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary">5-Step Method</TabsTrigger>
+                <TabsTrigger value="types" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary">4 Question Types</TabsTrigger>
+                <TabsTrigger value="traps" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary">Trap Decoder</TabsTrigger>
               </TabsList>
 
               <TabsContent value="approach" className="mt-8 space-y-6">
                 <Card className="border-primary/20 bg-primary/5">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <CardTitle className="flex items-center gap-2 text-primary">
                       <Book className="w-5 h-5" />
                       The 5-Step RC Approach
                     </CardTitle>
-                    <CardDescription>Follow this order to save time and reduce errors.</CardDescription>
+                    <CardDescription className="text-foreground/70">Follow this order to save time and reduce errors.</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {STEPS.map((step, i) => (
-                      <div key={i} className="flex gap-4 p-4 bg-white rounded-xl border">
-                        <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center font-bold text-sm shrink-0">{i+1}</div>
-                        <p className="text-sm font-medium leading-relaxed">{step}</p>
+                      <div key={i} className="flex gap-4 p-4 bg-white rounded-xl border border-primary/10 shadow-sm">
+                        <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shrink-0">{i+1}</div>
+                        <p className="text-sm font-medium leading-relaxed text-foreground">{step}</p>
                       </div>
                     ))}
                   </CardContent>
@@ -70,13 +69,13 @@ export default function RCPage() {
               <TabsContent value="types" className="mt-8">
                 <div className="grid gap-6">
                   {QUESTION_TYPES.map((type, i) => (
-                    <Card key={i}>
+                    <Card key={i} className="shadow-sm">
                       <CardHeader>
-                        <CardTitle className="text-lg">{type.name}</CardTitle>
+                        <CardTitle className="text-lg text-foreground">{type.name}</CardTitle>
                       </CardHeader>
-                      <CardContent className="space-y-2 text-sm">
-                        <p><strong>Where to look:</strong> {type.where}</p>
-                        <p className="text-muted-foreground"><strong>Common Trap:</strong> {type.trap}</p>
+                      <CardContent className="space-y-2 text-sm text-foreground/80">
+                        <p><strong className="text-foreground">Where to look:</strong> {type.where}</p>
+                        <p className="text-muted-foreground"><strong className="text-foreground">Common Trap:</strong> {type.trap}</p>
                       </CardContent>
                     </Card>
                   ))}
@@ -105,10 +104,10 @@ export default function RCPage() {
             </Tabs>
           </div>
 
-          <aside className="space-y-6">
-            <Card className="bg-secondary/20 border-secondary/30">
+          <aside className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <Card className="bg-secondary/20 border-secondary/30 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-lg">Passage Types</CardTitle>
+                <CardTitle className="text-lg text-secondary-foreground">Passage Types</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 {PASSAGE_TYPES.map((p, i) => (
@@ -121,14 +120,14 @@ export default function RCPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-foreground text-background">
+            <Card className="bg-foreground text-background shadow-lg">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <HelpCircle className="w-5 h-5 text-primary" />
                   Golden Rule
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-sm italic leading-relaxed">
+              <CardContent className="text-sm italic leading-relaxed text-background/90">
                 "If the passage didn't say it, it's wrong -- no matter how true it seems in real life."
               </CardContent>
             </Card>

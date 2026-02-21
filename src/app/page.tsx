@@ -25,21 +25,21 @@ export default function Dashboard() {
         <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 animate-fade-in-up">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Subject Code: 101</span>
+              <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-primary/20">Subject Code: 101</span>
             </div>
-            <h1 className="text-5xl font-headline font-bold text-foreground">English Mastery Hub</h1>
+            <h1 className="text-5xl font-headline font-bold text-foreground tracking-tight">English Mastery Hub</h1>
             <p className="text-muted-foreground text-xl">Your blueprint for a perfect 250/250 score in CUET 2026.</p>
           </div>
-          <div className="bg-white/50 backdrop-blur-md px-8 py-4 rounded-3xl border shadow-sm flex items-center gap-4">
+          <div className="bg-white/70 backdrop-blur-md px-8 py-4 rounded-3xl border shadow-sm flex items-center gap-4">
             <Star className="w-8 h-8 text-amber-500 fill-amber-500" />
             <div className="flex flex-col">
               <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Target Percentile</span>
-              <span className="text-2xl font-bold">100th Percentile</span>
+              <span className="text-2xl font-bold text-foreground">100th Percentile</span>
             </div>
           </div>
         </header>
 
-        {/* Hero Strategy Section - Pinterest Style Card */}
+        {/* Hero Strategy Section */}
         <section className="mb-16 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
           <Card className="border-none bg-primary shadow-2xl overflow-hidden relative group rounded-[2.5rem]">
             <div className="absolute right-0 top-0 w-1/2 h-full bg-white/10 -skew-x-12 translate-x-1/4 group-hover:translate-x-1/3 transition-transform duration-700" />
@@ -79,7 +79,7 @@ export default function Dashboard() {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-4xl font-bold mb-4">{stat.value}%</div>
+                <div className="text-4xl font-bold mb-4 text-foreground">{stat.value}%</div>
                 <Progress value={stat.value} className="h-2.5" />
               </CardContent>
             </Card>
@@ -108,9 +108,9 @@ export default function Dashboard() {
                         <div className="bg-primary/5 p-3 rounded-2xl group-hover:bg-primary/20 transition-colors">
                           <BookOpen className="w-6 h-6 text-primary" />
                         </div>
-                        <span className="text-[10px] font-bold uppercase tracking-widest bg-muted px-2 py-1 rounded-full">{mod.tag}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest bg-muted text-muted-foreground px-2 py-1 rounded-full">{mod.tag}</span>
                       </div>
-                      <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">{mod.title}</CardTitle>
+                      <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors text-foreground">{mod.title}</CardTitle>
                       <CardDescription className="text-sm mt-2">{mod.desc}</CardDescription>
                     </CardHeader>
                     <CardContent className="px-6 pb-6 pt-0">
@@ -151,25 +151,25 @@ export default function Dashboard() {
 
             <Card className="border-none shadow-sm bg-white/50 backdrop-blur-sm rounded-[2rem] p-4">
               <CardHeader>
-                <CardTitle className="text-xl font-bold flex items-center gap-2">
+                <CardTitle className="text-xl font-bold flex items-center gap-2 text-foreground">
                   <ShieldCheck className="w-6 h-6 text-primary" />
                   Exam Checklist
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white shadow-sm border border-border/50 text-sm font-bold">
+                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white shadow-sm border border-border/50 text-sm font-bold text-foreground">
                   <div className="bg-primary/10 p-2 rounded-xl">
                     <Zap className="w-5 h-5 text-primary" />
                   </div>
                   50 Total Questions
                 </div>
-                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white shadow-sm border border-border/50 text-sm font-bold">
+                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white shadow-sm border border-border/50 text-sm font-bold text-foreground">
                   <div className="bg-primary/10 p-2 rounded-xl">
                     <Clock className="w-5 h-5 text-primary" />
                   </div>
                   60 Minutes Limit
                 </div>
-                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white shadow-sm border border-border/50 text-sm font-bold">
+                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white shadow-sm border border-border/50 text-sm font-bold text-foreground">
                   <div className="bg-primary/10 p-2 rounded-xl">
                     <Target className="w-5 h-5 text-primary" />
                   </div>
