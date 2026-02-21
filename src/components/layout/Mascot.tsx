@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect, useCallback } from "react"
@@ -71,6 +70,7 @@ export function Mascot() {
   const [isBlinking, setIsBlinking] = useState(false)
   const [isDripping, setIsDripping] = useState(false)
   const [isBitten, setIsBitten] = useState(false)
+  const [showHands, setShowHands] = useState(false)
 
   const dripControls = useAnimation()
 
@@ -102,9 +102,11 @@ export function Mascot() {
     setIsVisible(true)
     setIsBitten(true)
     setExpression(randomExpr)
+    setShowHands(true)
 
     setTimeout(() => {
       setIsBitten(false)
+      setShowHands(false)
       setExpression(getPageContext() === "quiz" ? "determined" : "happy")
     }, 2000)
 
@@ -112,6 +114,18 @@ export function Mascot() {
       setIsVisible(false)
     }, 8000)
   }
+
+  // Handle random hand gestures (hugs/joy)
+  useEffect(() => {
+    if (!mounted) return
+    const gestureInterval = setInterval(() => {
+      if (!isBitten && !isDripping) {
+        setShowHands(true)
+        setTimeout(() => setShowHands(false), 3000)
+      }
+    }, 15000 + Math.random() * 10000)
+    return () => clearInterval(gestureInterval)
+  }, [isBitten, isDripping, mounted])
 
   useEffect(() => {
     if (!mounted) return
@@ -172,7 +186,7 @@ export function Mascot() {
       setTimeout(() => setIsVisible(false), 6000)
     }
 
-    const interval = setInterval(dripRoutine, 18000)
+    const interval = setInterval(dripRoutine, 22000)
     return () => clearInterval(interval)
   }, [dripControls, isBitten, getRandomComment, getPageContext, mounted])
 
@@ -221,9 +235,9 @@ export function Mascot() {
         onClick={handleClick}
       >
         <svg
-          width="150"
-          height="190"
-          viewBox="0 0 100 140"
+          width="180"
+          height="220"
+          viewBox="-20 0 140 140"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="drop-shadow-2xl"
@@ -238,12 +252,36 @@ export function Mascot() {
             </clipPath>
           </defs>
 
+          {/* Stick */}
           <g>
             <rect x="42" y="102" width="16" height="32" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
             <path d="M42 110C42 110 45 106 50 106C55 106 58 110 58 110" stroke="#1A1A1A" strokeWidth="2" opacity="0.3" />
             <rect x="44" y="100" width="12" height="6" fill="#1A1A1A" opacity="0.1" />
           </g>
 
+          {/* Hands */}
+          <motion.g
+            animate={{
+              x: showHands ? -15 : 0,
+              opacity: showHands ? 1 : 0,
+              rotate: showHands ? [0, -10, 0] : 0
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            <circle cx="15" cy="75" r="6" fill={SKY_BLUE} stroke="#1A1A1A" strokeWidth="3" />
+          </motion.g>
+          <motion.g
+            animate={{
+              x: showHands ? 15 : 0,
+              opacity: showHands ? 1 : 0,
+              rotate: showHands ? [0, 10, 0] : 0
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            <circle cx="85" cy="75" r="6" fill={SKY_BLUE} stroke="#1A1A1A" strokeWidth="3" />
+          </motion.g>
+
+          {/* Body */}
           <g clipPath="url(#biteClip)">
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V95C85 103 78 110 70 110H30C22 110 15 103 15 95V40Z"
@@ -260,6 +298,7 @@ export function Mascot() {
             />
 
             <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - 12 }}>
+              {/* Eye Blushes */}
               <circle cx="30" cy="55" r="7" fill={SKY_BLUE} fillOpacity="0.4" />
               <circle cx="70" cy="55" r="7" fill={SKY_BLUE} fillOpacity="0.4" />
 
@@ -313,6 +352,7 @@ export function Mascot() {
               />
             </motion.g>
 
+            {/* Side Drip */}
             <motion.path
               animate={dripControls}
               initial={{ opacity: 0 }}
