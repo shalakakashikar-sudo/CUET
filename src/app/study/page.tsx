@@ -1,3 +1,4 @@
+"use client"
 
 import { Navbar } from "@/components/layout/Navbar"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
@@ -7,10 +8,10 @@ import Link from "next/link"
 
 const syllabus = [
   {
-    category: "Comprehension & Theme",
+    category: "Comprehension & Logic",
     topics: [
       { name: "Reading Comprehension", icon: MessageSquare, desc: "Factual, Narrative and Discursive (Argumentative) passages.", modules: 3, href: "/study/reading-comprehension" },
-      { name: "Sentence Rearrangement", icon: Layers, desc: "Subject-Verb core logic and setting-action patterns.", modules: 1, href: "/study/sentence-rearrangement" },
+      { name: "Sentence Rearrangement", icon: Layers, desc: "Subject-Verb core logic and sequence patterns.", modules: 1, href: "/study/sentence-rearrangement" },
     ]
   },
   {
@@ -36,8 +37,8 @@ export default function StudyPage() {
         <div className="max-w-4xl mx-auto">
           <header className="mb-12 text-center">
             <Badge variant="outline" className="mb-4 py-1 px-4 border-primary text-primary-foreground font-semibold uppercase tracking-wider">English Language Curriculum</Badge>
-            <h1 className="text-4xl font-headline font-bold mb-4">Acing the English Section</h1>
-            <p className="text-muted-foreground text-lg">Every rule, every trap, and every strategy for 200/200 marks.</p>
+            <h1 className="text-4xl font-headline font-bold mb-4">Acing Section 101</h1>
+            <p className="text-muted-foreground text-lg">Every rule, every trap, and every strategy for 250/250 marks.</p>
           </header>
 
           <div className="space-y-12">
@@ -59,7 +60,7 @@ export default function StudyPage() {
                             <Badge variant="secondary">{topic.modules} Sections</Badge>
                           </div>
                           <CardTitle className="text-xl group-hover:text-primary-foreground/80 transition-colors">{topic.name}</CardTitle>
-                          <CardDescription className="line-clamp-2">{topic.desc}</CardDescription>
+                          <CardDescription className="line-clamp-2 text-xs">{topic.desc}</CardDescription>
                         </CardHeader>
                         <CardContent className="flex items-center text-sm font-medium text-primary-foreground/70">
                           Enter Module <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
@@ -78,7 +79,7 @@ export default function StudyPage() {
             </div>
             <div>
               <h3 className="text-2xl font-bold mb-2">Master the Strategy</h3>
-              <p className="text-background/70 mb-4">Learn why choosing to skip 10 questions is your greatest gift in the exam.</p>
+              <p className="text-background/70 mb-4">Learn why the "Gift of Skips" is your greatest advantage in Subject Code 101.</p>
               <Link href="/strategy" className="font-semibold text-primary hover:underline flex items-center gap-1">
                 View Smart Strategy Guide <ChevronRight className="w-4 h-4" />
               </Link>

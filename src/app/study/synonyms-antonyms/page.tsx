@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react"
@@ -20,6 +19,16 @@ const WORD_LIST = [
   { word: "Recondite", meaning: "Obscure, not widely known", synonym: "Abstruse, Esoteric", antonym: "Simple, Lucid" },
   { word: "Irascible", meaning: "Easily angered", synonym: "Choleric, Irritable", antonym: "Amiable, Placid" },
   { word: "Scintillating", meaning: "Brilliantly clever or vivid", synonym: "Glittering, Dazzling", antonym: "Dull, Tedious" },
+  { word: "Dexterous", meaning: "Skilled with the hands", synonym: "Adroit, Nimble", antonym: "Clumsy, Awkward" },
+  { word: "Chutzpah", meaning: "Extreme self-confidence", synonym: "Boldness, Audacity", antonym: "Timidity, Meekness" },
+  { word: "Ephemeral", meaning: "Lasting a very short time", synonym: "Transient, Fleeting", antonym: "Permanent, Enduring" },
+  { word: "Loquacious", meaning: "Talking a great deal", synonym: "Garrulous, Verbose", antonym: "Reticent, Taciturn" },
+  { word: "Acrimonious", meaning: "Angry and bitter", synonym: "Caustic, Bitter", antonym: "Amicable, Cordial" },
+  { word: "Copious", meaning: "Abundant in supply", synonym: "Plentiful, Profuse", antonym: "Scarce, Meager" },
+  { word: "Prudent", meaning: "Careful and sensible", synonym: "Judicious, Discreet", antonym: "Reckless, Impulsive" },
+  { word: "Ubiquitous", meaning: "Present everywhere", synonym: "Omnipresent, Pervasive", antonym: "Rare, Scarce" },
+  { word: "Languish", meaning: "To grow weak", synonym: "Wither, Deteriorate", antonym: "Flourish, Thrive" },
+  { word: "Zealous", meaning: "Enthusiastically devoted", synonym: "Fervent, Passionate", antonym: "Apathetic, Indifferent" },
 ]
 
 export default function SynonymsAntonymsPage() {
@@ -37,9 +46,9 @@ export default function SynonymsAntonymsPage() {
       <Navbar />
       <main className="container mx-auto px-4 py-12 max-w-5xl">
         <header className="mb-12">
-          <Badge className="mb-4">Vocabulary Module</Badge>
+          <Badge className="mb-4">Section 3 (50 Marks)</Badge>
           <h1 className="text-4xl font-headline font-bold mb-4">Synonyms & Antonyms</h1>
-          <p className="text-muted-foreground text-lg">The key trap: the antonym of the target word is ALWAYS one of the 4 options. Master this list to avoid it.</p>
+          <p className="text-muted-foreground text-lg">The Master Word List: Study 8-10 words per day with their opposites.</p>
         </header>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -51,7 +60,7 @@ export default function SynonymsAntonymsPage() {
                 </div>
                 <div className="flex-1">
                   <CardTitle className="text-xl">Master Word List</CardTitle>
-                  <CardDescription>Search for any word from our curated list.</CardDescription>
+                  <CardDescription>Search for the 50 essential CUET words.</CardDescription>
                 </div>
               </CardHeader>
               <CardContent>
@@ -66,8 +75,8 @@ export default function SynonymsAntonymsPage() {
                     <TableHeader>
                       <TableRow className="bg-muted/50">
                         <TableHead className="font-bold">Word</TableHead>
-                        <TableHead className="font-bold">Synonym</TableHead>
-                        <TableHead className="font-bold">Antonym</TableHead>
+                        <TableHead className="font-bold">Synonyms</TableHead>
+                        <TableHead className="font-bold">Antonyms</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -75,10 +84,10 @@ export default function SynonymsAntonymsPage() {
                         <TableRow key={idx}>
                           <TableCell>
                             <div className="font-bold text-primary-foreground">{item.word}</div>
-                            <div className="text-xs text-muted-foreground">{item.meaning}</div>
+                            <div className="text-[10px] text-muted-foreground uppercase">{item.meaning}</div>
                           </TableCell>
-                          <TableCell className="text-sm">{item.synonym}</TableCell>
-                          <TableCell className="text-sm">{item.antonym}</TableCell>
+                          <TableCell className="text-xs">{item.synonym}</TableCell>
+                          <TableCell className="text-xs">{item.antonym}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -96,18 +105,17 @@ export default function SynonymsAntonymsPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm space-y-2">
-                  <div className="flex justify-between border-b pb-1">
-                    <span className="font-mono font-bold">un- / in- / im-</span>
-                    <span className="text-muted-foreground italic">Not / Opposite</span>
-                  </div>
-                  <div className="flex justify-between border-b pb-1">
-                    <span className="font-mono font-bold">mal- / mis-</span>
-                    <span className="text-muted-foreground italic">Bad / Wrong</span>
-                  </div>
-                  <div className="flex justify-between border-b pb-1">
-                    <span className="font-mono font-bold">bene- / bon-</span>
-                    <span className="text-muted-foreground italic">Good</span>
-                  </div>
+                  {[
+                    { p: "un- / in- / im-", m: "Not / Opposite" },
+                    { p: "mal- / mis-", m: "Bad / Wrong" },
+                    { p: "bene- / bon-", m: "Good" },
+                    { p: "pre- / post-", m: "Before / After" }
+                  ].map((item, i) => (
+                    <div key={i} className="flex justify-between border-b pb-1 last:border-0">
+                      <span className="font-mono font-bold">{item.p}</span>
+                      <span className="text-muted-foreground italic">{item.m}</span>
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
               <Card className="border-none shadow-sm bg-primary/10">
@@ -118,18 +126,17 @@ export default function SynonymsAntonymsPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm space-y-2">
-                  <div className="flex justify-between border-b pb-1">
-                    <span className="font-mono font-bold">-ous / -ive</span>
-                    <span className="text-muted-foreground italic">Quality of</span>
-                  </div>
-                  <div className="flex justify-between border-b pb-1">
-                    <span className="font-mono font-bold">-ness / -ity</span>
-                    <span className="text-muted-foreground italic">State of being</span>
-                  </div>
-                  <div className="flex justify-between border-b pb-1">
-                    <span className="font-mono font-bold">-ify / -ize</span>
-                    <span className="text-muted-foreground italic">To make/cause</span>
-                  </div>
+                  {[
+                    { s: "-ous / -ive", m: "Having quality of" },
+                    { s: "-ness / -ity", m: "State of being" },
+                    { s: "-ify / -ize", m: "To make or cause" },
+                    { s: "-less / -ful", m: "Without / Full of" }
+                  ].map((item, i) => (
+                    <div key={i} className="flex justify-between border-b pb-1 last:border-0">
+                      <span className="font-mono font-bold">{item.s}</span>
+                      <span className="text-muted-foreground italic">{item.m}</span>
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
             </section>
@@ -143,24 +150,24 @@ export default function SynonymsAntonymsPage() {
               <CardContent className="space-y-4 text-sm leading-relaxed">
                 <div className="flex gap-3">
                   <Info className="w-5 h-5 shrink-0 text-primary" />
-                  <p>When the question asks for a <strong>synonym</strong>, the <strong>antonym</strong> is always there to catch you.</p>
+                  <p>When the question asks for a <strong>synonym</strong>, the <strong>antonym</strong> is ALWAYS one of the 4 options to catch you.</p>
                 </div>
                 <div className="flex gap-3">
                   <Info className="w-5 h-5 shrink-0 text-primary" />
-                  <p>Always re-read the question carefully: Is it asking for the same or the opposite?</p>
+                  <p>Always re-read: Is it asking for the same or the opposite?</p>
                 </div>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Daily Goal</CardTitle>
+                <CardTitle className="text-lg">Daily Mastery</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-sm text-muted-foreground">Study 8-10 words per day. Learn both the synonym AND antonym for each to double your prep efficiency.</p>
+                <p className="text-sm text-muted-foreground">Study 8-10 words per day to double your prep efficiency.</p>
                 <div className="bg-muted p-4 rounded-lg">
-                  <div className="text-xs font-bold uppercase mb-1">Current Mastery</div>
-                  <div className="text-2xl font-bold text-primary-foreground">10 / 50</div>
+                  <div className="text-xs font-bold uppercase mb-1">Target Mastery</div>
+                  <div className="text-2xl font-bold text-primary-foreground">50 Essential Words</div>
                 </div>
               </CardContent>
             </Card>

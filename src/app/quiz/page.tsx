@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Trophy, AlertCircle, ArrowRight, RefreshCw, ChevronLeft, Target } from "lucide-react"
+import { Trophy, AlertCircle, ArrowRight, RefreshCw, ChevronLeft, Target, Gift } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 
@@ -24,22 +24,30 @@ type Question = {
 const ENGLISH_QUIZ: Question[] = [
   {
     id: 1,
-    section: "Synonyms",
+    section: "Reading Comprehension",
     difficulty: "Medium",
+    text: "According to the passage on 'Flow', what must be balanced for flow to occur?",
+    options: ["Effort and Reward", "Challenge and Skill", "Time and Productivity", "Passive and Active Engagement"],
+    correct: 1
+  },
+  {
+    id: 2,
+    section: "Synonyms",
+    difficulty: "Hard",
     text: "Which of the following is a synonym for 'EPHEMERAL'?",
     options: ["Permanent", "Transient", "Eternal", "Enduring"],
     correct: 1
   },
   {
-    id: 2,
-    section: "RC Tone",
-    difficulty: "Easy",
-    text: "If a passage uses words like 'whispered', 'shimmered', and 'echoed', what is its likely type?",
-    options: ["Factual", "Discursive", "Narrative/Literary", "Statistical"],
-    correct: 2
+    id: 3,
+    section: "Antonyms",
+    difficulty: "Medium",
+    text: "What is the antonym of 'LOQUACIOUS'?",
+    options: ["Talkative", "Garrulous", "Verbose", "Reticent"],
+    correct: 3
   },
   {
-    id: 3,
+    id: 4,
     section: "Grammar",
     difficulty: "Hard",
     text: "No sooner did the bell ring ______ the actor started singing.",
@@ -47,19 +55,35 @@ const ENGLISH_QUIZ: Question[] = [
     correct: 2
   },
   {
-    id: 4,
-    section: "Idioms",
+    id: 5,
+    section: "Fill in Blanks",
     difficulty: "Medium",
-    text: "What does the idiom 'At the eleventh hour' mean?",
+    text: "______ being a handicapped person, he is very co-operative.",
+    options: ["Because", "Despite", "Although", "Basically"],
+    correct: 1
+  },
+  {
+    id: 6,
+    section: "Idioms",
+    difficulty: "Easy",
+    text: "What does 'At the eleventh hour' mean?",
     options: ["At noon", "At the very last moment", "Exactly at 11:00", "Too early"],
     correct: 1
   },
   {
-    id: 5,
-    section: "Grammar",
+    id: 7,
+    section: "Figures of Speech",
+    difficulty: "Medium",
+    text: "'Time is a thief' is an example of:",
+    options: ["Simile", "Metaphor", "Personification", "Hyperbole"],
+    correct: 1
+  },
+  {
+    id: 8,
+    section: "Rearrangement",
     difficulty: "Hard",
-    text: "______ being a handicapped person, he is very co-operative.",
-    options: ["Because", "Despite", "Although", "Basically"],
+    text: "Rearrange: A: were arrested / B: four criminals / C: in Varanasi",
+    options: ["C-A-B", "B-A-C", "A-B-C", "C-B-A"],
     correct: 1
   }
 ]
@@ -67,11 +91,16 @@ const ENGLISH_QUIZ: Question[] = [
 export default function QuizPage() {
   const { toast } = useToast()
   const [currentStep, setCurrentStep] = useState(0)
-  const [answers, setAnswers] = useState<Record<number, number>>({})
+  const [answers, setAnswers] = useState<Record<number, number | null>>({})
   const [isFinished, setIsFinished] = useState(false)
 
   const handleAnswer = (val: string) => {
     setAnswers({ ...answers, [ENGLISH_QUIZ[currentStep].id]: parseInt(val) })
+  }
+
+  const handleSkip = () => {
+    setAnswers({ ...answers, [ENGLISH_QUIZ[currentStep].id]: null })
+    nextQuestion()
   }
 
   const nextQuestion = () => {
@@ -92,16 +121,19 @@ export default function QuizPage() {
   const calculateScore = () => {
     let correct = 0
     let wrong = 0
+    let skipped = 0
     ENGLISH_QUIZ.forEach(q => {
-      if (answers[q.id] === undefined) return
-      if (answers[q.id] === q.correct) correct++
+      const ans = answers[q.id]
+      if (ans === null) skipped++
+      else if (ans === undefined) skipped++
+      else if (ans === q.correct) correct++
       else wrong++
     })
-    return { correct, wrong, total: correct * 5 - wrong * 1 }
+    return { correct, wrong, skipped, total: correct * 5 - wrong * 1 }
   }
 
   if (isFinished) {
-    const { correct, wrong, total } = calculateScore()
+    const { correct, wrong, skipped, total } = calculateScore()
     return (
       <div className="min-h-screen bg-background">
         <Navbar />
@@ -114,20 +146,24 @@ export default function QuizPage() {
             <CardDescription className="text-lg mb-8">Subject Code 101 Scoring Rule Applied</CardDescription>
             
             <div className="space-y-4 mb-8 text-left">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 bg-green-50 rounded-xl border border-green-100 text-center">
-                  <div className="text-xs font-bold text-green-700 uppercase">Correct</div>
-                  <div className="text-2xl font-bold text-green-700">+{correct * 5}</div>
+              <div className="grid grid-cols-3 gap-2">
+                <div className="p-3 bg-green-50 rounded-xl border border-green-100 text-center">
+                  <div className="text-[10px] font-bold text-green-700 uppercase">Correct</div>
+                  <div className="text-xl font-bold text-green-700">+{correct * 5}</div>
                 </div>
-                <div className="p-4 bg-red-50 rounded-xl border border-red-100 text-center">
-                  <div className="text-xs font-bold text-red-700 uppercase">Wrong</div>
-                  <div className="text-2xl font-bold text-red-700">-{wrong}</div>
+                <div className="p-3 bg-red-50 rounded-xl border border-red-100 text-center">
+                  <div className="text-[10px] font-bold text-red-700 uppercase">Wrong</div>
+                  <div className="text-xl font-bold text-red-700">-{wrong}</div>
+                </div>
+                <div className="p-3 bg-gray-50 rounded-xl border border-gray-100 text-center">
+                  <div className="text-[10px] font-bold text-gray-700 uppercase">Skipped</div>
+                  <div className="text-xl font-bold text-gray-700">0</div>
                 </div>
               </div>
               <div className="flex justify-between items-center p-6 bg-foreground text-background rounded-2xl">
                 <div className="flex flex-col">
                   <span className="text-sm opacity-70">Final Score</span>
-                  <span className="text-xs">(on 25 Marks scale)</span>
+                  <span className="text-xs">(on 40 Marks scale)</span>
                 </div>
                 <span className="text-4xl font-bold">{total}</span>
               </div>
@@ -192,15 +228,20 @@ export default function QuizPage() {
           <Button variant="ghost" onClick={() => setCurrentStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0}>
             <ChevronLeft className="w-4 h-4 mr-1" /> Previous
           </Button>
-          <Button size="lg" className="px-10 h-12 font-bold" onClick={nextQuestion} disabled={answers[question.id] === undefined}>
-            {currentStep === ENGLISH_QUIZ.length - 1 ? "Finish Set" : "Next Question"} <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
+          <div className="flex gap-3">
+            <Button variant="outline" size="lg" className="px-8 h-12 font-bold text-red-600 hover:text-red-700" onClick={handleSkip}>
+              Skip <Gift className="w-4 h-4 ml-2" />
+            </Button>
+            <Button size="lg" className="px-10 h-12 font-bold" onClick={nextQuestion} disabled={answers[question.id] === undefined}>
+              {currentStep === ENGLISH_QUIZ.length - 1 ? "Finish Set" : "Next Question"} <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
         </div>
 
         <div className="mt-12 p-6 rounded-2xl bg-secondary/10 border border-secondary/20 flex gap-4">
           <AlertCircle className="w-6 h-6 text-secondary-foreground shrink-0" />
           <div className="text-sm text-secondary-foreground">
-            <strong>Marking Reminder:</strong> A correct answer gives <strong>+5</strong>. An incorrect answer deducts <strong>-1</strong>. If you are 100% unsure, consider the impact on your final 250/250 goal.
+            <strong>Gift of Skips:</strong> If you are below 50% confident, <strong>SKIP</strong>. 0 marks is better than -1. You have the choice to skip 10 questions.
           </div>
         </div>
       </main>

@@ -4,17 +4,23 @@ import { Navbar } from "@/components/layout/Navbar"
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Compass, Clock, CheckCircle, AlertTriangle, Calculator, ListOrdered, FileText, Target } from "lucide-react"
+import { Compass, Clock, CheckCircle, AlertTriangle, Calculator, ListOrdered, FileText, Target, Gift } from "lucide-react"
 import Link from "next/link"
 
 export default function StrategyPage() {
   const timePlan = [
     { section: "Reading Comprehension (RC)", time: "15 min", q: "12-15" },
-    { section: "Vocabulary (Syn/Ant)", time: "8 min", q: "10" },
-    { section: "Grammar (Fill-ups)", time: "10 min", q: "10" },
+    { section: "Synonyms & Antonyms", time: "8 min", q: "10" },
+    { section: "Fill in the Blanks", time: "10 min", q: "10" },
     { section: "Match the Following", time: "12 min", q: "10" },
     { section: "Sentence Rearrangement", time: "10 min", q: "5-8" },
     { section: "Review / Buffer", time: "5 min", q: "-" },
+  ]
+
+  const markingStrategy = [
+    { cond: "70%+ Confident", action: "Attempt the question.", color: "text-green-600", bg: "bg-green-50" },
+    { cond: "50-70% Confident", action: "Eliminate 1-2 options -> Attempt.", color: "text-blue-600", bg: "bg-blue-50" },
+    { cond: "Below 50% Confident", action: "SKIP. 0 is better than -1.", color: "text-red-600", bg: "bg-red-50" },
   ]
 
   return (
@@ -31,30 +37,31 @@ export default function StrategyPage() {
             250/250 Strategic Blueprint
           </h1>
           <p className="text-muted-foreground text-lg mt-4">
-            Master the 50-question paper structure with a focus on accuracy and speed.
+            Master the 50-question paper structure with a focus on accuracy and the "Gift of Skips."
           </p>
         </header>
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
-            <Card className="border-primary/20 bg-primary/5">
+            <Card className="border-primary/40 bg-primary/10 overflow-hidden relative">
+              <div className="absolute right-0 top-0 p-4 opacity-10">
+                <Gift className="w-24 h-24" />
+              </div>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl">
-                  <FileText className="w-6 h-6" />
-                  Paper Structure
+                <CardTitle className="flex items-center gap-2 text-2xl">
+                  <Gift className="w-6 h-6 text-primary-foreground" />
+                  The Gift of Skips
                 </CardTitle>
-                <CardDescription>Official Subject Code 101 Guidelines</CardDescription>
+                <CardDescription className="text-primary-foreground/80 font-medium">The single most important strategy: You have the choice to skip 10 questions.</CardDescription>
               </CardHeader>
-              <CardContent className="grid sm:grid-cols-2 gap-4">
-                <div className="p-4 bg-white rounded-xl border space-y-2">
-                  <div className="text-xs font-bold text-muted-foreground uppercase">Questions</div>
-                  <div className="text-2xl font-bold">50 MCQs</div>
-                  <p className="text-xs text-muted-foreground">Attempt all 50 questions for max marks.</p>
-                </div>
-                <div className="p-4 bg-white rounded-xl border space-y-2">
-                  <div className="text-xs font-bold text-muted-foreground uppercase">Total Marks</div>
-                  <div className="text-2xl font-bold">250 Marks</div>
-                  <p className="text-xs text-muted-foreground">Correct: +5 | Wrong: -1</p>
+              <CardContent className="space-y-6">
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {markingStrategy.map((item, i) => (
+                    <div key={i} className={`${item.bg} p-4 rounded-xl border flex flex-col justify-center`}>
+                      <div className={`text-xs font-bold ${item.color} uppercase mb-1`}>{item.cond}</div>
+                      <div className="text-sm font-semibold leading-tight">{item.action}</div>
+                    </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
@@ -63,26 +70,22 @@ export default function StrategyPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl">
                   <Calculator className="w-6 h-6" />
-                  The Accuracy Math
+                  The Maths of Uncertainty
                 </CardTitle>
-                <CardDescription>Why every single mark counts.</CardDescription>
+                <CardDescription>Lesson: Every wrong attempt on an uncertain question costs real marks.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="bg-muted/30 p-6 rounded-2xl border shadow-sm">
                   <div className="space-y-3 text-sm font-mono">
                     <div className="flex justify-between border-b pb-2 text-green-600 font-bold">
-                      <span>50 Correct, 0 Wrong</span>
-                      <span>= 250 Marks</span>
+                      <span>40 Correct, 0 Wrong (Ideal)</span>
+                      <span>= 200 Marks</span>
                     </div>
                     <div className="flex justify-between border-b pb-2 text-yellow-600">
-                      <span>45 Correct, 5 Wrong</span>
-                      <span>= 220 Marks</span>
-                    </div>
-                    <div className="flex justify-between border-b pb-2 text-orange-600">
                       <span>40 Correct, 10 Wrong</span>
                       <span>= 190 Marks</span>
                     </div>
-                    <div className="flex justify-between border-b pb-2 text-red-600">
+                    <div className="flex justify-between border-b pb-2 text-orange-600">
                       <span>35 Correct, 15 Wrong</span>
                       <span>= 160 Marks</span>
                     </div>
@@ -92,17 +95,6 @@ export default function StrategyPage() {
                     Unattempted questions give 0 marks. Guessing incorrectly costs you -1.
                   </p>
                 </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="p-4 bg-green-50 border border-green-200 rounded-xl">
-                    <div className="font-bold text-green-700">70%+ Confident</div>
-                    <p className="text-xs font-medium mt-1">ATTEMPT immediately.</p>
-                  </div>
-                  <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl">
-                    <div className="font-bold text-blue-700">50-70% Confident</div>
-                    <p className="text-xs font-medium mt-1">Eliminate 2 options, then attempt.</p>
-                  </div>
-                </div>
               </CardContent>
             </Card>
 
@@ -110,9 +102,9 @@ export default function StrategyPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <ListOrdered className="w-6 h-6 text-primary-foreground" />
-                  Time Plan (60 Minutes)
+                  Exam Day Time Plan
                 </CardTitle>
-                <CardDescription>Recommended time allocation for each section.</CardDescription>
+                <CardDescription>Recommended 60-minute allocation for Subject Code 101.</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -140,13 +132,17 @@ export default function StrategyPage() {
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Target className="w-5 h-5 text-primary" />
-                  Attempt Order
+                  Order of Attempt
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-sm">
-                <p className="text-background/70 leading-relaxed">
-                  Start with <strong>RC</strong> (answers are in text), move to <strong>Vocab</strong> and <strong>Grammar</strong> for speed, and save <strong>Sentence Rearrangement</strong> for the end as it is the most time-consuming.
-                </p>
+                <ol className="space-y-3 list-decimal list-inside text-background/80">
+                  <li><strong>RC:</strong> Fastest safe marks (answers are IN the passage).</li>
+                  <li><strong>Syn/Ant:</strong> Quick if you've studied the list.</li>
+                  <li><strong>Fill in Blanks:</strong> Grammar-based and logical.</li>
+                  <li><strong>Match:</strong> Requires specific knowledge (idioms).</li>
+                  <li><strong>Rearrangement:</strong> Slowest; save for last.</li>
+                </ol>
                 <div className="pt-4 border-t border-background/20 space-y-2">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-green-400" />
@@ -154,23 +150,14 @@ export default function StrategyPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>Double-check vocab traps.</span>
+                    <span>0 is better than -1.</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-secondary/20 border-secondary/30">
-              <CardHeader>
-                <CardTitle className="text-lg">Pro Strategy Tip</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm">
-                Don't get stuck on one question. If it takes more than 60 seconds, flag it and move on. You need to average 72 seconds per question.
-              </CardContent>
-            </Card>
-
             <Button className="w-full h-14 text-lg font-bold rounded-2xl" asChild>
-              <Link href="/quiz">Test This Strategy Now</Link>
+              <Link href="/quiz">Practice Strategy Now</Link>
             </Button>
           </aside>
         </div>
