@@ -7,7 +7,7 @@ export default function Dashboard() {
   const primaryActions = [
     {
       title: "Strategy Guide",
-      desc: "Master the 'Gift of Skips' and time management.",
+      desc: "Master the 'Perfect 50' blueprint for 250/250.",
       icon: Compass,
       link: "/strategy",
       color: "bg-amber-100 text-amber-600",
@@ -76,7 +76,7 @@ export default function Dashboard() {
                 Target: 100th Percentile
               </h2>
               <p className="text-white/80 text-lg mb-6 leading-relaxed">
-                Aim for 40/40 correct answers. Remember, 0 marks for unattempted is better than -1 for a guess.
+                Aim for 50/50 correct answers. Every question is an opportunity to reach the maximum score.
               </p>
               <div className="flex items-center gap-4 bg-white/20 px-6 py-3 rounded-2xl backdrop-blur-sm border border-white/30 w-fit font-bold">
                 <span className="text-3xl">250</span>
@@ -93,7 +93,7 @@ export default function Dashboard() {
             <div className="space-y-4">
               {[
                 "50 Total Questions (Subject Code 101)",
-                "Attempt 40 (10 'Gifts of Skips')",
+                "Attempt 50 (All Compulsory)",
                 "60 Minutes Total Duration",
                 "+5 for Correct | -1 for Wrong"
               ].map((item, i) => (

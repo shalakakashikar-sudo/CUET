@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react"
@@ -8,7 +7,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Trophy, AlertCircle, ArrowRight, RefreshCw, ChevronLeft, Target, Gift } from "lucide-react"
+import { Trophy, AlertCircle, ArrowRight, RefreshCw, ChevronLeft, Target } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 
@@ -91,16 +90,11 @@ const ENGLISH_QUIZ: Question[] = [
 export default function QuizPage() {
   const { toast } = useToast()
   const [currentStep, setCurrentStep] = useState(0)
-  const [answers, setAnswers] = useState<Record<number, number | null>>({})
+  const [answers, setAnswers] = useState<Record<number, number>>({})
   const [isFinished, setIsFinished] = useState(false)
 
   const handleAnswer = (val: string) => {
     setAnswers({ ...answers, [ENGLISH_QUIZ[currentStep].id]: parseInt(val) })
-  }
-
-  const handleSkip = () => {
-    setAnswers({ ...answers, [ENGLISH_QUIZ[currentStep].id]: null })
-    nextQuestion()
   }
 
   const nextQuestion = () => {
@@ -121,19 +115,18 @@ export default function QuizPage() {
   const calculateScore = () => {
     let correct = 0
     let wrong = 0
-    let skipped = 0
     ENGLISH_QUIZ.forEach(q => {
       const ans = answers[q.id]
-      if (ans === null) skipped++
-      else if (ans === undefined) skipped++
-      else if (ans === q.correct) correct++
+      if (ans === undefined) return
+      if (ans === q.correct) correct++
       else wrong++
     })
-    return { correct, wrong, skipped, total: correct * 5 - wrong * 1 }
+    // Scaling to a 50 question paper for the summary
+    return { correct, wrong, total: correct * 5 - wrong * 1 }
   }
 
   if (isFinished) {
-    const { correct, wrong, skipped, total } = calculateScore()
+    const { correct, wrong, total } = calculateScore()
     return (
       <div className="min-h-screen bg-background">
         <main className="container mx-auto px-4 py-12 flex items-center justify-center">
@@ -145,7 +138,7 @@ export default function QuizPage() {
             <CardDescription className="text-lg mb-8">Subject Code 101 Scoring Rule Applied</CardDescription>
             
             <div className="space-y-4 mb-8 text-left">
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div className="p-3 bg-green-50 rounded-xl border border-green-100 text-center">
                   <div className="text-[10px] font-bold text-green-700 uppercase">Correct</div>
                   <div className="text-xl font-bold text-green-700">+{correct * 5}</div>
@@ -154,15 +147,11 @@ export default function QuizPage() {
                   <div className="text-[10px] font-bold text-red-700 uppercase">Wrong</div>
                   <div className="text-xl font-bold text-red-700">-{wrong}</div>
                 </div>
-                <div className="p-3 bg-gray-50 rounded-xl border border-gray-100 text-center">
-                  <div className="text-[10px] font-bold text-gray-700 uppercase">Skipped</div>
-                  <div className="text-xl font-bold text-gray-700">0</div>
-                </div>
               </div>
               <div className="flex justify-between items-center p-6 bg-foreground text-background rounded-2xl">
                 <div className="flex flex-col">
                   <span className="text-sm opacity-70">Final Score</span>
-                  <span className="text-xs">(on 40 Marks scale)</span>
+                  <span className="text-xs">(on 50 Question scale)</span>
                 </div>
                 <span className="text-4xl font-bold">{total}</span>
               </div>
@@ -189,7 +178,7 @@ export default function QuizPage() {
       <main className="container mx-auto px-4 py-12 max-w-3xl">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-headline font-bold uppercase tracking-tight">Adaptive Set</h1>
+            <h1 className="text-2xl font-headline font-bold uppercase tracking-tight">Practice Set</h1>
             <p className="text-muted-foreground font-mono text-sm">Q{currentStep + 1} / {ENGLISH_QUIZ.length}</p>
           </div>
           <div className="flex items-center gap-2">
@@ -226,20 +215,15 @@ export default function QuizPage() {
           <Button variant="ghost" onClick={() => setCurrentStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0}>
             <ChevronLeft className="w-4 h-4 mr-1" /> Previous
           </Button>
-          <div className="flex gap-3">
-            <Button variant="outline" size="lg" className="px-8 h-12 font-bold text-red-600 hover:text-red-700" onClick={handleSkip}>
-              Skip <Gift className="w-4 h-4 ml-2" />
-            </Button>
-            <Button size="lg" className="px-10 h-12 font-bold" onClick={nextQuestion} disabled={answers[question.id] === undefined}>
-              {currentStep === ENGLISH_QUIZ.length - 1 ? "Finish Set" : "Next Question"} <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
+          <Button size="lg" className="px-10 h-12 font-bold" onClick={nextQuestion} disabled={answers[question.id] === undefined}>
+            {currentStep === ENGLISH_QUIZ.length - 1 ? "Finish Set" : "Next Question"} <ArrowRight className="w-4 h-4 ml-2" />
+          </Button>
         </div>
 
         <div className="mt-12 p-6 rounded-2xl bg-secondary/10 border border-secondary/20 flex gap-4">
           <AlertCircle className="w-6 h-6 text-secondary-foreground shrink-0" />
           <div className="text-sm text-secondary-foreground">
-            <strong>Gift of Skips:</strong> If you are below 50% confident, <strong>SKIP</strong>. 0 marks is better than -1. You have the choice to skip 10 questions.
+            <strong>Subject Code 101:</strong> All 50 questions are compulsory to reach the 250 mark target. Accuracy is paramount.
           </div>
         </div>
       </main>

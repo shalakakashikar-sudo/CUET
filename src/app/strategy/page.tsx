@@ -1,10 +1,9 @@
-
 "use client"
 
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Compass, Clock, CheckCircle, AlertTriangle, Calculator, ListOrdered, FileText, Target, Gift } from "lucide-react"
+import { Compass, Clock, CheckCircle, AlertTriangle, Calculator, ListOrdered, Target, Zap } from "lucide-react"
 import Link from "next/link"
 
 export default function StrategyPage() {
@@ -17,10 +16,10 @@ export default function StrategyPage() {
     { section: "Review / Buffer", time: "5 min", q: "-" },
   ]
 
-  const markingStrategy = [
-    { cond: "70%+ Confident", action: "Attempt the question.", color: "text-green-600", bg: "bg-green-50" },
-    { cond: "50-70% Confident", action: "Eliminate 1-2 options -> Attempt.", color: "text-blue-600", bg: "bg-blue-50" },
-    { cond: "Below 50% Confident", action: "SKIP. 0 is better than -1.", color: "text-red-600", bg: "bg-red-50" },
+  const approachStrategy = [
+    { cond: "70%+ Confident", action: "Confirm and lock answer.", color: "text-green-600", bg: "bg-green-50" },
+    { cond: "50-70% Confident", action: "Eliminate 2 options -> Select best fit.", color: "text-blue-600", bg: "bg-blue-50" },
+    { cond: "Below 50% Confident", action: "Double check context clues.", color: "text-amber-600", bg: "bg-amber-50" },
   ]
 
   return (
@@ -36,7 +35,7 @@ export default function StrategyPage() {
             250/250 Strategic Blueprint
           </h1>
           <p className="text-muted-foreground text-lg mt-4">
-            Master the 50-question paper structure with a focus on accuracy and the "Gift of Skips."
+            Master all 50 questions with precision. In Subject Code 101, every question counts toward your 100th percentile goal.
           </p>
         </header>
 
@@ -44,18 +43,18 @@ export default function StrategyPage() {
           <div className="lg:col-span-2 space-y-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <Card className="border-primary/40 bg-primary/10 overflow-hidden relative">
               <div className="absolute right-0 top-0 p-4 opacity-10">
-                <Gift className="w-24 h-24 text-primary" />
+                <Zap className="w-24 h-24 text-primary" />
               </div>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl text-primary">
-                  <Gift className="w-6 h-6" />
-                  The Gift of Skips
+                  <Zap className="w-6 h-6" />
+                  The Compulsory 50
                 </CardTitle>
-                <CardDescription className="text-foreground/70 font-medium">The single most important strategy: You have the choice to skip 10 questions.</CardDescription>
+                <CardDescription className="text-foreground/70 font-medium">For a perfect 250, you must master the logic behind all 50 questions.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid sm:grid-cols-3 gap-4">
-                  {markingStrategy.map((item, i) => (
+                  {approachStrategy.map((item, i) => (
                     <div key={i} className={`${item.bg} p-4 rounded-xl border border-primary/10 flex flex-col justify-center`}>
                       <div className={`text-xs font-bold ${item.color} uppercase mb-1`}>{item.cond}</div>
                       <div className="text-sm font-semibold leading-tight text-foreground">{item.action}</div>
@@ -69,29 +68,29 @@ export default function StrategyPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl">
                   <Calculator className="w-6 h-6 text-primary" />
-                  The Maths of Uncertainty
+                  The Maths of a Perfect Score
                 </CardTitle>
-                <CardDescription>Every wrong attempt on an uncertain question costs real marks.</CardDescription>
+                <CardDescription>Accuracy is the key to maintaining your +5 momentum.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="bg-muted/30 p-6 rounded-2xl border shadow-sm">
                   <div className="space-y-3 text-sm font-mono">
                     <div className="flex justify-between border-b pb-2 text-emerald-600 font-bold">
-                      <span>40 Correct, 0 Wrong (Ideal)</span>
-                      <span>= 200 Marks</span>
+                      <span>50 Correct, 0 Wrong</span>
+                      <span>= 250 Marks</span>
                     </div>
                     <div className="flex justify-between border-b pb-2 text-amber-600 font-bold">
-                      <span>40 Correct, 10 Wrong</span>
-                      <span>= 190 Marks</span>
+                      <span>45 Correct, 5 Wrong</span>
+                      <span>= 220 Marks</span>
                     </div>
                     <div className="flex justify-between border-b pb-2 text-orange-600 font-bold">
-                      <span>35 Correct, 15 Wrong</span>
-                      <span>= 160 Marks</span>
+                      <span>40 Correct, 10 Wrong</span>
+                      <span>= 190 Marks</span>
                     </div>
                   </div>
                   <p className="mt-4 text-xs text-muted-foreground italic flex items-center gap-2">
                     <AlertTriangle className="w-3 h-3 text-orange-500" />
-                    Unattempted questions give 0 marks. Guessing incorrectly costs you -1.
+                    Wrong answers result in a -1 penalty. Focus on context clues to avoid errors.
                   </p>
                 </div>
               </CardContent>
@@ -140,7 +139,7 @@ export default function StrategyPage() {
                   <li><strong>Syn/Ant:</strong> Quick if you've studied the list.</li>
                   <li><strong>Fill in Blanks:</strong> Grammar-based and logical.</li>
                   <li><strong>Match:</strong> Requires specific knowledge (idioms).</li>
-                  <li><strong>Rearrangement:</strong> Slowest; save for last.</li>
+                  <li><strong>Rearrangement:</strong> Complex logic; ensure focus.</li>
                 </ol>
                 <div className="pt-4 border-t border-background/20 space-y-2">
                   <div className="flex items-center gap-2">
@@ -149,14 +148,14 @@ export default function StrategyPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-emerald-400" />
-                    <span>0 is better than -1.</span>
+                    <span>Target: 250/250.</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             <Button className="w-full h-14 text-lg font-bold rounded-2xl shadow-lg" asChild>
-              <Link href="/quiz">Practice Strategy Now</Link>
+              <Link href="/quiz">Practice All 50 Questions</Link>
             </Button>
           </aside>
         </div>

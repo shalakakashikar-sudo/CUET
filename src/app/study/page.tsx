@@ -85,7 +85,7 @@ export default function StudyPage() {
             <div className="relative z-10 text-center md:text-left">
               <h3 className="text-3xl font-bold mb-4">Strategic Competitive Edge</h3>
               <p className="text-white/80 text-xl mb-8 max-w-xl">
-                Knowledge alone isn't enough. Learn how the "Gift of Skips" and proper time management transform your preparation.
+                Knowledge alone isn't enough. Master the timing and accuracy required for a perfect 50/50 attempt.
               </p>
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-10 rounded-2xl font-bold text-lg" asChild>
                 <Link href="/strategy">View Strategy Guide</Link>
