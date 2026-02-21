@@ -58,7 +58,7 @@ export function Mascot() {
   }, [getPageContext])
 
   const handleClick = () => {
-    if (isBitten) return // Prevent multiple bites at once
+    if (isBitten) return
 
     setMessage(getRandomComment())
     setIsVisible(true)
@@ -104,17 +104,16 @@ export function Mascot() {
     const dripRoutine = async () => {
       if (isBitten) return
       setIsDripping(true)
-      // Look down at drip
-      setEyeOffset({ x: 0, y: 10 })
+      // Look towards the drip side (left)
+      setEyeOffset({ x: -4, y: 6 })
       
       await dripControls.start({
-        y: 140,
+        y: 120,
         opacity: [0, 1, 1, 0],
-        scale: [0.5, 1.2, 1.4, 0.8],
+        scale: [0.6, 1.1, 1.3, 0.7],
         transition: { duration: 2.5, ease: "easeIn" }
       })
       
-      // Reset
       setEyeOffset({ x: 0, y: 0 })
       setIsDripping(false)
       dripControls.set({ y: 0, opacity: 0 })
@@ -154,8 +153,8 @@ export function Mascot() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
         animate={{
-          y: isBitten ? [0, 10, 0] : [0, -10, 0],
-          rotate: isBitten ? [0, -5, 0] : 0
+          y: isBitten ? [0, 15, 0] : [0, -10, 0],
+          rotate: isBitten ? [0, -10, 0] : 0
         }}
         transition={{
           y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
@@ -170,21 +169,15 @@ export function Mascot() {
           xmlns="http://www.w3.org/2000/svg"
           className="drop-shadow-2xl"
         >
-          <defs>
-            <clipPath id="popsicleClip">
-              <path d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V95C85 103 78 110 70 110H30C22 110 15 103 15 95V40Z" />
-            </clipPath>
-          </defs>
-
-          {/* Wooden Stick (Inserted look) */}
+          {/* Wooden Stick (Inserted into the base) */}
           <g>
-            <rect x="42" y="100" width="16" height="35" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
-            <path d="M42 110C42 110 45 105 50 105C55 105 58 110 58 110" stroke="#1A1A1A" strokeWidth="2" opacity="0.3" />
+            <rect x="42" y="102" width="16" height="32" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
+            <path d="M42 110C42 110 45 106 50 106C55 106 58 110 58 110" stroke="#1A1A1A" strokeWidth="2" opacity="0.3" />
           </g>
 
-          {/* Main Body Group with Bite Clip */}
+          {/* Main Body */}
           <g>
-            {/* Base Body (Vanilla) */}
+            {/* White Body Base */}
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V95C85 103 78 110 70 110H30C22 110 15 103 15 95V40Z"
               fill="white"
@@ -192,22 +185,22 @@ export function Mascot() {
               strokeWidth="4"
             />
 
-            {/* Pink Melting Top (Enhanced Graphics) */}
+            {/* Pink Melting Layer */}
             <path
-              d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V75C85 75 78 85 70 78C62 71 55 92 45 80C35 68 25 88 15 75V40Z"
+              d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V70C85 70 78 78 70 72C62 66 55 85 45 74C35 63 25 80 15 68V40Z"
               fill="#FF85C0"
               stroke="#1A1A1A"
               strokeWidth="4"
             />
 
-            {/* Bite Mark - Only visible when isBitten is true */}
+            {/* Side Bite Mark Animation */}
             <AnimatePresence>
               {isBitten && (
                 <motion.path
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0 }}
-                  d="M85 30C78 30 75 35 75 40C75 45 78 50 85 50C85 50 80 55 80 60C80 65 85 70 85 70V30Z"
+                  d="M85 35C78 35 74 40 74 45C74 50 78 55 85 55C85 55 80 60 80 65C80 70 85 75 85 75V35Z"
                   fill="hsl(var(--background))"
                   stroke="#1A1A1A"
                   strokeWidth="3"
@@ -215,50 +208,48 @@ export function Mascot() {
               )}
             </AnimatePresence>
 
-            {/* Face Group (Shifted higher) */}
+            {/* Face Group (Positioned High) */}
             <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - (isBitten ? 2 : 0) }}>
               {/* Blushing Cheeks */}
-              <circle cx="28" cy="65" r="6" fill="#FF85C0" fillOpacity="0.5" />
-              <circle cx="72" cy="65" r="6" fill="#FF85C0" fillOpacity="0.5" />
+              <circle cx="30" cy="52" r="6" fill="#FF85C0" fillOpacity="0.5" />
+              <circle cx="70" cy="52" r="6" fill="#FF85C0" fillOpacity="0.5" />
 
-              {/* Eyes (Sparkling & Kawaii) */}
+              {/* Kawaii Eyes */}
               <g>
                 {isBlinking ? (
                   <>
-                    <path d="M25 55Q32.5 50 40 55" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
-                    <path d="M60 55Q67.5 50 75 55" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    <path d="M25 45Q32.5 40 40 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    <path d="M60 45Q67.5 40 75 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
                   </>
                 ) : (
                   <>
                     {/* Left Eye */}
-                    <g transform="translate(32, 55)">
-                      <circle r="10" fill="#1A1A1A" />
-                      <circle cx="-3" cy="-4" r="4" fill="white" />
-                      <circle cx="4" cy="4" r="2" fill="white" />
-                      {/* Eyelashes */}
-                      <path d="M-12 -5L-8 -2" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
-                      <path d="M-13 2L-9 2" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
+                    <g transform="translate(32, 45)">
+                      <circle r="9" fill="#1A1A1A" />
+                      <circle cx="-3" cy="-4" r="3.5" fill="white" />
+                      <circle cx="4" cy="4" r="1.5" fill="white" />
+                      <path d="M-11 -4L-8 -1" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
+                      <path d="M-12 2L-9 2" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
                     </g>
 
                     {/* Right Eye */}
-                    <g transform="translate(68, 55)">
-                      <circle r="10" fill="#1A1A1A" />
-                      <circle cx="-3" cy="-4" r="4" fill="white" />
-                      <circle cx="4" cy="4" r="2" fill="white" />
-                      {/* Eyelashes */}
-                      <path d="M12 -5L8 -2" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
-                      <path d="M13 2L9 2" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
+                    <g transform="translate(68, 45)">
+                      <circle r="9" fill="#1A1A1A" />
+                      <circle cx="-3" cy="-4" r="3.5" fill="white" />
+                      <circle cx="4" cy="4" r="1.5" fill="white" />
+                      <path d="M11 -4L8 -1" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
+                      <path d="M12 2L9 2" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
                     </g>
                   </>
                 )}
               </g>
 
-              {/* Mouth (Shifted higher) */}
+              {/* Tiny Cute Mouth */}
               <motion.path
                 animate={{
                   d: isBitten 
-                    ? "M44 72Q50 82 56 72" // Surprised/Ouch mouth
-                    : "M46 68Q50 72 54 68"  // Cute smile
+                    ? "M44 60Q50 70 56 60" 
+                    : "M47 58Q50 62 53 58"
                 }}
                 stroke="#1A1A1A"
                 strokeWidth="3"
@@ -267,30 +258,29 @@ export function Mascot() {
               />
             </motion.g>
 
-            {/* Drip Animation (More Obvious) */}
+            {/* Side Drip Animation */}
             <motion.path
               animate={dripControls}
               initial={{ opacity: 0 }}
-              d="M35 85C35 95 40 100 45 100C50 100 55 95 55 85C55 75 35 75 35 85Z"
+              d="M20 75C20 85 25 90 30 90C35 90 40 85 40 75C40 65 20 65 20 75Z"
               fill="#FF85C0"
               stroke="#1A1A1A"
               strokeWidth="2"
             />
           </g>
 
-          {/* Body Highlights */}
+          {/* Body Shine Highlights */}
           <rect x="22" y="18" width="12" height="5" rx="3" fill="white" fillOpacity="0.4" />
-          <circle cx="75" cy="25" r="3" fill="white" fillOpacity="0.3" />
+          <circle cx="75" cy="22" r="3" fill="white" fillOpacity="0.3" />
         </svg>
 
         {/* Floating Heart Effect */}
         <AnimatePresence>
-          {!isBitten && expression === "happy" && (
+          {!isBitten && (
             <motion.div
               initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: -40 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 2, repeat: Infinity }}
+              animate={{ opacity: [0, 1, 0], y: -50 }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
               className="absolute -top-10 left-1/2 -translate-x-1/2"
             >
               <Heart className="w-6 h-6 text-pink-400 fill-pink-400" />
