@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect, useCallback } from "react"
@@ -226,11 +227,12 @@ export function Mascot() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
         animate={{
-          y: isBitten ? [0, 15, 0] : [0, -10, 0],
-          rotate: isBitten ? [0, -5, 5, 0] : 0
+          y: isBitten ? [0, 15] : [0, -10],
+          rotate: isBitten ? -5 : 0
         }}
         transition={{
-          y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+          y: { duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
+          rotate: { type: "spring", stiffness: 300, damping: 20 }
         }}
         onClick={handleClick}
       >
@@ -264,9 +266,12 @@ export function Mascot() {
             animate={{
               x: showHands ? -15 : 0,
               opacity: showHands ? 1 : 0,
-              rotate: showHands ? [0, -10, 0] : 0
+              rotate: showHands ? -10 : 0
             }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            transition={{ 
+              x: { type: "spring", stiffness: 300, damping: 20 },
+              rotate: { repeat: showHands ? Infinity : 0, repeatType: "reverse", duration: 0.5 }
+            }}
           >
             <circle cx="15" cy="75" r="6" fill={SKY_BLUE} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
@@ -274,9 +279,12 @@ export function Mascot() {
             animate={{
               x: showHands ? 15 : 0,
               opacity: showHands ? 1 : 0,
-              rotate: showHands ? [0, 10, 0] : 0
+              rotate: showHands ? 10 : 0
             }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            transition={{ 
+              x: { type: "spring", stiffness: 300, damping: 20 },
+              rotate: { repeat: showHands ? Infinity : 0, repeatType: "reverse", duration: 0.5 }
+            }}
           >
             <circle cx="85" cy="75" r="6" fill={SKY_BLUE} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
@@ -365,8 +373,8 @@ export function Mascot() {
 
           {(expression === "determined" || expression === "cool") && !isBitten && (
             <motion.g
-              animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }}
-              transition={{ repeat: Infinity, duration: 2 }}
+              animate={{ opacity: [0, 1], scale: [0.5, 1.2] }}
+              transition={{ repeat: Infinity, repeatType: "reverse", duration: 1 }}
             >
               <path d="M85 15L88 22L95 25L88 28L85 35L82 28L75 25L82 22Z" fill={SKY_BLUE} />
               <path d="M15 15L18 22L25 25L18 28L15 35L12 28L5 25L12 22Z" fill={SKY_BLUE} />
@@ -381,7 +389,7 @@ export function Mascot() {
           {!isBitten && !isDripping && (
             <motion.div
               initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: [0, 1, 0], y: -60 }}
+              animate={{ opacity: [0, 1], y: -60 }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
               className="absolute -top-12 left-1/2 -translate-x-1/2 flex gap-2"
             >
