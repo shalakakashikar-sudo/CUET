@@ -15,7 +15,7 @@ const COMMENTS = {
     "Your brain is getting sharper! I can feel it!",
   ],
   strategy: [
-    "Precision is my middle name. Well, it's actually Strawberry.",
+    "Precision is my middle name. Well, it's actually Sky.",
     "Order of Operations is basically a recipe for success!",
     "Accuracy > Speed. Don't rush, or you'll get a brain freeze!",
   ],
@@ -36,6 +36,8 @@ const COMMENTS = {
     "I'm dripping away! Don't leave me hanging, study up!",
   ]
 }
+
+const SKY_BLUE = "#70D6FF"
 
 export function Mascot() {
   const pathname = usePathname()
@@ -154,10 +156,10 @@ export function Mascot() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="mb-4 bg-white p-4 rounded-[2.5rem] shadow-2xl border-4 border-pink-200 max-w-[220px] text-sm font-black text-pink-600 relative pointer-events-auto text-center"
+            className="mb-4 bg-white p-4 rounded-[2.5rem] shadow-2xl border-4 border-blue-200 max-w-[220px] text-sm font-black text-blue-600 relative pointer-events-auto text-center"
           >
             {message}
-            <div className="absolute -bottom-2 right-10 w-4 h-4 bg-white border-r-4 border-b-4 border-pink-200 rotate-45" />
+            <div className="absolute -bottom-2 right-10 w-4 h-4 bg-white border-r-4 border-b-4 border-blue-200 rotate-45" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -209,10 +211,10 @@ export function Mascot() {
               strokeWidth="4"
             />
 
-            {/* Pink Melting Layer */}
+            {/* Crystal Sky Blue Melting Layer */}
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V70C85 70 78 78 70 72C62 66 55 85 45 74C35 63 25 80 15 68V40Z"
-              fill="#FF85C0"
+              fill={SKY_BLUE}
               stroke="#1A1A1A"
               strokeWidth="4"
             />
@@ -220,8 +222,8 @@ export function Mascot() {
             {/* Face Group */}
             <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - (isBitten ? 2 : 0) }}>
               {/* Blushing Cheeks */}
-              <circle cx="30" cy="52" r="6" fill="#FF85C0" fillOpacity="0.5" />
-              <circle cx="70" cy="52" r="6" fill="#FF85C0" fillOpacity="0.5" />
+              <circle cx="30" cy="52" r="6" fill={SKY_BLUE} fillOpacity="0.5" />
+              <circle cx="70" cy="52" r="6" fill={SKY_BLUE} fillOpacity="0.5" />
 
               {/* Eyes */}
               <g>
@@ -272,7 +274,7 @@ export function Mascot() {
               animate={dripControls}
               initial={{ opacity: 0 }}
               d="M18 78C18 88 23 93 28 93C33 93 38 88 38 78C38 68 18 68 18 78Z"
-              fill="#FF85C0"
+              fill={SKY_BLUE}
               stroke="#1A1A1A"
               strokeWidth="2"
             />
@@ -292,7 +294,7 @@ export function Mascot() {
               transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
               className="absolute -top-10 left-1/2 -translate-x-1/2"
             >
-              <Heart className="w-6 h-6 text-pink-400 fill-pink-400" />
+              <Heart className="w-6 h-6 text-blue-400 fill-blue-400" />
             </motion.div>
           )}
         </AnimatePresence>
