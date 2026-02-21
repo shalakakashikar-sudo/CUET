@@ -2,10 +2,11 @@ import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 import { Navbar } from "@/components/layout/Navbar"
+import { Mascot } from "@/components/layout/Mascot"
 
 export const metadata: Metadata = {
-  title: 'CUET Prep 2026 | English Excellence',
-  description: 'Excel in the CUET 2026 English Exam with Subject Code 101 experts.',
+  title: 'The Verbal Vantage | CUET Excellence',
+  description: 'Elite CUET 2026 English preparation with clinical strategy and practice.',
 };
 
 export default function RootLayout({
@@ -25,6 +26,7 @@ export default function RootLayout({
         <div className="flex-1 pb-20">
           {children}
         </div>
+        <Mascot />
         <footer className="fixed bottom-0 w-full py-4 text-center text-sm font-medium text-muted-foreground bg-white/80 backdrop-blur-md border-t z-50">
           Created by <span className="text-primary font-bold">Shalaka Kashikar</span>
         </footer>
