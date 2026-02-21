@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence, useAnimation } from "framer-motion"
 import { usePathname } from "next/navigation"
-import { Heart, Stars, Zap } from "lucide-react"
+import { Heart, Stars, Zap, BookOpen, Lightbulb } from "lucide-react"
 
 type Expression = "happy" | "wink" | "cool" | "surprised" | "determined" | "thinking"
 
@@ -16,6 +16,9 @@ const COMMENTS = {
     "Don't brain freeze! Take it one word at a time.",
     "The Verbal Vantage: Where logic meets lexicon!",
     "I'm rooting for you (and I'm a popsicle, so that's rare)!",
+    "Vocabulary Tip: 'Munificent' means very generous. Like me with these tips!",
+    "Did you know? 'Ephemeral' means short-lived. Like a melting popsicle!",
+    "Idiom Alert: 'Break the ice' means to start a conversation. I'm literally ice!",
   ],
   strategy: [
     "Precision is my middle name. Well, it's actually Sky.",
@@ -24,15 +27,17 @@ const COMMENTS = {
     "Remember: In Code 101, every -1 counts. Stay sharp!",
     "Zero Guesswork Strategy: Because 'maybe' doesn't get 250.",
     "Clinical deduction is the ultimate superpower.",
+    "Elimination Tip: Cross out the 'distractor' options first!",
   ],
   study: [
     "Vocabulary is the spice of life. And I'm the dessert!",
     "Synonyms are just friends who look different!",
     "Master the patterns, master the world.",
     "Antonyms: The polar opposites, just like me and a heater!",
-    "Homonyms Trap: Don't let them trick your cold logic!",
-    "Grammar is the skeleton of sense. Keep it strong!",
+    "Homonyms Trap: 'Principal' is your pal, 'Principle' is a rule!",
+    "Grammar Tip: 'Despite' needs a noun, 'Although' needs a clause!",
     "Suffixes are like tails; they tell you where the word is going.",
+    "Word of the Day: 'Sagacious' means wise. Be sagacious, study hard!",
   ],
   quiz: [
     "Focus mode: ACTIVATED. Let's get that 250!",
@@ -41,6 +46,7 @@ const COMMENTS = {
     "50 questions, 60 minutes. That's one minute per miracle!",
     "Scan, deduce, confirm. The elite cycle!",
     "You're in the zone! Is it chilly in here or is it just you?",
+    "Idiom Alert: 'Hit the nail on the head' means to be exactly right. Do that!",
   ],
   melting: [
     "I'm melting! Study faster or I'll be a puddle!",
@@ -91,19 +97,16 @@ export function Mascot() {
     setIsBitten(true)
     setExpression(randomExpr)
 
-    // Recover from bite after 2 seconds
     setTimeout(() => {
       setIsBitten(false)
       setExpression(getPageContext() === "quiz" ? "determined" : "happy")
     }, 2000)
 
-    // Hide message after 4 seconds
     setTimeout(() => {
       setIsVisible(false)
     }, 4000)
   }
 
-  // Expression logic based on context
   useEffect(() => {
     if (!isBitten && !isDripping) {
       const context = getPageContext()
@@ -113,7 +116,6 @@ export function Mascot() {
     }
   }, [pathname, isBitten, isDripping, getPageContext])
 
-  // Blinking loop
   useEffect(() => {
     const blinkInterval = setInterval(() => {
       setIsBlinking(true)
@@ -122,7 +124,6 @@ export function Mascot() {
     return () => clearInterval(blinkInterval)
   }, [])
 
-  // Look around loop
   useEffect(() => {
     const lookInterval = setInterval(() => {
       if (!isDripping && !isBitten) {
@@ -135,7 +136,6 @@ export function Mascot() {
     return () => clearInterval(lookInterval)
   }, [isDripping, isBitten])
 
-  // Drip loop
   useEffect(() => {
     const dripRoutine = async () => {
       if (isBitten) return
@@ -145,7 +145,8 @@ export function Mascot() {
       setIsDripping(true)
       setExpression("surprised")
       
-      setEyeOffset({ x: -8, y: 10 })
+      // Face stays on the blue part: lower the y offset
+      setEyeOffset({ x: -6, y: 4 })
       
       await dripControls.start({
         y: 130,
@@ -218,18 +219,15 @@ export function Mascot() {
           <defs>
             <clipPath id="biteClip">
               {isBitten ? (
-                <path d="M0 0 H72 C68 4 64 12 68 22 C72 32 82 28 88 32 C94 36 100 42 100 42 V140 H0 V0Z" />
+                // Bite from the top right corner
+                <path d="M0 0 H75 C70 5 65 15 70 25 C75 35 85 32 90 35 C95 38 100 45 100 45 V140 H0 V0Z" />
               ) : (
                 <rect width="100" height="140" />
               )}
             </clipPath>
-            <linearGradient id="bodyGradient" x1="50" y1="10" x2="50" y2="110" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stopColor={SKY_BLUE} />
-              <stop offset="1" stopColor="white" />
-            </linearGradient>
           </defs>
 
-          {/* Wooden Stick */}
+          {/* Wooden Stick - Inserted into body */}
           <g>
             <rect x="42" y="102" width="16" height="32" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
             <path d="M42 110C42 110 45 106 50 106C55 106 58 110 58 110" stroke="#1A1A1A" strokeWidth="2" opacity="0.3" />
@@ -237,7 +235,7 @@ export function Mascot() {
           </g>
 
           <g clipPath="url(#biteClip)">
-            {/* Main Body */}
+            {/* Main Body (Vanilla base) */}
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V95C85 103 78 110 70 110H30C22 110 15 103 15 95V40Z"
               fill="white"
@@ -253,8 +251,8 @@ export function Mascot() {
               strokeWidth="4"
             />
 
-            {/* Face Components */}
-            <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - (isBitten ? 2 : 0) }}>
+            {/* Face Components - High on the blue layer */}
+            <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - 12 }}>
               {/* Blushing */}
               <circle cx="30" cy="55" r="7" fill={SKY_BLUE} fillOpacity="0.4" />
               <circle cx="70" cy="55" r="7" fill={SKY_BLUE} fillOpacity="0.4" />
@@ -266,11 +264,6 @@ export function Mascot() {
                     <path d="M25 48Q32.5 43 40 48" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
                     <path d="M60 48Q67.5 43 75 48" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
                   </>
-                ) : expression === "cool" ? (
-                  <g transform="translate(20, 42)">
-                    <rect width="60" height="15" rx="4" fill="#1A1A1A" />
-                    <rect x="25" y="5" width="10" height="3" fill="white" opacity="0.3" />
-                  </g>
                 ) : expression === "wink" ? (
                   <>
                     <circle cx="32" cy="48" r="9" fill="#1A1A1A" />
@@ -316,7 +309,7 @@ export function Mascot() {
               />
             </motion.g>
 
-            {/* Interactive Side Drip */}
+            {/* Side Drip Animation */}
             <motion.path
               animate={dripControls}
               initial={{ opacity: 0 }}
@@ -327,18 +320,18 @@ export function Mascot() {
             />
           </g>
 
-          {/* Sparkle effects for determined/cool mode */}
+          {/* Sparkles for active modes */}
           {(expression === "determined" || expression === "cool") && !isBitten && (
             <motion.g
               animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }}
               transition={{ repeat: Infinity, duration: 2 }}
             >
-              <path d="M85 15L88 22L95 25L88 28L85 35L82 28L75 25L82 22Z" fill="#70D6FF" />
-              <path d="M15 15L18 22L25 25L18 28L15 35L12 28L5 25L12 22Z" fill="#70D6FF" />
+              <path d="M85 15L88 22L95 25L88 28L85 35L82 28L75 25L82 22Z" fill={SKY_BLUE} />
+              <path d="M15 15L18 22L25 25L18 28L15 35L12 28L5 25L12 22Z" fill={SKY_BLUE} />
             </motion.g>
           )}
 
-          {/* Highlights */}
+          {/* Body Highlights */}
           <rect x="22" y="18" width="12" height="5" rx="3" fill="white" fillOpacity="0.4" />
           <circle cx="75" cy="22" r="3" fill="white" fillOpacity="0.3" />
         </svg>
