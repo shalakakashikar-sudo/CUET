@@ -4,25 +4,36 @@
 
 @layer base {
   :root {
-    --background: 203 100% 98%; /* Very light sky blue */
-    --foreground: 203 60% 10%;
+    /* Crystal Sky Blue Theme (Base Hue: 197) */
+    --background: 197 100% 98%; 
+    --foreground: 197 60% 10%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 203 60% 10%;
+    --card-foreground: 197 60% 10%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 203 60% 10%;
-    --primary: 203 90% 50%; /* Vibrant Sky Blue */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 197 90% 90%; /* Soft Pale Blue */
+    --popover-foreground: 197 60% 10%;
+    
+    /* Primary is the vibrant mascot blue */
+    --primary: 197 100% 72%; 
+    --primary-foreground: 197 60% 10%; /* Dark blue text for contrast on light blue */
+    
+    --secondary: 197 100% 92%; /* Lighter version for subtle backgrounds */
     --secondary-foreground: 197 60% 20%;
-    --muted: 203 30% 95%;
-    --muted-foreground: 203 20% 40%;
-    --accent: 180 70% 45%; /* Teal accent */
+    
+    --muted: 197 30% 95%;
+    --muted-foreground: 197 20% 40%;
+    
+    --accent: 197 100% 50%; /* Darker blue for call-to-actions */
     --accent-foreground: 0 0% 100%;
+    
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 203 30% 90%;
-    --input: 203 30% 90%;
-    --ring: 203 90% 50%;
+    
+    --border: 197 30% 90%;
+    --input: 197 30% 90%;
+    --ring: 197 100% 72%;
+    
     --radius: 1.5rem;
   }
 }
@@ -33,7 +44,8 @@
   }
   body {
     @apply bg-background text-foreground min-h-screen flex flex-col;
-    background: linear-gradient(135deg, hsl(203, 100%, 98%) 0%, hsl(203, 100%, 94%) 100%);
+    /* Soft crystal gradient background */
+    background: linear-gradient(135deg, hsl(197, 100%, 98%) 0%, hsl(197, 100%, 94%) 100%);
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
