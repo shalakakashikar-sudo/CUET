@@ -172,9 +172,9 @@ export function Mascot() {
       
       await dripControls.start({
         y: 120,
-        opacity: [0, 1, 1, 0],
-        scale: [0.8, 1.1, 1.2, 0.9],
-        transition: { duration: 3, ease: "easeIn" }
+        opacity: [0, 1],
+        scale: [0.8, 1.2],
+        transition: { duration: 3, repeat: 0, ease: "easeIn" }
       })
       
       setEyeOffset({ x: 0, y: 0 })
