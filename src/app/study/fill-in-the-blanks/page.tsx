@@ -1,6 +1,6 @@
+
 "use client"
 
-import { Navbar } from "@/components/layout/Navbar"
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Clock, Split, PenTool, Zap, CheckCircle2 } from "lucide-react"
@@ -8,7 +8,6 @@ import { Clock, Split, PenTool, Zap, CheckCircle2 } from "lucide-react"
 export default function FillersPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <main className="container mx-auto px-4 py-12 max-w-5xl">
         <header className="mb-12">
           <Badge className="mb-4">Section 5 (50 Marks)</Badge>

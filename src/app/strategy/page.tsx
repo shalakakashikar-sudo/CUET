@@ -1,6 +1,6 @@
+
 "use client"
 
-import { Navbar } from "@/components/layout/Navbar"
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"

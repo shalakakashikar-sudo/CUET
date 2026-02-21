@@ -1,6 +1,6 @@
+
 "use client"
 
-import { Navbar } from "@/components/layout/Navbar"
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
@@ -88,7 +88,7 @@ export default function RCPage() {
                     { label: "Too Specific", desc: "Correct for one paragraph, not the whole passage." },
                     { label: "Too Broad", desc: "Makes huge sweeping claims beyond the text." },
                     { label: "True but NOT in passage", desc: "Rule: CUET RC answers must be directly supported by passage text." },
-                    { label: "Opposite Meaning", desc: "States the reverse of the passage." },
+                    { label: "Opposite Meaning", desc: "States the reverse of what the passage says." },
                     { label: "Partially Correct", desc: "First half is right, second half is wrong." }
                   ].map((trap, i) => (
                     <div key={i} className="flex items-start gap-4 p-6 rounded-2xl bg-destructive/5 border border-destructive/10">

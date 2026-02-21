@@ -2,7 +2,6 @@
 "use client"
 
 import { useState } from "react"
-import { Navbar } from "@/components/layout/Navbar"
 import { Input } from "@/components/ui/input"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
@@ -46,7 +45,6 @@ export default function DoubtsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">
           <header className="text-center mb-12">
@@ -99,17 +97,6 @@ export default function DoubtsPage() {
                 <CardDescription>Try a different keyword or browse categories above.</CardDescription>
               </Card>
             )}
-          </div>
-
-          <div className="mt-20 p-8 rounded-3xl bg-secondary/10 border border-secondary/20 flex flex-col md:flex-row items-center gap-6">
-            <div className="bg-white p-4 rounded-full shadow-sm">
-              <MessageSquare className="w-8 h-8 text-secondary-foreground" />
-            </div>
-            <div className="flex-1 text-center md:text-left">
-              <h3 className="text-xl font-bold mb-1">Still confused?</h3>
-              <p className="text-muted-foreground">Post your question in the community forum and get answers from experts and peers.</p>
-            </div>
-            <Button size="lg" className="bg-secondary-foreground text-background shrink-0">Ask the Community</Button>
           </div>
         </div>
       </main>

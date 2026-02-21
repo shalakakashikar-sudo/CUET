@@ -1,7 +1,7 @@
+
 "use client"
 
 import { useState } from "react"
-import { Navbar } from "@/components/layout/Navbar"
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -43,7 +43,6 @@ export default function SynonymsAntonymsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <main className="container mx-auto px-4 py-12 max-w-5xl">
         <header className="mb-12">
           <Badge className="mb-4">Section 3 (50 Marks)</Badge>
@@ -129,8 +128,8 @@ export default function SynonymsAntonymsPage() {
                   {[
                     { s: "-ous / -ive", m: "Having quality of" },
                     { s: "-ness / -ity", m: "State of being" },
-                    { s: "-ify / -ize", m: "To make or cause" },
-                    { s: "-less / -ful", m: "Without / Full of" }
+                    { s: "-less / -ful", m: "Without / Full of" },
+                    { s: "-ify / -ize", m: "To make or cause" }
                   ].map((item, i) => (
                     <div key={i} className="flex justify-between border-b pb-1 last:border-0">
                       <span className="font-mono font-bold">{item.s}</span>

@@ -1,7 +1,7 @@
+
 "use client"
 
 import { useState } from "react"
-import { Navbar } from "@/components/layout/Navbar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -136,7 +136,6 @@ export default function QuizPage() {
     const { correct, wrong, skipped, total } = calculateScore()
     return (
       <div className="min-h-screen bg-background">
-        <Navbar />
         <main className="container mx-auto px-4 py-12 flex items-center justify-center">
           <Card className="w-full max-w-lg text-center p-8 border-none shadow-xl animate-fade-in-up">
             <div className="bg-primary/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -187,7 +186,6 @@ export default function QuizPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       <main className="container mx-auto px-4 py-12 max-w-3xl">
         <div className="flex items-center justify-between mb-8">
           <div>

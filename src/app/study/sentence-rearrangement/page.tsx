@@ -1,6 +1,6 @@
+
 "use client"
 
-import { Navbar } from "@/components/layout/Navbar"
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Layers, ListOrdered, CheckCircle2, ChevronRight, Target } from "lucide-react"
@@ -74,7 +74,7 @@ export default function SentenceRearrangementPage() {
               <CardContent className="space-y-4 text-sm text-background/80">
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <p>Connectors like "However", "Therefore", and "Thus" never start a sentence.</p>
+                  <p>Connectors like \"However\", \"Therefore\", and \"Thus\" never start a sentence.</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
