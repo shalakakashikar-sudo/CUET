@@ -3,9 +3,9 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence, useAnimation } from "framer-motion"
 import { usePathname } from "next/navigation"
-import { Heart } from "lucide-react"
+import { Heart, Stars, Zap } from "lucide-react"
 
-type Expression = "happy" | "wink" | "cool" | "surprised" | "determined"
+type Expression = "happy" | "wink" | "cool" | "surprised" | "determined" | "thinking"
 
 const COMMENTS = {
   default: [
@@ -13,27 +13,42 @@ const COMMENTS = {
     "Percentile 100 is just a few study sessions away!",
     "Ready to freeze the competition?",
     "Your brain is getting sharper! I can feel it!",
+    "Don't brain freeze! Take it one word at a time.",
+    "The Verbal Vantage: Where logic meets lexicon!",
+    "I'm rooting for you (and I'm a popsicle, so that's rare)!",
   ],
   strategy: [
     "Precision is my middle name. Well, it's actually Sky.",
     "Order of Operations is basically a recipe for success!",
     "Accuracy > Speed. Don't rush, or you'll get a brain freeze!",
+    "Remember: In Code 101, every -1 counts. Stay sharp!",
+    "Zero Guesswork Strategy: Because 'maybe' doesn't get 250.",
+    "Clinical deduction is the ultimate superpower.",
   ],
   study: [
     "Vocabulary is the spice of life. And I'm the dessert!",
     "Synonyms are just friends who look different!",
     "Master the patterns, master the world.",
+    "Antonyms: The polar opposites, just like me and a heater!",
+    "Homonyms Trap: Don't let them trick your cold logic!",
+    "Grammar is the skeleton of sense. Keep it strong!",
+    "Suffixes are like tails; they tell you where the word is going.",
   ],
   quiz: [
     "Focus mode: ACTIVATED. Let's get that 250!",
     "One question at a time! Keep your cool.",
     "Mistakes are just flavor text. Keep going!",
+    "50 questions, 60 minutes. That's one minute per miracle!",
+    "Scan, deduce, confirm. The elite cycle!",
+    "You're in the zone! Is it chilly in here or is it just you?",
   ],
   melting: [
     "I'm melting! Study faster or I'll be a puddle!",
     "Quick! Finish this module before I lose my shape!",
     "The heat is on! Let's pick up the pace!",
     "I'm dripping away! Don't leave me hanging, study up!",
+    "Time is ticking and I'm trickling! Move it!",
+    "Accuracy maintains your cool. Speed stops the melt!",
   ]
 }
 
@@ -68,15 +83,18 @@ export function Mascot() {
   const handleClick = () => {
     if (isBitten) return
 
+    const expressions: Expression[] = ["wink", "cool", "surprised", "happy"]
+    const randomExpr = expressions[Math.floor(Math.random() * expressions.length)]
+    
     setMessage(getRandomComment())
     setIsVisible(true)
     setIsBitten(true)
-    setExpression("surprised")
+    setExpression(randomExpr)
 
     // Recover from bite after 2 seconds
     setTimeout(() => {
       setIsBitten(false)
-      setExpression("happy")
+      setExpression(getPageContext() === "quiz" ? "determined" : "happy")
     }, 2000)
 
     // Hide message after 4 seconds
@@ -84,6 +102,16 @@ export function Mascot() {
       setIsVisible(false)
     }, 4000)
   }
+
+  // Expression logic based on context
+  useEffect(() => {
+    if (!isBitten && !isDripping) {
+      const context = getPageContext()
+      if (context === "quiz") setExpression("determined")
+      else if (context === "strategy") setExpression("cool")
+      else setExpression("happy")
+    }
+  }, [pathname, isBitten, isDripping, getPageContext])
 
   // Blinking loop
   useEffect(() => {
@@ -98,12 +126,12 @@ export function Mascot() {
   useEffect(() => {
     const lookInterval = setInterval(() => {
       if (!isDripping && !isBitten) {
-        const x = (Math.random() - 0.5) * 8
-        const y = (Math.random() - 0.5) * 6
+        const x = (Math.random() - 0.5) * 10
+        const y = (Math.random() - 0.5) * 8
         setEyeOffset({ x, y })
-        setTimeout(() => setEyeOffset({ x: 0, y: 0 }), 1200)
+        setTimeout(() => setEyeOffset({ x: 0, y: 0 }), 1500)
       }
-    }, 5000)
+    }, 6000)
     return () => clearInterval(lookInterval)
   }, [isDripping, isBitten])
 
@@ -112,36 +140,38 @@ export function Mascot() {
     const dripRoutine = async () => {
       if (isBitten) return
       
-      // Trigger melting comment
       setMessage(getRandomComment('melting'))
       setIsVisible(true)
       setIsDripping(true)
+      setExpression("surprised")
       
-      // Look towards the drip side (left)
-      setEyeOffset({ x: -6, y: 8 })
+      setEyeOffset({ x: -8, y: 10 })
       
       await dripControls.start({
-        y: 120,
+        y: 130,
         opacity: [0, 1, 1, 0],
-        scale: [0.6, 1.1, 1.3, 0.7],
-        transition: { duration: 2.5, ease: "easeIn" }
+        scale: [0.7, 1.2, 1.4, 0.8],
+        transition: { duration: 3, ease: "easeIn" }
       })
       
       setEyeOffset({ x: 0, y: 0 })
       setIsDripping(false)
+      setExpression(getPageContext() === "quiz" ? "determined" : "happy")
       dripControls.set({ y: 0, opacity: 0 })
       
-      // Hide message shortly after drip ends
-      setTimeout(() => setIsVisible(false), 1000)
+      setTimeout(() => setIsVisible(false), 1500)
     }
 
-    const interval = setInterval(dripRoutine, 15000)
+    const interval = setInterval(dripRoutine, 18000)
     return () => clearInterval(interval)
-  }, [dripControls, isBitten, getRandomComment])
+  }, [dripControls, isBitten, getRandomComment, getPageContext])
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setMessage("Hi! I'm Pops. Ready for 250/250?")
+      const intro = pathname === "/" 
+        ? "Hi! I'm Pops. Ready for 250/250?" 
+        : `Let's master ${pathname.split('/').pop()?.replace(/-/g, ' ')}!`
+      setMessage(intro)
       setIsVisible(true)
       setTimeout(() => setIsVisible(false), 5000)
     }, 2000)
@@ -178,8 +208,8 @@ export function Mascot() {
         onClick={handleClick}
       >
         <svg
-          width="140"
-          height="180"
+          width="150"
+          height="190"
           viewBox="0 0 100 140"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -188,22 +218,26 @@ export function Mascot() {
           <defs>
             <clipPath id="biteClip">
               {isBitten ? (
-                // Subtract a bite from the top right corner
-                <path d="M0 0 H75 C70 5 65 15 70 25 C75 35 85 30 90 35 C95 40 100 45 100 45 V140 H0 V0Z" />
+                <path d="M0 0 H72 C68 4 64 12 68 22 C72 32 82 28 88 32 C94 36 100 42 100 42 V140 H0 V0Z" />
               ) : (
                 <rect width="100" height="140" />
               )}
             </clipPath>
+            <linearGradient id="bodyGradient" x1="50" y1="10" x2="50" y2="110" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stopColor={SKY_BLUE} />
+              <stop offset="1" stopColor="white" />
+            </linearGradient>
           </defs>
 
           {/* Wooden Stick */}
           <g>
             <rect x="42" y="102" width="16" height="32" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
             <path d="M42 110C42 110 45 106 50 106C55 106 58 110 58 110" stroke="#1A1A1A" strokeWidth="2" opacity="0.3" />
+            <rect x="44" y="100" width="12" height="6" fill="#1A1A1A" opacity="0.1" />
           </g>
 
           <g clipPath="url(#biteClip)">
-            {/* White Body Base */}
+            {/* Main Body */}
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V95C85 103 78 110 70 110H30C22 110 15 103 15 95V40Z"
               fill="white"
@@ -211,90 +245,118 @@ export function Mascot() {
               strokeWidth="4"
             />
 
-            {/* Crystal Sky Blue Melting Layer */}
+            {/* Melting Blue Top Layer */}
             <path
-              d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V70C85 70 78 78 70 72C62 66 55 85 45 74C35 63 25 80 15 68V40Z"
+              d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V72C85 72 78 80 70 74C62 68 55 88 45 76C35 64 25 82 15 70V40Z"
               fill={SKY_BLUE}
               stroke="#1A1A1A"
               strokeWidth="4"
             />
 
-            {/* Face Group */}
+            {/* Face Components */}
             <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - (isBitten ? 2 : 0) }}>
-              {/* Blushing Cheeks */}
-              <circle cx="30" cy="52" r="6" fill={SKY_BLUE} fillOpacity="0.5" />
-              <circle cx="70" cy="52" r="6" fill={SKY_BLUE} fillOpacity="0.5" />
+              {/* Blushing */}
+              <circle cx="30" cy="55" r="7" fill={SKY_BLUE} fillOpacity="0.4" />
+              <circle cx="70" cy="55" r="7" fill={SKY_BLUE} fillOpacity="0.4" />
 
-              {/* Eyes */}
+              {/* Eyes System */}
               <g>
                 {isBlinking ? (
                   <>
-                    <path d="M25 45Q32.5 40 40 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
-                    <path d="M60 45Q67.5 40 75 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    <path d="M25 48Q32.5 43 40 48" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    <path d="M60 48Q67.5 43 75 48" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
                   </>
+                ) : expression === "cool" ? (
+                  <g transform="translate(20, 42)">
+                    <rect width="60" height="15" rx="4" fill="#1A1A1A" />
+                    <rect x="25" y="5" width="10" height="3" fill="white" opacity="0.3" />
+                  </g>
+                ) : expression === "wink" ? (
+                  <>
+                    <circle cx="32" cy="48" r="9" fill="#1A1A1A" />
+                    <circle cx="29" cy="44" r="3.5" fill="white" />
+                    <path d="M60 48Q67.5 43 75 48" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                  </>
+                ) : expression === "determined" ? (
+                  <g>
+                    <path d="M22 42L40 48" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" />
+                    <path d="M78 42L60 48" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" />
+                    <circle cx="32" cy="52" r="7" fill="#1A1A1A" />
+                    <circle cx="68" cy="52" r="7" fill="#1A1A1A" />
+                  </g>
                 ) : (
                   <>
-                    {/* Left Eye */}
-                    <g transform="translate(32, 45)">
+                    <g transform="translate(32, 48)">
                       <circle r="9" fill="#1A1A1A" />
                       <circle cx="-3" cy="-4" r="3.5" fill="white" />
                       <circle cx="4" cy="4" r="1.5" fill="white" />
-                      <path d="M-11 -4L-8 -1" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
-                      <path d="M-12 2L-9 2" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
                     </g>
-
-                    {/* Right Eye */}
-                    <g transform="translate(68, 45)">
+                    <g transform="translate(68, 48)">
                       <circle r="9" fill="#1A1A1A" />
                       <circle cx="-3" cy="-4" r="3.5" fill="white" />
                       <circle cx="4" cy="4" r="1.5" fill="white" />
-                      <path d="M11 -4L8 -1" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
-                      <path d="M12 2L9 2" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
                     </g>
                   </>
                 )}
               </g>
 
-              {/* Mouth */}
+              {/* Mouth System */}
               <motion.path
                 animate={{
-                  d: isBitten 
-                    ? "M44 60Q50 72 56 60" 
-                    : "M47 58Q50 62 53 58"
+                  d: isBitten || expression === "surprised" 
+                    ? "M42 65Q50 78 58 65" 
+                    : expression === "thinking"
+                    ? "M45 65H55"
+                    : "M46 62Q50 68 54 62"
                 }}
                 stroke="#1A1A1A"
                 strokeWidth="3"
                 strokeLinecap="round"
-                fill="none"
+                fill={expression === "surprised" ? "#FFB7C5" : "none"}
               />
             </motion.g>
 
-            {/* Side Drip Animation */}
+            {/* Interactive Side Drip */}
             <motion.path
               animate={dripControls}
               initial={{ opacity: 0 }}
-              d="M18 78C18 88 23 93 28 93C33 93 38 88 38 78C38 68 18 68 18 78Z"
+              d="M18 82C18 92 23 97 28 97C33 97 38 92 38 82C38 72 18 72 18 82Z"
               fill={SKY_BLUE}
               stroke="#1A1A1A"
               strokeWidth="2"
             />
           </g>
 
+          {/* Sparkle effects for determined/cool mode */}
+          {(expression === "determined" || expression === "cool") && !isBitten && (
+            <motion.g
+              animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+            >
+              <path d="M85 15L88 22L95 25L88 28L85 35L82 28L75 25L82 22Z" fill="#70D6FF" />
+              <path d="M15 15L18 22L25 25L18 28L15 35L12 28L5 25L12 22Z" fill="#70D6FF" />
+            </motion.g>
+          )}
+
           {/* Highlights */}
           <rect x="22" y="18" width="12" height="5" rx="3" fill="white" fillOpacity="0.4" />
           <circle cx="75" cy="22" r="3" fill="white" fillOpacity="0.3" />
         </svg>
 
-        {/* Heart Effect */}
+        {/* Floating Emotes */}
         <AnimatePresence>
           {!isBitten && !isDripping && (
             <motion.div
               initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: [0, 1, 0], y: -50 }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
-              className="absolute -top-10 left-1/2 -translate-x-1/2"
+              animate={{ opacity: [0, 1, 0], y: -60 }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
+              className="absolute -top-12 left-1/2 -translate-x-1/2 flex gap-2"
             >
-              <Heart className="w-6 h-6 text-blue-400 fill-blue-400" />
+              {expression === "determined" ? (
+                <Zap className="w-6 h-6 text-blue-400 fill-blue-400" />
+              ) : (
+                <Heart className="w-6 h-6 text-blue-400 fill-blue-400" />
+              )}
             </motion.div>
           )}
         </AnimatePresence>
