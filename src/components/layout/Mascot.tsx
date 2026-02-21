@@ -102,9 +102,10 @@ export function Mascot() {
       setExpression(getPageContext() === "quiz" ? "determined" : "happy")
     }, 2000)
 
+    // Increased visibility duration for click-triggered messages
     setTimeout(() => {
       setIsVisible(false)
-    }, 4000)
+    }, 8000)
   }
 
   useEffect(() => {
@@ -145,7 +146,7 @@ export function Mascot() {
       setIsDripping(true)
       setExpression("surprised")
       
-      // Face stays on the blue part: lower the y offset
+      // Face stays on the blue part: drastically lower the y offset from 15 to 4
       setEyeOffset({ x: -6, y: 4 })
       
       await dripControls.start({
@@ -160,7 +161,8 @@ export function Mascot() {
       setExpression(getPageContext() === "quiz" ? "determined" : "happy")
       dripControls.set({ y: 0, opacity: 0 })
       
-      setTimeout(() => setIsVisible(false), 1500)
+      // Increased visibility duration for drip-triggered messages
+      setTimeout(() => setIsVisible(false), 6000)
     }
 
     const interval = setInterval(dripRoutine, 18000)
@@ -174,7 +176,8 @@ export function Mascot() {
         : `Let's master ${pathname.split('/').pop()?.replace(/-/g, ' ')}!`
       setMessage(intro)
       setIsVisible(true)
-      setTimeout(() => setIsVisible(false), 5000)
+      // Increased visibility duration for intro messages
+      setTimeout(() => setIsVisible(false), 10000)
     }, 2000)
     return () => clearTimeout(timer)
   }, [pathname])
