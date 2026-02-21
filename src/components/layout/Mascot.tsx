@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect, useCallback } from "react"
@@ -62,6 +63,7 @@ const SKY_BLUE = "#70D6FF"
 
 export function Mascot() {
   const pathname = usePathname()
+  const [mounted, setMounted] = useState(false)
   const [message, setMessage] = useState("")
   const [isVisible, setIsVisible] = useState(false)
   const [expression, setExpression] = useState<Expression>("happy")
@@ -86,8 +88,12 @@ export function Mascot() {
     return list[randomIndex]
   }, [getPageContext])
 
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const handleClick = () => {
-    if (isBitten) return
+    if (isBitten || !mounted) return
 
     const expressions: Expression[] = ["wink", "cool", "surprised", "happy"]
     const randomExpr = expressions[Math.floor(Math.random() * expressions.length)]
@@ -102,30 +108,32 @@ export function Mascot() {
       setExpression(getPageContext() === "quiz" ? "determined" : "happy")
     }, 2000)
 
-    // Increased visibility duration for click-triggered messages
     setTimeout(() => {
       setIsVisible(false)
     }, 8000)
   }
 
   useEffect(() => {
+    if (!mounted) return
     if (!isBitten && !isDripping) {
       const context = getPageContext()
       if (context === "quiz") setExpression("determined")
       else if (context === "strategy") setExpression("cool")
       else setExpression("happy")
     }
-  }, [pathname, isBitten, isDripping, getPageContext])
+  }, [pathname, isBitten, isDripping, getPageContext, mounted])
 
   useEffect(() => {
+    if (!mounted) return
     const blinkInterval = setInterval(() => {
       setIsBlinking(true)
       setTimeout(() => setIsBlinking(false), 150)
     }, 4000 + Math.random() * 3000)
     return () => clearInterval(blinkInterval)
-  }, [])
+  }, [mounted])
 
   useEffect(() => {
+    if (!mounted) return
     const lookInterval = setInterval(() => {
       if (!isDripping && !isBitten) {
         const x = (Math.random() - 0.5) * 10
@@ -135,9 +143,10 @@ export function Mascot() {
       }
     }, 6000)
     return () => clearInterval(lookInterval)
-  }, [isDripping, isBitten])
+  }, [isDripping, isBitten, mounted])
 
   useEffect(() => {
+    if (!mounted) return
     const dripRoutine = async () => {
       if (isBitten) return
       
@@ -146,7 +155,6 @@ export function Mascot() {
       setIsDripping(true)
       setExpression("surprised")
       
-      // Face stays on the blue part: drastically lower the y offset from 15 to 4
       setEyeOffset({ x: -6, y: 4 })
       
       await dripControls.start({
@@ -161,26 +169,27 @@ export function Mascot() {
       setExpression(getPageContext() === "quiz" ? "determined" : "happy")
       dripControls.set({ y: 0, opacity: 0 })
       
-      // Increased visibility duration for drip-triggered messages
       setTimeout(() => setIsVisible(false), 6000)
     }
 
     const interval = setInterval(dripRoutine, 18000)
     return () => clearInterval(interval)
-  }, [dripControls, isBitten, getRandomComment, getPageContext])
+  }, [dripControls, isBitten, getRandomComment, getPageContext, mounted])
 
   useEffect(() => {
+    if (!mounted) return
     const timer = setTimeout(() => {
       const intro = pathname === "/" 
         ? "Hi! I'm Pops. Ready for 250/250?" 
         : `Let's master ${pathname.split('/').pop()?.replace(/-/g, ' ')}!`
       setMessage(intro)
       setIsVisible(true)
-      // Increased visibility duration for intro messages
       setTimeout(() => setIsVisible(false), 10000)
     }, 2000)
     return () => clearTimeout(timer)
-  }, [pathname])
+  }, [pathname, mounted])
+
+  if (!mounted) return null
 
   return (
     <div className="fixed bottom-24 right-8 z-[60] flex flex-col items-end pointer-events-none">
@@ -222,7 +231,6 @@ export function Mascot() {
           <defs>
             <clipPath id="biteClip">
               {isBitten ? (
-                // Bite from the top right corner
                 <path d="M0 0 H75 C70 5 65 15 70 25 C75 35 85 32 90 35 C95 38 100 45 100 45 V140 H0 V0Z" />
               ) : (
                 <rect width="100" height="140" />
@@ -230,7 +238,6 @@ export function Mascot() {
             </clipPath>
           </defs>
 
-          {/* Wooden Stick - Inserted into body */}
           <g>
             <rect x="42" y="102" width="16" height="32" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
             <path d="M42 110C42 110 45 106 50 106C55 106 58 110 58 110" stroke="#1A1A1A" strokeWidth="2" opacity="0.3" />
@@ -238,7 +245,6 @@ export function Mascot() {
           </g>
 
           <g clipPath="url(#biteClip)">
-            {/* Main Body (Vanilla base) */}
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V95C85 103 78 110 70 110H30C22 110 15 103 15 95V40Z"
               fill="white"
@@ -246,7 +252,6 @@ export function Mascot() {
               strokeWidth="4"
             />
 
-            {/* Melting Blue Top Layer */}
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V72C85 72 78 80 70 74C62 68 55 88 45 76C35 64 25 82 15 70V40Z"
               fill={SKY_BLUE}
@@ -254,13 +259,10 @@ export function Mascot() {
               strokeWidth="4"
             />
 
-            {/* Face Components - High on the blue layer */}
             <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - 12 }}>
-              {/* Blushing */}
               <circle cx="30" cy="55" r="7" fill={SKY_BLUE} fillOpacity="0.4" />
               <circle cx="70" cy="55" r="7" fill={SKY_BLUE} fillOpacity="0.4" />
 
-              {/* Eyes System */}
               <g>
                 {isBlinking ? (
                   <>
@@ -296,7 +298,6 @@ export function Mascot() {
                 )}
               </g>
 
-              {/* Mouth System */}
               <motion.path
                 animate={{
                   d: isBitten || expression === "surprised" 
@@ -312,7 +313,6 @@ export function Mascot() {
               />
             </motion.g>
 
-            {/* Side Drip Animation */}
             <motion.path
               animate={dripControls}
               initial={{ opacity: 0 }}
@@ -323,7 +323,6 @@ export function Mascot() {
             />
           </g>
 
-          {/* Sparkles for active modes */}
           {(expression === "determined" || expression === "cool") && !isBitten && (
             <motion.g
               animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }}
@@ -334,12 +333,10 @@ export function Mascot() {
             </motion.g>
           )}
 
-          {/* Body Highlights */}
           <rect x="22" y="18" width="12" height="5" rx="3" fill="white" fillOpacity="0.4" />
           <circle cx="75" cy="22" r="3" fill="white" fillOpacity="0.3" />
         </svg>
 
-        {/* Floating Emotes */}
         <AnimatePresence>
           {!isBitten && !isDripping && (
             <motion.div
