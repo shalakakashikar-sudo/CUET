@@ -471,7 +471,7 @@ const PROVERBS = [
   { p: "Well begun is half done", m: "A good start makes a task much easier." },
   { p: "What goes around comes around", m: "Your actions will eventually affect you." },
   { p: "When the going gets tough, the tough get going", m: "Strong people take action in difficult times." },
-  { p: "Where there's smoke, there's fire", m: "If there are rumors, there is usually some truth." },
+  { p: "Where there's a will, there's a way", m: "If you are determined, you will find success." },
   { p: "Winning isn't everything, it's the only thing", m: "Success is the most important goal." },
   { p: "You are what you eat", m: "Healthy food makes a healthy body." },
   { p: "You can't make an omelette without breaking eggs", m: "To achieve something, you must risk or sacrifice something." },
