@@ -2,7 +2,8 @@
 
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { BookOpen, GraduationCap, ChevronRight, MessageSquare, PenTool, Hash, Layers, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { BookOpen, GraduationCap, MessageSquare, PenTool, Hash, Layers, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
@@ -60,7 +61,7 @@ export default function StudyPage() {
                             </div>
                             <Badge variant="secondary" className="rounded-full px-4 py-1 font-bold">{topic.modules} Modules</Badge>
                           </div>
-                          <CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors mb-3">{topic.name}</CardTitle>
+                          <CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors mb-3 text-foreground">{topic.name}</CardTitle>
                           <CardDescription className="text-base leading-relaxed">{topic.desc}</CardDescription>
                         </CardHeader>
                         <CardContent className="p-8 pt-0 mt-auto">
