@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { MessageCircle, Star, Sparkles, Lightbulb, Info } from "lucide-react"
+import { MessageCircle, Star, Sparkles, Lightbulb, Info, BookOpen } from "lucide-react"
 import Link from "next/link"
 
 const IDIOMS = [
@@ -192,6 +192,128 @@ const HOMONYMS = [
   { w1: "Weather", m1: "Atmospheric state", w2: "Whether", m2: "If / Choice" },
 ]
 
+const PROVERBS = [
+  { p: "A bird in the hand is worth two in the bush", m: "What you have for certain is better than risking it for more." },
+  { p: "A chain is only as strong as its weakest link", m: "A group is only as strong as its most vulnerable member." },
+  { p: "A drowning man will clutch at a straw", m: "A desperate person will try anything, no matter how unlikely." },
+  { p: "A fool and his money are soon parted", m: "Foolish people spend their money unwisely." },
+  { p: "A journey of a thousand miles begins with a single step", m: "Big tasks start with small actions." },
+  { p: "A leopard cannot change its spots", m: "People cannot change their basic nature." },
+  { p: "A penny saved is a penny earned", m: "Saving money is as good as making it." },
+  { p: "A picture is worth a thousand words", m: "A visual image can convey complex ideas more effectively than text." },
+  { p: "A rolling stone gathers no moss", m: "Someone who is always moving doesn't accumulate responsibilities or wealth." },
+  { p: "A stitch in time saves nine", m: "Dealing with a problem early prevents it from becoming larger." },
+  { p: "Actions speak louder than words", m: "What people do is more significant than what they say." },
+  { p: "Adversity makes strange bedfellows", m: "In difficult times, people who are very different often cooperate." },
+  { p: "All good things must come to an end", m: "Pleasant experiences eventually finish." },
+  { p: "All that glitters is not gold", m: "Not everything that looks valuable actually is." },
+  { p: "All's well that ends well", m: "If the final result is good, earlier problems don't matter." },
+  { p: "An apple a day keeps the doctor away", m: "Eating healthy prevents illness." },
+  { p: "An empty vessel makes much noise", m: "Foolish or ignorant people talk the most." },
+  { p: "As you sow, so shall you reap", m: "Your actions determine your consequences." },
+  { p: "Barking dogs seldom bite", m: "People who make big threats rarely act on them." },
+  { p: "Beauty is in the eye of the beholder", m: "Different people have different ideas about what is beautiful." },
+  { p: "Beggars cannot be choosers", m: "If you ask for help, you must accept what is offered." },
+  { p: "Better late than never", m: "It's better to do something late than not at all." },
+  { p: "Better safe than sorry", m: "Be cautious rather than taking unnecessary risks." },
+  { p: "Birds of a feather flock together", m: "People with similar interests tend to spend time together." },
+  { p: "Blood is thicker than water", m: "Family relationships are more important than others." },
+  { p: "Charity begins at home", m: "You should help your family and friends before helping others." },
+  { p: "Cleanliness is next to godliness", m: "Being clean is a very important virtue." },
+  { p: "Curiosity killed the cat", m: "Being too inquisitive can lead to trouble." },
+  { p: "Don't bite the hand that feeds you", m: "Don't act badly toward someone who helps you." },
+  { p: "Don't count your chickens before they hatch", m: "Don't assume success until it actually happens." },
+  { p: "Don't judge a book by its cover", m: "Don't form an opinion based only on appearance." },
+  { p: "Don't put all your eggs in one basket", m: "Don't risk everything on a single venture." },
+  { p: "Early bird catches the worm", m: "Starting early gives you an advantage." },
+  { p: "Every cloud has a silver lining", m: "Every difficult situation has a positive side." },
+  { p: "Every dog has its day", m: "Everyone will eventually have success or luck." },
+  { p: "Failure is the stepping stone to success", m: "You learn and grow from your mistakes." },
+  { p: "Fortune favors the bold", m: "Brave people are often lucky." },
+  { p: "God helps those who help themselves", m: "Success comes to those who take action." },
+  { p: "Great minds think alike", m: "Intelligent people often have the same ideas." },
+  { p: "Haste makes waste", m: "Doing things too quickly leads to mistakes." },
+  { p: "Honesty is the best policy", m: "Telling the truth is always the right choice." },
+  { p: "If it ain't broke, don't fix it", m: "Don't try to improve something that is working well." },
+  { p: "Ignorance is bliss", m: "Not knowing about a problem can make you happier." },
+  { p: "It's no use crying over spilt milk", m: "Don't worry about things that have already happened." },
+  { p: "Knowledge is power", m: "The more you know, the more influential you are." },
+  { p: "Laughter is the best medicine", m: "Being happy helps you feel better." },
+  { p: "Look before you leap", m: "Think about the consequences before taking action." },
+  { p: "Make hay while the sun shines", m: "Take advantage of opportunities when they arise." },
+  { p: "Necessity is the mother of invention", m: "Difficulties lead to new ideas." },
+  { p: "No pain, no gain", m: "Hard work is necessary for success." },
+  { p: "Out of sight, out of mind", m: "You forget about things that are not around you." },
+  { p: "Practice makes perfect", m: "Doing something repeatedly makes you better at it." },
+  { p: "Prevention is better than cure", m: "It's easier to stop a problem than fix it later." },
+  { p: "Rome was not built in a day", m: "Important work takes time to complete." },
+  { p: "The grass is always greener on the other side", m: "Other people's lives always seem better than your own." },
+  { p: "The pen is mightier than the sword", m: "Writing and ideas are more influential than physical force." },
+  { p: "Time heals all wounds", m: "Painful feelings eventually fade with time." },
+  { p: "Two heads are better than one", m: "Collaborating leads to better solutions." },
+  { p: "When in Rome, do as the Romans do", m: "Follow the customs of the place you are visiting." },
+  { p: "Where there's a will, there's a way", m: "If you are determined, you will find success." },
+  { p: "You can't have your cake and eat it too", m: "You can't have two conflicting things at once." },
+  { p: "A bad workman always blames his tools", m: "Incompetent people never admit their own faults." },
+  { p: "Absence makes the heart grow fonder", m: "You value things more when they are away." },
+  { p: "Actions speak louder than words", m: "What you do is more important than what you say." },
+  { p: "Better late than never", m: "It's better to arrive late than not at all." },
+  { p: "Birds of a feather flock together", m: "Similar people like to be with each other." },
+  { p: "Blood is thicker than water", m: "Family loyalty is very strong." },
+  { p: "Don't judge a book by its cover", m: "Appearance isn't everything." },
+  { p: "Early bird catches the worm", m: "Success comes to those who act early." },
+  { p: "Every dog has its day", m: "Everyone has a time of success." },
+  { p: "Great minds think alike", m: "Smart people have similar ideas." },
+  { p: "Haste makes waste", m: "Rushing leads to errors." },
+  { p: "Ignorance is bliss", m: "Sometimes it's better not to know." },
+  { p: "Laughter is the best medicine", m: "Being happy helps health." },
+  { p: "Look before you leap", m: "Consider risks first." },
+  { p: "Make hay while the sun shines", m: "Use opportunities well." },
+  { p: "Necessity is the mother of invention", m: "Need drives innovation." },
+  { p: "Out of sight, out of mind", m: "We forget what we don't see." },
+  { p: "Practice makes perfect", m: "Repetition brings skill." },
+  { p: "Rome wasn't built in a day", m: "Achievement takes time." },
+  { p: "Too many cooks spoil the broth", m: "Too many people working on one thing can ruin it." },
+  { p: "Where there's a will, there's a way", m: "Determination leads to solutions." },
+  { p: "You can't judge a book by its cover", m: "Looks can be deceiving." },
+  { p: "All that glitters is not gold", m: "Appearance is not always reality." },
+  { p: "An idle brain is the devil's workshop", m: "When you have nothing to do, you get into trouble." },
+  { p: "Barking dogs seldom bite", m: "Threatening people rarely act." },
+  { p: "Empty vessels make the most noise", m: "Ignorant people talk the loudest." },
+  { p: "God helps those who help themselves", m: "Self-effort is key to success." },
+  { p: "Knowledge is power", m: "Education gives you influence." },
+  { p: "Prevention is better than cure", m: "Stopping a problem is better than fixing it." },
+  { p: "Slow and steady wins the race", m: "Consistent effort is better than fast bursts." },
+  { p: "The pen is mightier than the sword", m: "Ideas change the world more than force." },
+  { p: "Time is money", m: "Don't waste time; it is valuable." },
+  { p: "Variety is the spice of life", m: "New experiences make life interesting." },
+  { p: "Waste not, want not", m: "Don't waste, and you won't be in need." },
+  { p: "Watch the pennies and the pounds will take care of themselves", m: "Save small amounts, and you'll accumulate a lot." },
+  { p: "You can't lead a horse to water but you can't make it drink", m: "You can give opportunity, but you can't force action." },
+  { p: "Still waters run deep", m: "Quiet people often have deep thoughts." },
+  { p: "The best things in life are free", m: "True happiness doesn't cost money." },
+  { p: "The early bird catches the worm", m: "Early action leads to success." },
+  { p: "The squeaky wheel gets the grease", m: "The one who complains gets attention." },
+  { p: "There's no place like home", m: "Nowhere is as comfortable as your own house." },
+  { p: "Tomorrow is another day", m: "You can always start fresh in the future." },
+  { p: "Truth is stranger than fiction", m: "Real life is often more unbelievable than stories." },
+  { p: "Two wrongs don't make a right", m: "Doing something bad in return for something bad is not helpful." },
+  { p: "United we stand, divided we fall", m: "Cooperation is strength; division is weakness." },
+  { p: "Wait for the dust to settle", m: "Wait for a situation to become clear before acting." },
+  { p: "Walk a mile in someone else's shoes", m: "Try to understand someone's perspective before judging." },
+  { p: "Water under the bridge", m: "Past events that cannot be changed." },
+  { p: "Well begun is half done", m: "A good start makes a task much easier." },
+  { p: "What goes around comes around", m: "Your actions will eventually affect you." },
+  { p: "When the going gets tough, the tough get going", m: "Strong people take action in difficult times." },
+  { p: "Where there's smoke, there's fire", m: "If there are rumors, there is usually some truth." },
+  { p: "Winning isn't everything, it's the only thing", m: "Success is the most important goal." },
+  { p: "You are what you eat", m: "Healthy food makes a healthy body." },
+  { p: "You can't make an omelette without breaking eggs", m: "To achieve something, you must risk or sacrifice something." },
+  { p: "You get what you pay for", m: "Cheap things are often low quality." },
+  { p: "Youth is wasted on the young", m: "Young people don't always appreciate their vitality." },
+  { p: "Zero hour", m: "The time when a vital operation is set to begin." }
+].sort((a, b) => a.p.localeCompare(b.p));
+
 export default function MatchPage() {
   return (
     <div className="min-h-screen bg-background">
@@ -201,7 +323,7 @@ export default function MatchPage() {
             <div>
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Section 4 (50 Marks)</Badge>
               <h1 className="text-4xl font-headline font-bold mb-4 text-foreground">Match Proficiency</h1>
-              <p className="text-muted-foreground text-lg max-w-2xl">Elite repository of Idioms, Figures of Speech, and Homonyms. Master these to secure full marks in Section 4.</p>
+              <p className="text-muted-foreground text-lg max-w-2xl">Elite repository of Idioms, Figures of Speech, Homonyms, and Proverbs. Master these to secure full marks in Section 4.</p>
             </div>
             <Button size="lg" className="rounded-2xl font-bold shadow-lg" asChild>
               <Link href="/study/match-the-following/quiz">Start Topic Quiz</Link>
@@ -212,10 +334,11 @@ export default function MatchPage() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <Tabs defaultValue="idioms" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 h-12 bg-muted/50 p-1 rounded-xl">
-                <TabsTrigger value="idioms" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary font-bold">Idioms ({IDIOMS.length})</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-4 h-12 bg-muted/50 p-1 rounded-xl">
+                <TabsTrigger value="idioms" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary font-bold">Idioms</TabsTrigger>
                 <TabsTrigger value="figures" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary font-bold">Figures</TabsTrigger>
                 <TabsTrigger value="homonyms" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary font-bold">Homonyms</TabsTrigger>
+                <TabsTrigger value="proverbs" className="rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary font-bold">Proverbs</TabsTrigger>
               </TabsList>
 
               <TabsContent value="idioms" className="mt-8">
@@ -294,6 +417,38 @@ export default function MatchPage() {
                   </div>
                 </ScrollArea>
               </TabsContent>
+
+              <TabsContent value="proverbs" className="mt-8">
+                <Card className="shadow-sm overflow-hidden rounded-2xl border-none">
+                  <CardHeader className="bg-primary/5">
+                    <CardTitle className="flex items-center gap-2 text-primary font-bold">
+                      <BookOpen className="w-5 h-5" />
+                      Hundreds of Elite Proverbs
+                    </CardTitle>
+                    <CardDescription className="text-primary/70 font-medium">Clinical repository of CUET-standard proverbs and meanings.</CardDescription>
+                  </CardHeader>
+                  <CardContent className="p-0 bg-white">
+                    <ScrollArea className="h-[600px]">
+                      <Table>
+                        <TableHeader className="bg-muted/30 sticky top-0 z-10">
+                          <TableRow>
+                            <TableHead className="text-foreground font-bold py-4 pl-8">Proverb</TableHead>
+                            <TableHead className="text-foreground font-bold">Meaning</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {PROVERBS.map((item, i) => (
+                            <TableRow key={i} className="hover:bg-primary/5 transition-colors">
+                              <TableCell className="font-bold text-primary py-4 pl-8">{item.p}</TableCell>
+                              <TableCell className="text-xs text-muted-foreground font-medium pr-8">{item.m}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </ScrollArea>
+                  </CardContent>
+                </Card>
+              </TabsContent>
             </Tabs>
 
             <Card className="bg-primary/10 border-none shadow-sm rounded-2xl relative overflow-hidden">
@@ -310,11 +465,11 @@ export default function MatchPage() {
               <CardContent className="grid md:grid-cols-2 gap-4">
                 <div className="p-4 bg-white rounded-xl shadow-sm border border-primary/10">
                   <div className="text-xs font-bold text-primary uppercase mb-1">Rule of 100%</div>
-                  <p className="text-sm font-medium leading-relaxed">Match the idioms/words you are absolutely certain about first. This often eliminates 2-3 trap options immediately.</p>
+                  <p className="text-sm font-medium leading-relaxed">Match the items you are absolutely certain about first. This often eliminates 2-3 trap options immediately.</p>
                 </div>
                 <div className="p-4 bg-white rounded-xl shadow-sm border border-primary/10">
-                  <div className="text-xs font-bold text-primary uppercase mb-1">The Context Clue</div>
-                  <p className="text-sm font-medium leading-relaxed">If a homonym pair looks identical, check the sentence part of speech. (e.g., Affect is a verb, Effect is a noun).</p>
+                  <div className="text-xs font-bold text-primary uppercase mb-1">Contextual Clues</div>
+                  <p className="text-sm font-medium leading-relaxed">Proverbs and idioms are figurative. If a literal option is provided, it's almost always a trap.</p>
                 </div>
               </CardContent>
             </Card>
@@ -329,7 +484,7 @@ export default function MatchPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-sm font-medium text-background/80">
-                <p>Idioms are figurative; never take them literally in the Match column.</p>
+                <p>Idioms and proverbs carry cultural wisdom; they are never literal.</p>
                 <p>Figures of Speech require you to identify the <strong>intent</strong> behind the comparison.</p>
                 <p className="text-primary font-bold italic">"Accuracy maintains your cool. Every correct match is +5."</p>
               </CardContent>
@@ -337,17 +492,17 @@ export default function MatchPage() {
             
             <Card className="bg-white border-primary/20 shadow-sm rounded-2xl">
               <CardHeader>
-                <CardTitle className="text-lg text-foreground font-bold">Essential Proverbs</CardTitle>
-                <CardDescription>Common wisdom items for Code 101.</CardDescription>
+                <CardTitle className="text-lg text-foreground font-bold">Daily Protocol</CardTitle>
+                <CardDescription>Master 5 proverbs every morning.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
                 {[
-                  "Many hands make light work",
                   "A stitch in time saves nine",
+                  "Better late than never",
                   "Don't judge a book by its cover",
-                  "Every cloud has a silver lining",
-                  "Action speaks louder than words",
-                  "Beauty lies in the eye of the beholder"
+                  "Haste makes waste",
+                  "Necessity is the mother of invention",
+                  "Rome wasn't built in a day"
                 ].map((p, i) => (
                   <div key={i} className="flex gap-2 text-xs font-bold text-foreground/80 p-2 hover:bg-primary/5 rounded-lg transition-colors">
                     <Sparkles className="w-3 h-3 text-primary shrink-0 mt-0.5" />
