@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react"
@@ -9,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Trophy, AlertCircle, ArrowRight, RefreshCw, ChevronLeft } from "lucide-react"
+import { Trophy, AlertCircle, ArrowRight, RefreshCw, ChevronLeft, Target } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 
@@ -80,7 +79,7 @@ export default function QuizPage() {
       setCurrentStep(currentStep + 1)
     } else {
       setIsFinished(true)
-      toast({ title: "Quiz Completed!", description: "Check your performance summary below." })
+      toast({ title: "Session Complete!", description: "View your score based on Code 101 rules." })
     }
   }
 
@@ -92,14 +91,17 @@ export default function QuizPage() {
 
   const calculateScore = () => {
     let correct = 0
+    let wrong = 0
     ENGLISH_QUIZ.forEach(q => {
+      if (answers[q.id] === undefined) return
       if (answers[q.id] === q.correct) correct++
+      else wrong++
     })
-    return correct
+    return { correct, wrong, total: correct * 5 - wrong * 1 }
   }
 
   if (isFinished) {
-    const score = calculateScore()
+    const { correct, wrong, total } = calculateScore()
     return (
       <div className="min-h-screen bg-background">
         <Navbar />
@@ -108,25 +110,34 @@ export default function QuizPage() {
             <div className="bg-primary/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
               <Trophy className="w-10 h-10 text-primary-foreground" />
             </div>
-            <CardTitle className="text-3xl font-headline mb-2">Quiz Complete!</CardTitle>
-            <CardDescription className="text-lg mb-8">You scored {score} out of {ENGLISH_QUIZ.length}</CardDescription>
+            <CardTitle className="text-3xl font-headline mb-2">Results Summary</CardTitle>
+            <CardDescription className="text-lg mb-8">Subject Code 101 Scoring Rule Applied</CardDescription>
             
             <div className="space-y-4 mb-8 text-left">
-              <div className="flex justify-between items-center p-4 bg-muted/30 rounded-lg">
-                <span className="font-medium">Accuracy</span>
-                <span className="text-primary-foreground font-bold">{(score/ENGLISH_QUIZ.length * 100).toFixed(0)}%</span>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-4 bg-green-50 rounded-xl border border-green-100 text-center">
+                  <div className="text-xs font-bold text-green-700 uppercase">Correct</div>
+                  <div className="text-2xl font-bold text-green-700">+{correct * 5}</div>
+                </div>
+                <div className="p-4 bg-red-50 rounded-xl border border-red-100 text-center">
+                  <div className="text-xs font-bold text-red-700 uppercase">Wrong</div>
+                  <div className="text-2xl font-bold text-red-700">-{wrong}</div>
+                </div>
               </div>
-              <div className="flex justify-between items-center p-4 bg-muted/30 rounded-lg">
-                <span className="font-medium">Marks Gained (CUET Rule)</span>
-                <span className="text-primary-foreground font-bold">+{score * 5} Marks</span>
+              <div className="flex justify-between items-center p-6 bg-foreground text-background rounded-2xl">
+                <div className="flex flex-col">
+                  <span className="text-sm opacity-70">Final Score</span>
+                  <span className="text-xs">(on 25 Marks scale)</span>
+                </div>
+                <span className="text-4xl font-bold">{total}</span>
               </div>
             </div>
 
             <div className="flex flex-col gap-3">
-              <Button size="lg" className="w-full" onClick={resetQuiz}>
-                <RefreshCw className="w-4 h-4 mr-2" /> Retake Test
+              <Button size="lg" className="w-full h-12 text-lg font-bold" onClick={resetQuiz}>
+                <RefreshCw className="w-4 h-4 mr-2" /> Retake Practice
               </Button>
-              <Button variant="outline" size="lg" className="w-full" asChild>
+              <Button variant="outline" size="lg" className="w-full h-12" asChild>
                 <Link href="/">Back to Dashboard</Link>
               </Button>
             </div>
@@ -144,19 +155,25 @@ export default function QuizPage() {
       <main className="container mx-auto px-4 py-12 max-w-3xl">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-headline font-bold uppercase tracking-tight">Practice Set</h1>
+            <h1 className="text-2xl font-headline font-bold uppercase tracking-tight">Adaptive Set</h1>
             <p className="text-muted-foreground font-mono text-sm">Q{currentStep + 1} / {ENGLISH_QUIZ.length}</p>
           </div>
-          <Badge variant={question.difficulty === 'Hard' ? 'destructive' : 'default'}>
-            {question.difficulty}
-          </Badge>
+          <div className="flex items-center gap-2">
+            <Badge variant="outline">Code 101</Badge>
+            <Badge variant={question.difficulty === 'Hard' ? 'destructive' : 'default'}>
+              {question.difficulty}
+            </Badge>
+          </div>
         </div>
 
         <Progress value={((currentStep) / ENGLISH_QUIZ.length) * 100} className="mb-12 h-2" />
 
         <Card className="border-border/50 shadow-sm mb-8 animate-fade-in-up">
           <CardHeader>
-            <Badge variant="outline" className="w-fit mb-2">{question.section}</Badge>
+            <div className="flex items-center gap-2 mb-2">
+              <Target className="w-4 h-4 text-primary" />
+              <span className="text-xs font-bold text-muted-foreground uppercase">{question.section}</span>
+            </div>
             <CardTitle className="text-xl leading-relaxed">{question.text}</CardTitle>
           </CardHeader>
           <CardContent>
@@ -175,16 +192,16 @@ export default function QuizPage() {
           <Button variant="ghost" onClick={() => setCurrentStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0}>
             <ChevronLeft className="w-4 h-4 mr-1" /> Previous
           </Button>
-          <Button size="lg" onClick={nextQuestion} disabled={answers[question.id] === undefined}>
-            {currentStep === ENGLISH_QUIZ.length - 1 ? "Finish Quiz" : "Next Question"} <ArrowRight className="w-4 h-4 ml-2" />
+          <Button size="lg" className="px-10 h-12 font-bold" onClick={nextQuestion} disabled={answers[question.id] === undefined}>
+            {currentStep === ENGLISH_QUIZ.length - 1 ? "Finish Set" : "Next Question"} <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
         </div>
 
         <div className="mt-12 p-6 rounded-2xl bg-secondary/10 border border-secondary/20 flex gap-4">
           <AlertCircle className="w-6 h-6 text-secondary-foreground shrink-0" />
-          <p className="text-sm text-secondary-foreground">
-            <strong>Strategy Tip:</strong> If you are below 50% confident, consider skipping (per CUET's Choice Policy).
-          </p>
+          <div className="text-sm text-secondary-foreground">
+            <strong>Marking Reminder:</strong> A correct answer gives <strong>+5</strong>. An incorrect answer deducts <strong>-1</strong>. If you are 100% unsure, consider the impact on your final 250/250 goal.
+          </div>
         </div>
       </main>
     </div>

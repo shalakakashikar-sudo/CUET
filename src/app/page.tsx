@@ -2,15 +2,14 @@ import { Navbar } from "@/components/layout/Navbar"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { BookOpen, Award, Compass, TrendingUp, CheckCircle2, Clock, ArrowRight, Zap } from "lucide-react"
+import { BookOpen, Award, Compass, Clock, ArrowRight, Zap, Target } from "lucide-react"
 import Link from "next/link"
 
 export default function Dashboard() {
   const stats = [
     { label: "Vocabulary Mastery", value: 20, icon: Zap, color: "text-blue-600", bg: "bg-blue-100" },
     { label: "RC Accuracy", value: 45, icon: BookOpen, color: "text-purple-600", bg: "bg-purple-100" },
-    { label: "Exam Readiness", value: 15, icon: Award, color: "text-green-600", bg: "bg-green-100" },
+    { label: "Exam Readiness", value: 15, icon: Target, color: "text-green-600", bg: "bg-green-100" },
   ]
 
   const modules = [
@@ -18,6 +17,7 @@ export default function Dashboard() {
     { title: "Synonyms & Antonyms", desc: "Master the 50+ essential word list", link: "/study/synonyms-antonyms", progress: 10 },
     { title: "Match the Following", desc: "Idioms, Proverbs, and Figures of Speech", link: "/study/match-the-following", progress: 0 },
     { title: "Fill in the Blanks", desc: "Tenses, Conjunctions, and Prepositions", link: "/study/fill-in-the-blanks", progress: 5 },
+    { title: "Sentence Rearrangement", desc: "Logic and Subject-Verb patterns", link: "/study/sentence-rearrangement", progress: 0 },
   ]
 
   return (
@@ -27,13 +27,13 @@ export default function Dashboard() {
         <header className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h1 className="text-4xl font-headline font-bold text-foreground mb-2">English Excellence Dashboard</h1>
-            <p className="text-muted-foreground text-lg">Your personalized path to 200/200 in CUET 2026.</p>
+            <p className="text-muted-foreground text-lg">Subject Code: 101 | Your path to 250/250.</p>
           </div>
           <div className="bg-primary/20 px-6 py-3 rounded-2xl border border-primary/30 flex items-center gap-3">
             <Clock className="w-5 h-5 text-primary-foreground" />
             <div className="flex flex-col">
-              <span className="text-xs font-bold uppercase tracking-wider opacity-60">Days to Exam</span>
-              <span className="text-xl font-bold">~420</span>
+              <span className="text-xs font-bold uppercase tracking-wider opacity-60">Exam Duration</span>
+              <span className="text-xl font-bold">60 Minutes</span>
             </div>
           </div>
         </header>
@@ -48,14 +48,14 @@ export default function Dashboard() {
               </div>
               <div className="flex-1 text-center md:text-left">
                 <div className="flex items-center gap-2 justify-center md:justify-start mb-4">
-                  <span className="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-bold uppercase">Must Read</span>
+                  <span className="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Strategy Blueprint</span>
                 </div>
-                <h2 className="text-3xl font-headline font-bold mb-4">The Smart Marking Strategy</h2>
+                <h2 className="text-3xl font-headline font-bold mb-4">The 250/250 Accuracy Guide</h2>
                 <p className="text-background/70 text-lg mb-8 max-w-2xl">
-                  Master the art of the "10 Question Skip". Learn why 100% accuracy on 40 questions is the secret to a high percentile.
+                  Master the marking scheme: +5 for Correct, -1 for Wrong. Learn the order of attempt to finish 50 questions in 60 minutes.
                 </p>
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 h-14 px-8 rounded-xl font-bold" asChild>
-                  <Link href="/strategy">Learn The Strategy <ArrowRight className="ml-2 w-5 h-5" /></Link>
+                  <Link href="/strategy">Master The Strategy <ArrowRight className="ml-2 w-5 h-5" /></Link>
                 </Button>
               </div>
             </CardContent>
@@ -81,16 +81,15 @@ export default function Dashboard() {
         </section>
 
         <div className="grid lg:grid-cols-3 gap-12">
-          {/* Priority 2: Study Material */}
           <div className="lg:col-span-2 space-y-8">
             <section>
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-headline font-bold flex items-center gap-3">
                   <BookOpen className="w-7 h-7 text-primary-foreground" />
-                  Study Modules
+                  Syllabus Modules
                 </h2>
                 <Link href="/study" className="text-sm font-bold text-secondary-foreground hover:underline flex items-center gap-1">
-                  Browse All <ArrowRight className="w-4 h-4" />
+                  View All Topics <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
               <div className="grid gap-4">
@@ -109,7 +108,7 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <Button asChild variant="secondary" size="sm" className="hidden sm:flex rounded-xl font-bold">
-                        <Link href={mod.link}>Resume</Link>
+                        <Link href={mod.link}>Start</Link>
                       </Button>
                     </CardContent>
                   </Card>
@@ -118,16 +117,15 @@ export default function Dashboard() {
             </section>
           </div>
 
-          {/* Priority 3: Adaptive Quiz & Tips */}
           <aside className="space-y-8">
             <Card className="border-none bg-secondary/10 border border-secondary/20">
               <CardHeader>
                 <CardTitle className="text-xl flex items-center gap-3">
                   <Award className="w-6 h-6 text-secondary-foreground" />
-                  Adaptive Quiz
+                  Practice Arena
                 </CardTitle>
                 <CardDescription className="text-secondary-foreground/70">
-                  Ready to test your accuracy? Take a quick 5-question mock set.
+                  Adaptive tests modeled on Subject Code 101 patterns.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -139,20 +137,20 @@ export default function Dashboard() {
 
             <Card className="border-border/50">
               <CardHeader>
-                <CardTitle className="text-lg font-bold">Quick Revision Tips</CardTitle>
+                <CardTitle className="text-lg font-bold">Exam Checklist</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="flex items-start gap-3 p-4 rounded-2xl bg-muted/50 border border-border/50">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
-                  <p className="text-sm font-medium">Learn prefixes: <code className="bg-white px-1 rounded">un-/in-/im-</code> usually mean "not" or "opposite".</p>
+              <CardContent className="space-y-4">
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-muted/50 text-sm font-medium">
+                  <Zap className="w-4 h-4 text-yellow-500" />
+                  50 Total Questions
                 </div>
-                <div className="flex items-start gap-3 p-4 rounded-2xl bg-muted/50 border border-border/50">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
-                  <p className="text-sm font-medium">For RC, always read the first and last line of each paragraph first.</p>
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-muted/50 text-sm font-medium">
+                  <Clock className="w-4 h-4 text-blue-500" />
+                  60 Minutes Limit
                 </div>
-                <div className="flex items-start gap-3 p-4 rounded-2xl bg-muted/50 border border-border/50">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
-                  <p className="text-sm font-medium">Sentence Rearrangement: Connectors like "However" never start a sentence.</p>
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-muted/50 text-sm font-medium">
+                  <Target className="w-4 h-4 text-red-500" />
+                  -1 Negative Marking
                 </div>
               </CardContent>
             </Card>
