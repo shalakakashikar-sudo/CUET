@@ -2,25 +2,28 @@
 import { Navbar } from "@/components/layout/Navbar"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { BookOpen, GraduationCap, ChevronRight } from "lucide-react"
+import { BookOpen, GraduationCap, ChevronRight, MessageSquare, PenTool, Hash, Layers } from "lucide-react"
 import Link from "next/link"
 
 const syllabus = [
   {
-    category: "Language (Section 1A)",
+    category: "Comprehension & Theme",
     topics: [
-      { name: "Reading Comprehension", desc: "Factual, Narrative and Literary texts", modules: 12 },
-      { name: "Verbal Ability", desc: "Grammar, Sentence Correction, Rearrangement", modules: 8 },
-      { name: "Synonyms & Antonyms", desc: "Contextual vocabulary mastery", modules: 15 },
-      { name: "Idioms & Phrases", desc: "Commonly used idioms and their meanings", modules: 6 },
+      { name: "Reading Comprehension", icon: MessageSquare, desc: "Factual, Narrative and Discursive (Argumentative) passages.", modules: 3, href: "/study/reading-comprehension" },
+      { name: "Sentence Rearrangement", icon: Layers, desc: "Subject-Verb core logic and setting-action patterns.", modules: 1, href: "/study/sentence-rearrangement" },
     ]
   },
   {
-    category: "General Test (Section 3)",
+    category: "Vocabulary & Idioms",
     topics: [
-      { name: "Quantitative Reasoning", desc: "Arithmetic, Algebra, Geometry (Grade 8 level)", modules: 20 },
-      { name: "Logical & Analytical Reasoning", desc: "Series, Blood Relations, Coding-Decoding", modules: 14 },
-      { name: "General Knowledge", desc: "Current Affairs, History, Geography", modules: 25 },
+      { name: "Synonyms & Antonyms", icon: Hash, desc: "Master the 50+ essential word list with prefix/suffix decoding.", modules: 5, href: "/study/synonyms-antonyms" },
+      { name: "Match the Following", icon: PenTool, desc: "Idioms, Phrasal Verbs, Proverbs, and Figures of Speech.", modules: 4, href: "/study/match-the-following" },
+    ]
+  },
+  {
+    category: "Grammar & Structure",
+    topics: [
+      { name: "Fill in the Blanks", icon: BookOpen, desc: "Tenses, Conjunctions, Adverbs, and Prepositions.", modules: 4, href: "/study/fill-in-the-blanks" },
     ]
   }
 ]
@@ -32,9 +35,9 @@ export default function StudyPage() {
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           <header className="mb-12 text-center">
-            <Badge variant="outline" className="mb-4 py-1 px-4 border-primary text-primary-foreground font-semibold">Study Material</Badge>
-            <h1 className="text-4xl font-headline font-bold mb-4">Everything you need to ace CUET</h1>
-            <p className="text-muted-foreground text-lg">Curated modules based on the official 2026 syllabus pattern.</p>
+            <Badge variant="outline" className="mb-4 py-1 px-4 border-primary text-primary-foreground font-semibold uppercase tracking-wider">English Language Curriculum</Badge>
+            <h1 className="text-4xl font-headline font-bold mb-4">Acing the English Section</h1>
+            <p className="text-muted-foreground text-lg">Every rule, every trap, and every strategy for 200/200 marks.</p>
           </header>
 
           <div className="space-y-12">
@@ -46,20 +49,20 @@ export default function StudyPage() {
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   {section.topics.map((topic, tIdx) => (
-                    <Link key={tIdx} href={`/study/${topic.name.toLowerCase().replace(/ /g, '-')}`}>
-                      <Card className="h-full hover:border-primary hover:shadow-md transition-all group">
+                    <Link key={tIdx} href={topic.href}>
+                      <Card className="h-full hover:border-primary hover:shadow-md transition-all group border-border/50">
                         <CardHeader>
                           <div className="flex justify-between items-start mb-2">
                             <div className="bg-secondary/50 p-2 rounded-lg">
-                              <BookOpen className="w-5 h-5 text-secondary-foreground" />
+                              <topic.icon className="w-5 h-5 text-secondary-foreground" />
                             </div>
-                            <Badge variant="secondary">{topic.modules} Modules</Badge>
+                            <Badge variant="secondary">{topic.modules} Sections</Badge>
                           </div>
                           <CardTitle className="text-xl group-hover:text-primary-foreground/80 transition-colors">{topic.name}</CardTitle>
                           <CardDescription className="line-clamp-2">{topic.desc}</CardDescription>
                         </CardHeader>
                         <CardContent className="flex items-center text-sm font-medium text-primary-foreground/70">
-                          Start Learning <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                          Enter Module <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                         </CardContent>
                       </Card>
                     </Link>
@@ -74,10 +77,10 @@ export default function StudyPage() {
               <GraduationCap className="w-16 h-16 text-primary" />
             </div>
             <div>
-              <h3 className="text-2xl font-bold mb-2">Domain Specific Preparation?</h3>
-              <p className="text-background/70 mb-4">We also offer deep-dive modules for specific domains like Accountancy, Political Science, and more.</p>
-              <Link href="/study/domains" className="font-semibold text-primary hover:underline flex items-center gap-1">
-                Explore Domain Modules <ChevronRight className="w-4 h-4" />
+              <h3 className="text-2xl font-bold mb-2">Master the Strategy</h3>
+              <p className="text-background/70 mb-4">Learn why choosing to skip 10 questions is your greatest gift in the exam.</p>
+              <Link href="/strategy" className="font-semibold text-primary hover:underline flex items-center gap-1">
+                View Smart Strategy Guide <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
