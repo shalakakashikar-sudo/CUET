@@ -55,9 +55,10 @@ const COMMENTS = {
   ]
 }
 
-const MINT = "#93C572"
 const STRAWBERRY = "#FFB7C5"
 const VANILLA = "#F3E5AB"
+const MINT = "#93C572"
+const BLUEBERRY = "#B7C9FF"
 
 export function Mascot() {
   const pathname = usePathname()
@@ -227,45 +228,47 @@ export function Mascot() {
 
           {/* Layered Body */}
           <g clipPath="url(#biteClip)">
-            {/* Top Layer: Strawberry */}
+            {/* Layer 1: Strawberry */}
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V45H15V40Z"
               fill={STRAWBERRY}
             />
-            {/* Middle Layer: Vanilla */}
-            <rect x="15" y="45" width="70" height="35" fill={VANILLA} />
-            {/* Bottom Layer: Mint */}
+            {/* Layer 2: Vanilla */}
+            <rect x="15" y="45" width="70" height="25" fill={VANILLA} />
+            {/* Layer 3: Mint */}
+            <rect x="15" y="70" width="70" height="25" fill={MINT} />
+            {/* Layer 4: Blueberry */}
             <path
-              d="M15 80H85V95C85 103 78 110 70 110H30C22 110 15 103 15 95V80Z"
-              fill={MINT}
+              d="M15 95H85V100C85 108 78 115 70 115H30C22 115 15 108 15 100V95Z"
+              fill={BLUEBERRY}
             />
 
             {/* Total Body Outline */}
             <path
-              d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V95C85 103 78 110 70 110H30C22 110 15 103 15 95V40Z"
+              d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V100C85 108 78 115 70 115H30C22 115 15 108 15 100V40Z"
               fill="none"
               stroke="#1A1A1A"
               strokeWidth="4"
             />
 
-            {/* Face - Centered on Middle Layer */}
-            <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - 12 }}>
+            {/* Cuter Face - Shifted Lower */}
+            <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y + 15 }}>
               <g>
                 {isBlinking ? (
                   <>
-                    <path d="M25 45Q32.5 40 40 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
-                    <path d="M60 45Q67.5 40 75 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    <path d="M25 65Q32.5 60 40 65" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    <path d="M60 65Q67.5 60 75 65" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
                   </>
                 ) : (
                   <>
-                    <circle cx="32" cy="48" r="8" fill="#1A1A1A" />
-                    <circle cx="68" cy="48" r="8" fill="#1A1A1A" />
-                    <circle cx="30" cy="45" r="3" fill="white" />
-                    <circle cx="66" cy="45" r="3" fill="white" />
+                    <circle cx="32" cy="68" r="8" fill="#1A1A1A" />
+                    <circle cx="68" cy="68" r="8" fill="#1A1A1A" />
+                    <circle cx="30" cy="65" r="3" fill="white" />
+                    <circle cx="66" cy="65" r="3" fill="white" />
                   </>
                 )}
               </g>
-              <path d="M42 62Q50 68 58 62" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
+              <path d="M42 82Q50 88 58 82" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
             </motion.g>
 
             {/* Side Drip Animation */}
@@ -287,7 +290,7 @@ export function Mascot() {
             }}
             transition={{ duration: 0.5, repeat: showHands ? Infinity : 0, repeatType: "reverse" }}
           >
-            <circle cx="12" cy="75" r="5" fill={MINT} stroke="#1A1A1A" strokeWidth="3" />
+            <circle cx="12" cy="85" r="5" fill={MINT} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
           <motion.g
             animate={{
@@ -296,7 +299,7 @@ export function Mascot() {
             }}
             transition={{ duration: 0.5, repeat: showHands ? Infinity : 0, repeatType: "reverse" }}
           >
-            <circle cx="88" cy="75" r="5" fill={MINT} stroke="#1A1A1A" strokeWidth="3" />
+            <circle cx="88" cy="85" r="5" fill={MINT} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
         </svg>
 
