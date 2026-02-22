@@ -142,6 +142,32 @@ export function Mascot() {
     }
   }, [pathname, mounted, getPageContext])
 
+  // Look around idle behavior
+  useEffect(() => {
+    if (!mounted) return
+    const lookInterval = setInterval(() => {
+      if (!isBitten && !isDripping && expression !== "surprised") {
+        const directions = [
+          { x: 4, y: 0 },   // right
+          { x: -4, y: 0 },  // left
+          { x: 0, y: -3 },  // up
+          { x: 0, y: 3 },   // down
+          { x: 3, y: 2 },   // diagonal
+          { x: -3, y: -2 }, // diagonal
+          { x: 0, y: 0 }    // center
+        ]
+        const randomDir = directions[Math.floor(Math.random() * directions.length)]
+        setEyeOffset(randomDir)
+        
+        setTimeout(() => {
+          setEyeOffset({ x: 0, y: 0 })
+        }, 1500)
+      }
+    }, 6000)
+    return () => clearInterval(lookInterval)
+  }, [mounted, isBitten, isDripping, expression])
+
+  // Idle gestures
   useEffect(() => {
     if (!mounted) return
     const gestureInterval = setInterval(() => {
@@ -162,6 +188,7 @@ export function Mascot() {
     return () => clearInterval(gestureInterval)
   }, [isBitten, isDripping, mounted, expression])
 
+  // Blinking
   useEffect(() => {
     if (!mounted) return
     const blinkInterval = setInterval(() => {
@@ -171,6 +198,7 @@ export function Mascot() {
     return () => clearInterval(blinkInterval)
   }, [mounted])
 
+  // Melting Routine
   useEffect(() => {
     if (!mounted) return
     const dripRoutine = async () => {
