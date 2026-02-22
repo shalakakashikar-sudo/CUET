@@ -13,13 +13,13 @@ const COMMENTS = {
     "Percentile 100 is just a few scoops away!",
     "Ready to freeze the competition?",
     "The Verbal Vantage: Where logic meets lexicon!",
-    "I'm rooting for you (and I'm a popsicle, so that's rare)!",
+    "I'm rooting for you (and I'm a Neapolitan swirl, so that's rare)!",
     "Vocabulary Tip: 'Munificent' means very generous. Like me with these tips!",
     "Did you know? 'Ephemeral' means short-lived. Like a melting popsicle!",
     "Idiom Alert: 'Break the ice' means to start a conversation. I'm literally ice!",
   ],
   strategy: [
-    "Precision is my middle name. Well, it's actually Pistachio.",
+    "Precision is my middle name. Well, it's actually Pistachio-Vanilla-Strawberry.",
     "Order of Operations is basically a recipe for success!",
     "Accuracy > Speed. Don't rush, or you'll get a brain freeze!",
     "Remember: In Code 101, every -1 counts. Stay sharp!",
@@ -55,8 +55,9 @@ const COMMENTS = {
   ]
 }
 
-const PISTACHIO = "#93C572"
-const MINT = "#AAF0D1"
+const MINT = "#93C572"
+const STRAWBERRY = "#FFB7C5"
+const VANILLA = "#F3E5AB"
 
 export function Mascot() {
   const pathname = usePathname()
@@ -212,6 +213,11 @@ export function Mascot() {
           className="drop-shadow-2xl"
         >
           <defs>
+            <linearGradient id="neapolitan" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor={STRAWBERRY} />
+              <stop offset="50%" stopColor={VANILLA} />
+              <stop offset="100%" stopColor={MINT} />
+            </linearGradient>
             <clipPath id="biteClip">
               {isBitten ? (
                 <path d="M0 0 H55 C60 5 50 15 60 25 C70 35 60 45 75 50 C90 55 85 65 85 75 V140 H0 V0Z" />
@@ -228,13 +234,7 @@ export function Mascot() {
           <g clipPath="url(#biteClip)">
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V95C85 103 78 110 70 110H30C22 110 15 103 15 95V40Z"
-              fill="white"
-              stroke="#1A1A1A"
-              strokeWidth="4"
-            />
-            <path
-              d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V72C85 72 78 80 70 74C62 68 55 88 45 76C35 64 25 82 15 70V40Z"
-              fill={PISTACHIO}
+              fill="url(#neapolitan)"
               stroke="#1A1A1A"
               strokeWidth="4"
             />
@@ -264,7 +264,7 @@ export function Mascot() {
               animate={dripControls}
               initial={{ opacity: 0 }}
               d="M18 78C18 88 23 93 28 93C33 93 38 88 38 78C38 68 18 68 18 78Z"
-              fill={MINT}
+              fill={VANILLA}
               stroke="#1A1A1A"
               strokeWidth="2"
             />
@@ -278,7 +278,7 @@ export function Mascot() {
             }}
             transition={{ duration: 0.5, repeat: showHands ? Infinity : 0, repeatType: "reverse" }}
           >
-            <circle cx="12" cy="75" r="5" fill={PISTACHIO} stroke="#1A1A1A" strokeWidth="3" />
+            <circle cx="12" cy="75" r="5" fill={MINT} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
           <motion.g
             animate={{
@@ -287,7 +287,7 @@ export function Mascot() {
             }}
             transition={{ duration: 0.5, repeat: showHands ? Infinity : 0, repeatType: "reverse" }}
           >
-            <circle cx="88" cy="75" r="5" fill={PISTACHIO} stroke="#1A1A1A" strokeWidth="3" />
+            <circle cx="88" cy="75" r="5" fill={MINT} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
         </svg>
 
