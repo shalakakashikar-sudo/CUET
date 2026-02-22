@@ -9,8 +9,6 @@ type Expression =
   | "happy" 
   | "wink" 
   | "surprised" 
-  | "determined" 
-  | "thinking" 
   | "shy" 
   | "excited" 
   | "proud" 
@@ -118,7 +116,7 @@ export function Mascot() {
       setShowHands(false)
       setExpression("loving")
       setTimeout(() => {
-        setExpression(getPageContext() === "quiz" ? "determined" : "happy")
+        setExpression("happy")
       }, 2000)
     }, 2000)
 
@@ -127,14 +125,14 @@ export function Mascot() {
     }, 10000)
   }
 
-  // Handle expression changes based on page context
+  // Always keep the mascot happy/positive
   useEffect(() => {
     if (!mounted) return
     const context = getPageContext()
     if (context === "quiz") {
-      setExpression("determined")
+      setExpression("happy")
     } else if (context === "study") {
-      setExpression("thinking")
+      setExpression("happy")
     } else if (pathname === "/") {
       setExpression("excited")
     } else {
@@ -142,7 +140,7 @@ export function Mascot() {
     }
   }, [pathname, mounted, getPageContext])
 
-  // Look around idle behavior
+  // Look around idle behaviour
   useEffect(() => {
     if (!mounted) return
     const lookInterval = setInterval(() => {
@@ -154,7 +152,7 @@ export function Mascot() {
           { x: 0, y: 3 },   // down
           { x: 3, y: 2 },   // diagonal
           { x: -3, y: -2 }, // diagonal
-          { x: 0, y: 0 }    // center
+          { x: 0, y: 0 }    // centre
         ]
         const randomDir = directions[Math.floor(Math.random() * directions.length)]
         setEyeOffset(randomDir)
@@ -173,8 +171,8 @@ export function Mascot() {
     const gestureInterval = setInterval(() => {
       if (!isBitten && !isDripping) {
         setShowHands(true)
-        // Randomly change mood during idle
-        const moods: Expression[] = ["shy", "wink", "proud", "happy"]
+        // Only switch between happy moods
+        const moods: Expression[] = ["wink", "proud", "happy", "excited"]
         const randomMood = moods[Math.floor(Math.random() * moods.length)]
         const oldExpr = expression
         setExpression(randomMood)
@@ -222,7 +220,7 @@ export function Mascot() {
       dripControls.set({ y: 0, opacity: 0 })
       
       setTimeout(() => {
-        setExpression(getPageContext() === "quiz" ? "determined" : "happy")
+        setExpression("happy")
         setIsVisible(false)
       }, 10000)
     }
@@ -352,6 +350,16 @@ export function Mascot() {
 
               {/* Eyes System */}
               <g>
+                {/* Consistently Happy/Friendly Eyelashes turned upwards */}
+                <g>
+                  {/* Left Eye Eyelashes */}
+                  <path d="M22 62 Q 16 52 12 58" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  <path d="M26 58 Q 20 48 16 54" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  {/* Right Eye Eyelashes */}
+                  <path d="M78 62 Q 84 52 88 58" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  <path d="M74 58 Q 80 48 84 54" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                </g>
+
                 {isBlinking ? (
                   <>
                     <path d="M25 68Q32.5 72 40 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
@@ -375,8 +383,6 @@ export function Mascot() {
                             <circle cx="34" cy="71" r="1.5" fill="white" fillOpacity="0.8" />
                           </>
                         )}
-                        <path d="M24 64C22 60 18 58 16 62" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
-                        <path d="M28 62C26 56 22 54 20 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
                       </g>
                     )}
 
@@ -394,8 +400,6 @@ export function Mascot() {
                             <circle cx="70" cy="71" r="1.5" fill="white" fillOpacity="0.8" />
                           </>
                         )}
-                        <path d="M76 64C78 60 82 58 84 62" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
-                        <path d="M72 62C74 56 78 54 80 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
                       </g>
                     )}
                   </>
@@ -404,7 +408,7 @@ export function Mascot() {
 
               {/* Mouth System */}
               <g>
-                {expression === "happy" && (
+                {(expression === "happy" || expression === "proud" || expression === "shy") && (
                   <path d="M42 82Q50 90 58 82" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
                 )}
                 {expression === "excited" && (
@@ -413,20 +417,8 @@ export function Mascot() {
                 {expression === "surprised" && (
                   <circle cx="50" cy="85" r="5" stroke="#1A1A1A" strokeWidth="3" fill="none" />
                 )}
-                {expression === "determined" && (
-                  <path d="M42 85H58" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
-                )}
-                {expression === "thinking" && (
-                  <path d="M45 85Q48 82 50 85Q52 88 55 85" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
-                )}
                 {expression === "wink" && (
                   <path d="M44 82Q50 88 56 82" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
-                )}
-                {expression === "shy" && (
-                  <path d="M46 85Q50 82 54 85" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
-                )}
-                {expression === "proud" && (
-                  <path d="M42 85Q50 85 58 80" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
                 )}
                 {expression === "loving" && (
                   <path d="M44 84Q50 92 56 84" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
@@ -474,9 +466,7 @@ export function Mascot() {
               transition={{ duration: 4, repeat: Infinity, ease: "easeOut" }}
               className="absolute -top-10 left-1/2 -translate-x-1/2"
             >
-              {expression === "determined" ? (
-                <Award className="w-6 h-6 text-primary fill-primary" />
-              ) : expression === "excited" ? (
+              {expression === "excited" ? (
                 <SparklesIcon className="w-6 h-6 text-yellow-400 fill-yellow-400" />
               ) : (
                 <Heart 
