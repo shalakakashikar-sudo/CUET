@@ -19,7 +19,7 @@ const COMMENTS = {
     "Idiom Alert: 'Break the ice' means to start a conversation. I'm literally ice!",
   ],
   strategy: [
-    "Precision is my middle name. Well, it's actually Berry.",
+    "Precision is my middle name. Well, it's actually Pistachio.",
     "Order of Operations is basically a recipe for success!",
     "Accuracy > Speed. Don't rush, or you'll get a brain freeze!",
     "Remember: In Code 101, every -1 counts. Stay sharp!",
@@ -40,7 +40,7 @@ const COMMENTS = {
   quiz: [
     "Focus mode: ACTIVATED. Let's get that 250!",
     "One question at a time! Keep your cool.",
-    "Mistakes are just flavor text. Keep going!",
+    "Mistakes are just flavour text. Keep going!",
     "50 questions, 60 minutes. That's one minute per miracle!",
     "Scan, deduce, confirm. The elite cycle!",
     "You're in the zone! Is it chilly in here or is it just you?",
@@ -55,7 +55,8 @@ const COMMENTS = {
   ]
 }
 
-const BERRY_BLUE = "#4A90E2"
+const PISTACHIO = "#93C572"
+const MINT = "#AAF0D1"
 
 export function Mascot() {
   const pathname = usePathname()
@@ -233,7 +234,7 @@ export function Mascot() {
             />
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V72C85 72 78 80 70 74C62 68 55 88 45 76C35 64 25 82 15 70V40Z"
-              fill={BERRY_BLUE}
+              fill={PISTACHIO}
               stroke="#1A1A1A"
               strokeWidth="4"
             />
@@ -263,7 +264,7 @@ export function Mascot() {
               animate={dripControls}
               initial={{ opacity: 0 }}
               d="M18 78C18 88 23 93 28 93C33 93 38 88 38 78C38 68 18 68 18 78Z"
-              fill={BERRY_BLUE}
+              fill={MINT}
               stroke="#1A1A1A"
               strokeWidth="2"
             />
@@ -277,7 +278,7 @@ export function Mascot() {
             }}
             transition={{ duration: 0.5, repeat: showHands ? Infinity : 0, repeatType: "reverse" }}
           >
-            <circle cx="12" cy="75" r="5" fill={BERRY_BLUE} stroke="#1A1A1A" strokeWidth="3" />
+            <circle cx="12" cy="75" r="5" fill={PISTACHIO} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
           <motion.g
             animate={{
@@ -286,7 +287,7 @@ export function Mascot() {
             }}
             transition={{ duration: 0.5, repeat: showHands ? Infinity : 0, repeatType: "reverse" }}
           >
-            <circle cx="88" cy="75" r="5" fill={BERRY_BLUE} stroke="#1A1A1A" strokeWidth="3" />
+            <circle cx="88" cy="75" r="5" fill={PISTACHIO} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
         </svg>
 

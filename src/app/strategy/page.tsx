@@ -17,9 +17,9 @@ export default function StrategyPage() {
   ]
 
   const markingStrategy = [
-    { cond: "70%+ Confident", action: "Confirm and lock answer.", color: "text-green-600", bg: "bg-green-50" },
-    { cond: "50-70% Confident", action: "Eliminate 2 options -> Solve.", color: "text-blue-600", bg: "bg-blue-50" },
-    { cond: "Below 50% Confident", action: "Re-read context clues immediately.", color: "text-amber-600", bg: "bg-amber-50" },
+    { cond: "70%+ Confident", action: "Confirm and lock answer.", colour: "text-green-600", bg: "bg-green-50" },
+    { cond: "50-70% Confident", action: "Eliminate 2 options -> Solve.", colour: "text-blue-600", bg: "bg-blue-50" },
+    { cond: "Below 50% Confident", action: "Re-read context clues immediately.", colour: "text-amber-600", bg: "bg-amber-50" },
   ]
 
   return (
@@ -50,13 +50,13 @@ export default function StrategyPage() {
                   <TrendingUp className="w-6 h-6" />
                   Accuracy Maintenance
                 </CardTitle>
-                <CardDescription className="text-foreground/70 font-medium">For a perfect 250, you must neutralize the -1 penalty with logical deduction.</CardDescription>
+                <CardDescription className="text-foreground/70 font-medium">For a perfect 250, you must neutralise the -1 penalty with logical deduction.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid sm:grid-cols-3 gap-4">
                   {markingStrategy.map((item, i) => (
                     <div key={i} className={`${item.bg} p-4 rounded-xl border border-primary/10 flex flex-col justify-center`}>
-                      <div className={`text-xs font-bold ${item.color} uppercase mb-1`}>{item.cond}</div>
+                      <div className={`text-xs font-bold ${item.colour} uppercase mb-1`}>{item.cond}</div>
                       <div className="text-sm font-semibold leading-tight text-foreground">{item.action}</div>
                     </div>
                   ))}
@@ -70,7 +70,7 @@ export default function StrategyPage() {
                   <Calculator className="w-6 h-6 text-primary" />
                   The Scoring Formula
                 </CardTitle>
-                <CardDescription>Visualizing the impact of Subject Code 101 marking.</CardDescription>
+                <CardDescription>Visualising the impact of Subject Code 101 marking.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="bg-muted/30 p-6 rounded-2xl border shadow-sm">
@@ -155,7 +155,7 @@ export default function StrategyPage() {
             </Card>
 
             <Button className="w-full h-14 text-lg font-bold rounded-2xl shadow-lg" asChild>
-              <Link href="/quiz">Start Full Practice Set</Link>
+              <Link href="/quiz">Start Full Practise Set</Link>
             </Button>
           </aside>
         </div>

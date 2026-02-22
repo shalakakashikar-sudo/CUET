@@ -11,21 +11,21 @@ const syllabus = [
   {
     category: "Linguistic Comprehension",
     topics: [
-      { name: "Reading Comprehension", icon: MessageSquare, desc: "Factual, Narrative and Discursive patterns from 2024-25 papers.", modules: 3, href: "/study/reading-comprehension", color: "bg-blue-100 text-blue-600" },
-      { name: "Sentence Rearrangement", icon: Layers, desc: "Subject-Verb core logic and setting-action sequence patterns.", modules: 1, href: "/study/sentence-rearrangement", color: "bg-purple-100 text-purple-600" },
+      { name: "Reading Comprehension", icon: MessageSquare, desc: "Factual, Narrative and Discursive patterns from 2024-25 papers.", modules: 3, href: "/study/reading-comprehension", colour: "bg-blue-100 text-blue-600" },
+      { name: "Sentence Rearrangement", icon: Layers, desc: "Subject-Verb core logic and setting-action sequence patterns.", modules: 1, href: "/study/sentence-rearrangement", colour: "bg-purple-100 text-purple-600" },
     ]
   },
   {
     category: "Lexical & Idiomatic Proficiency",
     topics: [
-      { name: "Synonyms & Antonyms", icon: Hash, desc: "Elite word list with prefix/suffix decoding strategies.", modules: 5, href: "/study/synonyms-antonyms", color: "bg-amber-100 text-amber-600" },
-      { name: "Match the Following", icon: PenTool, desc: "Idioms, Homonyms Trap, and Proverbs proficiency.", modules: 4, href: "/study/match-the-following", color: "bg-emerald-100 text-emerald-600" },
+      { name: "Synonyms & Antonyms", icon: Hash, desc: "Elite word list with prefix/suffix decoding strategies.", modules: 5, href: "/study/synonyms-antonyms", colour: "bg-amber-100 text-amber-600" },
+      { name: "Match the Following", icon: PenTool, desc: "Idioms, Homonyms Trap, and Proverbs proficiency.", modules: 4, href: "/study/match-the-following", colour: "bg-emerald-100 text-emerald-600" },
     ]
   },
   {
     category: "Syntactic Structure",
     topics: [
-      { name: "Fill in the Blanks", icon: BookOpen, desc: "Advanced tenses, conjunction logic, and fixed prepositions.", modules: 4, href: "/study/fill-in-the-blanks", color: "bg-rose-100 text-rose-600" },
+      { name: "Fill in the Blanks", icon: BookOpen, desc: "Advanced tenses, conjunction logic, and fixed prepositions.", modules: 4, href: "/study/fill-in-the-blanks", colour: "bg-rose-100 text-rose-600" },
     ]
   }
 ]
@@ -56,7 +56,7 @@ export default function StudyPage() {
                       <Card className="h-full border-none shadow-sm hover:shadow-2xl transition-all duration-500 rounded-[2rem] bg-white/70 backdrop-blur-sm overflow-hidden flex flex-col">
                         <CardHeader className="p-8">
                           <div className="flex justify-between items-start mb-6">
-                            <div className={cn("p-4 rounded-[1.25rem] group-hover:scale-110 transition-transform", topic.color)}>
+                            <div className={cn("p-4 rounded-[1.25rem] group-hover:scale-110 transition-transform", topic.colour)}>
                               <topic.icon className="w-8 h-8" />
                             </div>
                             <Badge variant="secondary" className="rounded-full px-4 py-1 font-bold">{topic.modules} Modules</Badge>

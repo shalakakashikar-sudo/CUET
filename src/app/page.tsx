@@ -1,16 +1,16 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { BookOpen, Compass, ArrowRight, Target, ShieldCheck, Trophy, Zap, IceCream } from "lucide-react"
+import { BookOpen, Compass, ArrowRight, Target, ShieldCheck, Trophy, IceCream } from "lucide-react"
 import Link from "next/link"
 
 export default function Dashboard() {
   const primaryActions = [
     {
-      title: "Flavor Strategy",
+      title: "Flavour Strategy",
       desc: "Master the logic for a perfect 250/250 score.",
       icon: Compass,
       link: "/strategy",
-      color: "bg-amber-100 text-amber-600",
+      colour: "bg-secondary text-secondary-foreground",
       btnText: "View Menu"
     },
     {
@@ -18,15 +18,15 @@ export default function Dashboard() {
       desc: "Deep dive into Code 101 rules and traps.",
       icon: BookOpen,
       link: "/study",
-      color: "bg-primary/10 text-primary",
-      btnText: "Pick Flavors"
+      colour: "bg-primary/10 text-primary",
+      btnText: "Pick Flavours"
     },
     {
       title: "Cool Quiz",
       desc: "Simulate the 60-min exam with +5/-1 scoring.",
       icon: Trophy,
       link: "/quiz",
-      color: "bg-emerald-100 text-emerald-600",
+      colour: "bg-emerald-100 text-emerald-600",
       btnText: "Start Serving"
     }
   ]
@@ -50,7 +50,7 @@ export default function Dashboard() {
           {primaryActions.map((action, i) => (
             <Card key={i} className="border-none shadow-sm hover:shadow-xl transition-all duration-300 rounded-[2.5rem] bg-white/70 backdrop-blur-sm overflow-hidden group flex flex-col">
               <CardHeader className="p-8 pb-4">
-                <div className={`p-4 rounded-2xl w-fit mb-6 group-hover:scale-110 transition-transform ${action.color}`}>
+                <div className={`p-4 rounded-2xl w-fit mb-6 group-hover:scale-110 transition-transform ${action.colour}`}>
                   <action.icon className="w-8 h-8" />
                 </div>
                 <CardTitle className="text-2xl font-bold text-foreground">{action.title}</CardTitle>
@@ -79,7 +79,7 @@ export default function Dashboard() {
                 Mission: 250/250
               </h2>
               <p className="text-primary-foreground/80 text-lg mb-6 leading-relaxed">
-                In Subject Code 101, accuracy is the secret ingredient. Every correct answer maintains your momentum toward the maximum score.
+                In Subject Code 101, accuracy is the secret ingredient. Every correct answer maintains your momentum towards the maximum score.
               </p>
               <div className="flex items-center gap-4 bg-white/20 px-6 py-3 rounded-2xl backdrop-blur-sm border border-white/30 w-fit font-bold">
                 <span className="text-3xl">50 / 50</span>
