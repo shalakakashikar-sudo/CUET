@@ -4,34 +4,34 @@
 
 @layer base {
   :root {
-    /* Ice Cream Parlor Theme */
+    /* Ice Cream Parlor Theme - Berry & Mint Edition */
     --background: 30 100% 98%; /* Soft Vanilla Cream */
-    --foreground: 20 20% 15%; /* Dark Chocolate */
+    --foreground: 210 20% 15%; /* Deep Blueberry Blue */
     
     --card: 0 0% 100%;
-    --card-foreground: 20 20% 15%;
+    --card-foreground: 210 20% 15%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 20 20% 15%;
+    --popover-foreground: 210 20% 15%;
     
-    --primary: 330 80% 60%; /* Strawberry Pink */
+    --primary: 210 80% 60%; /* Berry Blue */
     --primary-foreground: 0 0% 100%; 
     
     --secondary: 160 60% 92%; /* Mint Cream */
     --secondary-foreground: 160 60% 20%;
     
     --muted: 30 30% 95%;
-    --muted-foreground: 20 10% 40%;
+    --muted-foreground: 210 10% 40%;
     
-    --accent: 25 60% 45%; /* Caramel / Chocolate */
+    --accent: 35 60% 45%; /* Caramel / Honey */
     --accent-foreground: 0 0% 100%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     
-    --border: 330 20% 90%;
-    --input: 330 20% 90%;
-    --ring: 330 80% 60%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 210 80% 60%;
     
     --radius: 2rem; /* Bubbly soft-serve edges */
   }
@@ -46,8 +46,8 @@
   }
   body {
     @apply bg-background text-foreground min-h-screen flex flex-col;
-    /* Soft creamy gradient background */
-    background: linear-gradient(135deg, hsl(30, 100%, 98%) 0%, hsl(330, 40%, 96%) 100%);
+    /* Soft creamy gradient background - Blueberry tint */
+    background: linear-gradient(135deg, hsl(30, 100%, 98%) 0%, hsl(210, 40%, 96%) 100%);
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }

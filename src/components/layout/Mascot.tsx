@@ -55,7 +55,7 @@ const COMMENTS = {
   ]
 }
 
-const STRAWBERRY_PINK = "#FF85A1"
+const BERRY_BLUE = "#4A90E2"
 
 export function Mascot() {
   const pathname = usePathname()
@@ -233,7 +233,7 @@ export function Mascot() {
             />
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V72C85 72 78 80 70 74C62 68 55 88 45 76C35 64 25 82 15 70V40Z"
-              fill={STRAWBERRY_PINK}
+              fill={BERRY_BLUE}
               stroke="#1A1A1A"
               strokeWidth="4"
             />
@@ -263,7 +263,7 @@ export function Mascot() {
               animate={dripControls}
               initial={{ opacity: 0 }}
               d="M18 78C18 88 23 93 28 93C33 93 38 88 38 78C38 68 18 68 18 78Z"
-              fill={STRAWBERRY_PINK}
+              fill={BERRY_BLUE}
               stroke="#1A1A1A"
               strokeWidth="2"
             />
@@ -277,7 +277,7 @@ export function Mascot() {
             }}
             transition={{ duration: 0.5, repeat: showHands ? Infinity : 0, repeatType: "reverse" }}
           >
-            <circle cx="12" cy="75" r="5" fill={STRAWBERRY_PINK} stroke="#1A1A1A" strokeWidth="3" />
+            <circle cx="12" cy="75" r="5" fill={BERRY_BLUE} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
           <motion.g
             animate={{
@@ -286,7 +286,7 @@ export function Mascot() {
             }}
             transition={{ duration: 0.5, repeat: showHands ? Infinity : 0, repeatType: "reverse" }}
           >
-            <circle cx="88" cy="75" r="5" fill={STRAWBERRY_PINK} stroke="#1A1A1A" strokeWidth="3" />
+            <circle cx="88" cy="75" r="5" fill={BERRY_BLUE} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
         </svg>
 
