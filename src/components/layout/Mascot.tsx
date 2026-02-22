@@ -59,6 +59,7 @@ const STRAWBERRY = "#FFB7C5"
 const VANILLA = "#F3E5AB"
 const MINT = "#93C572"
 const BLUEBERRY = "#B7C9FF"
+const PALETTE = [STRAWBERRY, VANILLA, MINT, BLUEBERRY]
 
 export function Mascot() {
   const pathname = usePathname()
@@ -71,6 +72,7 @@ export function Mascot() {
   const [isDripping, setIsDripping] = useState(false)
   const [isBitten, setIsBitten] = useState(false)
   const [showHands, setShowHands] = useState(false)
+  const [heartColour, setHeartColour] = useState(STRAWBERRY)
 
   const dripControls = useAnimation()
 
@@ -100,6 +102,8 @@ export function Mascot() {
     setIsBitten(true)
     setExpression("surprised")
     setShowHands(true)
+    // Rotate heart colour on click
+    setHeartColour(PALETTE[Math.floor(Math.random() * PALETTE.length)])
 
     setTimeout(() => {
       setIsBitten(false)
@@ -226,20 +230,26 @@ export function Mascot() {
           {/* Stick */}
           <rect x="42" y="102" width="16" height="30" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
 
-          {/* Layered Body */}
+          {/* Layered Body with Dripping Edges */}
           <g clipPath="url(#biteClip)">
-            {/* Layer 1: Strawberry */}
+            {/* Layer 1: Strawberry (Top Arc + Dripping Bottom) */}
             <path
-              d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V45H15V40Z"
+              d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V45C85 45 75 50 65 45C55 40 45 50 35 45C25 40 15 45 15 45V40Z"
               fill={STRAWBERRY}
             />
-            {/* Layer 2: Vanilla */}
-            <rect x="15" y="45" width="70" height="25" fill={VANILLA} />
-            {/* Layer 3: Mint */}
-            <rect x="15" y="70" width="70" height="25" fill={MINT} />
-            {/* Layer 4: Blueberry */}
+            {/* Layer 2: Vanilla (Dripping Top & Bottom) */}
             <path
-              d="M15 95H85V100C85 108 78 115 70 115H30C22 115 15 108 15 100V95Z"
+              d="M15 45C15 45 25 40 35 45C45 50 55 40 65 45C75 50 85 45 85 45V70C85 70 75 75 65 70C55 65 45 75 35 70C25 65 15 70 15 70V45Z"
+              fill={VANILLA}
+            />
+            {/* Layer 3: Mint (Dripping Top & Bottom) */}
+            <path
+              d="M15 70C15 70 25 65 35 70C45 75 55 65 65 70C75 75 85 70 85 70V95C85 95 75 100 65 95C55 90 45 100 35 95C25 90 15 95 15 95V70Z"
+              fill={MINT}
+            />
+            {/* Layer 4: Blueberry (Dripping Top + Rounded Bottom) */}
+            <path
+              d="M15 95C15 95 25 90 35 95C45 100 55 90 65 95C75 100 85 95 85 95V100C85 108 78 115 70 115H30C22 115 15 108 15 100V95Z"
               fill={BLUEBERRY}
             />
 
@@ -312,9 +322,12 @@ export function Mascot() {
               className="absolute -top-10 left-1/2 -translate-x-1/2"
             >
               {expression === "determined" ? (
-                <Award className="w-5 h-5 text-primary fill-primary" />
+                <Award className="w-6 h-6 text-primary fill-primary" />
               ) : (
-                <Heart className="w-5 h-5 text-primary fill-primary" />
+                <Heart 
+                  className="w-6 h-6 transition-colors duration-500" 
+                  style={{ color: heartColour, fill: heartColour }} 
+                />
               )}
             </motion.div>
           )}
