@@ -19,7 +19,7 @@ const COMMENTS = {
     "Idiom Alert: 'Break the ice' means to start a conversation. I'm literally ice!",
   ],
   strategy: [
-    "Precision is my middle name. Well, it's actually Pistachio-Vanilla-Strawberry.",
+    "Precision is my middle name. Well, it's actually Strawberry-Vanilla-Mint.",
     "Order of Operations is basically a recipe for success!",
     "Accuracy > Speed. Don't rush, or you'll get a brain freeze!",
     "Remember: In Code 101, every -1 counts. Stay sharp!",
@@ -213,11 +213,6 @@ export function Mascot() {
           className="drop-shadow-2xl"
         >
           <defs>
-            <linearGradient id="neapolitan" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor={STRAWBERRY} />
-              <stop offset="50%" stopColor={VANILLA} />
-              <stop offset="100%" stopColor={MINT} />
-            </linearGradient>
             <clipPath id="biteClip">
               {isBitten ? (
                 <path d="M0 0 H55 C60 5 50 15 60 25 C70 35 60 45 75 50 C90 55 85 65 85 75 V140 H0 V0Z" />
@@ -230,16 +225,30 @@ export function Mascot() {
           {/* Stick */}
           <rect x="42" y="102" width="16" height="30" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
 
-          {/* Body */}
+          {/* Layered Body */}
           <g clipPath="url(#biteClip)">
+            {/* Top Layer: Strawberry */}
+            <path
+              d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V45H15V40Z"
+              fill={STRAWBERRY}
+            />
+            {/* Middle Layer: Vanilla */}
+            <rect x="15" y="45" width="70" height="35" fill={VANILLA} />
+            {/* Bottom Layer: Mint */}
+            <path
+              d="M15 80H85V95C85 103 78 110 70 110H30C22 110 15 103 15 95V80Z"
+              fill={MINT}
+            />
+
+            {/* Total Body Outline */}
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V95C85 103 78 110 70 110H30C22 110 15 103 15 95V40Z"
-              fill="url(#neapolitan)"
+              fill="none"
               stroke="#1A1A1A"
               strokeWidth="4"
             />
 
-            {/* Face */}
+            {/* Face - Centered on Middle Layer */}
             <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - 12 }}>
               <g>
                 {isBlinking ? (
