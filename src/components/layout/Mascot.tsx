@@ -102,7 +102,6 @@ export function Mascot() {
     setIsBitten(true)
     setExpression("surprised")
     setShowHands(true)
-    // Rotate heart colour on click
     setHeartColour(PALETTE[Math.floor(Math.random() * PALETTE.length)])
 
     setTimeout(() => {
@@ -225,33 +224,34 @@ export function Mascot() {
                 <rect width="100" height="140" />
               )}
             </clipPath>
+            <linearGradient id="stickGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#D2A679" />
+              <stop offset="50%" stopColor="#E6BA95" />
+              <stop offset="100%" stopColor="#C49669" />
+            </linearGradient>
           </defs>
 
-          {/* Stick */}
-          <rect x="42" y="102" width="16" height="30" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
+          {/* Stick with 3D gradient */}
+          <rect x="42" y="102" width="16" height="30" rx="8" fill="url(#stickGrad)" stroke="#1A1A1A" strokeWidth="3" />
 
-          {/* Layered Body with Dripping Edges */}
+          {/* Layered Body with 3D Effects */}
           <g clipPath="url(#biteClip)">
-            {/* Layer 1: Strawberry (Top Arc + Dripping Bottom) */}
-            <path
-              d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V45C85 45 75 50 65 45C55 40 45 50 35 45C25 40 15 45 15 45V40Z"
-              fill={STRAWBERRY}
-            />
-            {/* Layer 2: Vanilla (Dripping Top & Bottom) */}
-            <path
-              d="M15 45C15 45 25 40 35 45C45 50 55 40 65 45C75 50 85 45 85 45V70C85 70 75 75 65 70C55 65 45 75 35 70C25 65 15 70 15 70V45Z"
-              fill={VANILLA}
-            />
-            {/* Layer 3: Mint (Dripping Top & Bottom) */}
-            <path
-              d="M15 70C15 70 25 65 35 70C45 75 55 65 65 70C75 75 85 70 85 70V95C85 95 75 100 65 95C55 90 45 100 35 95C25 90 15 95 15 95V70Z"
-              fill={MINT}
-            />
-            {/* Layer 4: Blueberry (Dripping Top + Rounded Bottom) */}
-            <path
-              d="M15 95C15 95 25 90 35 95C45 100 55 90 65 95C75 100 85 95 85 95V100C85 108 78 115 70 115H30C22 115 15 108 15 100V95Z"
-              fill={BLUEBERRY}
-            />
+            {/* Base Body Shapes with Scoops */}
+            <path d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V45C85 45 75 50 65 45C55 40 45 50 35 45C25 40 15 45 15 45V40Z" fill={STRAWBERRY} />
+            <path d="M15 45C15 45 25 40 35 45C45 50 55 40 65 45C75 50 85 45 85 45V70C85 70 75 75 65 70C55 65 45 75 35 70C25 65 15 70 15 70V45Z" fill={VANILLA} />
+            <path d="M15 70C15 70 25 65 35 70C45 75 55 65 65 70C75 75 85 70 85 70V95C85 95 75 100 65 95C55 90 45 100 35 95C25 90 15 95 15 95V70Z" fill={MINT} />
+            <path d="M15 95C15 95 25 90 35 95C45 100 55 90 65 95C75 100 85 95 85 95V100C85 108 78 115 70 115H30C22 115 15 108 15 100V95Z" fill={BLUEBERRY} />
+
+            {/* 3D Shading (Right Shadow) */}
+            <path d="M85 40C85 20 75 10 65 10V115C78 115 85 108 85 100V40Z" fill="black" fillOpacity="0.05" />
+            
+            {/* Gloss Highlight (Left Edge) */}
+            <path d="M20 40C20 25 28 15 40 15V110C25 110 20 105 20 100V40Z" fill="white" fillOpacity="0.2" />
+
+            {/* Body Glimmers / Frost */}
+            <circle cx="25" cy="25" r="2" fill="white" fillOpacity="0.4" />
+            <circle cx="75" cy="105" r="3" fill="white" fillOpacity="0.3" />
+            <circle cx="35" cy="100" r="1.5" fill="white" fillOpacity="0.4" />
 
             {/* Total Body Outline */}
             <path
@@ -261,7 +261,7 @@ export function Mascot() {
               strokeWidth="4"
             />
 
-            {/* Cuter Face - Shifted Higher to the Centre */}
+            {/* Cuter Face - Shiny & Kawaii */}
             <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - 12 }}>
               <g>
                 {isBlinking ? (
@@ -271,19 +271,21 @@ export function Mascot() {
                   </>
                 ) : (
                   <>
-                    {/* Left Eye + Kawaii Lashes (Soft Curved Upward Flicks) */}
+                    {/* Left Eye + Refined Upward Curved Kawaii Lashes */}
                     <circle cx="32" cy="68" r="8" fill="#1A1A1A" />
-                    <path d="M24 64Q20 60 18 64" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
-                    <path d="M28 62Q26 56 22 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                    <path d="M24 64C22 60 18 58 16 62" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                    <path d="M28 62C26 56 22 54 20 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
                     
-                    {/* Right Eye + Kawaii Lashes (Soft Curved Upward Flicks) */}
+                    {/* Right Eye + Refined Upward Curved Kawaii Lashes */}
                     <circle cx="68" cy="68" r="8" fill="#1A1A1A" />
-                    <path d="M76 64Q80 60 82 64" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
-                    <path d="M72 62Q74 56 78 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                    <path d="M76 64C78 60 82 58 84 62" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                    <path d="M72 62C74 56 78 54 80 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
                     
-                    {/* Pupils */}
+                    {/* Multi-Sparkle Pupils for 3D Life */}
                     <circle cx="30" cy="65" r="3" fill="white" />
+                    <circle cx="34" cy="71" r="1.5" fill="white" fillOpacity="0.8" />
                     <circle cx="66" cy="65" r="3" fill="white" />
+                    <circle cx="70" cy="71" r="1.5" fill="white" fillOpacity="0.8" />
                   </>
                 )}
               </g>
