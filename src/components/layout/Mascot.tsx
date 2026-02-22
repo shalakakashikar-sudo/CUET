@@ -3,9 +3,18 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence, useAnimation } from "framer-motion"
 import { usePathname } from "next/navigation"
-import { Heart, Award, Sparkles as SparklesIcon } from "lucide-react"
+import { Heart, Award, Sparkles as SparklesIcon, Star } from "lucide-react"
 
-type Expression = "happy" | "wink" | "surprised" | "determined" | "thinking"
+type Expression = 
+  | "happy" 
+  | "wink" 
+  | "surprised" 
+  | "determined" 
+  | "thinking" 
+  | "shy" 
+  | "excited" 
+  | "proud" 
+  | "loving"
 
 const COMMENTS = {
   default: [
@@ -107,7 +116,10 @@ export function Mascot() {
     setTimeout(() => {
       setIsBitten(false)
       setShowHands(false)
-      setExpression(getPageContext() === "quiz" ? "determined" : "happy")
+      setExpression("loving")
+      setTimeout(() => {
+        setExpression(getPageContext() === "quiz" ? "determined" : "happy")
+      }, 2000)
     }, 2000)
 
     setTimeout(() => {
@@ -123,6 +135,8 @@ export function Mascot() {
       setExpression("determined")
     } else if (context === "study") {
       setExpression("thinking")
+    } else if (pathname === "/") {
+      setExpression("excited")
     } else {
       setExpression("happy")
     }
@@ -133,15 +147,18 @@ export function Mascot() {
     const gestureInterval = setInterval(() => {
       if (!isBitten && !isDripping) {
         setShowHands(true)
-        // Randomly wink sometimes during gestures
-        if (Math.random() > 0.7) {
-          const oldExpr = expression
-          setExpression("wink")
-          setTimeout(() => setExpression(oldExpr), 1500)
-        }
-        setTimeout(() => setShowHands(false), 3000)
+        // Randomly change mood during idle
+        const moods: Expression[] = ["shy", "wink", "proud", "happy"]
+        const randomMood = moods[Math.floor(Math.random() * moods.length)]
+        const oldExpr = expression
+        setExpression(randomMood)
+        
+        setTimeout(() => {
+          setExpression(oldExpr)
+          setShowHands(false)
+        }, 3000)
       }
-    }, 20000)
+    }, 25000)
     return () => clearInterval(gestureInterval)
   }, [isBitten, isDripping, mounted, expression])
 
@@ -173,15 +190,18 @@ export function Mascot() {
       
       setEyeOffset({ x: 0, y: 0 })
       setIsDripping(false)
-      setExpression(getPageContext() === "quiz" ? "determined" : "happy")
+      setExpression("shy")
       dripControls.set({ y: 0, opacity: 0 })
       
-      setTimeout(() => setIsVisible(false), 10000)
+      setTimeout(() => {
+        setExpression(getPageContext() === "quiz" ? "determined" : "happy")
+        setIsVisible(false)
+      }, 10000)
     }
 
     const interval = setInterval(() => {
-      if (Math.random() > 0.8) dripRoutine()
-    }, 45000)
+      if (Math.random() > 0.85) dripRoutine()
+    }, 50000)
     
     return () => clearInterval(interval)
   }, [dripControls, isBitten, getRandomComment, mounted, getPageContext])
@@ -252,29 +272,27 @@ export function Mascot() {
             </linearGradient>
           </defs>
 
-          {/* Stick with 3D gradient */}
+          {/* Stick */}
           <rect x="42" y="102" width="16" height="30" rx="8" fill="url(#stickGrad)" stroke="#1A1A1A" strokeWidth="3" />
 
-          {/* Layered Body with 3D Effects */}
+          {/* Layered Body */}
           <g clipPath="url(#biteClip)">
-            {/* Base Body Shapes with "Scooped" Layers */}
+            {/* Scooped Flavour Layers */}
             <path d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V45C85 45 75 50 65 45C55 40 45 50 35 45C25 40 15 45 15 45V40Z" fill={STRAWBERRY} />
             <path d="M15 45C15 45 25 40 35 45C45 50 55 40 65 45C75 50 85 45 85 45V70C85 70 75 75 65 70C55 65 45 75 35 70C25 65 15 70 15 70V45Z" fill={VANILLA} />
             <path d="M15 70C15 70 25 65 35 70C45 75 55 65 65 70C75 75 85 70 85 70V95C85 95 75 100 65 95C55 90 45 100 35 95C25 90 15 95 15 95V70Z" fill={MINT} />
             <path d="M15 95C15 95 25 90 35 95C45 100 55 90 65 95C75 100 85 95 85 95V100C85 108 78 115 70 115H30C22 115 15 108 15 100V95Z" fill={BLUEBERRY} />
 
-            {/* 3D Shading (Right Shadow) */}
+            {/* Shading & Gloss */}
             <path d="M85 40C85 20 75 10 65 10V115C78 115 85 108 85 100V40Z" fill="black" fillOpacity="0.05" />
-            
-            {/* Gloss Highlight (Left Edge) */}
             <path d="M20 40C20 25 28 15 40 15V110C25 110 20 105 20 100V40Z" fill="white" fillOpacity="0.2" />
 
-            {/* Body Glimmers / Frost */}
+            {/* Frost Sparkles */}
             <circle cx="25" cy="25" r="2" fill="white" fillOpacity="0.4" />
             <circle cx="75" cy="105" r="3" fill="white" fillOpacity="0.3" />
             <circle cx="35" cy="100" r="1.5" fill="white" fillOpacity="0.4" />
 
-            {/* Total Body Outline */}
+            {/* Outline */}
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V100C85 108 78 115 70 115H30C22 115 15 108 15 100V40Z"
               fill="none"
@@ -282,76 +300,113 @@ export function Mascot() {
               strokeWidth="4"
             />
 
-            {/* Faces - Interactive & Kawaii */}
+            {/* Facial Expressions - The Kawaii Engine */}
             <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - 12 }}>
-              {/* Blushing Cheeks - Kawaii Element */}
+              {/* Pulsing Blushing Cheeks */}
               <motion.circle 
-                cx="22" cy="78" r="6" 
-                fill="#FF99AA" fillOpacity="0.4" 
-                animate={{ scale: [1, 1.2, 1] }} 
+                cx="24" cy="78" r="6" 
+                fill="#FF99AA" 
+                animate={{ 
+                  scale: expression === "shy" || expression === "loving" ? [1, 1.4, 1] : 1,
+                  opacity: expression === "shy" ? 0.8 : expression === "happy" ? 0.4 : 0.2
+                }} 
                 transition={{ duration: 2, repeat: Infinity }} 
               />
               <motion.circle 
-                cx="78" cy="78" r="6" 
-                fill="#FF99AA" fillOpacity="0.4" 
-                animate={{ scale: [1, 1.2, 1] }} 
+                cx="76" cy="78" r="6" 
+                fill="#FF99AA" 
+                animate={{ 
+                  scale: expression === "shy" || expression === "loving" ? [1, 1.4, 1] : 1,
+                  opacity: expression === "shy" ? 0.8 : expression === "happy" ? 0.4 : 0.2
+                }} 
                 transition={{ duration: 2, repeat: Infinity }} 
               />
 
+              {/* Eyes System */}
               <g>
-                {isBlinking || expression === "wink" ? (
+                {isBlinking ? (
                   <>
-                    {/* Left Eye */}
-                    {expression === "wink" ? (
-                      <path d="M25 68Q32.5 75 40 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
-                    ) : (
-                      <circle cx="32" cy="68" r="8" fill="#1A1A1A" />
-                    )}
-                    {/* Right Eye - Always curves when blinking/winking */}
-                    <path d="M60 68Q67.5 62 75 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    <path d="M25 68Q32.5 72 40 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    <path d="M60 68Q67.5 72 75 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
                   </>
                 ) : (
                   <>
-                    {/* Left Eye + Sparkle + Lashes */}
-                    <g>
-                      <circle cx="32" cy="68" r="8" fill="#1A1A1A" />
-                      <circle cx="30" cy="65" r="3" fill="white" />
-                      <circle cx="34" cy="71" r="1.5" fill="white" fillOpacity="0.8" />
-                      <path d="M24 64C22 60 18 58 16 62" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
-                      <path d="M28 62C26 56 22 54 20 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
-                    </g>
-                    
-                    {/* Right Eye + Sparkle + Lashes */}
-                    <g>
-                      <circle cx="68" cy="68" r="8" fill="#1A1A1A" />
-                      <circle cx="66" cy="65" r="3" fill="white" />
-                      <circle cx="70" cy="71" r="1.5" fill="white" fillOpacity="0.8" />
-                      <path d="M76 64C78 60 82 58 84 62" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
-                      <path d="M72 62C74 56 78 54 80 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
-                    </g>
+                    {/* Left Eye Logic */}
+                    {expression === "wink" ? (
+                      <path d="M25 68Q32.5 60 40 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    ) : expression === "happy" || expression === "proud" || expression === "shy" ? (
+                      <path d="M25 68Q32.5 60 40 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    ) : (
+                      <g>
+                        <circle cx="32" cy="68" r="8" fill="#1A1A1A" />
+                        {expression === "loving" ? (
+                          <path d="M32 72L29 68C27 65 30 63 32 66C34 63 37 65 35 68L32 72Z" fill="white" />
+                        ) : (
+                          <>
+                            <circle cx="30" cy="65" r="3" fill="white" />
+                            <circle cx="34" cy="71" r="1.5" fill="white" fillOpacity="0.8" />
+                          </>
+                        )}
+                        <path d="M24 64C22 60 18 58 16 62" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                        <path d="M28 62C26 56 22 54 20 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                      </g>
+                    )}
+
+                    {/* Right Eye Logic */}
+                    {expression === "happy" || expression === "proud" || expression === "shy" ? (
+                      <path d="M60 68Q67.5 60 75 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    ) : (
+                      <g>
+                        <circle cx="68" cy="68" r="8" fill="#1A1A1A" />
+                        {expression === "loving" ? (
+                          <path d="M68 72L65 68C63 65 66 63 68 66C70 63 73 65 71 68L68 72Z" fill="white" />
+                        ) : (
+                          <>
+                            <circle cx="66" cy="65" r="3" fill="white" />
+                            <circle cx="70" cy="71" r="1.5" fill="white" fillOpacity="0.8" />
+                          </>
+                        )}
+                        <path d="M76 64C78 60 82 58 84 62" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                        <path d="M72 62C74 56 78 54 80 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                      </g>
+                    )}
                   </>
                 )}
               </g>
 
-              {/* Dynamic Mouths */}
-              {expression === "happy" && (
-                <path d="M42 82Q50 90 58 82" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
-              )}
-              {expression === "surprised" && (
-                <circle cx="50" cy="85" r="5" stroke="#1A1A1A" strokeWidth="3" fill="none" />
-              )}
-              {expression === "determined" && (
-                <path d="M42 85H58" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
-              )}
-              {expression === "thinking" && (
-                <path d="M45 85Q50 82 55 85" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
-              )}
-              {expression === "wink" && (
-                <path d="M42 82Q50 88 58 82" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
-              )}
+              {/* Mouth System */}
+              <g>
+                {expression === "happy" && (
+                  <path d="M42 82Q50 90 58 82" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
+                )}
+                {expression === "excited" && (
+                  <path d="M40 82Q50 95 60 82H40Z" fill="#1A1A1A" />
+                )}
+                {expression === "surprised" && (
+                  <circle cx="50" cy="85" r="5" stroke="#1A1A1A" strokeWidth="3" fill="none" />
+                )}
+                {expression === "determined" && (
+                  <path d="M42 85H58" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
+                )}
+                {expression === "thinking" && (
+                  <path d="M45 85Q48 82 50 85Q52 88 55 85" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                )}
+                {expression === "wink" && (
+                  <path d="M44 82Q50 88 56 82" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
+                )}
+                {expression === "shy" && (
+                  <path d="M46 85Q50 82 54 85" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
+                )}
+                {expression === "proud" && (
+                  <path d="M42 85Q50 85 58 80" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
+                )}
+                {expression === "loving" && (
+                  <path d="M44 84Q50 92 56 84" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
+                )}
+              </g>
             </motion.g>
 
-            {/* Side Drip Animation */}
+            {/* Drip Animation */}
             <motion.path
               animate={dripControls}
               initial={{ opacity: 0 }}
@@ -362,7 +417,7 @@ export function Mascot() {
             />
           </g>
 
-          {/* Interactive Hands */}
+          {/* Hands */}
           <motion.g
             animate={{
               x: showHands ? [-12, -15] : [0, 0],
@@ -393,6 +448,8 @@ export function Mascot() {
             >
               {expression === "determined" ? (
                 <Award className="w-6 h-6 text-primary fill-primary" />
+              ) : expression === "excited" ? (
+                <SparklesIcon className="w-6 h-6 text-yellow-400 fill-yellow-400" />
               ) : (
                 <Heart 
                   className="w-6 h-6 transition-colors duration-500" 
