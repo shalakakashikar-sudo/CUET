@@ -123,16 +123,15 @@ export function Mascot() {
     }, 10000)
   }
 
-  // Always keep the mascot happy/positive
+  // Always keep the mascot happy/positive as requested
   useEffect(() => {
     if (!mounted) return
-    const context = getPageContext()
     if (pathname === "/") {
       setExpression("excited")
     } else {
       setExpression("happy")
     }
-  }, [pathname, mounted, getPageContext])
+  }, [pathname, mounted])
 
   // Look around idle behaviour
   useEffect(() => {
@@ -158,26 +157,6 @@ export function Mascot() {
     }, 6000)
     return () => clearInterval(lookInterval)
   }, [mounted, isBitten, isDripping, expression])
-
-  // Idle gestures
-  useEffect(() => {
-    if (!mounted) return
-    const gestureInterval = setInterval(() => {
-      if (!isBitten && !isDripping) {
-        setShowHands(true)
-        const moods: Expression[] = ["wink", "happy", "excited"]
-        const randomMood = moods[Math.floor(Math.random() * moods.length)]
-        const oldExpr = expression
-        setExpression(randomMood)
-        
-        setTimeout(() => {
-          setExpression(oldExpr)
-          setShowHands(false)
-        }, 3000)
-      }
-    }, 25000)
-    return () => clearInterval(gestureInterval)
-  }, [isBitten, isDripping, mounted, expression])
 
   // Blinking
   useEffect(() => {
@@ -222,7 +201,7 @@ export function Mascot() {
     }, 50000)
     
     return () => clearInterval(interval)
-  }, [dripControls, isBitten, getRandomComment, mounted, getPageContext])
+  }, [dripControls, isBitten, getRandomComment, mounted])
 
   useEffect(() => {
     if (!mounted) return
@@ -342,14 +321,14 @@ export function Mascot() {
 
               {/* Eyes System */}
               <g>
-                {/* Kawaii Eyelashes - Fixed position and curved UPWARDS */}
+                {/* Kawaii Eyelashes - Shortened and curved UPWARDS */}
                 <g>
-                  {/* Left Eye Eyelashes - Flicks up and out from the left end of arc */}
-                  <path d="M25 68 Q 15 68 10 55" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                  <path d="M28 64 Q 18 64 14 52" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                  {/* Right Eye Eyelashes - Flicks up and out from the right end of arc */}
-                  <path d="M75 68 Q 85 68 90 55" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                  <path d="M72 64 Q 82 64 86 52" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  {/* Left Eye Eyelashes - Subtle flicks attached to corners */}
+                  <path d="M25 68 Q 22 68 20 62" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  <path d="M27 65 Q 24 65 23 60" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  {/* Right Eye Eyelashes - Subtle flicks attached to corners */}
+                  <path d="M75 68 Q 78 68 80 62" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  <path d="M73 65 Q 76 65 77 60" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
                 </g>
 
                 {isBlinking ? (
@@ -360,9 +339,7 @@ export function Mascot() {
                 ) : (
                   <>
                     {/* Left Eye Logic */}
-                    {expression === "wink" ? (
-                      <path d="M25 68Q32.5 60 40 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
-                    ) : expression === "happy" ? (
+                    {expression === "wink" || expression === "happy" ? (
                       <path d="M25 68Q32.5 60 40 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
                     ) : (
                       <g>
