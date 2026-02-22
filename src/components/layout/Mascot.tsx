@@ -251,8 +251,8 @@ export function Mascot() {
               strokeWidth="4"
             />
 
-            {/* Cuter Face - Shifted Lower */}
-            <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y + 15 }}>
+            {/* Cuter Face - Shifted Higher to the Centre */}
+            <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - 12 }}>
               <g>
                 {isBlinking ? (
                   <>
