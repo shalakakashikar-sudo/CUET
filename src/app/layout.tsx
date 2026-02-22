@@ -5,8 +5,8 @@ import { Navbar } from "@/components/layout/Navbar"
 import { Mascot } from "@/components/layout/Mascot"
 
 export const metadata: Metadata = {
-  title: 'The Verbal Vantage | CUET Excellence',
-  description: 'Elite CUET 2026 English preparation with clinical strategy and practice.',
+  title: 'Sweet Scoops | CUET Excellence',
+  description: 'Gourmet CUET 2026 English preparation with clinical strategy and practice.',
 };
 
 export default function RootLayout({
@@ -27,8 +27,8 @@ export default function RootLayout({
           {children}
         </div>
         <Mascot />
-        <footer className="fixed bottom-0 w-full py-4 text-center text-sm font-medium text-muted-foreground bg-white/80 backdrop-blur-md border-t z-50">
-          Created by <span className="text-primary font-bold">Shalaka Kashikar</span>
+        <footer className="fixed bottom-0 w-full py-4 text-center text-sm font-bold text-primary/60 bg-white/80 backdrop-blur-md border-t z-50">
+          Created with ❤️ by <span className="text-primary">Shalaka Kashikar</span>
         </footer>
         <Toaster />
       </body>

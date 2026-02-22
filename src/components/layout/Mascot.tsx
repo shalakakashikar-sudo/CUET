@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect, useCallback } from "react"
@@ -11,7 +10,7 @@ type Expression = "happy" | "wink" | "surprised" | "determined" | "thinking"
 const COMMENTS = {
   default: [
     "Stay frosty! You're doing great!",
-    "Percentile 100 is just a few study sessions away!",
+    "Percentile 100 is just a few scoops away!",
     "Ready to freeze the competition?",
     "The Verbal Vantage: Where logic meets lexicon!",
     "I'm rooting for you (and I'm a popsicle, so that's rare)!",
@@ -20,7 +19,7 @@ const COMMENTS = {
     "Idiom Alert: 'Break the ice' means to start a conversation. I'm literally ice!",
   ],
   strategy: [
-    "Precision is my middle name. Well, it's actually Sky.",
+    "Precision is my middle name. Well, it's actually Berry.",
     "Order of Operations is basically a recipe for success!",
     "Accuracy > Speed. Don't rush, or you'll get a brain freeze!",
     "Remember: In Code 101, every -1 counts. Stay sharp!",
@@ -56,7 +55,7 @@ const COMMENTS = {
   ]
 }
 
-const CRYSTAL_BLUE = "#70D6FF"
+const STRAWBERRY_PINK = "#FF85A1"
 
 export function Mascot() {
   const pathname = usePathname()
@@ -164,7 +163,7 @@ export function Mascot() {
     if (!mounted) return
     const introTimer = setTimeout(() => {
       const intro = pathname === "/" 
-        ? "Hi! I'm Pops. Ready for 250/250?" 
+        ? "Hi! I'm Pops. Ready for some sweet scores?" 
         : `Let's master ${pathname.split('/').pop()?.replace(/-/g, ' ')}!`
       setMessage(intro)
       setIsVisible(true)
@@ -183,10 +182,10 @@ export function Mascot() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="mb-4 bg-white p-5 rounded-[2rem] shadow-2xl border-4 border-blue-200 max-w-[240px] text-sm font-black text-blue-600 relative pointer-events-auto text-center"
+            className="mb-4 bg-white p-5 rounded-[2.5rem] shadow-2xl border-4 border-primary/20 max-w-[240px] text-sm font-black text-primary relative pointer-events-auto text-center"
           >
             {message}
-            <div className="absolute -bottom-2 right-10 w-4 h-4 bg-white border-r-4 border-b-4 border-blue-200 rotate-45" />
+            <div className="absolute -bottom-2 right-10 w-4 h-4 bg-white border-r-4 border-b-4 border-primary/20 rotate-45" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -234,7 +233,7 @@ export function Mascot() {
             />
             <path
               d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V72C85 72 78 80 70 74C62 68 55 88 45 76C35 64 25 82 15 70V40Z"
-              fill={CRYSTAL_BLUE}
+              fill={STRAWBERRY_PINK}
               stroke="#1A1A1A"
               strokeWidth="4"
             />
@@ -264,7 +263,7 @@ export function Mascot() {
               animate={dripControls}
               initial={{ opacity: 0 }}
               d="M18 78C18 88 23 93 28 93C33 93 38 88 38 78C38 68 18 68 18 78Z"
-              fill={CRYSTAL_BLUE}
+              fill={STRAWBERRY_PINK}
               stroke="#1A1A1A"
               strokeWidth="2"
             />
@@ -278,7 +277,7 @@ export function Mascot() {
             }}
             transition={{ duration: 0.5, repeat: showHands ? Infinity : 0, repeatType: "reverse" }}
           >
-            <circle cx="12" cy="75" r="5" fill={CRYSTAL_BLUE} stroke="#1A1A1A" strokeWidth="3" />
+            <circle cx="12" cy="75" r="5" fill={STRAWBERRY_PINK} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
           <motion.g
             animate={{
@@ -287,7 +286,7 @@ export function Mascot() {
             }}
             transition={{ duration: 0.5, repeat: showHands ? Infinity : 0, repeatType: "reverse" }}
           >
-            <circle cx="88" cy="75" r="5" fill={CRYSTAL_BLUE} stroke="#1A1A1A" strokeWidth="3" />
+            <circle cx="88" cy="75" r="5" fill={STRAWBERRY_PINK} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
         </svg>
 
@@ -300,9 +299,9 @@ export function Mascot() {
               className="absolute -top-10 left-1/2 -translate-x-1/2"
             >
               {expression === "determined" ? (
-                <Award className="w-5 h-5 text-blue-400 fill-blue-400" />
+                <Award className="w-5 h-5 text-primary fill-primary" />
               ) : (
-                <Heart className="w-5 h-5 text-blue-400 fill-blue-400" />
+                <Heart className="w-5 h-5 text-primary fill-primary" />
               )}
             </motion.div>
           )}
