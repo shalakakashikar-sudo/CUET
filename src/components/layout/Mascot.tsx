@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence, useAnimation } from "framer-motion"
 import { usePathname } from "next/navigation"
-import { Heart, Award } from "lucide-react"
+import { Heart, Award, Sparkles as SparklesIcon } from "lucide-react"
 
 type Expression = "happy" | "wink" | "surprised" | "determined" | "thinking"
 
@@ -115,16 +115,35 @@ export function Mascot() {
     }, 10000)
   }
 
+  // Handle expression changes based on page context
+  useEffect(() => {
+    if (!mounted) return
+    const context = getPageContext()
+    if (context === "quiz") {
+      setExpression("determined")
+    } else if (context === "study") {
+      setExpression("thinking")
+    } else {
+      setExpression("happy")
+    }
+  }, [pathname, mounted, getPageContext])
+
   useEffect(() => {
     if (!mounted) return
     const gestureInterval = setInterval(() => {
       if (!isBitten && !isDripping) {
         setShowHands(true)
+        // Randomly wink sometimes during gestures
+        if (Math.random() > 0.7) {
+          const oldExpr = expression
+          setExpression("wink")
+          setTimeout(() => setExpression(oldExpr), 1500)
+        }
         setTimeout(() => setShowHands(false), 3000)
       }
     }, 20000)
     return () => clearInterval(gestureInterval)
-  }, [isBitten, isDripping, mounted])
+  }, [isBitten, isDripping, mounted, expression])
 
   useEffect(() => {
     if (!mounted) return
@@ -143,7 +162,8 @@ export function Mascot() {
       setMessage(getRandomComment('melting'))
       setIsVisible(true)
       setIsDripping(true)
-      setEyeOffset({ x: -4, y: 4 })
+      setExpression("surprised")
+      setEyeOffset({ x: -2, y: 2 })
       
       await dripControls.start({
         y: 110,
@@ -153,6 +173,7 @@ export function Mascot() {
       
       setEyeOffset({ x: 0, y: 0 })
       setIsDripping(false)
+      setExpression(getPageContext() === "quiz" ? "determined" : "happy")
       dripControls.set({ y: 0, opacity: 0 })
       
       setTimeout(() => setIsVisible(false), 10000)
@@ -163,7 +184,7 @@ export function Mascot() {
     }, 45000)
     
     return () => clearInterval(interval)
-  }, [dripControls, isBitten, getRandomComment, mounted])
+  }, [dripControls, isBitten, getRandomComment, mounted, getPageContext])
 
   useEffect(() => {
     if (!mounted) return
@@ -188,7 +209,7 @@ export function Mascot() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="mb-4 bg-white p-5 rounded-[2.5rem] shadow-2xl border-4 border-primary/20 max-w-[240px] text-sm font-black text-primary relative pointer-events-auto text-center"
+            className="mb-4 bg-white p-5 rounded-[2.5rem] shadow-2xl border-4 border-primary/20 max-w-[240px] text-sm font-black text-primary relative pointer-events-auto text-center parlour-stripes"
           >
             {message}
             <div className="absolute -bottom-2 right-10 w-4 h-4 bg-white border-r-4 border-b-4 border-primary/20 rotate-45" />
@@ -236,7 +257,7 @@ export function Mascot() {
 
           {/* Layered Body with 3D Effects */}
           <g clipPath="url(#biteClip)">
-            {/* Base Body Shapes with Scoops */}
+            {/* Base Body Shapes with "Scooped" Layers */}
             <path d="M15 40C15 20 30 10 50 10C70 10 85 20 85 40V45C85 45 75 50 65 45C55 40 45 50 35 45C25 40 15 45 15 45V40Z" fill={STRAWBERRY} />
             <path d="M15 45C15 45 25 40 35 45C45 50 55 40 65 45C75 50 85 45 85 45V70C85 70 75 75 65 70C55 65 45 75 35 70C25 65 15 70 15 70V45Z" fill={VANILLA} />
             <path d="M15 70C15 70 25 65 35 70C45 75 55 65 65 70C75 75 85 70 85 70V95C85 95 75 100 65 95C55 90 45 100 35 95C25 90 15 95 15 95V70Z" fill={MINT} />
@@ -261,35 +282,73 @@ export function Mascot() {
               strokeWidth="4"
             />
 
-            {/* Cuter Face - Shiny & Kawaii */}
+            {/* Faces - Interactive & Kawaii */}
             <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - 12 }}>
+              {/* Blushing Cheeks - Kawaii Element */}
+              <motion.circle 
+                cx="22" cy="78" r="6" 
+                fill="#FF99AA" fillOpacity="0.4" 
+                animate={{ scale: [1, 1.2, 1] }} 
+                transition={{ duration: 2, repeat: Infinity }} 
+              />
+              <motion.circle 
+                cx="78" cy="78" r="6" 
+                fill="#FF99AA" fillOpacity="0.4" 
+                animate={{ scale: [1, 1.2, 1] }} 
+                transition={{ duration: 2, repeat: Infinity }} 
+              />
+
               <g>
-                {isBlinking ? (
+                {isBlinking || expression === "wink" ? (
                   <>
-                    <path d="M25 65Q32.5 60 40 65" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
-                    <path d="M60 65Q67.5 60 75 65" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    {/* Left Eye */}
+                    {expression === "wink" ? (
+                      <path d="M25 68Q32.5 75 40 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
+                    ) : (
+                      <circle cx="32" cy="68" r="8" fill="#1A1A1A" />
+                    )}
+                    {/* Right Eye - Always curves when blinking/winking */}
+                    <path d="M60 68Q67.5 62 75 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
                   </>
                 ) : (
                   <>
-                    {/* Left Eye + Refined Upward Curved Kawaii Lashes */}
-                    <circle cx="32" cy="68" r="8" fill="#1A1A1A" />
-                    <path d="M24 64C22 60 18 58 16 62" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
-                    <path d="M28 62C26 56 22 54 20 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                    {/* Left Eye + Sparkle + Lashes */}
+                    <g>
+                      <circle cx="32" cy="68" r="8" fill="#1A1A1A" />
+                      <circle cx="30" cy="65" r="3" fill="white" />
+                      <circle cx="34" cy="71" r="1.5" fill="white" fillOpacity="0.8" />
+                      <path d="M24 64C22 60 18 58 16 62" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                      <path d="M28 62C26 56 22 54 20 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                    </g>
                     
-                    {/* Right Eye + Refined Upward Curved Kawaii Lashes */}
-                    <circle cx="68" cy="68" r="8" fill="#1A1A1A" />
-                    <path d="M76 64C78 60 82 58 84 62" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
-                    <path d="M72 62C74 56 78 54 80 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
-                    
-                    {/* Multi-Sparkle Pupils for 3D Life */}
-                    <circle cx="30" cy="65" r="3" fill="white" />
-                    <circle cx="34" cy="71" r="1.5" fill="white" fillOpacity="0.8" />
-                    <circle cx="66" cy="65" r="3" fill="white" />
-                    <circle cx="70" cy="71" r="1.5" fill="white" fillOpacity="0.8" />
+                    {/* Right Eye + Sparkle + Lashes */}
+                    <g>
+                      <circle cx="68" cy="68" r="8" fill="#1A1A1A" />
+                      <circle cx="66" cy="65" r="3" fill="white" />
+                      <circle cx="70" cy="71" r="1.5" fill="white" fillOpacity="0.8" />
+                      <path d="M76 64C78 60 82 58 84 62" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                      <path d="M72 62C74 56 78 54 80 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
+                    </g>
                   </>
                 )}
               </g>
-              <path d="M42 82Q50 88 58 82" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
+
+              {/* Dynamic Mouths */}
+              {expression === "happy" && (
+                <path d="M42 82Q50 90 58 82" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
+              )}
+              {expression === "surprised" && (
+                <circle cx="50" cy="85" r="5" stroke="#1A1A1A" strokeWidth="3" fill="none" />
+              )}
+              {expression === "determined" && (
+                <path d="M42 85H58" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
+              )}
+              {expression === "thinking" && (
+                <path d="M45 85Q50 82 55 85" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
+              )}
+              {expression === "wink" && (
+                <path d="M42 82Q50 88 58 82" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
+              )}
             </motion.g>
 
             {/* Side Drip Animation */}
