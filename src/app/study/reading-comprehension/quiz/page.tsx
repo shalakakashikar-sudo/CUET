@@ -46,24 +46,24 @@ const RC_PASSAGES: Passage[] = [
     id: "arjun",
     title: "Arjun the Artist",
     description: "A narrative on mentorship and artistic perseverance in Varanasi.",
-    content: "In the ancient city of Varanasi, Arjun found his world transformed one monsoon afternoon. Born into a family of hardworking labourers, he was expected to follow in his father's footsteps. Yet, Arjun harboured an unspoken passion for art that no one knew about. As dark clouds gathered and the first raindrops fell, he wandered through the narrow lanes of the old city, seeking solace from the predictable rhythms of life. That day, as he took refuge under a vibrant awning in a bustling market, Arjun encountered an old painter named Raghav. With paint-splattered hands and eyes that shimmered with decades of experience, Raghav noticed the spark in Arjun's eyes. He invited Arjun into his humble studio, where canvases whispered stories of love, loss, and hope. Inspired by Raghav's gentle mentorship, Arjun discovered his own unique style, blending tradition with innovation. Over time, his artwork became a mirror reflecting the emotions of the city, and his reputation grew. Arjun's journey from a reluctant son to an emerging artist was not without hardship. Yet, every challenge became a brushstroke in the masterpiece of his life. Eventually, his creations graced galleries beyond Varanasi, uniting cultures and hearts. In every piece, Arjun celebrated the resilience of the human spirit, proving that passion and perseverance can transform even the most ordinary life into a vibrant work of art.",
+    content: "In the ancient city of Varanasi, Arjun found his world transformed one monsoon afternoon. Born into a family of hardworking labourers, he was expected to follow in his father's footsteps. Yet, Arjun harboured an unspoken passion for art that no one knew about. As dark clouds gathered and the first raindrops fell, he wandered through the narrow lanes of the old city, seeking solace from the predictable rhythms of life. That day, as he took refuge under a vibrant awning in a bustling market, Arjun encountered an old painter named Raghav. With paint-splattered hands and eyes that shimmered with decades of experience, Raghav noticed the spark in Arjun's eyes. He invited Arjun into his humble studio, where canvases whispered stories of love, loss, and hope. Inspired by Raghav's gentle mentorship, Arjun discovered his own unique style, blending tradition with innovation. Over time, his artwork became a mirror reflecting the emotions of the city, and his reputation grew. Arjun's journey from a reluctant son to an emerging artist was not without hardship. Yet, every challenge became a brushstroke in the masterpiece of his life. Eventually, his creations graced galleries beyond Varanasi, uniting cultures and hearts. In every piece, Arjun celebrated the resilience of the human spirit, proving that passion and perseverance can transform even the most ordinary life into a vibrant work of art. His journey, filled with unexpected lessons and creative breakthroughs, taught him that every struggle offered a chance to begin anew, inspiring his art with hope and transformation.",
     questions: [
-      { id: 5, text: "Determine the primary theme illustrated in the passage:", options: ["Preventable hardships for artists", "Conflicts between urban modernity and tradition", "The beauty of monsoon afternoons", "Transformative influence of mentorship and passion"], correct: 3, explanation: "The focus is on how Raghav's guidance helped Arjun overcome adversity and find his voice." },
-      { id: 6, text: "Evaluate the impact of Arjun's artwork as described in the passage:", options: ["Remained confined to narrow lanes", "Mostly criticised and led to isolation", "Resonated deeply, uniting diverse cultures", "Remained a satisfying personal hobby"], correct: 2, explanation: "The passage notes his creations graced galleries beyond Varanasi, uniting cultures." },
-      { id: 7, text: "Deduce the message the author conveys about overcoming obstacles:", options: ["Struggles are insurmountable barriers", "Every challenge offers an opportunity to grow", "Only privileged backgrounds succeed", "Obstacles invariably lead to failure"], correct: 1, explanation: "Every challenge is described as a 'brushstroke in the masterpiece of his life'." },
-      { id: 8, text: "Interpret the change in Arjun's outlook on life throughout the passage:", options: ["Viewed hardship as an essential brushstroke", "Became indifferent to challenges", "Rejected the idea of change", "Focused solely on commercial success"], correct: 0, explanation: "Arjun learned to see struggles as necessary parts of his journey." }
+      { id: 5, text: "Determine the primary theme illustrated in the passage:", options: ["The preventable hardships for those who choose artistic paths", "Conflicts between urban modernity and ancient traditions", "The fleeting beauty of monsoon afternoons encouraging passion", "The transformative influence of mentorship and following one's passion"], correct: 3, explanation: "The focus is on how Raghav's guidance helped Arjun overcome adversity and find his voice." },
+      { id: 6, text: "Evaluate the impact of Arjun's artwork as described in the passage:", options: ["His art remained confined within narrow lanes", "His work was mostly criticised and led to isolation", "His creations resonated deeply, uniting diverse cultures", "His art was solely a personal hobby that never gained attention"], correct: 2, explanation: "The passage notes his creations graced galleries beyond Varanasi, uniting cultures." },
+      { id: 7, text: "Deduce the message the author conveys about overcoming obstacles:", options: ["Struggles are insurmountable barriers", "Every challenge offers an opportunity to grow and transform", "Only those with privileged backgrounds can succeed", "Obstacles invariably lead to failure"], correct: 1, explanation: "Every challenge is described as a 'brushstroke in the masterpiece of his life'." },
+      { id: 8, text: "Interpret the change in Arjun's outlook on life throughout the passage:", options: ["He viewed every hardship as an essential brushstroke", "He became indifferent to challenges", "He rejected the essential idea of change", "He focused solely on attaining commercial success"], correct: 0, explanation: "Arjun learned to see struggles as necessary parts of his journey." }
     ]
   },
   {
     id: "handicrafts",
     title: "Indian Handicrafts",
     description: "A survey of India's diverse and rich artistic heritage.",
-    content: "India is renowned for its rich and diverse heritage of handicrafts, which reflect the country's deep cultural roots and artistic traditions. Each region in India has its own distinct craft, passed down through generations of artisans. In Kashmir, the famous Pashmina shawls and carpets are known for their delicate embroidery. Rajasthan is a treasure trove of vibrant handicrafts, including tie-and-dye fabrics, exquisite jewellery, and meenakari work. Andhra Pradesh is recognised for its Bidriware and Pochampally sarees, known for traditional ikat patterns. Tamil Nadu is prized for bronze sculptures and Kanjeevaram sarees. Mysore is famous for silk weaving and sandalwood products, while Kerala is known for ivory carvings and rosewood furniture. The terracotta figurines of Bankura, Chikan work from Lucknow, and silk sarees from Banaras are a testament to India's diversity. These handicrafts provide employment to millions of artisans. Indian handicrafts are a testament to the timeless creativity and skill of the artisans who continue to keep these traditions alive.",
+    content: "India is renowned for its rich and diverse heritage of handicrafts, which reflect the country's deep cultural roots and artistic traditions. Each region in India has its own distinct craft, passed down through generations of artisans. These handicrafts showcase the intricate artistry, creativity, and skills of Indian craftsmen. In Kashmir, the famous Pashmina shawls and carpets are known for their delicate embroidery and luxurious feel. Rajasthan is a treasure trove of vibrant handicrafts, including its famous tie-and-dye fabrics, exquisite jewellery, and intricate meenakari work. Andhra Pradesh is recognised for its Bidriware, a form of metalwork, and the beautiful Pochampally sarees, which are known for their traditional ikat patterns. In Tamil Nadu, the intricate bronze sculptures and the traditional Kanjeevaram sarees are highly prized. Mysore is famous for its silk weaving and sandalwood products, while Kerala is known for its elegant ivory carvings and rosewood furniture. The terracotta figurines of Bankura, the delicate Chikan work from Lucknow, and the rich brocade and silk sarees from Banaras are a testament to India's diversity in craftsmanship. These handicrafts not only contribute to India's cultural heritage but also provide employment to millions of artisans across the country. Over the years, these traditional crafts have evolved while preserving their authenticity, creating a legacy of artistic excellence. Indian handicrafts are a testament to the timeless creativity and skill of the artisans who continue to keep these traditions alive for generations to come.",
     questions: [
       { id: 9, text: "Which of the following is NOT mentioned as a famous handicraft from Rajasthan?", options: ["Tie-and-dye fabrics", "Pashmina shawls", "Stone studded Jewellery", "Meenakari work"], correct: 1, explanation: "Pashmina shawls are specifically attributed to Kashmir in the passage." },
       { id: 10, text: "The traditional ikat patterns are found in ___ sarees from Andhra Pradesh.", options: ["Mysore", "Kanjeevaram", "Pochampally", "Banaras"], correct: 2, explanation: "The passage explicitly links Pochampally sarees with ikat patterns." },
-      { id: 11, text: "According to the passage, what has helped preserve Indian handicrafts over the years?", options: ["Government support", "Modern technologies", "International demand", "Generational knowledge passed down by artisans"], correct: 3, explanation: "The text notes crafts are 'passed down through generations of artisans'." },
-      { id: 12, text: "What does the passage primarily highlight?", options: ["Economic impact of handicrafts", "Diversity and richness of Indian handicrafts", "Use in daily lives", "Role in modern design"], correct: 1, explanation: "The overall focus is the variety and cultural depth across different regions." }
+      { id: 11, text: "According to the passage, what has helped preserve Indian handicrafts over the years?", options: ["Government support in all its fervor", "Modern technologies with the help of AI", "International demand for the renowned handicrafts", "Generational knowledge passed down by artisans"], correct: 3, explanation: "The text notes crafts are 'passed down through generations of artisans'." },
+      { id: 12, text: "What does the passage primarily highlight?", options: ["The economic impact of our handicrafts", "The diversity and richness of Indian handicrafts", "The use of handicrafts in the daily lives", "The role of Indian handicrafts in modern design"], correct: 1, explanation: "The overall focus is the variety and cultural depth across different regions." }
     ]
   },
   {
@@ -72,11 +72,11 @@ const RC_PASSAGES: Passage[] = [
     description: "A poignant fable about nature's selflessness and human greed.",
     content: "There is a lovely story of a tree and a little boy who used to play in its shade. They had become friends. One day, the boy sat leaning against the trunk of the tree, crying. He was hungry. \"Eat my fruit\" said the kind tree bending down one of its branches. The boy ate the fruit and was happy. The boy grew up. One day, he sat under the tree with an anxious look on his face. \"What is the matter?\" asked the tree. \"I am going to marry and I want a house to live in,\" said the young man. \"Cut down my branches and build your house,\" said the tree. The young man built a house with the branches of the tree. The young man became a sailor. One day, he sat under the tree with a worried look. \"What is the matter?\" asked the tree. \"My captain is a cruel fellow. I want a ship of my own,\" said the sailor. \"Cut down my trunk and build a ship.\" The sailor lost his ship and returned home as a helpless old man. On a cold winter's day, he stood where the tree once was, leaning on his stick and trembling with cold. \"Make a fire of me, and warm yourself\" said the stump of the tree. The stump of the unselfish tree burnt in the fire, softly humming a tune.",
     questions: [
-      { id: 13, text: "Match the states of the boy with their reasons correctly (Crying: Hungry; Anxious: House; Worried: Own Ship):", options: ["A-IV, B-III, C-II, D-I", "A-III, B-II, C-I, D-IV", "A-I, B-III, C-II, D-IV", "A-II, B-I, C-IV, D-III"], correct: 1, explanation: "A (Crying) matches III (Hungry); B (Anxious) matches II (Wanted House); C (Worried) matches I (Wanted Ship)." },
+      { id: 13, text: "Match the states of the boy with their reasons correctly (Crying: Hungry; Anxious: Wanted House; Worried: Wanted Ship):", options: ["A-IV, B-III, C-II, D-I", "A-III, B-II, C-I, D-IV", "A-I, B-III, C-II, D-IV", "A-II, B-I, C-IV, D-III"], correct: 1, explanation: "A (Crying) matches III (Hungry); B (Anxious) matches II (Wanted House); C (Worried) matches I (Wanted Ship)." },
       { id: 14, text: "The two protagonists of the story are:", options: ["Both innocent and naive", "One is intelligent and the other a fool", "Both cunning and selfish", "One is demanding and greedy, the other generous and supportive"], correct: 3, explanation: "The story highlights the contrast between the boy's constant demands and the tree's unconditional giving." },
       { id: 15, text: "How were the tree and the little boy related to each other?", options: ["Close contenders in survival", "Close friends due to long association", "Colleagues working together", "Competitors in needs"], correct: 1, explanation: "The story explicitly states 'They had become friends'." },
       { id: 16, text: "The story highlights a typical selfish human nature. Identify it:", options: ["Compassion and benevolence", "Conservation of forests", "Mindless greed for wealth", "Heartless and foolish exploitation of nature"], correct: 3, explanation: "The boy uses the tree until it is nothing but a stump, reflecting exploitation." },
-      { id: 17, text: "The stump of the unselfish tree burnt in the fire, softly humming a tune means:", options: ["Trees sing when burnt", "The tree felt no pain in its suffering while caring for others", "The tree tried to forget its pain", "The tree was a fool"], correct: 1, explanation: "The humming symbolizes the tree's final act of peace in serving its friend." },
+      { id: 17, text: "The stump of the unselfish tree burnt in the fire, softly humming a tune means:", options: ["Trees sing when burnt", "The tree felt no pain while caring for others", "The tree tried to forget its pain", "The tree was a fool"], correct: 1, explanation: "The humming symbolizes the tree's final act of peace in serving its friend." },
       { id: 18, text: "How would you define the relationship that the story illustrates?", options: ["Mutual symbiotic relationship", "Relationship based on deceit", "One sided relationship of love and support", "Disguised enmity"], correct: 2, explanation: "The tree gives everything while the boy only returns to take." }
     ]
   },
@@ -86,12 +86,12 @@ const RC_PASSAGES: Passage[] = [
     description: "An introspective look at the benefits of being reserved.",
     content: "I must say that, beyond occasionally exposing me to laughter, my constitutional shyness has been of no great disadvantage to me. In fact, I can see that, on the contrary, it has been all to my advantage. My hesitancy in speech, which was once an annoyance, is now a pleasure. Its greatest pleasure has been that it has taught me the economy of words. I have naturally formed the habit of restraining my thoughts. And I can now, give myself the certificate that a thoughtless word hardly ever escapes of my tongue or pen. I do not recollect ever having had to regret anything in my speech or writing. I have thus been spared many a mishap and waste of time. Experience has taught me that silence is part of the spiritual discipline of a votary of truth. Proneness to exaggerate, to suppress or modify the truth, wittingly or unwittingly, is a natural weakness of man and silence is necessary in order to surmount it. A man of few words will rarely be thoughtless in his speech; he will measure every word.",
     questions: [
-      { id: 19, text: "The expression, \"my constitutional shyness\" in the given passage would mean:", options: ["Shyness in Article 1", "Shyness in the Preamble", "Innate and natural shyness", "Pretended shyness"], correct: 2, explanation: "'Constitutional' refers to one's physical or mental makeup; hence, innate." },
+      { id: 19, text: "The expression, \"my constitutional shyness\" in the given passage would mean:", options: ["Shyness in Article 1", "Shyness in the Preamble", "Innate and natural shyness", "Pretended shyness"], correct: 2, explanation: "'Constitutional' refers to one's makeup; hence, innate." },
       { id: 20, text: "The author as a matured individual believes that his shy nature brought him:", options: ["Great advantage in life", "Unmatched joy and enchantment", "Disadvantage in rituals", "Media coverage"], correct: 0, explanation: "The author states 'it has been all to my advantage'." },
       { id: 21, text: "The author due to his shy nature:", options: ["Aggressively attacked crowds", "Worked hard to hide his stammer", "Naturally formed the habit of restraining thoughts", "Became an ascetic"], correct: 2, explanation: "He formed the habit of thinking before speaking." },
-      { id: 22, text: "The author claims that:", options: ["He has rarely spoken a thoughtless word", "He always speaks without thinking", "He is prone to nightmares", "He became a cricket player"], correct: 0, explanation: "He states that a thoughtless word hardly ever escapes him." },
-      { id: 23, text: "Experience has taught the author that:", options: ["Silence is better than laughter", "Silence is part of the spiritual discipline", "Silence is to be avoided", "Silence can never be attained"], correct: 1, explanation: "He explicitly calls silence 'part of the spiritual discipline of a votary of truth'." },
-      { id: 24, text: "Match the phrases correctly (Few words: Rarely thoughtless; Hesitancy: Annoyance; Exaggerate: Weakness; Shyness: Laughter):", options: ["A-IV, B-III, C-II, D-I", "A-II, B-I, C-IV, D-III", "A-III, B-IV, C-I, D-II", "A-I, B-II, C-III, D-IV"], correct: 3, explanation: "A (Few words) -> I; B (Hesitancy) -> II; C (Exaggerate) -> III; D (Shyness) -> IV." }
+      { id: 22, text: "The author claims that:", options: ["He has rarely spoken a thoughtless word", "He always speaks without thinking", "He has become prone to nightmares", "He became a great cricket player"], correct: 0, explanation: "He states that a thoughtless word hardly ever escapes him." },
+      { id: 23, text: "Experience has taught the author that:", options: ["Silence is better than laughter", "Silence is part of the spiritual discipline", "Silence is to be avoided", "Silence can never be attained"], correct: 1, explanation: "He calls silence 'part of the spiritual discipline of a votary of truth'." },
+      { id: 24, text: "Match the phrases correctly (Few words: Rarely thoughtless; Hesitancy: Annoyance; Exaggerate: Weakness; Shyness: Laughter):", options: ["A-IV, B-III, C-II, D-I", "A-II, B-I, C-IV, D-III", "A-III, B-IV, C-I, D-II", "A-I, B-II, C-III, D-IV"], correct: 3, explanation: "A matches I; B matches II; C matches III; D matches IV." }
     ]
   },
   {
@@ -100,10 +100,10 @@ const RC_PASSAGES: Passage[] = [
     description: "A philosophical exploration of modern life's spiritual void.",
     content: "Unhappiness and discontent spring not only from poverty. Man is a strange creature, fundamentally different from other animals. He has far horizons, invincible hopes, creative energies, spiritual powers. If they are left undeveloped and unsatisfied, he may have all the comforts which wealth can give, but will still feel that life is not worthwhile. The great humanist writers, Shaw and Wells, Arnold Bennett and Galsworthy, expose the foibles, inconsistencies and weaknesses of modern life, but they ignore the deeper currents. The outward chaos and confusion of our life reflect the confusion of our hearts and minds. Constitutions, says Plato, \"are but the reflections in the outside world of the values which prevail in men's minds.\" There must be a change in the ideals we cherish. What is missing in our age is the soul; there is nothing wrong with the body. We suffer from sickness of spirit. We must discover our roots in the eternal and regain faith in the transcendent truth which will order life.",
     questions: [
-      { id: 25, text: "The author implies that if the eternal values and ideals are not regained, then:", options: ["The world will be flooded", "The sky will fall", "Civilization will be ruined forever", "The earth will fall into a black hole"], correct: 2, explanation: "The text warns that the 'house' (society) will fall without these values." },
+      { id: 25, text: "The author implies that if the eternal values and ideals are not regained, then:", options: ["The world will be flooded", "The sky will fall", "Civilization and society will be ruined", "The earth will fall into a black hole"], correct: 2, explanation: "The text warns that the 'house' (society) will fall without these values." },
       { id: 26, text: "According to the author, the humanist writers have ignored:", options: ["The spiritual aspect of life", "Religion and rituals", "Cultural progress", "Material welfare"], correct: 0, explanation: "He states they 'ignore the deeper currents'." },
       { id: 27, text: "According to the author, how is man different from other animals?", options: ["Power of speech", "Hopes, creative energies, and spiritual powers", "Money and achievement", "Physical prowess"], correct: 1, explanation: "These specific traits are listed as unique human differentiators." },
-      { id: 28, text: "According to the author, unhappiness and discontent spring from:", options: ["Poverty alone", "Ignorance", "Poverty along with moral and spiritual degradation", "Mental turmoil"], correct: 2, explanation: "He links unhappiness to both poverty and the unsatisfied spirit." },
+      { id: 28, text: "According to the author, unhappiness and discontent spring from:", options: ["Poverty alone", "Ignorance", "Poverty along with moral degradation", "Mental turmoil"], correct: 2, explanation: "He links unhappiness to both poverty and the unsatisfied spirit." },
       { id: 29, text: "Despite wealth, man will feel incomplete if:", options: ["Prevented from mingling", "Creative energies and spiritual powers are unsatisfied", "Deserted by friends", "Failed to enroll in a university"], correct: 1, explanation: "The author explicitly links worthwhileness to these internal powers." }
     ]
   },
@@ -113,11 +113,11 @@ const RC_PASSAGES: Passage[] = [
     description: "Tracing the origins of teamwork from medieval tournaments to business.",
     content: "The phrase \"team building exercises\" may be new but the reality is not. Its origin goes back at least as far as the medieval tournaments. These provided knights with military training and the opportunity to make reputations. Individual jousting and hand-to hand combat came first. Then there were team events. In these, a group of knights fought against another group. These teams often stayed together and fought side-by-side in real battle. Team games today, such as football, baseball, cricket and hockey, are the distant descendants of such medieval tournaments. A crucial event in the movement from being a group to becoming a team can be the team building exercise. This can be based upon either (1) a substitute team task (for example, a business case study or a few days of outdoor activities) or (2) a real task (for example, going away for a weekend to plan company strategy). There are pros and cons to both approaches. The advantage of a substitute task type of event is that success or failure is not of paramount importance. Nor are there any technological or professional challenges to meet, so that people can concentrate on the essential issue of learning as to how to work more effectively together as a team.",
     questions: [
-      { id: 30, text: "Choose the correct meaning of the word 'Crucial' from the options given:", options: ["Decisive", "Essential", "Insignificant", "Immature"], correct: 0, explanation: "In this context, crucial means decisive or extremely important for a outcome." },
+      { id: 30, text: "Choose the correct meaning of the word 'Crucial' from the options given:", options: ["Decisive", "Essential", "Insignificant", "Immature"], correct: 0, explanation: "In this context, crucial means decisive for a outcome." },
       { id: 31, text: "Choose the option that is the Antonym of the word 'Descendent':", options: ["Grandchildren", "Heir", "Ancestor", "Children"], correct: 2, explanation: "Ancestor is the opposite of a descendent." },
-      { id: 32, text: "Match tasks: (Substitute: Outdoor; Training: Jousting; Knights Team: Battle; Real: Strategy):", options: ["(A)-(I), (B)-(III), (C)-(IV), (D)-(II)", "(A)-(I), (B)-(IV), (C)-(III), (D)-(II)", "(A)-(I), (B)-(II), (C)-(III), (D)-(IV)", "(A)-(IV), (B)-(III), (C)-(II), (D)-(I)"], correct: 0, explanation: "A (Substitute) matches I; B (Training) matches III; C (Team/Knights) matches IV; D (Real) matches II." },
+      { id: 32, text: "Match tasks: (Substitute: Outdoor; Training: Jousting; Knights Team: Battle; Real: Strategy):", options: ["A-I, B-III, C-IV, D-II", "A-I, B-IV, C-III, D-II", "A-I, B-II, C-III, D-IV", "A-IV, B-III, C-II, D-I"], correct: 0, explanation: "A matches I; B matches III; C matches IV; D matches II." },
       { id: 33, text: "According to the passage, the reality of 'team-building exercise' is that, it is:", options: ["Advanced", "New", "Ancient", "Modern"], correct: 2, explanation: "The text says its reality goes back to medieval times, implying it is ancient." },
-      { id: 34, text: "According to the passage, a group of knights fought against another group in:", options: ["Cricket Only", "Real Battle Only", "Baseball Only", "Hockey Only"], correct: 1, explanation: "The passage states they fought side-by-side in real battle." }
+      { id: 34, text: "According to the passage, a group of knights fought against another group in:", options: ["Cricket", "Real Battle", "Baseball", "Hockey"], correct: 1, explanation: "The passage states they fought side-by-side in real battle." }
     ]
   },
   {
@@ -126,10 +126,10 @@ const RC_PASSAGES: Passage[] = [
     description: "Buddhist insights into living a light and abundant life.",
     content: "When things aren't going well, we tend to think we are lacking in something. But if we want to change our current situation, we should first part with something, before we look to acquire something else. This is a fundamental tenet of simple living. Discard your attachments. Let go of your assumptions. Reduce your possessions. Living simply is also about discarding your physical and mental burdens. It's amazing how refreshed we can feel after a good cry. Crying clears out whatever weight you were carrying in your heart. You feel energized to try again. I have always felt that the Buddhist concept of the 'enlightened mind' - the Japanese characters for which depict a \"clean mind\" refers to this 'refreshment' of the spirit. The act of discarding, of detaching from mental and physical burdens, from the baggage that weighs us down, is extremely difficult. Sometimes it can be accompanied by real pain, as when we part with someone who is dear to us. But if you want to improve the way things are, if you want to live with a light heart, you must start by discarding. The moment you detach, a new abundance will flow into your life.",
     questions: [
-      { id: 35, text: "What is the fundamental tenet of 'simple living?'", options: ["Realising lack", "Feeling energised", "The act of letting go", "Attaining enlightenment"], correct: 2, explanation: "The text defines parting with things/letting go as the fundamental tenet." },
-      { id: 36, text: "Which use of 'part' matches the context in paragraph 4?", options: ["Essential part of school", "Part and parcel of life", "Take part in competition", "Part our ways from evil"], correct: 3, explanation: "In the passage, 'part' means to separate or let go, matching 'part our ways from evil'." },
-      { id: 37, text: "Which words match the meaning of 'discard'?", options: ["Detach and Let go", "Detach and Derived", "Derived and Disadvantage", "Disadvantage and Distant"], correct: 0, explanation: "Detach and Let go are synonyms for discard in this context." },
-      { id: 38, text: "What can be the appropriate title for the passage?", options: ["Detachment - A key to simple living", "Enlightenment", "Burdens of life", "Japanese improvement"], correct: 0, explanation: "The entire passage focuses on detachment as a path to simple living." },
+      { id: 35, text: "What is the fundamental tenet of 'simple living?'", options: ["Realising lack", "Feeling energised", "The act of letting go", "Attaining enlightenment"], correct: 2, explanation: "The text defines parting with things as the fundamental tenet." },
+      { id: 36, text: "Which use of 'part' matches the context in paragraph 4?", options: ["Essential part of school", "Part and parcel of life", "Take part in competition", "Part our ways from evil"], correct: 3, explanation: "In the passage, 'part' means to separate or let go." },
+      { id: 37, text: "Which words match the meaning of 'discard'?", options: ["Detach and Let go", "Detach and Derived", "Derived and Disadvantage", "Disadvantage and Distant"], correct: 0, explanation: "Detach and Let go are synonyms for discard here." },
+      { id: 38, text: "What can be the appropriate title for the passage?", options: ["Detachment - A key to simple living", "Enlightenment", "Burdens of life", "Japanese improvement"], correct: 0, explanation: "The focus is detachment as a path to simple living." },
       { id: 39, text: "According to the passage, what are the qualities of 'a good cry'?", options: ["Makes you light and energized", "Way of detaching", "Sign of weakness", "Waste of time"], correct: 0, explanation: "The passage says it clears weight and makes you feel energized." }
     ]
   },
@@ -140,10 +140,10 @@ const RC_PASSAGES: Passage[] = [
     content: "The Autobiography of a Horse. Now that I am getting old and stiff in the joints, I like to meditate, while grazing in the pasture, on my foal days. I think that was the happiest part of my life. I had no work to do, and could run about after my mother, who was a fine white Arab mare, without any restraint. When I was old enough, the trainer came and began driving me round and round in circles with his long whip. However, my mother told me that it was no use of my resisting, and I was at last thoroughly trained as a riding-horse. I was bought by a young officer as a polo pony, and I soon got to love the game. But he got into debt, and had to sell me; and I was bought by a gentleman and a lady who kept a buggy. I hated this work; and I found that jibbing was a very good trick. My owner got disgusted at last, and sold me to a gentleman who was fond of hunting. I was delighted to get back to saddle-work; and thoroughly enjoyed my gallops with the hounds. But an accident put a stop to that; for one day my master pressed me to a big jump which I knew I could not do. I fell and master broke his arm, and I badly sprained one of my legs. I was sold to a gentleman who wanted a quiet riding-horse. He was a kind master, and used me well. Now that I am old, he gives me very little work, and I spend most of my time grazing in the pasture, and leading a quiet, contented life.",
     questions: [
       { id: 40, text: "The word \"nibbled\" as used in the passage means to:", options: ["Take huge bites", "Take small bites", "Gulp quickly", "Eat for long duration"], correct: 1, explanation: "To nibble means to eat in small, gentle bites." },
-      { id: 41, text: "Arrange the trainer's steps: (B: Fasten rope -> A: Move in circles -> D: Angry/Frightened -> C: Tired -> E: No resistance):", options: ["(A), (B), (C), (D), (E)", "(D), (B), (A), (E), (C)", "(B), (C), (D), (A), (E)", "(B), (A), (D), (C), (E)"], correct: 3, explanation: "The trainer first fastens the rope, then drives the horse in circles, causing anger/fear until tired, finally leading to training." },
+      { id: 41, text: "Arrange the trainer's steps: (B: Fasten rope -> A: Move in circles -> D: Angry/Frightened -> C: Tired -> E: No resistance):", options: ["A, B, C, D, E", "D, B, A, E, C", "B, C, D, A, E", "B, A, D, C, E"], correct: 3, explanation: "Trainer fastens rope, drives in circles, causing anger/fear until tired, then training completes." },
       { id: 42, text: "Find a word which means \"very happy\":", options: ["Steadily", "Tired", "Disgusted", "Delighted"], correct: 3, explanation: "Delighted is a synonym for very happy." },
-      { id: 43, text: "Being old, the horse:", options: ["Enjoys polo", "Hunts with hounds", "Likes to meditate and graze", "Is unsatisfied"], correct: 2, explanation: "The passage says he likes to meditate and spend time grazing in his old age." },
-      { id: 44, text: "Which trick was NOT part of the horse's coping mechanism when whipped?", options: ["Jibbing", "Galloping", "Shying", "Backing up"], correct: 1, explanation: "Galloping was part of the hunting work he enjoyed, not a coping trick." }
+      { id: 43, text: "Being old, the horse:", options: ["Enjoys polo", "Hunts with hounds", "Likes to meditate and graze", "Is unsatisfied"], correct: 2, explanation: "He likes to meditate and spend time grazing." },
+      { id: 44, text: "Which trick was NOT part of the horse's coping mechanism?", options: ["Jibbing", "Galloping", "Shying", "Backing up"], correct: 1, explanation: "Galloping was enjoyable work, not a coping trick." }
     ]
   }
 ]
@@ -151,6 +151,7 @@ const RC_PASSAGES: Passage[] = [
 export default function RCQuizPage() {
   const { toast } = useToast()
   const quizRef = useRef<HTMLDivElement>(null)
+  const questionRef = useRef<HTMLDivElement>(null)
   const [selectedPassageId, setSelectedPassageId] = useState<string | null>(null)
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
@@ -159,11 +160,13 @@ export default function RCQuizPage() {
   const selectedPassage = RC_PASSAGES.find(p => p.id === selectedPassageId)
   const questions = selectedPassage?.questions || []
 
-  const scrollToQuizTop = useCallback(() => {
-    if (quizRef.current) {
-      const offset = 80
+  const scrollToTarget = useCallback(() => {
+    // Starting question 2 (index 1), scroll to questionRef. Else scroll to quizRef.
+    const target = (currentStep > 0 && questionRef.current) ? questionRef.current : quizRef.current;
+    if (target) {
+      const offset = 100
       const bodyRect = document.body.getBoundingClientRect().top
-      const elementRect = quizRef.current.getBoundingClientRect().top
+      const elementRect = target.getBoundingClientRect().top
       const elementPosition = elementRect - bodyRect
       const offsetPosition = elementPosition - offset
 
@@ -172,18 +175,24 @@ export default function RCQuizPage() {
         behavior: 'smooth'
       })
     }
-  }, [])
+  }, [currentStep])
+
+  useEffect(() => {
+    if (selectedPassageId && !isFinished) {
+      const timer = setTimeout(scrollToTarget, 100)
+      return () => clearTimeout(timer)
+    }
+  }, [currentStep, selectedPassageId, isFinished, scrollToTarget])
 
   const nextQuestion = useCallback(() => {
     if (currentStep < questions.length - 1) {
       setCurrentStep(currentStep + 1)
-      setTimeout(scrollToQuizTop, 100)
     } else {
       setIsFinished(true)
       toast({ title: "Passage Complete!", description: "Check your performance analysis." })
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
-  }, [currentStep, questions.length, toast, scrollToQuizTop])
+  }, [currentStep, questions.length, toast])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -386,7 +395,7 @@ export default function RCQuizPage() {
             </div>
           </Card>
 
-          <div className="space-y-6">
+          <div className="space-y-6" ref={questionRef}>
             <Card className="border-none shadow-xl rounded-[2.5rem] bg-white">
               <CardHeader className="p-8 pb-4">
                 <CardTitle className="text-xl leading-snug font-bold text-foreground">{q.text}</CardTitle>
@@ -425,7 +434,6 @@ export default function RCQuizPage() {
             <div className="flex justify-between items-center">
               <Button variant="ghost" onClick={() => {
                 setCurrentStep(Math.max(0, currentStep - 1))
-                setTimeout(scrollToQuizTop, 100)
               }} disabled={currentStep === 0} className="rounded-xl font-bold">
                 <ChevronLeft className="w-4 h-4 mr-1" /> Previous
               </Button>
