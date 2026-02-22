@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence, useAnimation } from "framer-motion"
 import { usePathname } from "next/navigation"
-import { Heart, Zap, Award } from "lucide-react"
+import { Heart, Award } from "lucide-react"
 
 type Expression = "happy" | "wink" | "surprised" | "determined" | "thinking"
 
@@ -37,7 +37,6 @@ const COMMENTS = {
     "Grammar Tip: 'Despite' needs a noun, 'Although' needs a clause!",
     "Suffixes are like tails; they tell you where the word is going.",
     "Word of the Day: 'Sagacious' means wise. Be sagacious, study hard!",
-    "Idiom Alert: 'Spill the beans' means to reveal a secret. I prefer spills to melts!",
   ],
   quiz: [
     "Focus mode: ACTIVATED. Let's get that 250!",
@@ -54,7 +53,6 @@ const COMMENTS = {
     "The heat is on! Let's pick up the pace!",
     "I'm dripping away! Don't leave me hanging, study up!",
     "Time is ticking and I'm trickling! Move it!",
-    "Accuracy maintains your cool. Speed stops the melt!",
   ]
 }
 
@@ -119,41 +117,18 @@ export function Mascot() {
         setShowHands(true)
         setTimeout(() => setShowHands(false), 3000)
       }
-    }, 15000 + Math.random() * 10000)
+    }, 20000)
     return () => clearInterval(gestureInterval)
   }, [isBitten, isDripping, mounted])
-
-  useEffect(() => {
-    if (!mounted) return
-    if (!isBitten && !isDripping) {
-      const context = getPageContext()
-      if (context === "quiz") setExpression("determined")
-      else if (context === "strategy") setExpression("happy")
-      else setExpression("happy")
-    }
-  }, [pathname, isBitten, isDripping, getPageContext, mounted])
 
   useEffect(() => {
     if (!mounted) return
     const blinkInterval = setInterval(() => {
       setIsBlinking(true)
       setTimeout(() => setIsBlinking(false), 150)
-    }, 4000 + Math.random() * 3000)
+    }, 4000)
     return () => clearInterval(blinkInterval)
   }, [mounted])
-
-  useEffect(() => {
-    if (!mounted) return
-    const lookInterval = setInterval(() => {
-      if (!isDripping && !isBitten) {
-        const x = (Math.random() - 0.5) * 8
-        const y = (Math.random() - 0.5) * 6
-        setEyeOffset({ x, y })
-        setTimeout(() => setEyeOffset({ x: 0, y: 0 }), 1500)
-      }
-    }, 6000)
-    return () => clearInterval(lookInterval)
-  }, [isDripping, isBitten, mounted])
 
   useEffect(() => {
     if (!mounted) return
@@ -163,7 +138,6 @@ export function Mascot() {
       setMessage(getRandomComment('melting'))
       setIsVisible(true)
       setIsDripping(true)
-      
       setEyeOffset({ x: -4, y: 4 })
       
       await dripControls.start({
@@ -180,15 +154,15 @@ export function Mascot() {
     }
 
     const interval = setInterval(() => {
-      if (Math.random() > 0.7) dripRoutine()
-    }, 30000)
+      if (Math.random() > 0.8) dripRoutine()
+    }, 45000)
     
     return () => clearInterval(interval)
   }, [dripControls, isBitten, getRandomComment, mounted])
 
   useEffect(() => {
     if (!mounted) return
-    const timer = setTimeout(() => {
+    const introTimer = setTimeout(() => {
       const intro = pathname === "/" 
         ? "Hi! I'm Pops. Ready for 250/250?" 
         : `Let's master ${pathname.split('/').pop()?.replace(/-/g, ' ')}!`
@@ -196,7 +170,7 @@ export function Mascot() {
       setIsVisible(true)
       setTimeout(() => setIsVisible(false), 10000)
     }, 2000)
-    return () => clearTimeout(timer)
+    return () => clearTimeout(introTimer)
   }, [pathname, mounted])
 
   if (!mounted) return null
@@ -223,11 +197,9 @@ export function Mascot() {
         whileTap={{ scale: 0.95 }}
         animate={{
           y: isBitten ? [0, 15] : [0, -8],
-          rotate: isBitten ? -5 : 0
         }}
         transition={{
-          y: { duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
-          rotate: { type: "spring", stiffness: 300, damping: 20 }
+          y: { duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }
         }}
         onClick={handleClick}
       >
@@ -242,7 +214,6 @@ export function Mascot() {
           <defs>
             <clipPath id="biteClip">
               {isBitten ? (
-                // Cartoon scalloped bite from top-right corner
                 <path d="M0 0 H55 C60 5 50 15 60 25 C70 35 60 45 75 50 C90 55 85 65 85 75 V140 H0 V0Z" />
               ) : (
                 <rect width="100" height="140" />
@@ -251,10 +222,7 @@ export function Mascot() {
           </defs>
 
           {/* Stick */}
-          <g>
-            <rect x="42" y="102" width="16" height="30" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
-            <rect x="44" y="100" width="12" height="4" fill="#1A1A1A" opacity="0.1" />
-          </g>
+          <rect x="42" y="102" width="16" height="30" rx="8" fill="#E6BA95" stroke="#1A1A1A" strokeWidth="3" />
 
           {/* Body */}
           <g clipPath="url(#biteClip)">
@@ -271,53 +239,24 @@ export function Mascot() {
               strokeWidth="4"
             />
 
-            {/* Face - Positioned high to stay on blue part */}
+            {/* Face */}
             <motion.g animate={{ x: eyeOffset.x, y: eyeOffset.y - 12 }}>
-              <circle cx="30" cy="52" r="6" fill={CRYSTAL_BLUE} fillOpacity="0.4" />
-              <circle cx="70" cy="52" r="6" fill={CRYSTAL_BLUE} fillOpacity="0.4" />
-
               <g>
                 {isBlinking ? (
                   <>
                     <path d="M25 45Q32.5 40 40 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
                     <path d="M60 45Q67.5 40 75 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
                   </>
-                ) : expression === "determined" ? (
-                  <g>
-                    <path d="M22 40L40 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" />
-                    <path d="M78 40L60 45" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" />
-                    <circle cx="32" cy="48" r="7" fill="#1A1A1A" />
-                    <circle cx="68" cy="48" r="7" fill="#1A1A1A" />
-                  </g>
                 ) : (
                   <>
-                    <g transform="translate(32, 45)">
-                      <circle r="8" fill="#1A1A1A" />
-                      <circle cx="-3" cy="-3" r="3" fill="white" />
-                      <circle cx="3" cy="3" r="1" fill="white" />
-                    </g>
-                    <g transform="translate(68, 45)">
-                      <circle r="8" fill="#1A1A1A" />
-                      <circle cx="-3" cy="-3" r="3" fill="white" />
-                      <circle cx="3" cy="3" r="1" fill="white" />
-                    </g>
+                    <circle cx="32" cy="48" r="8" fill="#1A1A1A" />
+                    <circle cx="68" cy="48" r="8" fill="#1A1A1A" />
+                    <circle cx="30" cy="45" r="3" fill="white" />
+                    <circle cx="66" cy="45" r="3" fill="white" />
                   </>
                 )}
               </g>
-
-              <motion.path
-                animate={{
-                  d: isBitten || isDripping 
-                    ? "M42 62Q50 72 58 62" 
-                    : expression === "thinking"
-                    ? "M45 62H55"
-                    : "M46 60Q50 65 54 60"
-                }}
-                stroke="#1A1A1A"
-                strokeWidth="3"
-                strokeLinecap="round"
-                fill="none"
-              />
+              <path d="M42 62Q50 68 58 62" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
             </motion.g>
 
             {/* Side Drip Animation */}
@@ -350,16 +289,6 @@ export function Mascot() {
           >
             <circle cx="88" cy="75" r="5" fill={CRYSTAL_BLUE} stroke="#1A1A1A" strokeWidth="3" />
           </motion.g>
-
-          {expression === "determined" && !isBitten && (
-            <motion.g
-              animate={{ opacity: [0, 1] }}
-              transition={{ repeat: Infinity, repeatType: "reverse", duration: 1 }}
-            >
-              <path d="M85 15L88 20L95 23L88 26L85 31L82 26L75 23L82 20Z" fill={CRYSTAL_BLUE} />
-              <path d="M15 15L18 20L25 23L18 26L15 31L12 26L5 23L12 20Z" fill={CRYSTAL_BLUE} />
-            </motion.g>
-          )}
         </svg>
 
         <AnimatePresence>
