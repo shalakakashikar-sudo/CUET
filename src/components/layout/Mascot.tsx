@@ -9,9 +9,7 @@ type Expression =
   | "happy" 
   | "wink" 
   | "surprised" 
-  | "shy" 
   | "excited" 
-  | "proud" 
   | "loving"
 
 const COMMENTS = {
@@ -129,11 +127,7 @@ export function Mascot() {
   useEffect(() => {
     if (!mounted) return
     const context = getPageContext()
-    if (context === "quiz") {
-      setExpression("happy")
-    } else if (context === "study") {
-      setExpression("happy")
-    } else if (pathname === "/") {
+    if (pathname === "/") {
       setExpression("excited")
     } else {
       setExpression("happy")
@@ -171,8 +165,7 @@ export function Mascot() {
     const gestureInterval = setInterval(() => {
       if (!isBitten && !isDripping) {
         setShowHands(true)
-        // Only switch between happy moods
-        const moods: Expression[] = ["wink", "proud", "happy", "excited"]
+        const moods: Expression[] = ["wink", "happy", "excited"]
         const randomMood = moods[Math.floor(Math.random() * moods.length)]
         const oldExpr = expression
         setExpression(randomMood)
@@ -216,7 +209,6 @@ export function Mascot() {
       
       setEyeOffset({ x: 0, y: 0 })
       setIsDripping(false)
-      setExpression("shy")
       dripControls.set({ y: 0, opacity: 0 })
       
       setTimeout(() => {
@@ -333,8 +325,8 @@ export function Mascot() {
                 cx="24" cy="78" r="6" 
                 fill="#FF99AA" 
                 animate={{ 
-                  scale: expression === "shy" || expression === "loving" ? [1, 1.4, 1] : 1,
-                  opacity: expression === "shy" ? 0.8 : expression === "happy" ? 0.4 : 0.2
+                  scale: [1, 1.4, 1],
+                  opacity: 0.4
                 }} 
                 transition={{ duration: 2, repeat: Infinity }} 
               />
@@ -342,22 +334,22 @@ export function Mascot() {
                 cx="76" cy="78" r="6" 
                 fill="#FF99AA" 
                 animate={{ 
-                  scale: expression === "shy" || expression === "loving" ? [1, 1.4, 1] : 1,
-                  opacity: expression === "shy" ? 0.8 : expression === "happy" ? 0.4 : 0.2
+                  scale: [1, 1.4, 1],
+                  opacity: 0.4
                 }} 
                 transition={{ duration: 2, repeat: Infinity }} 
               />
 
               {/* Eyes System */}
               <g>
-                {/* Consistently Happy/Friendly Eyelashes turned upwards */}
+                {/* Kawaii Eyelashes - Fixed position and curved UPWARDS */}
                 <g>
-                  {/* Left Eye Eyelashes */}
-                  <path d="M22 62 Q 16 52 12 58" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                  <path d="M26 58 Q 20 48 16 54" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                  {/* Right Eye Eyelashes */}
-                  <path d="M78 62 Q 84 52 88 58" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                  <path d="M74 58 Q 80 48 84 54" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  {/* Left Eye Eyelashes - Flicks up and out from the left end of arc */}
+                  <path d="M25 68 Q 15 68 10 55" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  <path d="M28 64 Q 18 64 14 52" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  {/* Right Eye Eyelashes - Flicks up and out from the right end of arc */}
+                  <path d="M75 68 Q 85 68 90 55" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  <path d="M72 64 Q 82 64 86 52" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
                 </g>
 
                 {isBlinking ? (
@@ -370,7 +362,7 @@ export function Mascot() {
                     {/* Left Eye Logic */}
                     {expression === "wink" ? (
                       <path d="M25 68Q32.5 60 40 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
-                    ) : expression === "happy" || expression === "proud" || expression === "shy" ? (
+                    ) : expression === "happy" ? (
                       <path d="M25 68Q32.5 60 40 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
                     ) : (
                       <g>
@@ -387,7 +379,7 @@ export function Mascot() {
                     )}
 
                     {/* Right Eye Logic */}
-                    {expression === "happy" || expression === "proud" || expression === "shy" ? (
+                    {expression === "happy" ? (
                       <path d="M60 68Q67.5 60 75 68" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" fill="none" />
                     ) : (
                       <g>
@@ -406,9 +398,9 @@ export function Mascot() {
                 )}
               </g>
 
-              {/* Mouth System */}
+              {/* Mouth System - Always cheerful */}
               <g>
-                {(expression === "happy" || expression === "proud" || expression === "shy") && (
+                {(expression === "happy") && (
                   <path d="M42 82Q50 90 58 82" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round" fill="none" />
                 )}
                 {expression === "excited" && (
