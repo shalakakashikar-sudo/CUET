@@ -271,12 +271,12 @@ export function Mascot() {
                   </>
                 ) : (
                   <>
-                    {/* Left Eye + Kawaii Lashes */}
+                    {/* Left Eye + Kawaii Lashes (Soft Curved Upward Flicks) */}
                     <circle cx="32" cy="68" r="8" fill="#1A1A1A" />
                     <path d="M24 64Q20 60 18 64" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
                     <path d="M28 62Q26 56 22 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
                     
-                    {/* Right Eye + Kawaii Lashes */}
+                    {/* Right Eye + Kawaii Lashes (Soft Curved Upward Flicks) */}
                     <circle cx="68" cy="68" r="8" fill="#1A1A1A" />
                     <path d="M76 64Q80 60 82 64" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
                     <path d="M72 62Q74 56 78 58" stroke="#1A1A1A" strokeWidth="2" strokeLinecap="round" fill="none" />
