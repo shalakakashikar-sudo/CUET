@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Book, AlertTriangle, Lightbulb, ArrowRight, Scan, Target } from "lucide-react"
 import Link from "next/link"
+import { ModuleNavigator } from "@/components/study/ModuleNavigator"
 
 const PASSAGE_TYPES = [
   { type: "Factual / Informational", desc: "Based on data, or specific topics.", examples: "Tiger population, Stoicism, Indian handicrafts." },
@@ -110,6 +111,8 @@ export default function RCPage() {
           </div>
 
           <aside className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <ModuleNavigator />
+            
             <Card className="bg-secondary/20 border-secondary/30 shadow-sm rounded-2xl">
               <CardHeader>
                 <CardTitle className="text-lg text-secondary-foreground font-bold">Passage Types</CardTitle>

@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Layers, ListOrdered, CheckCircle2, ChevronRight, Target, Lightbulb, TrendingUp } from "lucide-react"
 import Link from "next/link"
+import { ModuleNavigator } from "@/components/study/ModuleNavigator"
 
 export default function SentenceRearrangementPage() {
   const patterns = [
@@ -77,6 +78,8 @@ export default function SentenceRearrangementPage() {
           </div>
 
           <aside className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <ModuleNavigator />
+
             <Card className="bg-foreground text-background shadow-xl rounded-2xl">
               <CardHeader>
                 <CardTitle className="text-lg text-primary flex items-center gap-2 font-bold">
@@ -101,7 +104,7 @@ export default function SentenceRearrangementPage() {
                 <CardTitle className="text-sm font-bold flex items-center gap-2 text-secondary-foreground">
                   <Target className="w-4 h-4" />
                   Elite Pro Tip
-                </CardTitle>
+                </Target>
               </CardHeader>
               <CardContent className="text-xs leading-relaxed text-secondary-foreground/80 font-bold">
                 Logic is always embedded in the options. Use elimination to accelerate your process and avoid over-thinking.

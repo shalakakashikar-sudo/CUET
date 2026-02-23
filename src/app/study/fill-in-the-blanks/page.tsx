@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
@@ -6,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Clock, Split, PenTool, Zap, CheckCircle2, Lightbulb, ArrowRight, Table } from "lucide-react"
 import Link from "next/link"
+import { ModuleNavigator } from "@/components/study/ModuleNavigator"
 
 export default function FillersPage() {
   const tenses = [
@@ -96,6 +96,8 @@ export default function FillersPage() {
           </div>
 
           <aside className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <ModuleNavigator />
+
             <Card className="bg-foreground text-background shadow-xl rounded-2xl">
               <CardHeader>
                 <CardTitle className="text-lg text-primary flex items-center gap-2 font-bold">

@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react"
@@ -9,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table"
 import { Search, Zap, BookOpen, AlertTriangle, ArrowRight, Hash, Star } from "lucide-react"
 import Link from "next/link"
+import { ModuleNavigator } from "@/components/study/ModuleNavigator"
 
 const WORD_LIST = [
   { word: "Abjure", meaning: "To solemnly renounce a belief or claim", synonym: "Renounce, Forswear", antonym: "Affirm, Assert" },
@@ -171,6 +171,8 @@ export default function SynonymsPage() {
           </div>
 
           <aside className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <ModuleNavigator />
+
             <Card className="bg-foreground text-background shadow-xl rounded-2xl overflow-hidden relative">
               <div className="absolute right-0 top-0 p-4 opacity-10">
                 <AlertTriangle className="w-12 h-12" />

@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
@@ -10,6 +9,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { MessageCircle, Star, Sparkles, Lightbulb, Info, BookOpen } from "lucide-react"
 import Link from "next/link"
 import { useEffect } from "react"
+import { ModuleNavigator } from "@/components/study/ModuleNavigator"
 
 const IDIOMS = [
   { idiom: "A blessing in disguise", meaning: "A misfortune that eventually results in something good happening later." },
@@ -592,6 +592,8 @@ export default function MatchPage() {
           </div>
 
           <aside className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <ModuleNavigator />
+
             <Card className="bg-foreground text-background shadow-xl rounded-2xl border-none">
               <CardHeader>
                 <CardTitle className="text-lg text-primary flex items-center gap-2 font-bold">
