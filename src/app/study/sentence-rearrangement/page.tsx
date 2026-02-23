@@ -104,7 +104,7 @@ export default function SentenceRearrangementPage() {
                 <CardTitle className="text-sm font-bold flex items-center gap-2 text-secondary-foreground">
                   <Target className="w-4 h-4" />
                   Elite Pro Tip
-                </Target>
+                </CardTitle>
               </CardHeader>
               <CardContent className="text-xs leading-relaxed text-secondary-foreground/80 font-bold">
                 Logic is always embedded in the options. Use elimination to accelerate your process and avoid over-thinking.
