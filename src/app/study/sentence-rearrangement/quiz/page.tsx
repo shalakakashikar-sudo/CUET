@@ -1,14 +1,14 @@
 
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Trophy, RefreshCw, ChevronLeft, Target, Layers, Info, CheckCircle2, XCircle } from "lucide-react"
+import { Trophy, RefreshCw, ChevronLeft, Target, Layers, Info, CheckCircle2, XCircle, Keyboard, ArrowRight } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
@@ -73,6 +73,8 @@ const REARRANGE_QUIZ_DATA = [
 
 export default function RearrangeQuizPage() {
   const { toast } = useToast()
+  const quizRef = useRef<HTMLDivElement>(null)
+  const questionCardRef = useRef<HTMLDivElement>(null)
   const [questions, setQuestions] = useState(REARRANGE_QUIZ_DATA)
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
@@ -82,21 +84,55 @@ export default function RearrangeQuizPage() {
     setQuestions([...REARRANGE_QUIZ_DATA].sort(() => Math.random() - 0.5))
   }, [])
 
+  const scrollToTarget = useCallback(() => {
+    const target = (currentStep > 0 && questionCardRef.current) ? questionCardRef.current : quizRef.current
+    if (target) {
+      const offset = 100
+      const bodyRect = document.body.getBoundingClientRect().top
+      const elementRect = target.getBoundingClientRect().top
+      const elementPosition = elementRect - bodyRect
+      const offsetPosition = elementPosition - offset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+  }, [currentStep])
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [currentStep, isFinished])
+    if (!isFinished) {
+      const timer = setTimeout(scrollToTarget, 100)
+      return () => clearTimeout(timer)
+    }
+  }, [currentStep, isFinished, scrollToTarget])
 
-  const handleAnswer = (val: string) => {
-    setAnswers({ ...answers, [questions[currentStep].id]: parseInt(val) })
-  }
-
-  const nextQuestion = () => {
+  const nextQuestion = useCallback(() => {
     if (currentStep < questions.length - 1) {
       setCurrentStep(currentStep + 1)
     } else {
       setIsFinished(true)
       toast({ title: "Logic Set Complete!", description: "Check your +5/-1 accuracy." })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
+  }, [currentStep, questions.length, toast])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' && !isFinished) {
+        const q = questions[currentStep]
+        if (answers[q.id] !== undefined) {
+          nextQuestion()
+        }
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [answers, currentStep, questions, isFinished, nextQuestion])
+
+  const handleAnswer = (val: number) => {
+    const qId = questions[currentStep].id
+    setAnswers({ ...answers, [qId]: val })
   }
 
   const calculateScore = () => {
@@ -104,6 +140,7 @@ export default function RearrangeQuizPage() {
     let wrong = 0
     questions.forEach(q => {
       const ans = answers[q.id]
+      if (ans === undefined) return
       if (ans === q.correct) correct++
       else wrong++
     })
@@ -119,7 +156,7 @@ export default function RearrangeQuizPage() {
             <div className="bg-primary/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
               <Layers className="w-10 h-10 text-primary" />
             </div>
-            <CardTitle className="text-3xl font-headline mb-2">Rearrange Score</CardTitle>
+            <CardTitle className="text-3xl font-headline mb-2 font-bold">Rearrange Score</CardTitle>
             <div className="grid grid-cols-2 gap-4 my-8">
               <div className="p-4 bg-green-50 rounded-2xl border border-green-100">
                 <div className="text-xs font-bold text-green-700 uppercase">Correct</div>
@@ -130,15 +167,15 @@ export default function RearrangeQuizPage() {
                 <div className="text-2xl font-bold text-red-700">-{wrong}</div>
               </div>
             </div>
-            <div className="p-6 bg-foreground text-background rounded-[1.5rem] mb-8">
-              <div className="text-sm opacity-70">Section Total</div>
+            <div className="p-6 bg-foreground text-background rounded-[1.5rem] mb-8 shadow-xl">
+              <div className="text-sm opacity-70 font-bold">Section Total</div>
               <div className="text-4xl font-bold">{total} / {questions.length * 5}</div>
             </div>
             <div className="flex flex-col gap-3">
-              <Button size="lg" className="rounded-xl h-12 font-bold" onClick={() => window.location.reload()}>
+              <Button size="lg" className="rounded-xl h-12 font-bold shadow-md" onClick={() => window.location.reload()}>
                 <RefreshCw className="w-4 h-4 mr-2" /> Retake randomized quiz
               </Button>
-              <Button variant="outline" size="lg" className="rounded-xl h-12" asChild>
+              <Button variant="outline" size="lg" className="rounded-xl h-12 font-bold" asChild>
                 <Link href="/study/sentence-rearrangement">Back to Material</Link>
               </Button>
             </div>
@@ -155,27 +192,27 @@ export default function RearrangeQuizPage() {
               return (
                 <Card key={idx} className="border-none shadow-md overflow-hidden rounded-[1.5rem] bg-white">
                   <div className={cn("px-6 py-3 flex items-center justify-between", isCorrect ? "bg-green-50" : "bg-red-50")}>
-                    <Badge variant={isCorrect ? "default" : "destructive"}>
-                      {isCorrect ? "Correct" : "Error"}
+                    <Badge variant={isCorrect ? "default" : "destructive"} className="rounded-full font-bold">
+                      {isCorrect ? "Correct (+5)" : "Error (-1)"}
                     </Badge>
                   </div>
                   <CardContent className="p-6 space-y-4">
                     <div className="flex flex-wrap gap-2">
                       {q.parts.map((p, i) => (
-                        <Badge key={i} variant="outline" className="text-[10px] font-mono">
+                        <Badge key={i} variant="outline" className="text-[10px] font-mono font-bold text-primary border-primary/20">
                           {String.fromCharCode(65+i)}: {p}
                         </Badge>
                       ))}
                     </div>
-                    <p className="font-bold">{q.q}</p>
+                    <p className="font-bold text-lg">{q.q}</p>
                     <div className="grid gap-2 text-sm">
                       <div className={cn("p-3 rounded-lg flex items-center gap-2", isCorrect ? "bg-green-50" : "bg-red-50")}>
                         {isCorrect ? <CheckCircle2 className="w-4 h-4 text-green-600" /> : <XCircle className="w-4 h-4 text-red-600" />}
-                        <span><strong className="text-foreground">Your answer:</strong> {q.options[userAns]}</span>
+                        <span><strong className="text-foreground">Your Selection:</strong> {userAns !== undefined ? q.options[userAns] : "Skipped"}</span>
                       </div>
                       {!isCorrect && (
                         <div className="p-3 rounded-lg bg-green-50 border border-green-200">
-                          <span className="font-bold">Correct answer:</span> {q.options[q.correct]}
+                          <span className="font-bold">Correct Sequence:</span> {q.options[q.correct]}
                         </div>
                       )}
                     </div>
@@ -197,19 +234,25 @@ export default function RearrangeQuizPage() {
   return (
     <div className="min-h-screen bg-background">
       <main className="container mx-auto px-4 py-12 max-w-3xl">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-8" ref={quizRef}>
           <div>
             <h1 className="text-2xl font-headline font-bold uppercase tracking-tight text-primary">Sentence Logic</h1>
-            <p className="text-muted-foreground font-mono text-sm">Question {currentStep + 1} of {questions.length}</p>
+            <p className="text-muted-foreground font-mono text-sm font-bold">Question {currentStep + 1} of {questions.length}</p>
           </div>
-          <Badge variant="outline" className="h-8 px-4 rounded-full border-primary/20 text-primary">Subject Code 101</Badge>
+          <div className="flex items-center gap-2">
+            <div className="hidden sm:flex items-center gap-1.5 bg-muted px-3 py-1 rounded-full text-[10px] font-bold text-muted-foreground">
+              <Keyboard className="w-3 h-3" />
+              PRESS ENTER
+            </div>
+            <Badge variant="outline" className="h-8 px-4 rounded-full border-primary/20 text-primary font-bold">Subject Code 101</Badge>
+          </div>
         </div>
 
         <Progress value={(currentStep / questions.length) * 100} className="mb-12 h-2" />
 
-        <Card className="border-none shadow-xl rounded-[2rem] bg-white mb-8">
+        <Card className="border-none shadow-xl rounded-[2rem] bg-white mb-8 overflow-hidden" ref={questionCardRef}>
           <CardHeader className="bg-primary/5 pb-8 pt-10">
-            <CardTitle className="text-xl text-center leading-relaxed mb-6">{q.q}</CardTitle>
+            <CardTitle className="text-xl text-center leading-relaxed mb-6 font-bold">{q.q}</CardTitle>
             <div className="flex flex-wrap gap-2 justify-center">
               {q.parts.map((p, i) => (
                 <div key={i} className="px-4 py-2 bg-white border border-primary/20 rounded-xl text-sm font-bold text-primary shadow-sm">
@@ -218,24 +261,43 @@ export default function RearrangeQuizPage() {
               ))}
             </div>
           </CardHeader>
-          <CardContent className="p-8">
-            <RadioGroup onValueChange={handleAnswer} value={answers[q.id]?.toString()} className="grid gap-4">
-              {q.options.map((opt, i) => (
-                <div key={i} className={`flex items-center space-x-3 border p-5 rounded-2xl transition-all cursor-pointer hover:bg-primary/5 ${answers[q.id] === i ? 'border-primary bg-primary/10 shadow-sm' : 'border-border'}`}>
-                  <RadioGroupItem value={i.toString()} id={`q-${q.id}-opt-${i}`} />
-                  <Label htmlFor={`q-${q.id}-opt-${i}`} className="flex-1 cursor-pointer text-lg font-medium">{opt}</Label>
-                </div>
-              ))}
+          <CardContent className="p-10 pt-6">
+            <RadioGroup onValueChange={(val) => handleAnswer(parseInt(val))} value={answers[q.id]?.toString()} className="grid gap-3">
+              {q.options.map((opt, i) => {
+                const isSelected = answers[q.id] === i
+                return (
+                  <div 
+                    key={i} 
+                    onClick={() => handleAnswer(i)}
+                    className={cn(
+                      "flex items-center space-x-3 border p-5 rounded-2xl transition-all cursor-pointer group",
+                      isSelected 
+                        ? "border-primary bg-primary/10 ring-1 ring-primary/20 shadow-md" 
+                        : "border-border hover:bg-primary/5 hover:border-primary/20"
+                    )}
+                  >
+                    <RadioGroupItem value={i.toString()} id={`q-${q.id}-opt-${i}`} className="pointer-events-none" />
+                    <Label 
+                      htmlFor={`q-${q.id}-opt-${i}`} 
+                      className="flex-1 cursor-pointer text-lg font-bold text-foreground leading-tight"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <span className="inline-block w-8 text-primary font-mono">{String.fromCharCode(65 + i)}.</span>
+                      {opt}
+                    </Label>
+                  </div>
+                )
+              })}
             </RadioGroup>
           </CardContent>
         </Card>
 
         <div className="flex justify-between items-center">
-          <Button variant="ghost" onClick={() => setCurrentStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0}>
+          <Button variant="ghost" onClick={() => setCurrentStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0} className="rounded-xl font-bold">
             <ChevronLeft className="w-4 h-4 mr-1" /> Previous
           </Button>
-          <Button size="lg" className="px-10 h-12 rounded-xl font-bold" onClick={nextQuestion} disabled={answers[q.id] === undefined}>
-            {currentStep === questions.length - 1 ? "Finish Set" : "Next Question"} <Target className="w-4 h-4 ml-2" />
+          <Button size="lg" className="px-10 h-12 rounded-xl font-bold shadow-lg group" onClick={nextQuestion} disabled={answers[q.id] === undefined}>
+            {currentStep === questions.length - 1 ? "Finish Set" : "Next Question"} <Target className="w-4 h-4 ml-2 group-hover:scale-110 transition-transform" />
           </Button>
         </div>
       </main>

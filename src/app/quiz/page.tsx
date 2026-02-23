@@ -1,17 +1,17 @@
 
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Trophy, AlertCircle, ArrowRight, RefreshCw, ChevronLeft, Target, Award, CheckCircle2, XCircle, Info } from "lucide-react"
+import { Trophy, RefreshCw, ChevronLeft, Target, Award, CheckCircle2, XCircle, Info, Keyboard, ArrowRight, AlertCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 type Question = {
   id: number
@@ -91,7 +91,7 @@ const ENGLISH_CODE_101_SET: Question[] = [
     id: 8,
     section: "Rearrangement",
     difficulty: "Hard",
-    text: "Rearrange: A: were arrested / B: four criminals / C: in Varanasi",
+    text: "Rearrange the segments: A: were arrested / B: four criminals / C: in Varanasi",
     options: ["B-A-C", "C-A-B", "A-B-C", "C-B-A"],
     correct: 0,
     explanation: "The logical sequence is Subject (four criminals) -> Verb (were arrested) -> Location (in Varanasi)."
@@ -118,6 +118,8 @@ const ENGLISH_CODE_101_SET: Question[] = [
 
 export default function QuizPage() {
   const { toast } = useToast()
+  const quizRef = useRef<HTMLDivElement>(null)
+  const questionCardRef = useRef<HTMLDivElement>(null)
   const [questions, setQuestions] = useState<Question[]>([])
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
@@ -127,21 +129,54 @@ export default function QuizPage() {
     setQuestions([...ENGLISH_CODE_101_SET].sort(() => Math.random() - 0.5))
   }, [])
 
+  const scrollToTarget = useCallback(() => {
+    const target = (currentStep > 0 && questionCardRef.current) ? questionCardRef.current : quizRef.current
+    if (target) {
+      const offset = 100
+      const bodyRect = document.body.getBoundingClientRect().top
+      const elementRect = target.getBoundingClientRect().top
+      const elementPosition = elementRect - bodyRect
+      const offsetPosition = elementPosition - offset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+  }, [currentStep])
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [currentStep, isFinished])
+    if (!isFinished && questions.length > 0) {
+      const timer = setTimeout(scrollToTarget, 100)
+      return () => clearTimeout(timer)
+    }
+  }, [currentStep, isFinished, questions.length, scrollToTarget])
 
-  const handleAnswer = (val: string) => {
-    setAnswers({ ...answers, [questions[currentStep].id]: parseInt(val) })
-  }
-
-  const nextQuestion = () => {
+  const nextQuestion = useCallback(() => {
     if (currentStep < questions.length - 1) {
       setCurrentStep(currentStep + 1)
     } else {
       setIsFinished(true)
       toast({ title: "Evaluation Complete!", description: "Check your performance for Subject Code 101." })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
+  }, [currentStep, questions.length, toast])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' && !isFinished && questions.length > 0) {
+        const q = questions[currentStep]
+        if (answers[q.id] !== undefined) {
+          nextQuestion()
+        }
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [answers, currentStep, questions, isFinished, nextQuestion])
+
+  const handleAnswer = (val: number) => {
+    setAnswers({ ...answers, [questions[currentStep].id]: val })
   }
 
   const calculateScore = () => {
@@ -188,7 +223,7 @@ export default function QuizPage() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="flex-1 h-14 text-xl font-bold rounded-2xl" onClick={() => window.location.reload()}>
+              <Button size="lg" className="flex-1 h-14 text-xl font-bold rounded-2xl shadow-lg" onClick={() => window.location.reload()}>
                 <RefreshCw className="w-5 h-5 mr-3" /> Re-attempt
               </Button>
               <Button variant="outline" size="lg" className="flex-1 h-14 text-lg font-bold rounded-2xl" asChild>
@@ -209,7 +244,7 @@ export default function QuizPage() {
                 return (
                   <Card key={idx} className="border-none shadow-md overflow-hidden rounded-[2rem]">
                     <div className={cn("px-8 py-4 flex items-center justify-between", isCorrect ? "bg-green-50" : "bg-red-50")}>
-                      <Badge variant={isCorrect ? "default" : "destructive"} className="rounded-full px-4">
+                      <Badge variant={isCorrect ? "default" : "destructive"} className="rounded-full px-4 font-bold">
                         {isCorrect ? "CORRECT (+5)" : "ERROR (-1)"}
                       </Badge>
                       <span className="text-xs font-bold uppercase tracking-widest opacity-40">{q.section}</span>
@@ -220,7 +255,7 @@ export default function QuizPage() {
                         <div className={cn("p-4 rounded-xl flex items-center gap-3 border", isCorrect ? "bg-green-100/30 border-green-200" : "bg-red-100/30 border-red-200")}>
                           {isCorrect ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-red-600" />}
                           <div className="text-sm">
-                            <span className="font-bold">Your Answer: </span>
+                            <span className="font-bold">Your Selection: </span>
                             {userAns !== undefined ? q.options[userAns] : "Not Attempted"}
                           </div>
                         </div>
@@ -228,7 +263,7 @@ export default function QuizPage() {
                           <div className="p-4 rounded-xl flex items-center gap-3 border bg-green-100/30 border-green-200">
                             <CheckCircle2 className="w-5 h-5 text-green-600" />
                             <div className="text-sm">
-                              <span className="font-bold">Correct Answer: </span>
+                              <span className="font-bold">Correct Option: </span>
                               {q.options[q.correct]}
                             </div>
                           </div>
@@ -258,12 +293,16 @@ export default function QuizPage() {
   return (
     <div className="min-h-screen bg-background">
       <main className="container mx-auto px-4 py-12 max-w-3xl">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-8" ref={quizRef}>
           <div>
             <h1 className="text-2xl font-headline font-bold uppercase tracking-tight text-primary">Examination Protocol</h1>
             <p className="text-muted-foreground font-mono text-sm font-bold">Item {currentStep + 1} / {questions.length}</p>
           </div>
           <div className="flex items-center gap-2">
+            <div className="hidden sm:flex items-center gap-1.5 bg-muted px-3 py-1 rounded-full text-[10px] font-bold text-muted-foreground">
+              <Keyboard className="w-3 h-3" />
+              PRESS ENTER
+            </div>
             <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 font-bold">Code 101</Badge>
             <Badge variant={question.difficulty === 'Hard' ? 'destructive' : 'default'} className="font-bold">
               {question.difficulty}
@@ -273,32 +312,51 @@ export default function QuizPage() {
 
         <Progress value={((currentStep) / questions.length) * 100} className="mb-12 h-2" />
 
-        <Card className="border-none shadow-xl mb-8 animate-fade-in-up rounded-[2.5rem] bg-white overflow-hidden">
+        <Card className="border-none shadow-xl mb-8 animate-fade-in-up rounded-[2.5rem] bg-white overflow-hidden" ref={questionCardRef}>
           <CardHeader className="bg-primary/5 pb-8 pt-10">
             <div className="flex items-center gap-2 mb-4">
               <Target className="w-5 h-5 text-primary" />
               <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">{question.section}</span>
             </div>
-            <CardTitle className="text-2xl leading-relaxed font-medium text-foreground">{question.text}</CardTitle>
+            <CardTitle className="text-2xl leading-relaxed font-bold text-foreground">{question.text}</CardTitle>
           </CardHeader>
-          <CardContent className="p-10">
-            <RadioGroup onValueChange={handleAnswer} value={answers[question.id]?.toString()} className="grid gap-4 mt-4">
-              {question.options.map((opt, i) => (
-                <div key={i} className={`flex items-center space-x-3 border p-5 rounded-2xl transition-all cursor-pointer hover:bg-primary/5 ${answers[question.id] === i ? 'border-primary bg-primary/10 shadow-md ring-1 ring-primary/20' : 'border-border'}`}>
-                  <RadioGroupItem value={i.toString()} id={`q-${question.id}-opt-${i}`} />
-                  <Label htmlFor={`q-${question.id}-opt-${i}`} className="flex-1 cursor-pointer text-lg font-bold text-foreground">{opt}</Label>
-                </div>
-              ))}
+          <CardContent className="p-10 pt-6">
+            <RadioGroup onValueChange={(val) => handleAnswer(parseInt(val))} value={answers[question.id]?.toString()} className="grid gap-3">
+              {question.options.map((opt, i) => {
+                const isSelected = answers[question.id] === i
+                return (
+                  <div 
+                    key={i} 
+                    onClick={() => handleAnswer(i)}
+                    className={cn(
+                      "flex items-center space-x-3 border p-5 rounded-2xl transition-all cursor-pointer group",
+                      isSelected 
+                        ? "border-primary bg-primary/10 ring-1 ring-primary/20 shadow-md" 
+                        : "border-border hover:bg-primary/5 hover:border-primary/20"
+                    )}
+                  >
+                    <RadioGroupItem value={i.toString()} id={`q-${question.id}-opt-${i}`} className="pointer-events-none" />
+                    <Label 
+                      htmlFor={`q-${question.id}-opt-${i}`} 
+                      className="flex-1 cursor-pointer text-lg font-bold text-foreground leading-tight"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <span className="inline-block w-8 text-primary font-mono">{String.fromCharCode(65 + i)}.</span>
+                      {opt}
+                    </Label>
+                  </div>
+                )
+              })}
             </RadioGroup>
           </CardContent>
         </Card>
 
         <div className="flex justify-between items-center">
-          <Button variant="ghost" onClick={() => setCurrentStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0} className="font-bold text-muted-foreground hover:text-primary">
+          <Button variant="ghost" onClick={() => setCurrentStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0} className="font-bold text-muted-foreground hover:text-primary rounded-xl">
             <ChevronLeft className="w-5 h-5 mr-1" /> Previous
           </Button>
-          <Button size="lg" className="px-12 h-14 text-lg font-bold rounded-2xl shadow-xl" onClick={nextQuestion} disabled={answers[question.id] === undefined}>
-            {currentStep === questions.length - 1 ? "Finish Examination" : "Next Question"} <ArrowRight className="w-5 h-5 ml-3" />
+          <Button size="lg" className="px-12 h-14 text-lg font-bold rounded-2xl shadow-xl group" onClick={nextQuestion} disabled={answers[question.id] === undefined}>
+            {currentStep === questions.length - 1 ? "Finish Examination" : "Next Question"} <ArrowRight className="w-5 h-5 ml-3 group-hover:scale-110 transition-transform" />
           </Button>
         </div>
 
@@ -306,7 +364,7 @@ export default function QuizPage() {
           <AlertCircle className="w-8 h-8 text-secondary-foreground shrink-0" />
           <div className="text-sm text-secondary-foreground font-bold">
             <strong className="block mb-1">Subject Code 101 Protocol:</strong>
-            All 50 questions are compulsory. Every correct answer contributes +5 to your 250 goal. Mistakes incur a -1 penalty.
+            All 50 questions are compulsory. Every correct answer contributes +5 to your 250 goal. Mistakes incur a -1 penalty. Practise precision.
           </div>
         </div>
       </main>
