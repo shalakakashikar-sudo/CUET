@@ -225,7 +225,7 @@ const HOMONYMS = [
   { w1: "Hall", m1: "Corridor", w2: "Haul", m2: "To pull or drag" },
   { w1: "Heal", m1: "To cure", w2: "Heel", m2: "Back of the foot" },
   { w1: "Hear", m1: "To listen", w2: "Here", m2: "In this place" },
-  { w1: "Heard", m1: "Past of hear", w2: "Herd", m2: "Group of animals" },
+  { w1: "Heard", m1: "Past of hear", w2: "Heard", m2: "Group of animals" },
   { w1: "Heed", m1: "Pay attention", w2: "He'd", m2: "Contraction of he would" },
   { w1: "Heir", m1: "Inheritor", w2: "Air", m2: "Atmosphere" },
   { w1: "Hi", m1: "Greeting", w2: "High", m2: "Tall / Upward" },
@@ -629,7 +629,7 @@ export default function MatchPage() {
             </Card>
 
             <Button className="w-full h-14 rounded-2xl font-bold shadow-lg text-lg" asChild>
-              <Link href="/quiz">Start Full Practice Set</Link>
+              <Link href="/quiz">Start Full Practise Set</Link>
             </Button>
           </aside>
         </div>
