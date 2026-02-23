@@ -13,7 +13,15 @@ import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
-const MATCH_QUIZ_DATA = [
+type Question = {
+  id: number
+  q: string
+  options: string[]
+  correct: number | number[]
+  explanation: string
+}
+
+const MATCH_QUIZ_DATA: Question[] = [
   { 
     id: 1, 
     q: "Meaning of the idiom 'Turn a blind eye':", 
@@ -39,8 +47,8 @@ const MATCH_QUIZ_DATA = [
     id: 4, 
     q: "Figure of speech in 'Time is a thief':", 
     options: ["Simile", "Metaphor", "Personification", "Hyperbole"], 
-    correct: 1,
-    explanation: "This is a direct comparison between Time and a thief without using 'like' or 'as'. It's a Metaphor."
+    correct: [1, 2], // Metaphor and Personification
+    explanation: "This is primarily a Metaphor (direct comparison without using like/as) but also Personification, as Time is given the human characteristic of being a thief."
   },
   { 
     id: 5, 
@@ -76,7 +84,7 @@ export default function MatchQuizPage() {
   const { toast } = useToast()
   const quizRef = useRef<HTMLDivElement>(null)
   const questionCardRef = useRef<HTMLDivElement>(null)
-  const [questions, setQuestions] = useState(MATCH_QUIZ_DATA)
+  const [questions, setQuestions] = useState<Question[]>([])
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [isFinished, setIsFinished] = useState(false)
@@ -102,11 +110,11 @@ export default function MatchQuizPage() {
   }, [currentStep])
 
   useEffect(() => {
-    if (!isFinished) {
+    if (!isFinished && questions.length > 0) {
       const timer = setTimeout(scrollToTarget, 100)
       return () => clearTimeout(timer)
     }
-  }, [currentStep, isFinished, scrollToTarget])
+  }, [currentStep, isFinished, questions.length, scrollToTarget])
 
   const nextQuestion = useCallback(() => {
     if (currentStep < questions.length - 1) {
@@ -120,7 +128,7 @@ export default function MatchQuizPage() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' && !isFinished) {
+      if (e.key === 'Enter' && !isFinished && questions.length > 0) {
         const q = questions[currentStep]
         if (answers[q.id] !== undefined) {
           nextQuestion()
@@ -136,13 +144,20 @@ export default function MatchQuizPage() {
     setAnswers({ ...answers, [qId]: val })
   }
 
+  const isAnswerCorrect = (userAns: number, correctAns: number | number[]) => {
+    if (Array.isArray(correctAns)) {
+      return correctAns.includes(userAns)
+    }
+    return userAns === correctAns
+  }
+
   const calculateScore = () => {
     let correct = 0
     let wrong = 0
     questions.forEach(q => {
       const ans = answers[q.id]
       if (ans === undefined) return
-      if (ans === q.correct) correct++
+      if (isAnswerCorrect(ans, q.correct)) correct++
       else wrong++
     })
     return { correct, wrong, total: correct * 5 - wrong * 1 }
@@ -189,7 +204,7 @@ export default function MatchQuizPage() {
             </h3>
             {questions.map((q, idx) => {
               const userAns = answers[q.id]
-              const isCorrect = userAns === q.correct
+              const isCorrect = isAnswerCorrect(userAns, q.correct)
               return (
                 <Card key={idx} className="border-none shadow-md overflow-hidden rounded-[1.5rem] bg-white">
                   <div className={cn("px-6 py-3 flex items-center justify-between", isCorrect ? "bg-green-50" : "bg-red-50")}>
@@ -201,11 +216,19 @@ export default function MatchQuizPage() {
                     <p className="font-bold text-lg">{q.q}</p>
                     <div className="grid gap-2 text-sm">
                       <div className={cn("p-3 rounded-lg flex items-center gap-2", isCorrect ? "bg-green-100/30" : "bg-red-100/30")}>
-                        <span className="font-bold">Your Selection:</span> {q.options[userAns]}
+                        {isCorrect ? <CheckCircle2 className="w-4 h-4 text-green-600" /> : <XCircle className="w-4 h-4 text-red-600" />}
+                        <span><strong className="text-foreground">Your Selection:</strong> {userAns !== undefined ? q.options[userAns] : "Skipped"}</span>
                       </div>
                       {!isCorrect && (
                         <div className="p-3 rounded-lg bg-green-100/30 border border-green-200">
-                          <span className="font-bold">Correct Option:</span> {q.options[q.correct]}
+                          <CheckCircle2 className="w-4 h-4 text-green-600" />
+                          <span>
+                            <strong className="text-foreground">{Array.isArray(q.correct) ? "Valid Options: " : "Correct Option: "}</strong>
+                            {Array.isArray(q.correct)
+                              ? q.correct.map(i => q.options[i]).join(" OR ")
+                              : q.options[q.correct as number]
+                            }
+                          </span>
                         </div>
                       )}
                     </div>
@@ -221,6 +244,8 @@ export default function MatchQuizPage() {
       </div>
     )
   }
+
+  if (questions.length === 0) return null
 
   const q = questions[currentStep]
 

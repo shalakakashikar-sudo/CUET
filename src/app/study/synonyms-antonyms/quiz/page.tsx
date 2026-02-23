@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from "react"
@@ -12,7 +13,15 @@ import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
-const VOCAB_QUIZ_DATA = [
+type Question = {
+  id: number
+  q: string
+  options: string[]
+  correct: number | number[]
+  explanation: string
+}
+
+const VOCAB_QUIZ_DATA: Question[] = [
   { id: 1, q: "Choose the synonym of EPHEMERAL:", options: ["Permanent", "Transient", "Eternal", "Enduring"], correct: 1, explanation: "'Ephemeral' refers to something that lasts for a very short time. 'Transient' is its direct synonym." },
   { id: 2, q: "Choose the antonym of LOQUACIOUS:", options: ["Talkative", "Garrulous", "Verbose", "Reticent"], correct: 3, explanation: "'Loquacious' means talkative. 'Reticent' means reserved or silent, making it the correct antonym." },
   { id: 3, q: "Choose the synonym of ACRIMONIOUS:", options: ["Pleasant", "Bitter", "Amiable", "Joyful"], correct: 1, explanation: "'Acrimonious' implies bitterness or ill-feeling in speech or debate." },
@@ -29,7 +38,7 @@ export default function VocabQuizPage() {
   const { toast } = useToast()
   const quizRef = useRef<HTMLDivElement>(null)
   const questionCardRef = useRef<HTMLDivElement>(null)
-  const [questions, setQuestions] = useState(VOCAB_QUIZ_DATA)
+  const [questions, setQuestions] = useState<Question[]>([])
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [isFinished, setIsFinished] = useState(false)
@@ -55,11 +64,11 @@ export default function VocabQuizPage() {
   }, [currentStep])
 
   useEffect(() => {
-    if (!isFinished) {
+    if (!isFinished && questions.length > 0) {
       const timer = setTimeout(scrollToTarget, 100)
       return () => clearTimeout(timer)
     }
-  }, [currentStep, isFinished, scrollToTarget])
+  }, [currentStep, isFinished, questions.length, scrollToTarget])
 
   const nextQuestion = useCallback(() => {
     if (currentStep < questions.length - 1) {
@@ -73,7 +82,7 @@ export default function VocabQuizPage() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' && !isFinished) {
+      if (e.key === 'Enter' && !isFinished && questions.length > 0) {
         const q = questions[currentStep]
         if (answers[q.id] !== undefined) {
           nextQuestion()
@@ -89,13 +98,20 @@ export default function VocabQuizPage() {
     setAnswers({ ...answers, [qId]: val })
   }
 
+  const isAnswerCorrect = (userAns: number, correctAns: number | number[]) => {
+    if (Array.isArray(correctAns)) {
+      return correctAns.includes(userAns)
+    }
+    return userAns === correctAns
+  }
+
   const calculateScore = () => {
     let correct = 0
     let wrong = 0
     questions.forEach(q => {
       const ans = answers[q.id]
       if (ans === undefined) return
-      if (ans === q.correct) correct++
+      if (isAnswerCorrect(ans, q.correct)) correct++
       else wrong++
     })
     return { correct, wrong, total: correct * 5 - wrong * 1 }
@@ -142,7 +158,7 @@ export default function VocabQuizPage() {
             </h3>
             {questions.map((q, idx) => {
               const userAns = answers[q.id]
-              const isCorrect = userAns === q.correct
+              const isCorrect = isAnswerCorrect(userAns, q.correct)
               return (
                 <Card key={idx} className="border-none shadow-md overflow-hidden rounded-[1.5rem] bg-white">
                   <div className={cn("px-6 py-3 flex items-center justify-between", isCorrect ? "bg-green-50" : "bg-red-50")}>
@@ -159,7 +175,14 @@ export default function VocabQuizPage() {
                       </div>
                       {!isCorrect && (
                         <div className="p-3 rounded-lg bg-green-100/30 border border-green-200">
-                          <span className="font-bold">Correct Option:</span> {q.options[q.correct]}
+                          <CheckCircle2 className="w-4 h-4 text-green-600" />
+                          <span>
+                            <strong className="text-foreground">{Array.isArray(q.correct) ? "Valid Options: " : "Correct Option: "}</strong>
+                            {Array.isArray(q.correct)
+                              ? q.correct.map(i => q.options[i]).join(" OR ")
+                              : q.options[q.correct as number]
+                            }
+                          </span>
                         </div>
                       )}
                     </div>
@@ -175,6 +198,8 @@ export default function VocabQuizPage() {
       </div>
     )
   }
+
+  if (questions.length === 0) return null
 
   const q = questions[currentStep]
 

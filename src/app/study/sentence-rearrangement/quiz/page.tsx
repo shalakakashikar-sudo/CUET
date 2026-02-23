@@ -13,7 +13,16 @@ import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
-const REARRANGE_QUIZ_DATA = [
+type Question = {
+  id: number
+  parts: string[]
+  q: string
+  options: string[]
+  correct: number | number[]
+  explanation: string
+}
+
+const REARRANGE_QUIZ_DATA: Question[] = [
   {
     id: 1,
     parts: ["the fragrance of jasmine drifted", "as the evening breeze passed through", "the open windows of the old house", "filling the room with a gentle sweetness"],
@@ -75,7 +84,7 @@ export default function RearrangeQuizPage() {
   const { toast } = useToast()
   const quizRef = useRef<HTMLDivElement>(null)
   const questionCardRef = useRef<HTMLDivElement>(null)
-  const [questions, setQuestions] = useState(REARRANGE_QUIZ_DATA)
+  const [questions, setQuestions] = useState<Question[]>([])
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [isFinished, setIsFinished] = useState(false)
@@ -101,11 +110,11 @@ export default function RearrangeQuizPage() {
   }, [currentStep])
 
   useEffect(() => {
-    if (!isFinished) {
+    if (!isFinished && questions.length > 0) {
       const timer = setTimeout(scrollToTarget, 100)
       return () => clearTimeout(timer)
     }
-  }, [currentStep, isFinished, scrollToTarget])
+  }, [currentStep, isFinished, questions.length, scrollToTarget])
 
   const nextQuestion = useCallback(() => {
     if (currentStep < questions.length - 1) {
@@ -119,7 +128,7 @@ export default function RearrangeQuizPage() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' && !isFinished) {
+      if (e.key === 'Enter' && !isFinished && questions.length > 0) {
         const q = questions[currentStep]
         if (answers[q.id] !== undefined) {
           nextQuestion()
@@ -135,13 +144,20 @@ export default function RearrangeQuizPage() {
     setAnswers({ ...answers, [qId]: val })
   }
 
+  const isAnswerCorrect = (userAns: number, correctAns: number | number[]) => {
+    if (Array.isArray(correctAns)) {
+      return correctAns.includes(userAns)
+    }
+    return userAns === correctAns
+  }
+
   const calculateScore = () => {
     let correct = 0
     let wrong = 0
     questions.forEach(q => {
       const ans = answers[q.id]
       if (ans === undefined) return
-      if (ans === q.correct) correct++
+      if (isAnswerCorrect(ans, q.correct)) correct++
       else wrong++
     })
     return { correct, wrong, total: correct * 5 - wrong * 1 }
@@ -188,7 +204,7 @@ export default function RearrangeQuizPage() {
             </h3>
             {questions.map((q, idx) => {
               const userAns = answers[q.id]
-              const isCorrect = userAns === q.correct
+              const isCorrect = isAnswerCorrect(userAns, q.correct)
               return (
                 <Card key={idx} className="border-none shadow-md overflow-hidden rounded-[1.5rem] bg-white">
                   <div className={cn("px-6 py-3 flex items-center justify-between", isCorrect ? "bg-green-50" : "bg-red-50")}>
@@ -212,7 +228,14 @@ export default function RearrangeQuizPage() {
                       </div>
                       {!isCorrect && (
                         <div className="p-3 rounded-lg bg-green-50 border border-green-200">
-                          <span className="font-bold">Correct Sequence:</span> {q.options[q.correct]}
+                          <CheckCircle2 className="w-4 h-4 text-green-600" />
+                          <span>
+                            <strong className="text-foreground">{Array.isArray(q.correct) ? "Valid Sequences: " : "Correct Sequence: "}</strong>
+                            {Array.isArray(q.correct)
+                              ? q.correct.map(i => q.options[i]).join(" OR ")
+                              : q.options[q.correct as number]
+                            }
+                          </span>
                         </div>
                       )}
                     </div>
@@ -228,6 +251,8 @@ export default function RearrangeQuizPage() {
       </div>
     )
   }
+
+  if (questions.length === 0) return null
 
   const q = questions[currentStep]
 

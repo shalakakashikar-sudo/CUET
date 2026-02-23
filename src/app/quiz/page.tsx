@@ -17,7 +17,7 @@ type Question = {
   id: number
   text: string
   options: string[]
-  correct: number
+  correct: number | number[] // Support multiple correct answers
   difficulty: 'Easy' | 'Medium' | 'Hard'
   section: string
   explanation: string
@@ -84,8 +84,8 @@ const ENGLISH_CODE_101_SET: Question[] = [
     difficulty: "Medium",
     text: "'Time is a thief' is an example of:",
     options: ["Simile", "Metaphor", "Personification", "Hyperbole"],
-    correct: 1,
-    explanation: "This is a direct comparison between Time and a thief without using 'like' or 'as', which defines a Metaphor."
+    correct: [1, 2], // Metaphor and Personification are both valid
+    explanation: "'Time is a thief' is primarily a Metaphor (direct comparison) but also utilizes Personification by attributing the human action of 'stealing' to Time."
   },
   {
     id: 8,
@@ -179,13 +179,20 @@ export default function QuizPage() {
     setAnswers({ ...answers, [questions[currentStep].id]: val })
   }
 
+  const isAnswerCorrect = (userAns: number, correctAns: number | number[]) => {
+    if (Array.isArray(correctAns)) {
+      return correctAns.includes(userAns)
+    }
+    return userAns === correctAns
+  }
+
   const calculateScore = () => {
     let correct = 0
     let wrong = 0
     questions.forEach(q => {
       const ans = answers[q.id]
       if (ans === undefined) return
-      if (ans === q.correct) correct++
+      if (isAnswerCorrect(ans, q.correct)) correct++
       else wrong++
     })
     return { correct, wrong, total: correct * 5 - wrong * 1 }
@@ -240,7 +247,7 @@ export default function QuizPage() {
             <div className="space-y-4">
               {questions.map((q, idx) => {
                 const userAns = answers[q.id]
-                const isCorrect = userAns === q.correct
+                const isCorrect = isAnswerCorrect(userAns, q.correct)
                 return (
                   <Card key={idx} className="border-none shadow-md overflow-hidden rounded-[2rem]">
                     <div className={cn("px-8 py-4 flex items-center justify-between", isCorrect ? "bg-green-50" : "bg-red-50")}>
@@ -263,8 +270,11 @@ export default function QuizPage() {
                           <div className="p-4 rounded-xl flex items-center gap-3 border bg-green-100/30 border-green-200">
                             <CheckCircle2 className="w-5 h-5 text-green-600" />
                             <div className="text-sm">
-                              <span className="font-bold">Correct Option: </span>
-                              {q.options[q.correct]}
+                              <span className="font-bold">{Array.isArray(q.correct) ? "Valid Interpretations: " : "Correct Option: "}</span>
+                              {Array.isArray(q.correct) 
+                                ? q.correct.map(idx => q.options[idx]).join(" OR ")
+                                : q.options[q.correct as number]
+                              }
                             </div>
                           </div>
                         )}
