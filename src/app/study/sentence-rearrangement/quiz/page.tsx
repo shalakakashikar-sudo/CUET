@@ -426,6 +426,411 @@ const REARRANGE_QUIZ_DATA: Question[] = [
     options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
     correct: 0,
     explanation: "Subject-Verb-Complement structure with relative clause."
+  },
+  // Set 6: Environmental & Biological Science
+  {
+    id: 51,
+    parts: ["the preservation of biodiversity", "is essential for maintaining", "the ecological balance", "of our planet's various habitats"],
+    q: "Identify the correct order:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct S-V-Complement structure with prepositional modifiers."
+  },
+  {
+    id: 52,
+    parts: ["by converting sunlight into energy", "plants play a vital role", "in the global carbon cycle", "and oxygen production"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Gerund phrase (By...) leads to the main subject and its role."
+  },
+  {
+    id: 53,
+    parts: ["scientists have long debated", "whether life exists", "on other planets", "within our solar system"],
+    q: "Choose the logical order:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject-Verb core followed by a nominal clause."
+  },
+  {
+    id: 54,
+    parts: ["the restoration of coral reefs", "requires global cooperation", "to reduce marine pollution", "and rising ocean temperatures"],
+    q: "Rearrange to form a coherent statement:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "SVO core followed by infinitive purpose."
+  },
+  {
+    id: 55,
+    parts: ["despite the harsh conditions", "certain species of extremophiles", "thrive in deep-sea vents", "where sunlight cannot reach"],
+    q: "Identify the coherent flow:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contrastive phrase followed by subject-verb and relative clause."
+  },
+  {
+    id: 56,
+    parts: ["the evolution of human language", "is a complex process", "that involves both", "biological and social factors"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "S-V-Complement followed by defining relative clause."
+  },
+  {
+    id: 57,
+    parts: ["only by reducing emissions", "can we mitigate the impact", "of global warming", "on future weather patterns"],
+    q: "Choose the correct sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Restrictive 'Only by' inversion structure."
+  },
+  {
+    id: 58,
+    parts: ["the study of ancient DNA", "has provided new insights", "into the migratory patterns", "of early human civilisations"],
+    q: "Identify the logical sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct S-V-O structure with complex modifiers."
+  },
+  {
+    id: 59,
+    parts: ["while some volcanoes remain dormant", "others erupt with", "catastrophic force", "reshaping the landscape"],
+    q: "Choose the correct sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contrastive 'While' clause followed by independent clause and participle."
+  },
+  {
+    id: 60,
+    parts: ["the intricate web of life", "depends on the survival", "of even the smallest", "microscopic organisms"],
+    q: "Rearrange to form a sentence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct subject-verb-prepositional structure."
+  },
+  // Set 7: Economics & Finance
+  {
+    id: 61,
+    parts: ["the fluctuations in exchange rates", "significantly affect", "the volume of international trade", "and investment flows"],
+    q: "Identify the correct order:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct S-V-O structure with compound objects."
+  },
+  {
+    id: 62,
+    parts: ["to stimulate economic growth", "the central bank decided", "to lower interest rates", "across the country"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Purpose infinitive followed by S-V-O."
+  },
+  {
+    id: 63,
+    parts: ["in an increasingly globalised economy", "competitiveness depends on", "innovation and skill development", "rather than raw materials"],
+    q: "Choose the logical order:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contextual phrase followed by S-V-O and comparison."
+  },
+  {
+    id: 64,
+    parts: ["the implementation of fiscal policy", "is a delicate balancing act", "between social welfare spending", "and national debt management"],
+    q: "Rearrange to form a coherent statement:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "S-V-Complement with 'between...and' structure."
+  },
+  {
+    id: 65,
+    parts: ["despite the rising inflation", "consumer demand remained", "unexpectedly resilient", "during the holiday season"],
+    q: "Identify the coherent flow:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contrastive 'Despite' leads to S-V-Complement."
+  },
+  {
+    id: 66,
+    parts: ["the rise of e-commerce", "has transformed the retail sector", "by offering convenience", "to shoppers worldwide"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject-Verb-Object followed by 'by' gerund phrase."
+  },
+  {
+    id: 67,
+    parts: ["only by diversifying portfolios", "can investors protect", "their capital from", "market volatility"],
+    q: "Choose the correct sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Restrictive 'Only by' inversion structure."
+  },
+  {
+    id: 68,
+    parts: ["the sustainability of social security", "depends on the ratio", "of working-age people", "to retirees"],
+    q: "Identify the logical sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject-Verb followed by complex prepositional phrases."
+  },
+  {
+    id: 69,
+    parts: ["with the advent of automation", "many repetitive tasks", "are being taken over", "by intelligent machines"],
+    q: "Choose the correct sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contextual phrase followed by passive S-V construction."
+  },
+  {
+    id: 70,
+    parts: ["the equitable distribution of wealth", "remains a major challenge", "for developing nations", "in the 21st century"],
+    q: "Rearrange to form a sentence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct S-V-Complement with temporal modifier."
+  },
+  // Set 8: Technology & Innovation
+  {
+    id: 71,
+    parts: ["the integration of artificial intelligence", "into daily life", "raises significant ethical", "and privacy concerns"],
+    q: "Identify the correct order:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject-Preposition-Verb-Object structure."
+  },
+  {
+    id: 72,
+    parts: ["to improve cyber security", "organisations must invest", "in advanced encryption", "and threat detection systems"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Purpose infinitive followed by modal S-V-O."
+  },
+  {
+    id: 73,
+    parts: ["quantum computing, once a theory,", "is now becoming", "a technological reality", "with vast potential"],
+    q: "Choose the logical order:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject with appositive leads to the V-Complement."
+  },
+  {
+    id: 74,
+    parts: ["the development of 5G networks", "will enable faster", "data transmission speeds", "for mobile devices"],
+    q: "Rearrange to form a coherent statement:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct Subject-Verb-Object with modifier."
+  },
+  {
+    id: 75,
+    parts: ["despite its advantages", "the use of facial recognition", "technology remains controversial", "due to potential bias"],
+    q: "Identify the coherent flow:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contrastive phrase followed by S-V-Complement and reason."
+  },
+  {
+    id: 76,
+    parts: ["the miniaturisation of components", "has allowed for", "the creation of powerful", "portable electronic devices"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject-Verb-Object structure with adjectives."
+  },
+  {
+    id: 77,
+    parts: ["only with massive investment", "can the infrastructure for", "electric vehicles be", "widely implemented"],
+    q: "Choose the correct sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Restrictive 'Only with' inversion structure."
+  },
+  {
+    id: 78,
+    parts: ["the open-source movement", "encourages collaboration among", "developers from different", "geographical locations"],
+    q: "Identify the logical sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct Subject-Verb-Object structure."
+  },
+  {
+    id: 79,
+    parts: ["with the rise of the internet", "information has become", "more accessible to", "the general public"],
+    q: "Choose the correct sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contextual phrase followed by Subject-Verb-Complement."
+  },
+  {
+    id: 80,
+    parts: ["space exploration missions", "expand our understanding", "of the universe's", "fundamental physical laws"],
+    q: "Rearrange to form a sentence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct S-V-O structure with possessive modifiers."
+  },
+  // Set 9: Psychology & Education
+  {
+    id: 81,
+    parts: ["the theory of multiple intelligences", "suggests that students", "learn in different ways", "based on their strengths"],
+    q: "Identify the correct order:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject-Verb followed by a reported 'that' clause."
+  },
+  {
+    id: 82,
+    parts: ["to foster critical thinking", "teachers should encourage", "open-ended questions", "during classroom discussions"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Purpose infinitive followed by modal S-V-O."
+  },
+  {
+    id: 83,
+    parts: ["emotional intelligence, often undervalued,", "plays a crucial role", "in successful leadership", "and interpersonal relationships"],
+    q: "Choose the logical order:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject with appositive followed by S-V-Preposition."
+  },
+  {
+    id: 84,
+    parts: ["the development of social skills", "is as important as", "academic achievement", "for a child's growth"],
+    q: "Rearrange to form a coherent statement:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Comparison S-V-Complement structure."
+  },
+  {
+    id: 85,
+    parts: ["despite the digital age", "the benefits of handwriting", "for cognitive development", "remain well-documented"],
+    q: "Identify the coherent flow:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contrastive 'Despite' leads to S-V-Complement."
+  },
+  {
+    id: 86,
+    parts: ["the concept of lifelong learning", "is gaining momentum", "due to the rapid", "obsolescence of technical skills"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject-Verb-Object followed by reason."
+  },
+  {
+    id: 87,
+    parts: ["only by practicing empathy", "can we truly understand", "the perspectives of", "others from different backgrounds"],
+    q: "Choose the correct sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Restrictive 'Only by' inversion structure."
+  },
+  {
+    id: 88,
+    parts: ["the impact of social media", "on adolescent mental health", "is a subject of", "ongoing psychological research"],
+    q: "Identify the logical sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Complex Subject-Prepositional-Verb structure."
+  },
+  {
+    id: 89,
+    parts: ["with the rise of remote work", "the boundaries between", "professional and personal", "life have become blurred"],
+    q: "Choose the correct sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contextual phrase followed by Subject-Verb-Complement."
+  },
+  {
+    id: 90,
+    parts: ["inclusive education policies", "aim to provide", "equal learning opportunities", "to all students"],
+    q: "Rearrange to form a sentence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct S-V-O-Preposition structure."
+  },
+  // Set 10: Arts & Culture
+  {
+    id: 91,
+    parts: ["the preservation of cultural heritage", "requires the active participation", "of local communities", "and government agencies"],
+    q: "Identify the correct order:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct S-V-O structure with compound agents."
+  },
+  {
+    id: 92,
+    parts: ["to appreciate abstract art", "one must look beyond", "the literal representation", "of forms and colours"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Purpose infinitive followed by Subject-Verb-Preposition."
+  },
+  {
+    id: 93,
+    parts: ["classical music, though centuries old,", "continues to inspire", "contemporary composers", "across various genres"],
+    q: "Choose the logical order:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject with appositive leads to the V-Object."
+  },
+  {
+    id: 94,
+    parts: ["the evolution of architecture", "reflects the changing", "values and priorities", "of human societies"],
+    q: "Rearrange to form a coherent statement:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct S-V-O with modifiers."
+  },
+  {
+    id: 95,
+    parts: ["despite the influence of Hollywood", "regional cinema continues", "to flourish in many", "parts of the world"],
+    q: "Identify the coherent flow:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contrastive 'Despite' leads to S-V-Preposition."
+  },
+  {
+    id: 96,
+    parts: ["the synthesis of different styles", "has led to", "the emergence of unique", "hybrid musical forms"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject-Verb-Object with adjectives."
+  },
+  {
+    id: 97,
+    parts: ["only through cultural exchange", "can we build bridges", "between people from", "different ethnic backgrounds"],
+    q: "Choose the correct sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Restrictive 'Only through' inversion structure."
+  },
+  {
+    id: 98,
+    parts: ["the power of literature", "lies in its ability", "to evoke empathy and", "challenge social norms"],
+    q: "Identify the logical sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct Subject-Verb-Complement structure."
+  },
+  {
+    id: 99,
+    parts: ["with the advent of photography", "the traditional role of", "painting in portraiture", "was significantly transformed"],
+    q: "Choose the correct sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contextual phrase followed by passive Subject-Verb."
+  },
+  {
+    id: 100,
+    parts: ["traditional folk dances", "are an essential part", "of the cultural identity", "of many indigenous groups"],
+    q: "Rearrange to form a sentence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct S-V-Complement structure with modifiers."
   }
 ]
 
@@ -445,22 +850,28 @@ export default function RearrangeQuizPage() {
     { name: "Practice Set 3", range: [20, 30] },
     { name: "Practice Set 4", range: [30, 40] },
     { name: "Practice Set 5", range: [40, 50] },
+    { name: "Practice Set 6", range: [50, 60] },
+    { name: "Practice Set 7", range: [60, 70] },
+    { name: "Practice Set 8", range: [70, 80] },
+    { name: "Practice Set 9", range: [80, 90] },
+    { name: "Practice Set 10", range: [90, 100] },
   ]
 
   useEffect(() => {
     if (selectedSetIndex !== null) {
       const { range } = quizSets[selectedSetIndex]
       const selectedQuestions = REARRANGE_QUIZ_DATA.slice(range[0], range[1])
-      // Randomise order within the set but keep question internal options stable for selection logic
+      
+      // Randomise sequence within the set and handle option shuffling correctly
       selectedQuestions.forEach(q => {
-        // Ensure options are randomised from their initial state once
         const initialCorrectOpt = q.options[q.correct]
         const shuffled = [...q.options].sort(() => Math.random() - 0.5)
         q.options = shuffled
         q.correct = shuffled.indexOf(initialCorrectOpt)
       })
-      selectedQuestions.sort(() => Math.random() - 0.5)
-      setQuestions(selectedQuestions)
+      
+      const shuffledQuestions = [...selectedQuestions].sort(() => Math.random() - 0.5)
+      setQuestions(shuffledQuestions)
       setCurrentStep(0)
       setAnswers({})
       setIsFinished(false)
