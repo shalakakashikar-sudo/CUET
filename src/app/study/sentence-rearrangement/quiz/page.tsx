@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from "react"
@@ -17,15 +18,13 @@ type Question = {
   parts: string[]
   q: string
   options: string[]
-  correct: number | number[]
-  difficulty: 'Easy' | 'Medium' | 'Hard'
+  correct: number
   explanation: string
 }
 
 const REARRANGE_QUIZ_DATA: Question[] = [
   {
     id: 1,
-    difficulty: "Hard",
     parts: ["the fragrance of jasmine drifted", "as the evening breeze passed through", "the open windows of the old house", "filling the room with a gentle sweetness"],
     q: "Rearrange the parts labelled A, B, C, D to form a meaningful sentence.",
     options: ["B-C-A-D", "A-B-C-D", "D-A-C-B", "C-A-D-B"],
@@ -34,7 +33,6 @@ const REARRANGE_QUIZ_DATA: Question[] = [
   },
   {
     id: 2,
-    difficulty: "Medium",
     parts: ["the committee decided to postpone", "the annual function", "due to the heavy rain forecast", "for the entire region"],
     q: "Choose the correct sequence:",
     options: ["B-A-D-C", "A-B-C-D", "C-D-A-B", "D-B-C-A"],
@@ -43,34 +41,30 @@ const REARRANGE_QUIZ_DATA: Question[] = [
   },
   {
     id: 3,
-    difficulty: "Hard",
     parts: ["in an era of rapid technological change", "remains the cornerstone of human progress", "the ability to adapt and learn", "despite the risks of automation"],
     q: "Rearrange to form a coherent statement:",
-    options: ["A-C-B-D", "C-B-A-D", "D-A-C-B", "A-D-C-B"],
-    correct: 0,
+    options: ["C-B-A-D", "A-C-B-D", "D-A-C-B", "A-D-C-B"],
+    correct: 1,
     explanation: "Begins with the era context (A), introduces the subject (C), the verb/state (B), and ends with the contrast (D)."
   },
   {
     id: 4,
-    difficulty: "Hard",
     parts: ["scarcely had the sun risen", "over the horizon", "when the explorers set out", "on their perilous journey"],
     q: "Identify the correct sequence:",
-    options: ["A-B-C-D", "C-D-A-B", "B-A-C-D", "A-C-B-D"],
-    correct: 0,
+    options: ["C-D-A-B", "B-A-C-D", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Uses the 'Scarcely...when' correlative structure. Scarcely (A) + prepositional phrase (B) + when clause (C) + remaining info (D)."
   },
   {
     id: 5,
-    difficulty: "Hard",
     parts: ["although the evidence was clear", "the jury found it difficult", "to reach a unanimous verdict", "due to conflicting testimonies"],
     q: "Rearrange the segments:",
-    options: ["A-B-C-D", "B-C-A-D", "D-A-B-C", "A-D-B-C"],
-    correct: 0,
+    options: ["B-C-A-D", "D-A-B-C", "A-D-B-C", "A-B-C-D"],
+    correct: 3,
     explanation: "Starts with the contrastive 'although' clause (A), followed by the main subject-verb (B), the infinitive phrase (C), and the reason (D)."
   },
   {
     id: 6,
-    difficulty: "Hard",
     parts: ["to understand the complexities of the universe", "physicists must look beyond", "the observable phenomena", "into the realm of quantum theory"],
     q: "Choose the logical order:",
     options: ["A-B-C-D", "B-C-D-A", "C-A-B-D", "D-B-C-A"],
@@ -79,43 +73,38 @@ const REARRANGE_QUIZ_DATA: Question[] = [
   },
   {
     id: 7,
-    difficulty: "Hard",
     parts: ["not only did the scientist discover a new element", "but she also developed a method", "to isolate it from radioactive waste", "with minimal environmental impact"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Uses 'Not only...but also' inversion. Inverted auxiliary 'did' (A) + correlative 'but also' (B) + infinitive purpose (C) + adverbial phrase (D)."
   },
   {
     id: 8,
-    difficulty: "Hard",
     parts: ["by the time the rescue team arrived", "most of the survivors", "had already been relocated", "to a safer facility"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-A-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-C-A-D", "C-D-A-B", "A-C-B-D", "A-B-C-D"],
+    correct: 3,
     explanation: "Temporal clause (A) followed by the subject (B) and the past perfect passive verb phrase (C-D)."
   },
   {
     id: 9,
-    difficulty: "Hard",
     parts: ["having completed her research", "she presented her findings", "at the international symposium", "to a round of applause"],
     q: "Identify the coherent flow:",
-    options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-A-C-D", "A-B-C-D", "C-D-A-B", "A-C-B-D"],
+    correct: 1,
     explanation: "Participle phrase (having completed...) establishes the prior action, leading to the main action and setting."
   },
   {
     id: 10,
-    difficulty: "Hard",
     parts: ["the architect designed the building", "so that it would maximise", "the use of natural light", "while minimizing energy consumption"],
     q: "Rearrange the segments:",
-    options: ["A-B-C-D", "B-C-A-D", "D-A-B-C", "A-C-B-D"],
-    correct: 0,
+    options: ["B-C-A-D", "D-A-B-C", "A-C-B-D", "A-B-C-D"],
+    correct: 3,
     explanation: "SVO core (A) + purpose clause (B-C) + contrastive while-clause (D)."
   },
   {
     id: 11,
-    difficulty: "Hard",
     parts: ["the novel, written in the late 19th century", "explores the social injustices", "of the industrial revolution", "through the eyes of a child"],
     q: "Choose the correct order:",
     options: ["A-B-C-D", "B-C-A-D", "C-D-A-B", "A-C-B-D"],
@@ -124,129 +113,155 @@ const REARRANGE_QUIZ_DATA: Question[] = [
   },
   {
     id: 12,
-    difficulty: "Hard",
     parts: ["despite being warned of the danger", "the hiker decided to proceed", "up the steep mountain slope", "without any professional equipment"],
     q: "Rearrange logically:",
-    options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Prepositional contrast phrase (A) leads to the main SVO action (B-C) and final modifier (D)."
   },
   {
     id: 13,
-    difficulty: "Hard",
     parts: ["rarely does a single individual", "possess such a wide range", "of intellectual and creative talents", "as Leonardo da Vinci did"],
     q: "Identify the correct sequence:",
-    options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-A-C-D", "A-B-C-D", "C-D-A-B", "A-C-B-D"],
+    correct: 1,
     explanation: "Adverbial inversion 'Rarely does' (A) + verb (B) + object (C) + comparison (D)."
   },
   {
     id: 14,
-    difficulty: "Hard",
     parts: ["no sooner had the play begun", "than a technical glitch", "forced the actors to stop", "and restart the entire scene"],
     q: "Rearrange the segments:",
-    options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Correlative inversion 'No sooner had...than' structure (A-B) + resulting action (C-D)."
   },
   {
     id: 15,
-    difficulty: "Hard",
     parts: ["given the current economic climate", "it is highly unlikely", "that interest rates will fall", "in the near future"],
     q: "Choose the correct flow:",
-    options: ["A-B-C-D", "B-C-A-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-C-A-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Contextual phrase (A) leads to the dummy subject construction (B) and the that-clause (C-D)."
   },
   {
     id: 16,
-    difficulty: "Hard",
     parts: ["to ensure the safety of the passengers", "the airline pilot decided", "to divert the plane", "to the nearest available airport"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Infinitive purpose phrase (A) + subject-verb core (B) + object/direction (C-D)."
   },
   {
     id: 17,
-    difficulty: "Hard",
     parts: ["with the rise of digital media", "traditional newspapers have had", "to adapt their business models", "to stay relevant in the 21st century"],
     q: "Identify the logical order:",
-    options: ["A-B-C-D", "B-C-A-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-C-A-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Cause/Context (A) + SVO core (B-C) + purpose (D)."
   },
   {
     id: 18,
-    difficulty: "Hard",
     parts: ["provided that the weather stays clear", "the satellite will be launched", "early tomorrow morning", "from the space centre in Florida"],
     q: "Rearrange the segments:",
-    options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Conditional phrase (A) + main passive verb action (B) + time (C) + location (D)."
   },
   {
     id: 19,
-    difficulty: "Hard",
     parts: ["under no circumstances should you", "leave your luggage unattended", "while waiting in the departures lounge", "at the airport"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Inverted negative adverbial 'Under no circumstances' (A) + modal verb construction (B) + temporal clause (C) + location (D)."
   },
   {
     id: 20,
-    difficulty: "Hard",
     parts: ["having been discovered by chance", "the ancient ruins provide", "a fascinating glimpse", "into a long-lost civilisation"],
     q: "Rearrange to form a sentence:",
-    options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Passive participle phrase (A) describes the subject 'the ancient ruins' (B), leading to the object (C-D)."
   },
   {
     id: 21,
-    difficulty: "Hard",
-    parts: ["so intense was the heat", "that the asphalt on the road", "began to melt and buckle", "under the midday sun"],
+    parts: ["the impact of climate change", "is becoming increasingly evident", "through the melting of polar ice caps", "and rising sea levels globally"],
     q: "Identify the correct order:",
-    options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "A-C-B-D"],
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Inverted 'so...that' construction for emphasis (A-B) + verb phrase (C) + modifier (D)."
+    explanation: "Direct S-V-O-M structure: Impact (S) is becoming (V) evident (O) through... (M)."
   },
   {
     id: 22,
-    difficulty: "Hard",
     parts: ["in contrast to his predecessor", "the new CEO emphasized", "transparency and collaboration", "across all levels of the company"],
     q: "Rearrange the segments:",
-    options: ["A-B-C-D", "B-C-A-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-C-A-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Comparison phrase (A) leads to the subject (B), object (C), and final modifier (D)."
   },
   {
     id: 23,
-    difficulty: "Hard",
     parts: ["with a view to improving efficiency", "the company decided to implement", "a new software system", "within its logistics department"],
     q: "Choose the correct flow:",
-    options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Prepositional purpose phrase 'with a view to' (A) leads to the SVO core (B-C) and location (D)."
   },
   {
     id: 24,
-    difficulty: "Hard",
     parts: ["despite the significant progress made", "much remains to be done", "before we can achieve", "true social and economic equality"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Contrastive phrase (A) + main verb phrase (B) + temporal purpose clause (C-D)."
   },
   {
     id: 25,
-    difficulty: "Hard",
     parts: ["whether we like it or not", "globalization is a reality", "that will continue to shape", "the future of our society"],
     q: "Identify the logical order:",
-    options: ["A-B-C-D", "B-C-A-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
+    options: ["B-C-A-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
+    correct: 2,
     explanation: "Disjunctive phrase (A) leads to the main statement (B) and the defining relative clause (C-D)."
+  },
+  {
+    id: 26,
+    parts: ["the sudden surge in inflation", "has forced many households", "to reconsider their spending habits", "and cut back on non-essential items"],
+    q: "Rearrange to form a coherent sentence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject (A) + present perfect verb (B) + infinitive purpose (C) + addition (D)."
+  },
+  {
+    id: 27,
+    parts: ["only by embracing sustainable practices", "can we hope to preserve", "the delicate balance of our ecosystem", "for future generations"],
+    q: "Choose the correct order:",
+    options: ["B-C-D-A", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
+    correct: 1,
+    explanation: "Negative/restrictive adverbial 'only by' (A) triggers subject-auxiliary inversion 'can we' (B), followed by object (C) and modifier (D)."
+  },
+  {
+    id: 28,
+    parts: ["the witness's account of the event", "which was captured on CCTV", "contradicted the statements made", "by the suspect during interrogation"],
+    q: "Identify the logical sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject (A) + non-defining relative clause (B) + main verb (C) + agent phrase (D)."
+  },
+  {
+    id: 29,
+    parts: ["to be successful in the competitive market", "entrepreneurs must focus", "on innovation and customer satisfaction", "above all else"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Purpose (A) + subject-modal (B) + prepositional focus (C) + emphasis (D)."
+  },
+  {
+    id: 30,
+    parts: ["the findings of the study", "suggest that a balanced diet", "combined with regular exercise", "can significantly improve mental health"],
+    q: "Choose the coherent flow:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject (A) + report verb (B) + complex that-clause (C-D)."
   }
 ]
 
@@ -260,8 +275,8 @@ export default function RearrangeQuizPage() {
   const [isFinished, setIsFinished] = useState(false)
 
   useEffect(() => {
-    // Shuffle and pick 15 for a solid set
-    setQuestions([...REARRANGE_QUIZ_DATA].sort(() => Math.random() - 0.5).slice(0, 15))
+    // Shuffle and pick a solid set for the session
+    setQuestions([...REARRANGE_QUIZ_DATA].sort(() => Math.random() - 0.5))
   }, [])
 
   const scrollToTarget = useCallback(() => {
@@ -315,20 +330,13 @@ export default function RearrangeQuizPage() {
     setAnswers({ ...answers, [qId]: val })
   }
 
-  const isAnswerCorrect = (userAns: number, correctAns: number | number[]) => {
-    if (Array.isArray(correctAns)) {
-      return correctAns.includes(userAns)
-    }
-    return userAns === correctAns
-  }
-
   const calculateScore = () => {
     let correct = 0
     let wrong = 0
     questions.forEach(q => {
       const ans = answers[q.id]
       if (ans === undefined) return
-      if (isAnswerCorrect(ans, q.correct)) correct++
+      if (ans === q.correct) correct++
       else wrong++
     })
     return { correct, wrong, total: correct * 5 - wrong * 1 }
@@ -375,21 +383,20 @@ export default function RearrangeQuizPage() {
             </h3>
             {questions.map((q, idx) => {
               const userAns = answers[q.id]
-              const isCorrect = isAnswerCorrect(userAns, q.correct)
+              const isCorrect = userAns === q.correct
               return (
                 <Card key={idx} className="border-none shadow-md overflow-hidden rounded-[1.5rem] bg-white">
                   <div className={cn("px-6 py-3 flex items-center justify-between", isCorrect ? "bg-green-50" : "bg-red-50")}>
                     <Badge variant={isCorrect ? "default" : "destructive"} className="rounded-full font-bold">
                       {isCorrect ? "CORRECT (+5)" : "ERROR (-1)"}
                     </Badge>
-                    <Badge variant="outline" className="font-mono text-[10px]">{q.difficulty}</Badge>
                   </div>
                   <CardContent className="p-6 space-y-4">
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-col gap-2">
                       {q.parts.map((p, i) => (
-                        <Badge key={i} variant="outline" className="text-[10px] font-mono font-bold text-primary border-primary/20">
-                          {String.fromCharCode(65+i)}: {p}
-                        </Badge>
+                        <div key={i} className="text-xs font-mono font-bold text-muted-foreground flex items-start gap-2">
+                          <span className="text-primary">{String.fromCharCode(65+i)}:</span> {p}
+                        </div>
                       ))}
                     </div>
                     <p className="font-bold text-lg">{q.q}</p>
@@ -402,10 +409,7 @@ export default function RearrangeQuizPage() {
                         <div className="p-3 rounded-lg bg-green-50 border border-green-200">
                           <CheckCircle2 className="w-4 h-4 text-green-600" />
                           <span>
-                            <strong className="text-foreground">Correct Sequence:</strong> {Array.isArray(q.correct)
-                              ? q.correct.map(i => q.options[i]).join(" OR ")
-                              : q.options[q.correct as number]
-                            }
+                            <strong className="text-foreground">Correct Sequence:</strong> {q.options[q.correct]}
                           </span>
                         </div>
                       )}
@@ -448,9 +452,6 @@ export default function RearrangeQuizPage() {
 
         <Card className="border-none shadow-xl rounded-[2rem] bg-white mb-8 overflow-hidden" ref={questionCardRef}>
           <CardHeader className="bg-primary/5 pb-8 pt-10">
-            <div className="flex items-center gap-2 mb-4">
-              <Badge variant="secondary" className="font-bold text-[10px]">{q.difficulty} Tier</Badge>
-            </div>
             <CardTitle className="text-xl text-center leading-relaxed mb-6 font-bold">{q.q}</CardTitle>
             <div className="flex flex-col gap-2">
               {q.parts.map((p, i) => (
@@ -482,7 +483,7 @@ export default function RearrangeQuizPage() {
                       className="flex-1 cursor-pointer text-lg font-bold text-foreground leading-tight"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <span className="inline-block w-8 text-primary font-mono">{i + 1}.</span>
+                      <span className="inline-block w-12 text-primary font-mono">{i + 1}.</span>
                       {opt}
                     </Label>
                   </div>
