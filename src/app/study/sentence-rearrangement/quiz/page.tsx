@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from "react"
@@ -22,807 +23,807 @@ type Question = {
 }
 
 const REARRANGE_QUIZ_DATA: Question[] = [
-  // Set 1 Items
+  // Set 1: Mixed Themes
   {
     id: 1,
     parts: ["the fragrance of jasmine drifted", "as the evening breeze passed through", "the open windows of the old house", "filling the room with a gentle sweetness"],
     q: "Rearrange the parts labelled A, B, C, D to form a meaningful sentence.",
     options: ["B-C-A-D", "A-B-C-D", "D-A-C-B", "C-A-D-B"],
     correct: 0,
-    explanation: "The sentence starts with the setting ('As the evening breeze...'), followed by the location ('passed through the open windows...'), then the primary action ('fragrance drifted'), and ends with the result ('filling the room...')."
+    explanation: "The sentence starts with the setting (B), followed by the location (C), the primary action (A), and ends with the result (D)."
   },
   {
     id: 2,
-    parts: ["the committee decided to postpone", "the annual function", "due to the heavy rain forecast", "for the entire region"],
+    parts: ["due to the heavy rain forecast", "the annual function", "the committee decided to postpone", "for the entire region"],
     q: "Choose the correct sequence:",
-    options: ["B-A-D-C", "A-B-C-D", "C-D-A-B", "D-B-C-A"],
-    correct: 1,
-    explanation: "This follows a simple Subject-Verb-Object pattern: The committee (S) decided to postpone (V) the annual function (O), followed by the reason (due to...)."
+    options: ["C-B-A-D", "A-B-C-D", "B-A-D-C", "D-B-C-A"],
+    correct: 0,
+    explanation: "Subject (Committee - C) + Verb (Postpone - B) + Object (Function) + Reason (Rain - A) + Scope (Region - D)."
   },
   {
     id: 3,
-    parts: ["in an era of rapid technological change", "remains the cornerstone of human progress", "the ability to adapt and learn", "despite the risks of automation"],
+    parts: ["remains the cornerstone of human progress", "the ability to adapt and learn", "in an era of rapid technological change", "despite the risks of automation"],
     q: "Rearrange to form a coherent statement:",
-    options: ["C-B-A-D", "A-C-B-D", "D-A-C-B", "A-D-C-B"],
-    correct: 1,
-    explanation: "Begins with the era context (A), introduces the subject (C), the verb/state (B), and ends with the contrast (D)."
+    options: ["C-B-A-D", "A-C-B-D", "D-A-C-B", "B-A-C-D"],
+    correct: 0,
+    explanation: "Begins with context (C), introduces subject (B), state (A), and ends with contrast (D)."
   },
   {
     id: 4,
-    parts: ["scarcely had the sun risen", "over the horizon", "when the explorers set out", "on their perilous journey"],
+    parts: ["when the explorers set out", "over the horizon", "scarcely had the sun risen", "on their perilous journey"],
     q: "Identify the correct sequence:",
-    options: ["C-D-A-B", "B-A-C-D", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Uses the 'Scarcely...when' correlative structure. Scarcely (A) + prepositional phrase (B) + when clause (C) + remaining info (D)."
+    options: ["C-B-A-D", "B-A-C-D", "A-B-C-D", "D-C-B-A"],
+    correct: 0,
+    explanation: "Uses 'Scarcely had (C) ... when (A)' structure. Logical flow: Sunrise (C-B) leading to the start of the journey (A-D)."
   },
   {
     id: 5,
-    parts: ["although the evidence was clear", "the jury found it difficult", "to reach a unanimous verdict", "due to conflicting testimonies"],
+    parts: ["the jury found it difficult", "to reach a unanimous verdict", "due to conflicting testimonies", "although the evidence was clear"],
     q: "Rearrange the segments:",
-    options: ["B-C-A-D", "D-A-B-C", "A-D-B-C", "A-B-C-D"],
-    correct: 3,
-    explanation: "Starts with the contrastive 'although' clause (A), followed by the main subject-verb (B), the infinitive phrase (C), and the reason (D)."
+    options: ["D-A-B-C", "A-B-C-D", "C-D-A-B", "B-C-D-A"],
+    correct: 0,
+    explanation: "Starts with the contrast (D), followed by the main difficulty (A), the specific goal (B), and the reason (C)."
   },
   {
     id: 6,
-    parts: ["to understand the complexities of the universe", "physicists must look beyond", "the observable phenomena", "into the realm of quantum theory"],
+    parts: ["into the realm of quantum theory", "the observable phenomena", "physicists must look beyond", "to understand the complexities of the universe"],
     q: "Choose the logical order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-A-B-D", "D-B-C-A"],
+    options: ["D-C-B-A", "A-B-C-D", "C-A-B-D", "B-D-C-A"],
     correct: 0,
-    explanation: "The purpose ('to understand...') initiates the sentence, followed by the subject-verb core and the directional phrases."
+    explanation: "Starts with the purpose (D), followed by the subject-requirement (C), the object (B), and the destination (A)."
   },
   {
     id: 7,
-    parts: ["not only did the scientist discover a new element", "but she also developed a method", "to isolate it from radioactive waste", "with minimal environmental impact"],
+    parts: ["to isolate it from radioactive waste", "with minimal environmental impact", "not only did the scientist discover a new element", "but she also developed a method"],
     q: "Rearrange correctly:",
-    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Uses 'Not only...but also' inversion. Inverted auxiliary 'did' (A) + correlative 'but also' (B) + infinitive purpose (C) + adverbial phrase (D)."
+    options: ["C-D-A-B", "A-B-C-D", "B-A-C-D", "D-C-B-A"],
+    correct: 0,
+    explanation: "Correlative structure: Not only (C) ... but also (D) + purpose (A) + manner (B)."
   },
   {
     id: 8,
-    parts: ["by the time the rescue team arrived", "most of the survivors", "had already been relocated", "to a safer facility"],
+    parts: ["had already been relocated", "most of the survivors", "by the time the rescue team arrived", "to a safer facility"],
     q: "Choose the correct sequence:",
-    options: ["B-C-A-D", "C-D-A-B", "A-C-B-D", "A-B-C-D"],
-    correct: 3,
-    explanation: "Temporal clause (A) followed by the subject (B) and the past perfect passive verb phrase (C-D)."
+    options: ["C-B-A-D", "A-B-C-D", "D-A-C-B", "B-C-A-D"],
+    correct: 0,
+    explanation: "Time clause (C) followed by the subject (B) and the complete verb phrase (A-D)."
   },
   {
     id: 9,
-    parts: ["having completed her research", "she presented her findings", "at the international symposium", "to a round of applause"],
+    parts: ["at the international symposium", "having completed her research", "to a round of applause", "she presented her findings"],
     q: "Identify the coherent flow:",
-    options: ["B-A-C-D", "A-B-C-D", "C-D-A-B", "A-C-B-D"],
-    correct: 1,
-    explanation: "Participle phrase (having completed...) establishes the prior action, leading to the main action and setting."
+    options: ["B-D-A-C", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Participle phrase (B) leads to the main action (D) + location (A) + result (C)."
   },
   {
     id: 10,
-    parts: ["the architect designed the building", "so that it would maximise", "the use of natural light", "while minimizing energy consumption"],
+    parts: ["the use of natural light", "the architect designed the building", "while minimizing energy consumption", "so that it would maximise"],
     q: "Rearrange the segments:",
-    options: ["B-C-A-D", "D-A-B-C", "A-C-B-D", "A-B-C-D"],
-    correct: 3,
-    explanation: "SVO core (A) + purpose clause (B-C) + contrastive while-clause (D)."
+    options: ["B-D-A-C", "A-B-C-D", "C-A-B-D", "D-B-C-A"],
+    correct: 0,
+    explanation: "Subject core (B) + purpose clause (D) + object (A) + contrast (C)."
   },
-  // Set 2 Items
+  // Set 2: Novelty & Adventure
   {
     id: 11,
-    parts: ["the novel, written in the late 19th century", "explores the social injustices", "of the industrial revolution", "through the eyes of a child"],
+    parts: ["of the industrial revolution", "written in the late 19th century", "through the eyes of a child", "the novel, explores the social injustices"],
     q: "Choose the correct order:",
-    options: ["A-B-C-D", "B-C-A-D", "C-D-A-B", "A-C-B-D"],
-    correct: 0,
-    explanation: "The subject with its appositive phrase (A) leads to the verb (B) and its objects/modifiers (C-D)."
+    options: ["D-B-A-C", "A-B-C-D", "B-D-A-C", "C-A-B-D"],
+    correct: 2,
+    explanation: "Identifying the modified subject (B-D) followed by its focus (A) and perspective (C)."
   },
   {
     id: 12,
-    parts: ["despite being warned of the danger", "the hiker decided to proceed", "up the steep mountain slope", "without any professional equipment"],
+    parts: ["the hiker decided to proceed", "without any professional equipment", "despite being warned of the danger", "up the steep mountain slope"],
     q: "Rearrange logically:",
-    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Prepositional contrast phrase (A) leads to the main SVO action (B-C) and final modifier (D)."
+    options: ["C-A-D-B", "A-B-C-D", "D-C-B-A", "B-A-C-D"],
+    correct: 0,
+    explanation: "Contrast (C) + Decision (A) + Direction (D) + Limitation (B)."
   },
   {
     id: 13,
-    parts: ["rarely does a single individual", "possess such a wide range", "of intellectual and creative talents", "as Leonardo da Vinci did"],
+    parts: ["as Leonardo da Vinci did", "possess such a wide range", "rarely does a single individual", "of intellectual and creative talents"],
     q: "Identify the correct sequence:",
-    options: ["B-A-C-D", "A-B-C-D", "C-D-A-B", "A-C-B-D"],
-    correct: 1,
-    explanation: "Adverbial inversion 'Rarely does' (A) + verb (B) + object (C) + comparison (D)."
+    options: ["C-B-D-A", "A-B-C-D", "B-A-C-D", "D-C-B-A"],
+    correct: 0,
+    explanation: "Inversion 'Rarely does' (C) + Verb (B) + Object (D) + Comparison (A)."
   },
   {
     id: 14,
-    parts: ["no sooner had the play begun", "than a technical glitch", "forced the actors to stop", "and restart the entire scene"],
+    parts: ["than a technical glitch", "and restart the entire scene", "no sooner had the play begun", "forced the actors to stop"],
     q: "Rearrange the segments:",
-    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Correlative inversion 'No sooner had...than' structure (A-B) + resulting action (C-D)."
+    options: ["C-A-D-B", "A-B-C-D", "D-C-B-A", "B-A-C-D"],
+    correct: 0,
+    explanation: "Correlative structure: No sooner had (C) ... than (A) + resulting actions (D-B)."
   },
   {
     id: 15,
-    parts: ["given the current economic climate", "it is highly unlikely", "that interest rates will fall", "in the near future"],
+    parts: ["that interest rates will fall", "it is highly unlikely", "in the near future", "given the current economic climate"],
     q: "Choose the correct flow:",
-    options: ["B-C-A-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Contextual phrase (A) leads to the dummy subject construction (B) and the that-clause (C-D)."
+    options: ["D-B-A-C", "A-B-C-D", "B-A-C-D", "C-D-A-B"],
+    correct: 0,
+    explanation: "Context (D) + Dummy subject (B) + Content (A) + Time (C)."
   },
   {
     id: 16,
-    parts: ["to ensure the safety of the passengers", "the airline pilot decided", "to divert the plane", "to the nearest available airport"],
+    parts: ["to ensure the safety of the passengers", "to the nearest available airport", "the airline pilot decided", "to divert the plane"],
     q: "Rearrange correctly:",
-    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Infinitive purpose phrase (A) + subject-verb core (B) + object/direction (C-D)."
+    options: ["A-C-D-B", "B-A-C-D", "C-D-A-B", "D-B-C-A"],
+    correct: 0,
+    explanation: "Purpose (A) + Subject (C) + Action (D) + Destination (B)."
   },
   {
     id: 17,
-    parts: ["with the rise of digital media", "traditional newspapers have had", "to adapt their business models", "to stay relevant in the 21st century"],
+    parts: ["traditional newspapers have had", "to stay relevant in the 21st century", "with the rise of digital media", "to adapt their business models"],
     q: "Identify the logical order:",
-    options: ["B-C-A-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Cause/Context (A) + SVO core (B-C) + purpose (D)."
+    options: ["C-A-D-B", "A-B-C-D", "D-C-B-A", "B-A-C-D"],
+    correct: 0,
+    explanation: "Cause (C) + Subject (A) + Immediate requirement (D) + Long-term goal (B)."
   },
   {
     id: 18,
-    parts: ["provided that the weather stays clear", "the satellite will be launched", "early tomorrow morning", "from the space centre in Florida"],
+    parts: ["the satellite will be launched", "from the space centre in Florida", "provided that the weather stays clear", "early tomorrow morning"],
     q: "Rearrange the segments:",
-    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Conditional phrase (A) + main passive verb action (B) + time (C) + location (D)."
+    options: ["C-A-D-B", "A-B-C-D", "D-C-B-A", "B-A-C-D"],
+    correct: 0,
+    explanation: "Condition (C) + Main event (A) + Time (D) + Source (B)."
   },
   {
     id: 19,
-    parts: ["under no circumstances should you", "leave your luggage unattended", "while waiting in the departures lounge", "at the airport"],
+    parts: ["leave your luggage unattended", "under no circumstances should you", "while waiting in the departures lounge", "at the airport"],
     q: "Choose the correct sequence:",
-    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Inverted negative adverbial 'Under no circumstances' (A) + modal verb construction (B) + temporal clause (C) + location (D)."
+    options: ["B-A-C-D", "A-B-C-D", "C-D-A-B", "D-B-C-A"],
+    correct: 0,
+    explanation: "Negative auxiliary inversion (B) + Verb phrase (A) + Temporal context (C) + Specific location (D)."
   },
   {
     id: 20,
-    parts: ["having been discovered by chance", "the ancient ruins provide", "a fascinating glimpse", "into a long-lost civilisation"],
+    parts: ["a fascinating glimpse", "the ancient ruins provide", "into a long-lost civilisation", "having been discovered by chance"],
     q: "Rearrange to form a sentence:",
-    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Passive participle phrase (A) describes the subject 'the ancient ruins' (B), leading to the object (C-D)."
+    options: ["D-B-A-C", "A-B-C-D", "B-A-C-D", "C-D-A-B"],
+    correct: 0,
+    explanation: "Participle modifier (D) describing the ruins (B), leading to the outcome (A-C)."
   },
-  // Set 3 Items
+  // Set 3: Modern Change
   {
     id: 21,
-    parts: ["the impact of climate change", "is becoming increasingly evident", "through the melting of polar ice caps", "and rising sea levels globally"],
+    parts: ["through the melting of polar ice caps", "is becoming increasingly evident", "the impact of climate change", "and rising sea levels globally"],
     q: "Identify the correct order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-A-D", "A-B-C-D", "D-A-B-C", "B-C-D-A"],
     correct: 0,
-    explanation: "Direct S-V-O-M structure: Impact (S) is becoming (V) evident (O) through... (M)."
+    explanation: "Subject (C) + Verb (B) + Evidence (A-D)."
   },
   {
     id: 22,
-    parts: ["in contrast to his predecessor", "the new CEO emphasized", "transparency and collaboration", "across all levels of the company"],
+    parts: ["transparency and collaboration", "in contrast to his predecessor", "across all levels of the company", "the new CEO emphasized"],
     q: "Rearrange the segments:",
-    options: ["B-C-A-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Comparison phrase (A) leads to the subject (B), object (C), and final modifier (D)."
+    options: ["B-D-A-C", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contrastive phrase (B) + Subject-Verb (D) + Object (A) + Scope (C)."
   },
   {
     id: 23,
-    parts: ["with a view to improving efficiency", "the company decided to implement", "a new software system", "within its logistics department"],
+    parts: ["within its logistics department", "a new software system", "with a view to improving efficiency", "the company decided to implement"],
     q: "Choose the correct flow:",
-    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Prepositional purpose phrase 'with a view to' (A) leads to the SVO core (B-C) and location (D)."
+    options: ["C-D-B-A", "A-B-C-D", "B-A-C-D", "D-C-B-A"],
+    correct: 0,
+    explanation: "Purpose (C) + Subject core (D) + Object (B) + Location (A)."
   },
   {
     id: 24,
-    parts: ["despite the significant progress made", "much remains to be done", "before we can achieve", "true social and economic equality"],
+    parts: ["much remains to be done", "before we can achieve", "true social and economic equality", "despite the significant progress made"],
     q: "Rearrange correctly:",
-    options: ["B-A-C-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Contrastive phrase (A) + main verb phrase (B) + temporal purpose clause (C-D)."
+    options: ["D-A-B-C", "A-B-C-D", "C-D-A-B", "B-A-C-D"],
+    correct: 0,
+    explanation: "Contrast (D) + Main assertion (A) + Conditional timeframe (B-C)."
   },
   {
     id: 25,
-    parts: ["whether we like it or not", "globalization is a reality", "that will continue to shape", "the future of our society"],
+    parts: ["that will continue to shape", "globalization is a reality", "the future of our society", "whether we like it or not"],
     q: "Identify the logical order:",
-    options: ["B-C-A-D", "C-D-A-B", "A-B-C-D", "A-C-B-D"],
-    correct: 2,
-    explanation: "Disjunctive phrase (A) leads to the main statement (B) and the defining relative clause (C-D)."
+    options: ["D-B-A-C", "A-B-C-D", "B-A-C-D", "C-D-A-B"],
+    correct: 0,
+    explanation: "Disjunctive context (D) + Main fact (B) + Defining clause (A-C)."
   },
   {
     id: 26,
-    parts: ["the sudden surge in inflation", "has forced many households", "to reconsider their spending habits", "and cut back on non-essential items"],
+    parts: ["has forced many households", "and cut back on non-essential items", "to reconsider their spending habits", "the sudden surge in inflation"],
     q: "Rearrange to form a coherent sentence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-A-C-B", "A-B-C-D", "B-C-D-A", "C-D-A-B"],
     correct: 0,
-    explanation: "Subject (A) + present perfect verb (B) + infinitive purpose (C) + addition (D)."
+    explanation: "Cause (D) + Verb phrase (A) + Result 1 (C) + Result 2 (B)."
   },
   {
     id: 27,
-    parts: ["only by embracing sustainable practices", "can we hope to preserve", "the delicate balance of our ecosystem", "for future generations"],
+    parts: ["can we hope to preserve", "only by embracing sustainable practices", "the delicate balance of our ecosystem", "for future generations"],
     q: "Choose the correct order:",
-    options: ["B-C-D-A", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
-    correct: 1,
-    explanation: "Negative/restrictive adverbial 'only by' (A) triggers subject-auxiliary inversion 'can we' (B), followed by object (C) and modifier (D)."
+    options: ["B-A-C-D", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Restrictive 'Only by' (B) + Auxiliary inversion (A) + Object (C) + Modifier (D)."
   },
   {
     id: 28,
-    parts: ["the witness's account of the event", "which was captured on CCTV", "contradicted the statements made", "by the suspect during interrogation"],
+    parts: ["contradicted the statements made", "which was captured on CCTV", "by the suspect during interrogation", "the witness's account of the event"],
     q: "Identify the logical sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-B-A-C", "A-B-C-D", "B-C-D-A", "C-D-A-B"],
     correct: 0,
-    explanation: "Subject (A) + non-defining relative clause (B) + main verb (C) + agent phrase (D)."
+    explanation: "Subject (D) + Relative clause (B) + Verb phrase (A) + Agent phrase (C)."
   },
   {
     id: 29,
-    parts: ["to be successful in the competitive market", "entrepreneurs must focus", "on innovation and customer satisfaction", "above all else"],
+    parts: ["above all else", "entrepreneurs must focus", "to be successful in the competitive market", "on innovation and customer satisfaction"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-D-A", "A-B-C-D", "B-D-A-C", "D-C-B-A"],
     correct: 0,
-    explanation: "Purpose (A) + subject-modal (B) + prepositional focus (C) + emphasis (D)."
+    explanation: "Purpose (C) + Requirement (B) + Focus area (D) + Emphasis (A)."
   },
   {
     id: 30,
-    parts: ["the findings of the study", "suggest that a balanced diet", "combined with regular exercise", "can significantly improve mental health"],
+    parts: ["can significantly improve mental health", "suggest that a balanced diet", "the findings of the study", "combined with regular exercise"],
     q: "Choose the coherent flow:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-D-A", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Subject (A) + report verb (B) + complex that-clause (C-D)."
+    explanation: "Subject (C) + Verb (B) + Complement (D) + Result (A)."
   },
-  // Set 4 Items (Scientific and Administrative)
+  // Set 4: Science & Regulation
   {
     id: 31,
-    parts: ["the rapid melting of glaciers", "has profound implications", "for global sea levels", "and coastal biodiversity"],
+    parts: ["and coastal biodiversity", "has profound implications", "the rapid melting of glaciers", "for global sea levels"],
     q: "Rearrange to form a logical sentence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-D-A", "A-B-C-D", "D-A-B-C", "B-C-A-D"],
     correct: 0,
-    explanation: "Simple Subject-Verb-Prepositional structure."
+    explanation: "Subject (C) + Verb (B) + Target 1 (D) + Target 2 (A)."
   },
   {
     id: 32,
-    parts: ["although the experiment failed", "to produce the expected results", "it provided valuable data", "for future research directions"],
+    parts: ["it provided valuable data", "although the experiment failed", "for future research directions", "to produce the expected results"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-D-A-C", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Contrastive clause followed by main clause."
+    explanation: "Contrastive opener (B-D) leading to the actual benefit (A-C)."
   },
   {
     id: 33,
-    parts: ["under the new regulations", "all applicants must submit", "their supporting documents", "within thirty working days"],
+    parts: ["their supporting documents", "all applicants must submit", "within thirty working days", "under the new regulations"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-B-A-C", "A-B-C-D", "B-A-C-D", "C-D-A-B"],
     correct: 0,
-    explanation: "Contextual prepositional phrase followed by subject-verb core."
+    explanation: "Operational context (D) + Subject (B) + Object (A) + Time limit (C)."
   },
   {
     id: 34,
-    parts: ["the discovery of penicillin", "by Alexander Fleming in 1928", "revolutionised the treatment", "of infectious bacterial diseases"],
+    parts: ["revolutionised the treatment", "of infectious bacterial diseases", "the discovery of penicillin", "by Alexander Fleming in 1928"],
     q: "Identify the logical order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-D-A-B", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Subject with modifier, followed by verb and object."
+    explanation: "Compound Subject (C-D) + Verb (A) + Object (B)."
   },
   {
     id: 35,
-    parts: ["in order to achieve sustainability", "industries must adopt", "more efficient production methods", "and reduce their carbon footprint"],
+    parts: ["more efficient production methods", "and reduce their carbon footprint", "industries must adopt", "in order to achieve sustainability"],
     q: "Rearrange to form a sentence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-C-A-B", "A-B-C-D", "C-D-A-B", "B-A-C-D"],
     correct: 0,
-    explanation: "Purpose phrase followed by subject-verb-object structure."
+    explanation: "Infinitive purpose (D) + Subject requirement (C) + Solution 1 (A) + Solution 2 (B)."
   },
   {
     id: 36,
-    parts: ["the proliferation of smartphones", "has changed the way", "people consume information", "and interact with one another"],
+    parts: ["and interact with one another", "has changed the way", "the proliferation of smartphones", "people consume information"],
     q: "Choose the coherent flow:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-D-A", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "SVO core followed by coordinate clauses."
+    explanation: "Cause (C) + Verb (B) + Object clause (D-A)."
   },
   {
     id: 37,
-    parts: ["despite the technological advancements", "the digital divide continues", "to widen in developing nations", "due to lack of infrastructure"],
+    parts: ["due to lack of infrastructure", "despite the technological advancements", "to widen in developing nations", "the digital divide continues"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-D-C-A", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Contrast followed by main statement and cause."
+    explanation: "Contrast (B) + Subject (D) + Infinitive result (C) + Reason (A)."
   },
   {
     id: 38,
-    parts: ["the implementation of the project", "was delayed for several months", "owing to unforeseen circumstances", "beyond the control of the team"],
+    parts: ["owing to unforeseen circumstances", "was delayed for several months", "the implementation of the project", "beyond the control of the team"],
     q: "Identify the logical sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-A-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Passive subject-verb followed by reason and modifier."
+    explanation: "Subject (C) + Passive verb (B) + Cause (A) + Extension (D)."
   },
   {
     id: 39,
-    parts: ["only when the sun went down", "did the temperature begin", "to drop significantly", "in the arid desert region"],
+    parts: ["in the arid desert region", "only when the sun went down", "to drop significantly", "did the temperature begin"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-D-C-A", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Negative/Restrictive inversion structure."
+    explanation: "Restrictive time clause (B) + Inverted auxiliary (D) + Infinitive (C) + Location (A)."
   },
   {
     id: 40,
-    parts: ["the success of the mission", "depended entirely on", "the seamless coordination", "between the ground and space teams"],
+    parts: ["between the ground and space teams", "depended entirely on", "the success of the mission", "the seamless coordination"],
     q: "Rearrange to form a sentence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-D-A", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Direct S-V-O structure."
+    explanation: "Result (C) + Verb (B) + Necessary component (D) + Participants (A)."
   },
-  // Set 5 Items (Philosophy and Logic)
+  // Set 5: Ethics & Philosophy
   {
     id: 41,
-    parts: ["the pursuit of happiness", "is often complicated by", "the pressures of modern life", "and societal expectations"],
+    parts: ["the pressures of modern life", "is often complicated by", "the pursuit of happiness", "and societal expectations"],
     q: "Identify the correct order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-A-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Passive S-V-O structure."
+    explanation: "Concept (C) + Passive relation (B) + Factor 1 (A) + Factor 2 (D)."
   },
   {
     id: 42,
-    parts: ["knowledge, once acquired,", "must be applied diligently", "to solve real-world problems", "for the benefit of humanity"],
+    parts: ["to solve real-world problems", "knowledge, once acquired,", "for the benefit of humanity", "must be applied diligently"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-D-A-C", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Subject with appositive followed by modal verb and purpose."
+    explanation: "Subject (B) + Modal requirement (D) + Goal (A) + Beneficiary (C)."
   },
   {
     id: 43,
-    parts: ["without a clear vision", "it is easy to get lost", "in the trivial details", "of daily administrative tasks"],
+    parts: ["of daily administrative tasks", "without a clear vision", "in the trivial details", "it is easy to get lost"],
     q: "Choose the logical order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-D-C-A", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Prepositional lack phrase followed by dummy subject structure."
+    explanation: "Conditional lack (B) + Dummy subject (D) + Location (C) + Scope (A)."
   },
   {
     id: 44,
-    parts: ["the teacher encouraged students", " to think critically about", "the information they receive", "from social media platforms"],
+    parts: ["from social media platforms", "to think critically about", "the teacher encouraged students", "the information they receive"],
     q: "Rearrange to form a coherent statement:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-D-A", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "S-V-O-M structure."
+    explanation: "Action initiator (C) + Encouragement (B) + Target (D) + Source (A)."
   },
   {
     id: 45,
-    parts: ["by examining the historical records", "historians can gain insights", "into the social structures", "of ancient civilisations"],
+    parts: ["of ancient civilisations", "by examining the historical records", "historians can gain insights", "into the social structures"],
     q: "Identify the coherent flow:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-C-D-A", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Instrumental phrase followed by S-V-O."
+    explanation: "Method (B) + Agent-Action (C) + Target (D) + Subject focus (A)."
   },
   {
     id: 46,
-    parts: ["the artist used light and shadow", "to create a sense of depth", "in her latest masterpiece", "exhibited at the national gallery"],
+    parts: ["exhibited at the national gallery", "the artist used light and shadow", "to create a sense of depth", "in her latest masterpiece"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-C-D-A", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "S-V-O core followed by purpose and location."
+    explanation: "Subject-Verb (B) + Method (C) + Location (D) + Final context (A)."
   },
   {
     id: 47,
-    parts: ["despite the loud noise", "the baby continued to sleep", "soundly in the cradle", "unaware of the surrounding chaos"],
+    parts: ["unaware of the surrounding chaos", "despite the loud noise", "the baby continued to sleep", "soundly in the cradle"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-C-D-A", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Contrastive phrase followed by main action and state modifier."
+    explanation: "Contrast (B) + Main action (C) + Manner (D) + State (A)."
   },
   {
     id: 48,
-    parts: ["the company values innovation", "and encourages its employees", "to suggest new ideas", "for improving the existing products"],
+    parts: ["to suggest new ideas", "the company values innovation", "and encourages its employees", "for improving the existing products"],
     q: "Identify the logical sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-C-A-D", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Compound S-V-O structure."
+    explanation: "Statement of value (B) + Correlative action (C) + Goal (A) + Purpose (D)."
   },
   {
     id: 49,
-    parts: ["reading books regularly", "not only expands vocabulary", "but also broadens perspective", "on diverse global cultures"],
+    parts: ["not only expands vocabulary", "but also broadens perspective", "reading books regularly", "on diverse global cultures"],
     q: "Rearrange to form a logical sentence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-B-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Subject-Gerund followed by correlative conjunctions."
+    explanation: "Subject (C) + Correlative 1 (A) + Correlative 2 (B) + Scope (D)."
   },
   {
     id: 50,
-    parts: ["integrity and transparency", "are the pillars upon which", "the foundation of trust", "is built in any relationship"],
+    parts: ["the foundation of trust", "integrity and transparency", "is built in any relationship", "are the pillars upon which"],
     q: "Choose the coherent flow:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-D-A-C", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Subject-Verb-Complement structure with relative clause."
+    explanation: "Core values (B) + Predicate link (D) + Target (A) + Outcome (C)."
   },
-  // Set 6: Environmental & Biological Science
+  // Scramble 51-100 logically...
   {
     id: 51,
-    parts: ["the preservation of biodiversity", "is essential for maintaining", "the ecological balance", "of our planet's various habitats"],
+    parts: ["is essential for maintaining", "the ecological balance", "the preservation of biodiversity", "of our planet's various habitats"],
     q: "Identify the correct order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-B-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Direct S-V-Complement structure with prepositional modifiers."
+    explanation: "Subject (C) + Verb (A) + Focus (B) + Scope (D)."
   },
   {
     id: 52,
-    parts: ["by converting sunlight into energy", "plants play a vital role", "in the global carbon cycle", "and oxygen production"],
+    parts: ["plants play a vital role", "by converting sunlight into energy", "in the global carbon cycle", "and oxygen production"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-A-C-D", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Gerund phrase (By...) leads to the main subject and its role."
+    explanation: "Method (B) + Action (A) + Domain 1 (C) + Domain 2 (D)."
   },
   {
     id: 53,
-    parts: ["scientists have long debated", "whether life exists", "on other planets", "within our solar system"],
+    parts: ["whether life exists", "on other planets", "within our solar system", "scientists have long debated"],
     q: "Choose the logical order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-A-B-C", "A-B-C-D", "B-C-D-A", "C-D-A-B"],
     correct: 0,
-    explanation: "Subject-Verb core followed by a nominal clause."
+    explanation: "Action (D) + Subject of debate (A) + Location (B) + Constraint (C)."
   },
   {
     id: 54,
-    parts: ["the restoration of coral reefs", "requires global cooperation", "to reduce marine pollution", "and rising ocean temperatures"],
+    parts: ["to reduce marine pollution", "the restoration of coral reefs", "and rising ocean temperatures", "requires global cooperation"],
     q: "Rearrange to form a coherent statement:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-D-A-C", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "SVO core followed by infinitive purpose."
+    explanation: "Subject (B) + Requirement (D) + Purpose 1 (A) + Purpose 2 (C)."
   },
   {
     id: 55,
-    parts: ["despite the harsh conditions", "certain species of extremophiles", "thrive in deep-sea vents", "where sunlight cannot reach"],
+    parts: ["thrive in deep-sea vents", "despite the harsh conditions", "where sunlight cannot reach", "certain species of extremophiles"],
     q: "Identify the coherent flow:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-D-A-C", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Contrastive phrase followed by subject-verb and relative clause."
+    explanation: "Contrast (B) + Subject (D) + Action (A) + Defining location (C)."
   },
   {
     id: 56,
-    parts: ["the evolution of human language", "is a complex process", "that involves both", "biological and social factors"],
+    parts: ["biological and social factors", "is a complex process", "the evolution of human language", "that involves both"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-D-A", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "S-V-Complement followed by defining relative clause."
+    explanation: "Subject (C) + Verb (B) + Connector (D) + Categories (A)."
   },
   {
     id: 57,
-    parts: ["only by reducing emissions", "can we mitigate the impact", "of global warming", "on future weather patterns"],
+    parts: ["can we mitigate the impact", "on future weather patterns", "only by reducing emissions", "of global warming"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-D-B", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Restrictive 'Only by' inversion structure."
+    explanation: "Restriction (C) + Inversion (A) + Target (D) + Effect (B)."
   },
   {
     id: 58,
-    parts: ["the study of ancient DNA", "has provided new insights", "into the migratory patterns", "of early human civilisations"],
+    parts: ["has provided new insights", "into the migratory patterns", "the study of ancient DNA", "of early human civilisations"],
     q: "Identify the logical sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-B-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Direct S-V-O structure with complex modifiers."
+    explanation: "Subject (C) + Verb (A) + Insight target (B) + Era (D)."
   },
   {
     id: 59,
-    parts: ["while some volcanoes remain dormant", "others erupt with", "catastrophic force", "reshaping the landscape"],
+    parts: ["reshaping the landscape", "while some volcanoes remain dormant", "others erupt with", "catastrophic force"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-C-D-A", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Contrastive 'While' clause followed by independent clause and participle."
+    explanation: "Comparative opener (B) + Contrast (C) + Intensity (D) + Outcome (A)."
   },
   {
     id: 60,
-    parts: ["the intricate web of life", "depends on the survival", "of even the smallest", "microscopic organisms"],
+    parts: ["microscopic organisms", "depends on the survival", "the intricate web of life", "of even the smallest"],
     q: "Rearrange to form a sentence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-D-A", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Direct subject-verb-prepositional structure."
+    explanation: "Subject (C) + Requirement (B) + Degree (D) + Specifics (A)."
   },
-  // Set 7: Economics & Finance
+  // Set 7: Economics
   {
     id: 61,
-    parts: ["the fluctuations in exchange rates", "significantly affect", "the volume of international trade", "and investment flows"],
+    parts: ["the volume of international trade", "and investment flows", "the fluctuations in exchange rates", "significantly affect"],
     q: "Identify the correct order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-D-A-B", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Direct S-V-O structure with compound objects."
+    explanation: "Subject (C) + Verb (D) + Target 1 (A) + Target 2 (B)."
   },
   {
     id: 62,
-    parts: ["to stimulate economic growth", "the central bank decided", "to lower interest rates", "across the country"],
+    parts: ["across the country", "the central bank decided", "to stimulate economic growth", "to lower interest rates"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-D-A", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Purpose infinitive followed by S-V-O."
+    explanation: "Purpose (C) + Decision maker (B) + Action (D) + Scope (A)."
   },
   {
     id: 63,
-    parts: ["in an increasingly globalised economy", "competitiveness depends on", "innovation and skill development", "rather than raw materials"],
+    parts: ["innovation and skill development", "competitiveness depends on", "rather than raw materials", "in an increasingly globalised economy"],
     q: "Choose the logical order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-B-A-C", "A-B-C-D", "B-C-D-A", "C-D-A-B"],
     correct: 0,
-    explanation: "Contextual phrase followed by S-V-O and comparison."
+    explanation: "Context (D) + Subject-Verb (B) + Primary factor (A) + Secondary factor (C)."
   },
   {
     id: 64,
-    parts: ["the implementation of fiscal policy", "is a delicate balancing act", "between social welfare spending", "and national debt management"],
+    parts: ["and national debt management", "between social welfare spending", "the implementation of fiscal policy", "is a delicate balancing act"],
     q: "Rearrange to form a coherent statement:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-D-B-A", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "S-V-Complement with 'between...and' structure."
+    explanation: "Subject (C) + Verb phrase (D) + Comparative context (B-A)."
   },
   {
     id: 65,
-    parts: ["despite the rising inflation", "consumer demand remained", "unexpectedly resilient", "during the holiday season"],
+    parts: ["unexpectedly resilient", "consumer demand remained", "during the holiday season", "despite the rising inflation"],
     q: "Identify the coherent flow:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-B-A-C", "A-B-C-D", "B-C-D-A", "C-D-A-B"],
     correct: 0,
-    explanation: "Contrastive 'Despite' leads to S-V-Complement."
+    explanation: "Contrast (D) + Subject (B) + State (A) + Time (C)."
   },
   {
     id: 66,
-    parts: ["the rise of e-commerce", "has transformed the retail sector", "by offering convenience", "to shoppers worldwide"],
+    parts: ["has transformed the retail sector", "by offering convenience", "the rise of e-commerce", "to shoppers worldwide"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-B-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Subject-Verb-Object followed by 'by' gerund phrase."
+    explanation: "Subject (C) + Verb (A) + Method (B) + Target (D)."
   },
   {
     id: 67,
-    parts: ["only by diversifying portfolios", "can investors protect", "their capital from", "market volatility"],
+    parts: ["can investors protect", "their capital from", "only by diversifying portfolios", "market volatility"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-B-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Restrictive 'Only by' inversion structure."
+    explanation: "Method (C) + Inversion (A) + Object (B) + Source of risk (D)."
   },
   {
     id: 68,
-    parts: ["the sustainability of social security", "depends on the ratio", "of working-age people", "to retirees"],
+    parts: ["to retirees", "depends on the ratio", "the sustainability of social security", "of working-age people"],
     q: "Identify the logical sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-D-A", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Subject-Verb followed by complex prepositional phrases."
+    explanation: "Core issue (C) + Requirement (B) + Factor 1 (D) + Factor 2 (A)."
   },
   {
     id: 69,
-    parts: ["with the advent of automation", "many repetitive tasks", "are being taken over", "by intelligent machines"],
+    parts: ["are being taken over", "by intelligent machines", "many repetitive tasks", "with the rise of automation"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-C-A-B", "A-B-C-D", "B-C-D-A", "C-D-A-B"],
     correct: 0,
-    explanation: "Contextual phrase followed by passive S-V construction."
+    explanation: "Context (D) + Subject (C) + Verb (A) + Agent (B)."
   },
   {
     id: 70,
-    parts: ["the equitable distribution of wealth", "remains a major challenge", "for developing nations", "in the 21st century"],
+    parts: ["remains a major challenge", "in the 21st century", "the equitable distribution of wealth", "for developing nations"],
     q: "Rearrange to form a sentence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-D-B", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Direct S-V-Complement with temporal modifier."
+    explanation: "Subject (C) + State (A) + Target group (D) + Era (B)."
   },
-  // Set 8: Technology & Innovation
+  // Set 8: Tech
   {
     id: 71,
-    parts: ["the integration of artificial intelligence", "into daily life", "raises significant ethical", "and privacy concerns"],
+    parts: ["into daily life", "and privacy concerns", "the integration of artificial intelligence", "raises significant ethical"],
     q: "Identify the correct order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-D-B", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Subject-Preposition-Verb-Object structure."
+    explanation: "Subject (C) + Domain (A) + Verb (D) + Object (B)."
   },
   {
     id: 72,
-    parts: ["to improve cyber security", "organisations must invest", "in advanced encryption", "and threat detection systems"],
+    parts: ["organisations must invest", "to improve cyber security", "and threat detection systems", "in advanced encryption"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-A-D-C", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Purpose infinitive followed by modal S-V-O."
+    explanation: "Purpose (B) + Requirement (A) + Area 1 (D) + Area 2 (C)."
   },
   {
     id: 73,
-    parts: ["quantum computing, once a theory,", "is now becoming", "a technological reality", "with vast potential"],
+    parts: ["is now becoming", "a technological reality", "quantum computing, once a theory,", "with vast potential"],
     q: "Choose the logical order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-B-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Subject with appositive leads to the V-Complement."
+    explanation: "Subject (C) + Current state (A) + Result (B) + Additive info (D)."
   },
   {
     id: 74,
-    parts: ["the development of 5G networks", "will enable faster", "data transmission speeds", "for mobile devices"],
+    parts: ["data transmission speeds", "the development of 5G networks", "for mobile devices", "will enable faster"],
     q: "Rearrange to form a coherent statement:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-D-A-C", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Direct Subject-Verb-Object with modifier."
+    explanation: "Subject (B) + Verb (D) + Object (A) + Context (C)."
   },
   {
     id: 75,
-    parts: ["despite its advantages", "the use of facial recognition", "technology remains controversial", "due to potential bias"],
+    parts: ["the use of facial recognition", "due to potential bias", "technology remains controversial", "despite its advantages"],
     q: "Identify the coherent flow:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-A-C-B", "A-B-C-D", "B-C-D-A", "C-D-A-B"],
     correct: 0,
-    explanation: "Contrastive phrase followed by S-V-Complement and reason."
+    explanation: "Contrast (D) + Subject (A) + State (C) + Reason (B)."
   },
   {
     id: 76,
-    parts: ["the miniaturisation of components", "has allowed for", "the creation of powerful", "portable electronic devices"],
+    parts: ["has allowed for", "the miniaturisation of components", "portable electronic devices", "the creation of powerful"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-A-D-C", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Subject-Verb-Object structure with adjectives."
+    explanation: "Subject (B) + Verb (A) + Outcome (D) + Specifics (C)."
   },
   {
     id: 77,
-    parts: ["only with massive investment", "can the infrastructure for", "electric vehicles be", "widely implemented"],
+    parts: ["can the infrastructure for", "electric vehicles be", "only with massive investment", "widely implemented"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-B-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Restrictive 'Only with' inversion structure."
+    explanation: "Method (C) + Inversion (A) + Subject-Verb (B) + Adverb (D)."
   },
   {
     id: 78,
-    parts: ["the open-source movement", "encourages collaboration among", "developers from different", "geographical locations"],
+    parts: ["developers from different", "encourages collaboration among", "the open-source movement", "geographical locations"],
     q: "Identify the logical sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-A-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Direct Subject-Verb-Object structure."
+    explanation: "Initiator (C) + Verb (B) + Participants (A) + Scope (D)."
   },
   {
     id: 79,
-    parts: ["with the rise of the internet", "information has become", "more accessible to", "the general public"],
+    parts: ["more accessible to", "with the rise of the internet", "information has become", "the general public"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-C-A-D", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Contextual phrase followed by Subject-Verb-Complement."
+    explanation: "Context (B) + Subject-Verb (C) + Status (A) + Audience (D)."
   },
   {
     id: 80,
-    parts: ["space exploration missions", "expand our understanding", "of the universe's", "fundamental physical laws"],
+    parts: ["expand our understanding", "fundamental physical laws", "space exploration missions", "of the universe's"],
     q: "Rearrange to form a sentence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-D-B", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Direct S-V-O structure with possessive modifiers."
+    explanation: "Subject (C) + Verb (A) + Scope (D) + Object (B)."
   },
-  // Set 9: Psychology & Education
+  // Set 9: Psychology
   {
     id: 81,
-    parts: ["the theory of multiple intelligences", "suggests that students", "learn in different ways", "based on their strengths"],
+    parts: ["learn in different ways", "based on their strengths", "the theory of multiple intelligences", "suggests that students"],
     q: "Identify the correct order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-D-A-B", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Subject-Verb followed by a reported 'that' clause."
+    explanation: "Subject (C) + Verb (D) + Content (A) + Method (B)."
   },
   {
     id: 82,
-    parts: ["to foster critical thinking", "teachers should encourage", "open-ended questions", "during classroom discussions"],
+    parts: ["open-ended questions", "during classroom discussions", "to foster critical thinking", "teachers should encourage"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-D-A-B", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Purpose infinitive followed by modal S-V-O."
+    explanation: "Purpose (C) + Subject core (D) + Object (A) + Context (B)."
   },
   {
     id: 83,
-    parts: ["emotional intelligence, often undervalued,", "plays a crucial role", "in successful leadership", "and interpersonal relationships"],
+    parts: ["plays a crucial role", "and interpersonal relationships", "emotional intelligence, often undervalued,", "in successful leadership"],
     q: "Choose the logical order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-D-B", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Subject with appositive followed by S-V-Preposition."
+    explanation: "Subject (C) + Verb (A) + Domain 1 (D) + Domain 2 (B)."
   },
   {
     id: 84,
-    parts: ["the development of social skills", "is as important as", "academic achievement", "for a child's growth"],
+    parts: ["is as important as", "academic achievement", "the development of social skills", "for a child's growth"],
     q: "Rearrange to form a coherent statement:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-B-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Comparison S-V-Complement structure."
+    explanation: "Subject (C) + Comparison (A) + Reference (B) + Context (D)."
   },
   {
     id: 85,
-    parts: ["despite the digital age", "the benefits of handwriting", "for cognitive development", "remain well-documented"],
+    parts: ["the benefits of handwriting", "for cognitive development", "despite the digital age", "remain well-documented"],
     q: "Identify the coherent flow:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-B-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Contrastive 'Despite' leads to S-V-Complement."
+    explanation: "Contrast (C) + Subject (A) + Scope (B) + State (D)."
   },
   {
     id: 86,
-    parts: ["the concept of lifelong learning", "is gaining momentum", "due to the rapid", "obsolescence of technical skills"],
+    parts: ["due to the rapid", "obsolescence of technical skills", "the concept of lifelong learning", "is gaining momentum"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-D-A-B", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Subject-Verb-Object followed by reason."
+    explanation: "Concept (C) + Current status (D) + Reason initiator (A) + Core problem (B)."
   },
   {
     id: 87,
-    parts: ["only by practicing empathy", "can we truly understand", "the perspectives of", "others from different backgrounds"],
+    parts: ["the perspectives of", "can we truly understand", "others from different backgrounds", "only by practicing empathy"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-B-A-C", "A-B-C-D", "B-C-D-A", "C-D-A-B"],
     correct: 0,
-    explanation: "Restrictive 'Only by' inversion structure."
+    explanation: "Method (D) + Inversion (B) + Object (A) + Source (C)."
   },
   {
     id: 88,
-    parts: ["the impact of social media", "on adolescent mental health", "is a subject of", "ongoing psychological research"],
+    parts: ["is a subject of", "ongoing psychological research", "the impact of social media", "on adolescent mental health"],
     q: "Identify the logical sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-D-A-B", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Complex Subject-Prepositional-Verb structure."
+    explanation: "Subject (C) + Scope (D) + Verb phrase (A) + Specific field (B)."
   },
   {
     id: 89,
-    parts: ["with the rise of remote work", "the boundaries between", "professional and personal", "life have become blurred"],
+    parts: ["professional and personal", "with the rise of remote work", "the boundaries between", "life have become blurred"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-C-A-D", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Contextual phrase followed by Subject-Verb-Complement."
+    explanation: "Context (B) + Subject initiator (C) + Comparison group (A) + State (D)."
   },
   {
     id: 90,
-    parts: ["inclusive education policies", "aim to provide", "equal learning opportunities", "to all students"],
+    parts: ["aim to provide", "inclusive education policies", "equal learning opportunities", "to all students"],
     q: "Rearrange to form a sentence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-A-C-D", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Direct S-V-O-Preposition structure."
+    explanation: "Subject (B) + Goal (A) + Object (C) + Beneficiary (D)."
   },
-  // Set 10: Arts & Culture
+  // Set 10: Arts
   {
     id: 91,
-    parts: ["the preservation of cultural heritage", "requires the active participation", "of local communities", "and government agencies"],
+    parts: ["and government agencies", "the preservation of cultural heritage", "requires the active participation", "of local communities"],
     q: "Identify the correct order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-C-D-A", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Direct S-V-O structure with compound agents."
+    explanation: "Goal (B) + Requirement (C) + Participant 1 (D) + Participant 2 (A)."
   },
   {
     id: 92,
-    parts: ["to appreciate abstract art", "one must look beyond", "the literal representation", "of forms and colours"],
+    parts: ["one must look beyond", "to appreciate abstract art", "the literal representation", "of forms and colours"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["B-A-C-D", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Purpose infinitive followed by Subject-Verb-Preposition."
+    explanation: "Purpose (B) + Action core (A) + Rejection target (C) + Components (D)."
   },
   {
     id: 93,
-    parts: ["classical music, though centuries old,", "continues to inspire", "contemporary composers", "across various genres"],
+    parts: ["continues to inspire", "contemporary composers", "across various genres", "classical music, though centuries old,"],
     q: "Choose the logical order:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-A-B-C", "A-B-C-D", "B-C-D-A", "C-D-A-B"],
     correct: 0,
-    explanation: "Subject with appositive leads to the V-Object."
+    explanation: "Modified subject (D) + Verb (A) + Target (B) + Scope (C)."
   },
   {
     id: 94,
-    parts: ["the evolution of architecture", "reflects the changing", "values and priorities", "of human societies"],
+    parts: ["values and priorities", "reflects the changing", "of human societies", "the evolution of architecture"],
     q: "Rearrange to form a coherent statement:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-B-A-C", "A-B-C-D", "B-C-D-A", "C-D-A-B"],
     correct: 0,
-    explanation: "Direct S-V-O with modifiers."
+    explanation: "Subject (D) + Verb (B) + Object (A) + Origin (C)."
   },
   {
     id: 95,
-    parts: ["despite the influence of Hollywood", "regional cinema continues", "to flourish in many", "parts of the world"],
+    parts: ["regional cinema continues", "to flourish in many", "despite the influence of Hollywood", "parts of the world"],
     q: "Identify the coherent flow:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-B-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Contrastive 'Despite' leads to S-V-Preposition."
+    explanation: "Contrast (C) + Subject (A) + Infinitive result (B) + Location (D)."
   },
   {
     id: 96,
-    parts: ["the synthesis of different styles", "has led to", "the emergence of unique", "hybrid musical forms"],
+    parts: ["has led to", "hybrid musical forms", "the emergence of unique", "the synthesis of different styles"],
     q: "Rearrange correctly:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-A-C-B", "A-B-C-D", "B-C-D-A", "C-D-A-B"],
     correct: 0,
-    explanation: "Subject-Verb-Object with adjectives."
+    explanation: "Cause (D) + Verb (A) + Result initiator (C) + Specifics (B)."
   },
   {
     id: 97,
-    parts: ["only through cultural exchange", "can we build bridges", "between people from", "different ethnic backgrounds"],
+    parts: ["between people from", "can we build bridges", "only through cultural exchange", "different ethnic backgrounds"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-B-A-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Restrictive 'Only through' inversion structure."
+    explanation: "Method (C) + Inversion (B) + Target (A) + Source (D)."
   },
   {
     id: 98,
-    parts: ["the power of literature", "lies in its ability", "to evoke empathy and", "challenge social norms"],
+    parts: ["lies in its ability", "to evoke empathy and", "the power of literature", "challenge social norms"],
     q: "Identify the logical sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["C-A-B-D", "A-B-C-D", "B-C-D-A", "D-A-B-C"],
     correct: 0,
-    explanation: "Direct Subject-Verb-Complement structure."
+    explanation: "Subject (C) + Verb phrase (A) + Purpose 1 (B) + Purpose 2 (D)."
   },
   {
     id: 99,
-    parts: ["with the advent of photography", "the traditional role of", "painting in portraiture", "was significantly transformed"],
+    parts: ["the traditional role of", "painting in portraiture", "was significantly transformed", "with the advent of photography"],
     q: "Choose the correct sequence:",
-    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    options: ["D-A-B-C", "A-B-C-D", "B-C-D-A", "C-D-A-B"],
     correct: 0,
-    explanation: "Contextual phrase followed by passive Subject-Verb."
+    explanation: "Cause (D) + Subject initiator (A) + Topic (B) + Result (C)."
   },
   {
     id: 100,
@@ -830,7 +831,7 @@ const REARRANGE_QUIZ_DATA: Question[] = [
     q: "Rearrange to form a sentence:",
     options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
     correct: 0,
-    explanation: "Direct S-V-Complement structure with modifiers."
+    explanation: "Subject (A) + Verb phrase (B) + Domain (C) + Origin (D). Note: A-B-C-D is naturally logical here but segments were definitions."
   }
 ]
 
@@ -860,14 +861,14 @@ export default function RearrangeQuizPage() {
   useEffect(() => {
     if (selectedSetIndex !== null) {
       const { range } = quizSets[selectedSetIndex]
-      const selectedQuestions = REARRANGE_QUIZ_DATA.slice(range[0], range[1])
-      
-      // Randomise sequence within the set and handle option shuffling correctly
-      selectedQuestions.forEach(q => {
-        const initialCorrectOpt = q.options[q.correct]
-        const shuffled = [...q.options].sort(() => Math.random() - 0.5)
-        q.options = shuffled
-        q.correct = shuffled.indexOf(initialCorrectOpt)
+      // Scramble sets and ensure correct answer isn't predictable
+      const selectedQuestions = REARRANGE_QUIZ_DATA.slice(range[0], range[1]).map(q => {
+        const cloned = { ...q, options: [...q.options] }
+        const initialCorrectOpt = cloned.options[cloned.correct]
+        const shuffled = [...cloned.options].sort(() => Math.random() - 0.5)
+        cloned.options = shuffled
+        cloned.correct = shuffled.indexOf(initialCorrectOpt)
+        return cloned
       })
       
       const shuffledQuestions = [...selectedQuestions].sort(() => Math.random() - 0.5)
@@ -989,7 +990,7 @@ export default function RearrangeQuizPage() {
     const { correct, wrong, total } = calculateScore()
     return (
       <div className="min-h-screen bg-background py-12 px-4">
-        <div className="max-w-2xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto space-y-8">
           <Card className="text-center p-8 border-none shadow-2xl rounded-[2rem] bg-white">
             <div className="bg-primary/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
               <Layers className="w-10 h-10 text-primary" />
