@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Trophy, RefreshCw, ChevronLeft, Target, Layers, Info, CheckCircle2, XCircle, Keyboard, ArrowRight, AlertCircle } from "lucide-react"
+import { Trophy, RefreshCw, ChevronLeft, Target, Layers, Info, CheckCircle2, XCircle, Keyboard, ArrowRight, AlertCircle, BookOpen } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
@@ -23,6 +23,7 @@ type Question = {
 }
 
 const REARRANGE_QUIZ_DATA: Question[] = [
+  // Set 1 Items
   {
     id: 1,
     parts: ["the fragrance of jasmine drifted", "as the evening breeze passed through", "the open windows of the old house", "filling the room with a gentle sweetness"],
@@ -103,6 +104,7 @@ const REARRANGE_QUIZ_DATA: Question[] = [
     correct: 3,
     explanation: "SVO core (A) + purpose clause (B-C) + contrastive while-clause (D)."
   },
+  // Set 2 Items
   {
     id: 11,
     parts: ["the novel, written in the late 19th century", "explores the social injustices", "of the industrial revolution", "through the eyes of a child"],
@@ -183,6 +185,7 @@ const REARRANGE_QUIZ_DATA: Question[] = [
     correct: 2,
     explanation: "Passive participle phrase (A) describes the subject 'the ancient ruins' (B), leading to the object (C-D)."
   },
+  // Set 3 Items
   {
     id: 21,
     parts: ["the impact of climate change", "is becoming increasingly evident", "through the melting of polar ice caps", "and rising sea levels globally"],
@@ -262,6 +265,168 @@ const REARRANGE_QUIZ_DATA: Question[] = [
     options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
     correct: 0,
     explanation: "Subject (A) + report verb (B) + complex that-clause (C-D)."
+  },
+  // Set 4 Items (Scientific and Administrative)
+  {
+    id: 31,
+    parts: ["the rapid melting of glaciers", "has profound implications", "for global sea levels", "and coastal biodiversity"],
+    q: "Rearrange to form a logical sentence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Simple Subject-Verb-Prepositional structure."
+  },
+  {
+    id: 32,
+    parts: ["although the experiment failed", "to produce the expected results", "it provided valuable data", "for future research directions"],
+    q: "Choose the correct sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contrastive clause followed by main clause."
+  },
+  {
+    id: 33,
+    parts: ["under the new regulations", "all applicants must submit", "their supporting documents", "within thirty working days"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contextual prepositional phrase followed by subject-verb core."
+  },
+  {
+    id: 34,
+    parts: ["the discovery of penicillin", "by Alexander Fleming in 1928", "revolutionised the treatment", "of infectious bacterial diseases"],
+    q: "Identify the logical order:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject with modifier, followed by verb and object."
+  },
+  {
+    id: 35,
+    parts: ["in order to achieve sustainability", "industries must adopt", "more efficient production methods", "and reduce their carbon footprint"],
+    q: "Rearrange to form a sentence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Purpose phrase followed by subject-verb-object structure."
+  },
+  {
+    id: 36,
+    parts: ["the proliferation of smartphones", "has changed the way", "people consume information", "and interact with one another"],
+    q: "Choose the coherent flow:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "SVO core followed by coordinate clauses."
+  },
+  {
+    id: 37,
+    parts: ["despite the technological advancements", "the digital divide continues", "to widen in developing nations", "due to lack of infrastructure"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contrast followed by main statement and cause."
+  },
+  {
+    id: 38,
+    parts: ["the implementation of the project", "was delayed for several months", "owing to unforeseen circumstances", "beyond the control of the team"],
+    q: "Identify the logical sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Passive subject-verb followed by reason and modifier."
+  },
+  {
+    id: 39,
+    parts: ["only when the sun went down", "did the temperature begin", "to drop significantly", "in the arid desert region"],
+    q: "Choose the correct sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Negative/Restrictive inversion structure."
+  },
+  {
+    id: 40,
+    parts: ["the success of the mission", "depended entirely on", "the seamless coordination", "between the ground and space teams"],
+    q: "Rearrange to form a sentence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Direct S-V-O structure."
+  },
+  // Set 5 Items (Philosophy and Logic)
+  {
+    id: 41,
+    parts: ["the pursuit of happiness", "is often complicated by", "the pressures of modern life", "and societal expectations"],
+    q: "Identify the correct order:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Passive S-V-O structure."
+  },
+  {
+    id: 42,
+    parts: ["knowledge, once acquired,", "must be applied diligently", "to solve real-world problems", "for the benefit of humanity"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject with appositive followed by modal verb and purpose."
+  },
+  {
+    id: 43,
+    parts: ["without a clear vision", "it is easy to get lost", "in the trivial details", "of daily administrative tasks"],
+    q: "Choose the logical order:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Prepositional lack phrase followed by dummy subject structure."
+  },
+  {
+    id: 44,
+    parts: ["the teacher encouraged students", " to think critically about", "the information they receive", "from social media platforms"],
+    q: "Rearrange to form a coherent statement:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "S-V-O-M structure."
+  },
+  {
+    id: 45,
+    parts: ["by examining the historical records", "historians can gain insights", "into the social structures", "of ancient civilisations"],
+    q: "Identify the coherent flow:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Instrumental phrase followed by S-V-O."
+  },
+  {
+    id: 46,
+    parts: ["the artist used light and shadow", "to create a sense of depth", "in her latest masterpiece", "exhibited at the national gallery"],
+    q: "Rearrange correctly:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "S-V-O core followed by purpose and location."
+  },
+  {
+    id: 47,
+    parts: ["despite the loud noise", "the baby continued to sleep", "soundly in the cradle", "unaware of the surrounding chaos"],
+    q: "Choose the correct sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Contrastive phrase followed by main action and state modifier."
+  },
+  {
+    id: 48,
+    parts: ["the company values innovation", "and encourages its employees", "to suggest new ideas", "for improving the existing products"],
+    q: "Identify the logical sequence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Compound S-V-O structure."
+  },
+  {
+    id: 49,
+    parts: ["reading books regularly", "not only expands vocabulary", "but also broadens perspective", "on diverse global cultures"],
+    q: "Rearrange to form a logical sentence:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject-Gerund followed by correlative conjunctions."
+  },
+  {
+    id: 50,
+    parts: ["integrity and transparency", "are the pillars upon which", "the foundation of trust", "is built in any relationship"],
+    q: "Choose the coherent flow:",
+    options: ["A-B-C-D", "B-C-D-A", "C-D-A-B", "D-A-B-C"],
+    correct: 0,
+    explanation: "Subject-Verb-Complement structure with relative clause."
   }
 ]
 
@@ -269,15 +434,39 @@ export default function RearrangeQuizPage() {
   const { toast } = useToast()
   const quizRef = useRef<HTMLDivElement>(null)
   const questionCardRef = useRef<HTMLDivElement>(null)
+  const [selectedSetIndex, setSelectedSetIndex] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Question[]>([])
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [isFinished, setIsFinished] = useState(false)
 
+  const quizSets = [
+    { name: "Practice Set 1", range: [0, 10] },
+    { name: "Practice Set 2", range: [10, 20] },
+    { name: "Practice Set 3", range: [20, 30] },
+    { name: "Practice Set 4", range: [30, 40] },
+    { name: "Practice Set 5", range: [40, 50] },
+  ]
+
   useEffect(() => {
-    // Shuffle and pick a solid set for the session
-    setQuestions([...REARRANGE_QUIZ_DATA].sort(() => Math.random() - 0.5))
-  }, [])
+    if (selectedSetIndex !== null) {
+      const { range } = quizSets[selectedSetIndex]
+      const setQuestions = REARRANGE_QUIZ_DATA.slice(range[0], range[1])
+      // Randomise order within the set but keep question internal options stable for selection logic
+      setQuestions.forEach(q => {
+        // Ensure options are randomised from their initial state once
+        const initialCorrectOpt = q.options[q.correct]
+        const shuffled = [...q.options].sort(() => Math.random() - 0.5)
+        q.options = shuffled
+        q.correct = shuffled.indexOf(initialCorrectOpt)
+      })
+      setQuestions.sort(() => Math.random() - 0.5)
+      setQuestions(setQuestions)
+      setCurrentStep(0)
+      setAnswers({})
+      setIsFinished(false)
+    }
+  }, [selectedSetIndex])
 
   const scrollToTarget = useCallback(() => {
     const target = (currentStep > 0 && questionCardRef.current) ? questionCardRef.current : quizRef.current
@@ -342,6 +531,50 @@ export default function RearrangeQuizPage() {
     return { correct, wrong, total: correct * 5 - wrong * 1 }
   }
 
+  if (selectedSetIndex === null) {
+    return (
+      <div className="min-h-screen bg-background py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <header className="mb-12 text-center animate-fade-in-up">
+            <Badge variant="outline" className="mb-4 py-1 px-4 border-primary/40 text-primary font-bold uppercase tracking-widest">
+              Section 6: Logic Selection
+            </Badge>
+            <h1 className="text-4xl font-headline font-bold mb-4">Sequential Logic Practice</h1>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Select a clinical practice set to begin. Each set follows official CUET Subject Code 101 marking protocols.
+            </p>
+          </header>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up">
+            {quizSets.map((set, idx) => (
+              <Card 
+                key={idx} 
+                className="group border-none shadow-sm hover:shadow-xl transition-all duration-300 rounded-[2rem] bg-white/70 backdrop-blur-sm cursor-pointer overflow-hidden flex flex-col"
+                onClick={() => setSelectedSetIndex(idx)}
+              >
+                <CardHeader className="p-8">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="p-3 bg-primary/10 rounded-xl text-primary">
+                      <Layers className="w-6 h-6" />
+                    </div>
+                    <Badge variant="secondary" className="rounded-full font-bold">10 Items</Badge>
+                  </div>
+                  <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">{set.name}</CardTitle>
+                  <CardDescription className="mt-2">High-tier sentence rearrangement items for targeted practice.</CardDescription>
+                </CardHeader>
+                <CardContent className="px-8 pb-8 pt-0 mt-auto">
+                  <Button variant="outline" className="w-full rounded-xl border-primary/20 hover:bg-primary hover:text-white font-bold group">
+                    Begin Set <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   if (isFinished) {
     const { correct, wrong, total } = calculateScore()
     return (
@@ -351,7 +584,7 @@ export default function RearrangeQuizPage() {
             <div className="bg-primary/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
               <Layers className="w-10 h-10 text-primary" />
             </div>
-            <CardTitle className="text-3xl font-headline mb-2 font-bold">Elite Logical Performance</CardTitle>
+            <CardTitle className="text-3xl font-headline mb-2 font-bold">{quizSets[selectedSetIndex].name} Results</CardTitle>
             <div className="grid grid-cols-2 gap-4 my-8">
               <div className="p-4 bg-green-50 rounded-2xl border border-green-100">
                 <div className="text-xs font-bold text-green-700 uppercase">Correct (+5)</div>
@@ -367,11 +600,15 @@ export default function RearrangeQuizPage() {
               <div className="text-4xl font-bold">{total} / {questions.length * 5}</div>
             </div>
             <div className="flex flex-col gap-3">
-              <Button size="lg" className="rounded-xl h-12 font-bold shadow-md" onClick={() => window.location.reload()}>
-                <RefreshCw className="w-4 h-4 mr-2" /> Retake randomized quiz
+              <Button size="lg" className="rounded-xl h-12 font-bold shadow-md" onClick={() => {
+                setIsFinished(false)
+                setCurrentStep(0)
+                setAnswers({})
+              }}>
+                <RefreshCw className="w-4 h-4 mr-2" /> Retake this Set
               </Button>
-              <Button variant="outline" size="lg" className="rounded-xl h-12 font-bold" asChild>
-                <Link href="/study/sentence-rearrangement">Back to Material</Link>
+              <Button variant="outline" size="lg" className="rounded-xl h-12 font-bold" onClick={() => setSelectedSetIndex(null)}>
+                Pick Another Set
               </Button>
             </div>
           </Card>
@@ -435,9 +672,14 @@ export default function RearrangeQuizPage() {
     <div className="min-h-screen bg-background">
       <main className="container mx-auto px-4 py-12 max-w-3xl">
         <div className="flex items-center justify-between mb-8" ref={quizRef}>
-          <div>
-            <h1 className="text-2xl font-headline font-bold uppercase tracking-tight text-primary">Sequential Logic</h1>
-            <p className="text-muted-foreground font-mono text-sm font-bold">Item {currentStep + 1} of {questions.length}</p>
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="sm" onClick={() => setSelectedSetIndex(null)} className="rounded-full">
+              <ChevronLeft className="w-4 h-4 mr-1" /> Back
+            </Button>
+            <div>
+              <h1 className="text-xl font-headline font-bold uppercase tracking-tight text-primary">Sequential Logic</h1>
+              <p className="text-muted-foreground font-mono text-xs font-bold">Item {currentStep + 1} / {questions.length}</p>
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <div className="hidden sm:flex items-center gap-1.5 bg-muted px-3 py-1 rounded-full text-[10px] font-bold text-muted-foreground">
