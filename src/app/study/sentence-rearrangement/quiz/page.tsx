@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from "react"
@@ -451,17 +450,17 @@ export default function RearrangeQuizPage() {
   useEffect(() => {
     if (selectedSetIndex !== null) {
       const { range } = quizSets[selectedSetIndex]
-      const setQuestions = REARRANGE_QUIZ_DATA.slice(range[0], range[1])
+      const selectedQuestions = REARRANGE_QUIZ_DATA.slice(range[0], range[1])
       // Randomise order within the set but keep question internal options stable for selection logic
-      setQuestions.forEach(q => {
+      selectedQuestions.forEach(q => {
         // Ensure options are randomised from their initial state once
         const initialCorrectOpt = q.options[q.correct]
         const shuffled = [...q.options].sort(() => Math.random() - 0.5)
         q.options = shuffled
         q.correct = shuffled.indexOf(initialCorrectOpt)
       })
-      setQuestions.sort(() => Math.random() - 0.5)
-      setQuestions(setQuestions)
+      selectedQuestions.sort(() => Math.random() - 0.5)
+      setQuestions(selectedQuestions)
       setCurrentStep(0)
       setAnswers({})
       setIsFinished(false)
