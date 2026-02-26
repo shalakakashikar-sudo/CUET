@@ -12,6 +12,7 @@ import { Trophy, RefreshCw, ChevronLeft, Target, Award, CheckCircle2, XCircle, I
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+import { motion, AnimatePresence } from "framer-motion"
 
 type Question = {
   id: number
@@ -120,6 +121,7 @@ export default function QuizPage() {
   const { toast } = useToast()
   const quizRef = useRef<HTMLDivElement>(null)
   const questionCardRef = useRef<HTMLDivElement>(null)
+  const feedbackRef = useRef<HTMLDivElement>(null)
   const [questions, setQuestions] = useState<Question[]>([])
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
@@ -176,7 +178,13 @@ export default function QuizPage() {
   }, [answers, currentStep, questions, isFinished, nextQuestion])
 
   const handleAnswer = (val: number) => {
+    if (answers[questions[currentStep].id] !== undefined) return
     setAnswers({ ...answers, [questions[currentStep].id]: val })
+    
+    // Auto-scroll to feedback
+    setTimeout(() => {
+      feedbackRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 100)
   }
 
   const isAnswerCorrect = (userAns: number, correctAns: number | number[]) => {
@@ -299,6 +307,8 @@ export default function QuizPage() {
   if (questions.length === 0) return null
 
   const question = questions[currentStep]
+  const userAnswer = answers[question.id]
+  const isCorrect = userAnswer !== undefined && isAnswerCorrect(userAnswer, question.correct)
 
   return (
     <div className="min-h-screen bg-background">
@@ -331,18 +341,26 @@ export default function QuizPage() {
             <CardTitle className="text-2xl leading-relaxed font-bold text-foreground">{question.text}</CardTitle>
           </CardHeader>
           <CardContent className="p-10 pt-6">
-            <RadioGroup onValueChange={(val) => handleAnswer(parseInt(val))} value={answers[question.id]?.toString()} className="grid gap-3">
+            <RadioGroup 
+              onValueChange={(val) => handleAnswer(parseInt(val))} 
+              value={userAnswer?.toString()} 
+              disabled={userAnswer !== undefined}
+              className="grid gap-3"
+            >
               {question.options.map((opt, i) => {
-                const isSelected = answers[question.id] === i
+                const isSelected = userAnswer === i
+                const isCorrectOption = isAnswerCorrect(i, question.correct)
+                
                 return (
                   <div 
                     key={i} 
                     onClick={() => handleAnswer(i)}
                     className={cn(
                       "flex items-center space-x-3 border p-5 rounded-2xl transition-all cursor-pointer group",
-                      isSelected 
-                        ? "border-primary bg-primary/10 ring-1 ring-primary/20 shadow-md" 
-                        : "border-border hover:bg-primary/5 hover:border-primary/20"
+                      userAnswer === undefined && "hover:bg-primary/5 hover:border-primary/20",
+                      isSelected && !isCorrect && "border-destructive bg-destructive/5 ring-1 ring-destructive/20 shadow-md",
+                      isSelected && isCorrect && "border-green-500 bg-green-50 ring-1 ring-green-200 shadow-md",
+                      userAnswer !== undefined && isCorrectOption && !isSelected && "border-green-500/50 bg-green-50/30"
                     )}
                   >
                     <RadioGroupItem value={i.toString()} id={`q-${question.id}-opt-${i}`} className="pointer-events-none" />
@@ -354,10 +372,35 @@ export default function QuizPage() {
                       <span className="inline-block w-8 text-primary font-mono">{String.fromCharCode(65 + i)}.</span>
                       {opt}
                     </Label>
+                    {userAnswer !== undefined && isCorrectOption && <CheckCircle2 className="w-5 h-5 text-green-600" />}
+                    {isSelected && !isCorrect && <XCircle className="w-5 h-5 text-destructive" />}
                   </div>
                 )
               })}
             </RadioGroup>
+
+            <AnimatePresence>
+              {userAnswer !== undefined && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  className="mt-8 pt-8 border-t border-dashed"
+                  ref={feedbackRef}
+                >
+                  <div className={cn("p-6 rounded-2xl mb-6", isCorrect ? "bg-green-50 border border-green-100" : "bg-red-50 border border-red-100")}>
+                    <div className="flex items-center gap-3 mb-3">
+                      {isCorrect ? <CheckCircle2 className="w-6 h-6 text-green-600" /> : <XCircle className="w-6 h-6 text-red-600" />}
+                      <span className={cn("text-xl font-bold", isCorrect ? "text-green-700" : "text-red-700")}>
+                        {isCorrect ? "Perfect Scoop!" : "Brain Freeze!"}
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      <strong className="text-foreground">Clinical Strategy:</strong> {question.explanation}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </CardContent>
         </Card>
 
@@ -365,7 +408,7 @@ export default function QuizPage() {
           <Button variant="ghost" onClick={() => setCurrentStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0} className="font-bold text-muted-foreground hover:text-primary rounded-xl">
             <ChevronLeft className="w-5 h-5 mr-1" /> Previous
           </Button>
-          <Button size="lg" className="px-12 h-14 text-lg font-bold rounded-2xl shadow-xl group" onClick={nextQuestion} disabled={answers[question.id] === undefined}>
+          <Button size="lg" className="px-12 h-14 text-lg font-bold rounded-2xl shadow-xl group" onClick={nextQuestion} disabled={userAnswer === undefined}>
             {currentStep === questions.length - 1 ? "Finish Examination" : "Next Question"} <ArrowRight className="w-5 h-5 ml-3 group-hover:scale-110 transition-transform" />
           </Button>
         </div>

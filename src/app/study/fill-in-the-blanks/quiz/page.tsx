@@ -12,6 +12,7 @@ import { Trophy, RefreshCw, ChevronLeft, Target, PenTool, CheckCircle2, XCircle,
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+import { motion, AnimatePresence } from "framer-motion"
 
 type Question = {
   id: number
@@ -84,6 +85,7 @@ export default function FillersQuizPage() {
   const { toast } = useToast()
   const quizRef = useRef<HTMLDivElement>(null)
   const questionCardRef = useRef<HTMLDivElement>(null)
+  const feedbackRef = useRef<HTMLDivElement>(null)
   const [questions, setQuestions] = useState<Question[]>([])
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
@@ -141,7 +143,12 @@ export default function FillersQuizPage() {
 
   const handleAnswer = (val: number) => {
     const qId = questions[currentStep].id
+    if (answers[qId] !== undefined) return
     setAnswers({ ...answers, [qId]: val })
+    
+    setTimeout(() => {
+      feedbackRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 100)
   }
 
   const isAnswerCorrect = (userAns: number, correctAns: number | number[]) => {
@@ -248,6 +255,8 @@ export default function FillersQuizPage() {
   if (questions.length === 0) return null
 
   const q = questions[currentStep]
+  const userAnswer = answers[q.id]
+  const isCorrect = userAnswer !== undefined && isAnswerCorrect(userAnswer, q.correct)
 
   return (
     <div className="min-h-screen bg-background">
@@ -273,18 +282,26 @@ export default function FillersQuizPage() {
             <CardTitle className="text-2xl text-center leading-relaxed font-bold">{q.q}</CardTitle>
           </CardHeader>
           <CardContent className="p-8">
-            <RadioGroup onValueChange={(val) => handleAnswer(parseInt(val))} value={answers[q.id]?.toString()} className="grid gap-3">
+            <RadioGroup 
+              onValueChange={(val) => handleAnswer(parseInt(val))} 
+              value={userAnswer?.toString()} 
+              disabled={userAnswer !== undefined}
+              className="grid gap-3"
+            >
               {q.options.map((opt, i) => {
-                const isSelected = answers[q.id] === i
+                const isSelected = userAnswer === i
+                const isCorrectOption = isAnswerCorrect(i, q.correct)
+                
                 return (
                   <div 
                     key={i} 
                     onClick={() => handleAnswer(i)}
                     className={cn(
                       "flex items-center space-x-3 border p-5 rounded-2xl transition-all cursor-pointer group",
-                      isSelected 
-                        ? "border-primary bg-primary/10 ring-1 ring-primary/20 shadow-md" 
-                        : "border-border hover:bg-primary/5 hover:border-primary/20"
+                      userAnswer === undefined && "hover:bg-primary/5 hover:border-primary/20",
+                      isSelected && !isCorrect && "border-destructive bg-destructive/5 ring-1 ring-destructive/20 shadow-md",
+                      isSelected && isCorrect && "border-green-500 bg-green-50 ring-1 ring-green-200 shadow-md",
+                      userAnswer !== undefined && isCorrectOption && !isSelected && "border-green-500/50 bg-green-50/30"
                     )}
                   >
                     <RadioGroupItem value={i.toString()} id={`q-${q.id}-opt-${i}`} className="pointer-events-none" />
@@ -296,10 +313,35 @@ export default function FillersQuizPage() {
                       <span className="inline-block w-8 text-primary font-mono">{String.fromCharCode(65 + i)}.</span>
                       {opt}
                     </Label>
+                    {userAnswer !== undefined && isCorrectOption && <CheckCircle2 className="w-5 h-5 text-green-600" />}
+                    {isSelected && !isCorrect && <XCircle className="w-5 h-5 text-destructive" />}
                   </div>
                 )
               })}
             </RadioGroup>
+
+            <AnimatePresence>
+              {userAnswer !== undefined && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  className="mt-8 pt-8 border-t border-dashed"
+                  ref={feedbackRef}
+                >
+                  <div className={cn("p-6 rounded-2xl", isCorrect ? "bg-green-50 border border-green-100" : "bg-red-50 border border-red-100")}>
+                    <div className="flex items-center gap-3 mb-3">
+                      {isCorrect ? <CheckCircle2 className="w-6 h-6 text-green-600" /> : <XCircle className="w-6 h-6 text-red-600" />}
+                      <span className={cn("text-xl font-bold", isCorrect ? "text-green-700" : "text-red-700")}>
+                        {isCorrect ? "Perfect Scoop!" : "Brain Freeze!"}
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      <strong className="text-foreground">Clinical Strategy:</strong> {q.explanation}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </CardContent>
         </Card>
 
@@ -307,7 +349,7 @@ export default function FillersQuizPage() {
           <Button variant="ghost" onClick={() => setCurrentStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0} className="rounded-xl font-bold">
             <ChevronLeft className="w-4 h-4 mr-1" /> Previous
           </Button>
-          <Button size="lg" className="px-10 h-12 rounded-xl font-bold shadow-lg group" onClick={nextQuestion} disabled={answers[q.id] === undefined}>
+          <Button size="lg" className="px-10 h-12 rounded-xl font-bold shadow-lg group" onClick={nextQuestion} disabled={userAnswer === undefined}>
             {currentStep === questions.length - 1 ? "Finish Set" : "Next Question"} <Target className="w-4 h-4 ml-2 group-hover:scale-110 transition-transform" />
           </Button>
         </div>

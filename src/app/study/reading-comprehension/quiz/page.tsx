@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Trophy, RefreshCw, ChevronLeft, Target, BookOpen, Info, CheckCircle2, XCircle, Keyboard, ArrowRight } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { cn } from "@/lib/utils"
+import { motion, AnimatePresence } from "framer-motion"
 
 type Question = {
   id: number
@@ -64,24 +65,6 @@ const RC_PASSAGES: Passage[] = [
       { id: 95, text: "The phrase \"every new dawn is a blank page\" implies that:", options: ["Students must write an essay every morning", "The future is unwritten and each day offers a fresh start to act with purpose", "The school lacks printed materials and books", "The morning assembly erases the memories of the previous day"], correct: 1, explanation: "It is a metaphorical way of saying each day is a new beginning with fresh opportunities." },
       { id: 96, text: "Choose the correct synonym for the word 'conduit' as used in the passage:", options: ["Barrier", "Channel", "Obstacle", "Microphone"], correct: 1, explanation: "Contextually, 'conduit' refers to a channel or medium through which something (empathy) is transmitted." }
     ]
-  },
-  {
-    id: "einstein-agony",
-    title: "Einstein's Agony",
-    description: "The transformation of a scientist into a sage following the atomic bombings.",
-    content: "(1) The sage of science, Einstein, was sitting in a depressive and pensive mood one evening. His eyes were brimming with tears. The pain was evident on his face. He peeped out of the window of his room. The sun had set a few minutes back. The sky was filled with a reddish glow. At this sunset, he felt that it was humanity that had sunk into devilish darkness and the reddish glow in the sky was the blood of humanity spilling all over the sky from earth. With tired steps, he walked back to his chair and settled down. It was the 9th of August, 1945. Three days back, he had felt the same agony as if someone had torn him apart. He was deeply hurt and depressed when he heard on the radio that America had dropped an atom bomb on the Japanese city, Hiroshima. Today, within three days, another bomb was dropped on another city, Nagasaki and lakhs of people had been killed.\n(2) He had heard that the blast released so much energy that it had paled all past destructions in comparison and death had played out a pitiable dance of destruction. The flames that broke out of the bomb were burning, melting and exploding buildings. Scared of the heat of the bomb, people had jumped into lakes and rivers, but the water was boiling and the people too were burnt and killed. The animals in the water were already boiled to death. Animals, trees, herbs, fragrant flowering plants were all turned into ashes. The atomic energy destruction had just not stopped there. It had entered the atmosphere there and had spread radiation that would affect people for generations to come and would also bring about destructive irreversible biological change in animals and plants.\n(3) As the news of the atomic attack reached Einstein, and he became aware of the glaring horror of the abuse of atomic energy, his distress and restlessness knew no bounds. He could not control himself and picked up his violin to turn his mind on to other things. While playing the violin, he tried to dissolve his distress in its sad notes, but couldn't. He was burning on the embers of destruction; his heart was filled with an ocean of agony and tears just continued streaming uncontrollably out of his eyes. Night had fallen. His daughter came up and asked him to eat something as he had not taken anything for the last four days. His voice was restrained and he said, \"I don't feel like eating.\"\n(4) He could not sleep that night. Lying down, he was thinking how he had drawn the attention of the then American President Roosevelt towards the destructive powers of an atomic bomb. He had thought that this would be used to scare Hitler and put an end to the barbarism that Hitler was up to. However, Roosevelt kept him in the dark and made false promises. Eventually, he had abused Einstein's equation of E=mc² that resulted in the destructive experiments. His actions had made science and scientists as murderers. Einstein kept on thinking for a long time. Eventually, he slipped into sleep. When he woke up at dawn, there was a new dawn in him too. The atomic threat had transformed his heart.\n(5) The next day, he decided to disassociate himself from the scientific policy of the government and all governmental institutions. He decided to open educational institutions for children, adolescents, and youth-institutions where along with science, spirituality will be compulsorily taught.\n(6) To inaugurate this institution, he had invited two great philosophers, Bertrand Russell and Albert Schweitzer. Ten other great scientists who had won Nobel Prizes in different fields were also invited. They all saw a different Einstein, not a great scientist but a sage in him. The institution was opened by garlanding a photo of Mahatma Gandhi. While garlanding the Mahatma, he became emotional and said with a lump in his throat, 'I bow down to the great man who fought for the Independence of his country through non-violence. He could do so because he was a truthful man and a true spiritualist'.\n(7) Those who teach science should be taught spirituality too. Without harmony between science and spirituality, the destruction would continue unabated. A few years after this institution was built, a Japanese delegation came to meet him. Einstein broke down in the meeting and said, 'You can give me any punishment and I will accept it. Anyway, I have decided to lead my life in penitence'. The Japanese were moved by his sincerity and forgot their grief.",
-    questions: [
-      { id: 19, text: "Which musical instrument did Einstein play when he was in grief?", options: ["Harmonium", "Guitar", "Violin", "Flute"], correct: 2, explanation: "Paragraph 3 mentions he picked up his 'violin' to divert his mind." },
-      { id: 20, text: "How did Einstein learn about the Hiroshima bombing?", options: ["Television", "Newspaper", "Radio", "Telephonic message"], correct: 2, explanation: "Paragraph 1 says he heard on the 'radio' about the bomb dropped on Hiroshima." },
-      { id: 21, text: "What did Einstein say to the Japanese delegation?", options: ["You can give me any punishment and I will accept it", "I am not at fault", "What could I do?", "The President didn't agree"], correct: 0, explanation: "Paragraph 7 records his direct quote expressing complete penitence." },
-      { id: 22, text: "What did Einstein do to show his displeasure over the attack?", options: ["Open a science lab", "Establish an Educational Institution", "Disassociate from Government Institutions", "Invite philosophers"], correct: 2, explanation: "Paragraph 5 says he decided to 'disassociate himself from the scientific policy of the government'." },
-      { id: 23, text: "To what was Einstein's depressive mood compared?", options: ["Sunrise", "Sunset", "Devilish darkness", "Tired steps"], correct: 1, explanation: "The passage opens with him watching the 'sunset', linking his mood to that time." },
-      { id: 24, text: "What made Einstein restless and sleepless?", options: ["Hit on America", "Hit on Nagasaki", "Hit on Hiroshima", "Both Nagasaki and Hiroshima"], correct: 3, explanation: "Both bombings (Hiroshima and Nagasaki) caused him extreme agony." },
-      { id: 25, text: "Identify the event that led him to play an instrument to divert his mind:", options: ["Getting news of the attack", "Inventing sad notes", "Hitler's barbarism", "False promises"], correct: 0, explanation: "Paragraph 3 says 'As the news of the atomic attack reached Einstein... he picked up his violin'." },
-      { id: 26, text: "According to Einstein, what turned scientists into murderers?", options: ["Wrong use of E=mc²", "False promises", "The bombings", "None of these"], correct: 0, explanation: "Paragraph 4 explains Roosevelt abused his equation, which made scientists as murderers." },
-      { id: 27, text: "Which philosopher did Einstein invite to his institution?", options: ["Bertrand Russell", "Albert Schweitzer", "Both philosophers", "Neither philosopher"], correct: 2, explanation: "Paragraph 6 mentions both Russell and Schweitzer were invited." },
-      { id: 28, text: "Why should science teachers also be taught spirituality?", options: ["Make science easier", "Help make weapons", "Give more power", "Enable science for human welfare"], correct: 3, explanation: "The text suggests spirituality ensures science is used for the welfare of others." }
-    ]
   }
 ]
 
@@ -89,6 +72,7 @@ export default function RCQuizPage() {
   const { toast } = useToast()
   const quizRef = useRef<HTMLDivElement>(null)
   const questionRef = useRef<HTMLDivElement>(null)
+  const feedbackRef = useRef<HTMLDivElement>(null)
   const [selectedPassageId, setSelectedPassageId] = useState<string | null>(null)
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
@@ -146,7 +130,12 @@ export default function RCQuizPage() {
   const handleAnswer = (val: number) => {
     if (!selectedPassageId) return
     const qId = questions[currentStep].id
+    if (answers[qId] !== undefined) return
     setAnswers({ ...answers, [qId]: val })
+    
+    setTimeout(() => {
+      feedbackRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 100)
   }
 
   const isAnswerCorrect = (userAns: number, correctAns: number | number[]) => {
@@ -304,6 +293,8 @@ export default function RCQuizPage() {
   }
 
   const q = questions[currentStep]
+  const userAnswer = answers[q.id]
+  const isCorrect = userAnswer !== undefined && isAnswerCorrect(userAnswer, q.correct)
 
   return (
     <div className="min-h-screen bg-background pb-20">
@@ -342,23 +333,31 @@ export default function RCQuizPage() {
           </Card>
 
           <div className="space-y-6" ref={questionRef}>
-            <Card className="border-none shadow-xl rounded-[2.5rem] bg-white">
+            <Card className="border-none shadow-xl rounded-[2.5rem] bg-white overflow-hidden">
               <CardHeader className="p-8 pb-4">
                 <CardTitle className="text-xl leading-snug font-bold text-foreground">{q.text}</CardTitle>
               </CardHeader>
               <CardContent className="p-8 pt-4">
-                <RadioGroup onValueChange={(val) => handleAnswer(parseInt(val))} value={answers[q.id]?.toString()} className="grid gap-3">
+                <RadioGroup 
+                  onValueChange={(val) => handleAnswer(parseInt(val))} 
+                  value={userAnswer?.toString()} 
+                  disabled={userAnswer !== undefined}
+                  className="grid gap-3"
+                >
                   {q.options.map((opt, i) => {
-                    const isSelected = answers[q.id] === i
+                    const isSelected = userAnswer === i
+                    const isCorrectOption = isAnswerCorrect(i, q.correct)
+                    
                     return (
                       <div 
                         key={i} 
                         onClick={() => handleAnswer(i)}
                         className={cn(
                           "flex items-center space-x-3 border p-5 rounded-2xl transition-all cursor-pointer group",
-                          isSelected 
-                            ? "border-primary bg-primary/10 ring-1 ring-primary/20 shadow-md" 
-                            : "border-border hover:bg-primary/5 hover:border-primary/20"
+                          userAnswer === undefined && "hover:bg-primary/5 hover:border-primary/20",
+                          isSelected && !isCorrect && "border-destructive bg-destructive/5 ring-1 ring-destructive/20 shadow-md",
+                          isSelected && isCorrect && "border-green-500 bg-green-50 ring-1 ring-green-200 shadow-md",
+                          userAnswer !== undefined && isCorrectOption && !isSelected && "border-green-500/50 bg-green-50/30"
                         )}
                       >
                         <RadioGroupItem value={i.toString()} id={`q-${q.id}-opt-${i}`} className="pointer-events-none" />
@@ -370,10 +369,35 @@ export default function RCQuizPage() {
                           <span className="inline-block w-8 text-primary font-mono">{String.fromCharCode(65 + i)}.</span>
                           {opt}
                         </Label>
+                        {userAnswer !== undefined && isCorrectOption && <CheckCircle2 className="w-5 h-5 text-green-600" />}
+                        {isSelected && !isCorrect && <XCircle className="w-5 h-5 text-destructive" />}
                       </div>
                     )
                   })}
                 </RadioGroup>
+
+                <AnimatePresence>
+                  {userAnswer !== undefined && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }} 
+                      animate={{ opacity: 1, y: 0 }} 
+                      className="mt-8 pt-8 border-t border-dashed"
+                      ref={feedbackRef}
+                    >
+                      <div className={cn("p-6 rounded-2xl", isCorrect ? "bg-green-50 border border-green-100" : "bg-red-50 border border-red-100")}>
+                        <div className="flex items-center gap-3 mb-3">
+                          {isCorrect ? <CheckCircle2 className="w-6 h-6 text-green-600" /> : <XCircle className="w-6 h-6 text-red-600" />}
+                          <span className={cn("text-xl font-bold", isCorrect ? "text-green-700" : "text-red-700")}>
+                            {isCorrect ? "Perfect Scoop!" : "Brain Freeze!"}
+                          </span>
+                        </div>
+                        <p className="text-muted-foreground leading-relaxed text-sm">
+                          <strong className="text-foreground">Clinical Strategy:</strong> {q.explanation}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </CardContent>
             </Card>
 
@@ -381,7 +405,7 @@ export default function RCQuizPage() {
               <Button variant="ghost" onClick={() => setCurrentStep(Math.max(0, currentStep - 1))} disabled={currentStep === 0} className="rounded-xl font-bold">
                 <ChevronLeft className="w-4 h-4 mr-1" /> Previous
               </Button>
-              <Button size="lg" className="px-12 h-14 text-lg font-bold rounded-2xl shadow-xl group" onClick={nextQuestion} disabled={answers[q.id] === undefined}>
+              <Button size="lg" className="px-12 h-14 text-lg font-bold rounded-2xl shadow-xl group" onClick={nextQuestion} disabled={userAnswer === undefined}>
                 {currentStep === questions.length - 1 ? "Submit Set" : "Next Question"} <Target className="w-5 h-5 ml-3 group-hover:scale-110 transition-transform" />
               </Button>
             </div>
