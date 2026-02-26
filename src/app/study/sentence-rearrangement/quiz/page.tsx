@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Trophy, RefreshCw, ChevronLeft, Target, Layers, Info, CheckCircle2, XCircle, Keyboard, ArrowRight, AlertCircle, BookOpen } from "lucide-react"
+import { Trophy, RefreshCw, ChevronLeft, Target, Layers, Info, CheckCircle2, XCircle, Keyboard, ArrowRight, AlertCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
@@ -26,7 +26,7 @@ type Question = {
 const REARRANGE_QUIZ_DATA: Question[] = [
   // Set 1: Foundation (1-10)
   { id: 1, parts: ["the fragrance of jasmine drifted", "as the evening breeze passed through", "the open windows of the old house", "filling the room with a gentle sweetness"], q: "Rearrange the segments to form a meaningful sentence.", options: ["B-C-A-D", "A-B-C-D", "D-A-C-B", "C-A-D-B"], correct: 0, explanation: "The sentence starts with the setting (B), followed by the location (C), the primary action (A), and ends with the result (D)." },
-  { id: 2, parts: ["due to the heavy rain forecast", "the annual function", "the committee decided to postpone", "for the entire region"], q: "Choose the correct sequence:", options: ["C-B-A-D", "A-B-C-D", "B-A-D-C", "D-B-C-A"], correct: 0, explanation: "Subject (Committee - C) + Verb (Postpone - B) + Object (Function) + Reason (Rain - A) + Scope (Region - D)." },
+  { id: 2, parts: ["the committee decided to postpone", "the annual function", "due to the heavy rain forecast", "for the entire region"], q: "Choose the correct sequence:", options: ["A-B-C-D", "C-B-A-D", "B-A-D-C", "D-B-C-A"], correct: 0, explanation: "Subject (Committee) + Verb (Postpone) + Object (Function) + Reason (Rain) + Scope (Region)." },
   { id: 3, parts: ["remains the cornerstone of human progress", "the ability to adapt and learn", "in an era of rapid technological change", "despite the risks of automation"], q: "Rearrange to form a coherent statement:", options: ["C-B-A-D", "A-C-B-D", "D-A-C-B", "B-A-C-D"], correct: 0, explanation: "Begins with context (C), introduces subject (B), state (A), and ends with contrast (D)." },
   { id: 4, parts: ["when the explorers set out", "over the horizon", "scarcely had the sun risen", "on their perilous journey"], q: "Identify the correct sequence:", options: ["C-B-A-D", "B-A-C-D", "A-B-C-D", "D-C-B-A"], correct: 0, explanation: "Uses 'Scarcely had (C) ... when (A)' structure. Logical flow: Sunrise (C-B) leading to the start of the journey (A-D)." },
   { id: 5, parts: ["the jury found it difficult", "to reach a unanimous verdict", "due to conflicting testimonies", "although the evidence was clear"], q: "Rearrange the segments:", options: ["D-A-B-C", "A-B-C-D", "C-D-A-B", "B-C-D-A"], correct: 0, explanation: "Starts with the contrast (D), followed by the main difficulty (A), the specific goal (B), and the reason (C)." },
@@ -48,7 +48,7 @@ const REARRANGE_QUIZ_DATA: Question[] = [
   { id: 19, parts: ["leave your luggage unattended", "under no circumstances should you", "while waiting in the departures lounge", "at the airport"], q: "Choose the correct sequence:", options: ["B-A-C-D", "A-B-C-D", "C-D-A-B", "D-B-C-A"], correct: 0, explanation: "Negative auxiliary inversion (B) + Verb phrase (A) + Temporal context (C) + Specific location (D)." },
   { id: 20, parts: ["a fascinating glimpse", "the ancient ruins provide", "into a long-lost civilisation", "having been discovered by chance"], q: "Rearrange to form a sentence:", options: ["D-B-A-C", "A-B-C-D", "B-A-C-D", "C-D-A-B"], correct: 0, explanation: "Participle modifier (D) describing the ruins (B), leading to the outcome (A-C)." },
 
-  // Set 3: Extreme Academic (21-30)
+  // Set 3: Intermediate Logic (21-30)
   { id: 21, parts: ["the particle began to oscillate", "until it reached a state of equilibrium", "upon being subjected to magnetic fields", "within the cryo-chamber"], q: "Rearrange correctly:", options: ["C-A-D-B", "A-B-C-D", "B-D-A-C", "D-C-A-B"], correct: 0, explanation: "Condition (C) leads to primary action (A) in a specific location (D) resulting in an endpoint (B)." },
   { id: 22, parts: ["the cognitive dissonance theory suggests", "individuals seek internal consistency", "when faced with conflicting beliefs", "to reduce psychological discomfort"], q: "Identify the logical flow:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Theory introduction (A) followed by the core mechanism (B), the trigger condition (C), and the objective (D)." },
   { id: 23, parts: ["the Supreme Court overturned the ruling", "citing a violation of the First Amendment", "after months of legal deliberation", "concerning the rights of digital content creators"], q: "Rearrange the segments:", options: ["C-A-B-D", "A-B-C-D", "D-C-B-A", "B-A-D-C"], correct: 0, explanation: "Chronological context (C) followed by the main judicial action (A), the legal rationale (B), and the specific subject matter (D)." },
@@ -60,10 +60,10 @@ const REARRANGE_QUIZ_DATA: Question[] = [
   { id: 29, parts: ["the silicon-based lifeform hypothesis", "remains a staple of speculative exobiology", "even though no empirical evidence", "has yet been found to support it"], q: "Rearrange to form a sentence:", options: ["A-B-C-D", "D-C-B-A", "B-A-D-C", "C-D-A-B"], correct: 0, explanation: "Introduces the hypothesis (A), states its current scientific status (B), and acknowledges the lack of data (C-D)." },
   { id: 30, parts: ["to understand the mechanism of synaptic pruning", "neuroscientists must observe the brain", "during the critical periods of adolescence", "using advanced non-invasive imaging techniques"], q: "Identify the logical order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Starts with the goal (A), followed by the required action (B), the specific timing (C), and the methodology (D)." },
 
-  // Set 4: Extreme Philosophical (31-40)
+  // Set 4: Academic Structures (31-40)
   { id: 31, parts: ["the concept of the 'categorical imperative'", "posits that moral actions are universal", "independent of the specific consequences", "of any particular situation"], q: "Rearrange logically:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Theory definition (B) + Constraint (C) + Context (D)." },
   { id: 32, parts: ["existentialism emphasizes individual freedom", "arguing that existence precedes essence", "and that humans are responsible for", "defining their own purpose in an indifferent universe"], q: "Identify the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Core philosophy (A) + Main argument (B) + Resulting responsibility (C-D)." },
-  { id: 33, parts: ["by deconstructing the binary oppositions", "the philosopher sought to expose", "the inherent instabilities of language", "which underpins our understanding of reality"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "D-C-B-A"], correct: 0, explanation: "Method (A) + Subject action (B) + Target of investigation (C) + Significance (D)." },
+  { id: 33, parts: ["by deconstructing binary oppositions", "the philosopher sought to expose", "the inherent instabilities of language", "which underpins our understanding of reality"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "D-C-B-A"], correct: 0, explanation: "Method (A) + Subject action (B) + Target of investigation (C) + Significance (D)." },
   { id: 34, parts: ["the 'veil of ignorance' thought experiment", "requires us to design a society", "without knowing our own social position", "to ensure ultimate fairness and justice"], q: "Choose the flow:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Experiment name (A) + Requirement (B) + Condition (C) + Purpose (D)." },
   { id: 35, parts: ["the dialectical process of history", "according to Hegel", "moves towards a state of absolute spirit", "through the synthesis of conflicting ideas"], q: "Identify the sequence:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Attributed source (B) + Goal (C) + Mechanism (D)." },
   { id: 36, parts: ["the 'Ship of Theseus' paradox", "questions whether an object", "remains the same if all its components", "are gradually replaced over time"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "D-C-B-A"], correct: 0, explanation: "Paradox name (A) + Core question (B) + Specific condition (C-D)." },
@@ -72,7 +72,7 @@ const REARRANGE_QUIZ_DATA: Question[] = [
   { id: 39, parts: ["the 'trolley problem' forces us", "to confront the moral trade-offs", "between deontological rules and", "consequentialist outcomes in ethical decision making"], q: "Rearrange to form a sentence:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Problem name (A) + Action forced (B) + Conflict (C-D)." },
   { id: 40, parts: ["the concept of 'simulacra'", "suggests that our reality is", "composed of copies of things", "that no longer have an original"], q: "Identify the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Claim (B) + Composition (C) + Nature of copies (D)." },
 
-  // Set 5: Extreme Scientific (41-50)
+  // Set 5: Scientific Logic (41-50)
   { id: 41, parts: ["the CRISPR-Cas9 system", "allows for precise gene editing", "by using a guide RNA sequence", "to target specific DNA segments"], q: "Rearrange correctly:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "System name (A) + Function (B) + Mechanism (C) + Target (D)." },
   { id: 42, parts: ["the theory of plate tectonics", "explains the movement of the lithosphere", "resulting from convective currents", "within the Earth's mantle"], q: "Identify the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Theory (A) + Function (B) + Cause (C) + Location (D)." },
   { id: 43, parts: ["the detection of gravitational waves", "confirmed a major prediction", "of Einstein's general theory of relativity", "century after it was first proposed"], q: "Rearrange logically:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Event (A) + Impact (B) + Source (C) + Context (D)." },
@@ -84,8 +84,7 @@ const REARRANGE_QUIZ_DATA: Question[] = [
   { id: 49, parts: ["the expansion of the universe", "is being accelerated by dark energy", "a mysterious force that counteracts", "the gravitational pull of matter"], q: "Rearrange correctly:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Phenomenon (A) + Agent (B) + Definition (C) + Function (D)." },
   { id: 50, parts: ["ocean acidification occurs", "when the absorption of atmospheric CO2", "leads to a decrease in seawater pH", "threatening the survival of coral reefs"], q: "Identify the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Phenomenon (A) + Trigger (B) + Mechanism (C) + Impact (D)." },
 
-  // Sets 6-12 follow the same scrambled logic...
-  // (Adding 50 more high-tier items to reach 100)
+  // Set 6: Global Dynamics (51-60)
   { id: 51, parts: ["the geopolitical shift", "towards a multipolar world order", "has challenged the dominance", "of traditional western alliances"], q: "Rearrange accurately:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Direction (B) + Impact (C) + Object (D)." },
   { id: 52, parts: ["the advent of blockchain technology", "promises to decentralise finance", "by providing a secure and transparent", "ledger for all digital transactions"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Promise (B) + Method (C) + Scope (D)." },
   { id: 53, parts: ["the ethical implications", "of artificial general intelligence", "remain a subject of intense debate", "among policy makers and researchers"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Context (B) + Status (C) + Scope (D)." },
@@ -97,7 +96,7 @@ const REARRANGE_QUIZ_DATA: Question[] = [
   { id: 59, parts: ["the establishment of the United Nations", "in the aftermath of World War II", "was intended to prevent future conflicts", "through international cooperation and diplomacy"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Context (B) + Intent (C) + Method (D)." },
   { id: 60, parts: ["the rise of the gig economy", "has created new challenges", "for traditional labour laws", "and social security systems"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Impact (B) + Target (C) + Scope (D)." },
 
-  // Set 7: Abstract Science (61-70)
+  // Set 7: Theoretical Concepts (61-70)
   { id: 61, parts: ["the phenomenon of 'quantum decoherence'", "explains how quantum systems", "lose their interference effects", "when interacting with the environment"], q: "Rearrange accurately:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Explanation (B) + Mechanism (C) + Condition (D)." },
   { id: 62, parts: ["the study of 'neuroplasticity' suggests", "that the brain can reorganise itself", "by forming new neural connections", "throughout an individual's entire lifespan"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Field (A) + Suggestion (B) + Method (C) + Timing (D)." },
   { id: 63, parts: ["the 'Big Bang' theory posits", "that the universe began", "as a near-infinite singularity", "billions of years ago"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Theory (A) + Claim (B) + State (C) + Time (D)." },
@@ -109,7 +108,7 @@ const REARRANGE_QUIZ_DATA: Question[] = [
   { id: 69, parts: ["the 'Turing test' evaluates", "the ability of a machine", "to exhibit intelligent behaviour", "indistinguishable from that of a human"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Test name (A) + Target (B) + Goal (C) + Criteria (D)." },
   { id: 70, parts: ["the 'Fermi paradox' highlights", "the apparent contradiction between", "the high probability of extraterrestrial life", "and the lack of evidence for it"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Paradox (A) + Nature (B) + Component 1 (C) + Component 2 (D)." },
 
-  // Set 8: Extreme Macro-History (71-80)
+  // Set 8: Historical Analysis (71-80)
   { id: 71, parts: ["the fall of the Roman Empire", "was a complex process involving", "internal political decay", "and external barbarian invasions"], q: "Rearrange correctly:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Event (A) + Nature (B) + Cause 1 (C) + Cause 2 (D)." },
   { id: 72, parts: ["the industrial revolution initiated", "a massive migration of people", "from rural agricultural areas", "to rapidly growing urban centres"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Event (A) + Outcome (B) + Source (C) + Destination (D)." },
   { id: 73, parts: ["the 'cold war' was characterized", "by intense geopolitical rivalry", "between the US and the USSR", "without direct military confrontation"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Period (A) + Nature (B) + Actors (C) + Constraint (D)." },
@@ -121,7 +120,7 @@ const REARRANGE_QUIZ_DATA: Question[] = [
   { id: 79, parts: ["the 'Age of Enlightenment' emphasised", "the use of reason and logic", "as the primary sources of authority", "rather than tradition or religion"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Period (A) + Emphasis (B) + Role (C) + Contrast (D)." },
   { id: 80, parts: ["the 'Green Revolution' refers to", "the large-scale increases in", "global food production", "resulting from technological advancements"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Term (A) + Nature (B) + Scope (C) + Cause (D)." },
 
-  // Set 9: Extreme Policy & Law (81-90)
+  // Set 9: Legal & Social (81-90)
   { id: 81, parts: ["the 'rule of law' requires", "that all citizens and institutions", "are accountable to laws", "that are publicly promulgated"], q: "Rearrange accurately:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Concept (A) + Subject (B) + Requirement (C) + Nature of laws (D)." },
   { id: 82, parts: ["the principle of 'habeas corpus'", "protects individuals from", "arbitrary and unlawful imprisonment", "without a fair trial"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Principle (A) + Function (B) + Protection (C) + Condition (D)." },
   { id: 83, parts: ["the 'separation of powers' doctrine", "divides the government into", "legislative, executive, and judicial branches", "to prevent the abuse of authority"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Doctrine (A) + Function (B) + Components (C) + Purpose (D)." },
@@ -133,7 +132,7 @@ const REARRANGE_QUIZ_DATA: Question[] = [
   { id: 89, parts: ["the 'equality before the law' principle", "ensures that all individuals", "receive the same legal treatment", "regardless of their social status"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Principle (A) + Subject (B) + Outcome (C) + Scope (D)." },
   { id: 90, parts: ["the 'intellectual property' laws", "provide legal protection", "for the creations of the mind", "such as inventions and artistic works"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Function (B) + Target (C) + Examples (D)." },
 
-  // Set 10: Extreme Linguistics (91-100)
+  // Set 10: Communication & Linguistics (91-100)
   { id: 91, parts: ["the 'Sapir-Whorf hypothesis' suggests", "that the structure of a language", "influences the way its speakers", "conceptualise and perceive the world"], q: "Rearrange accurately:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Hypothesis (A) + Factor (B) + Impact (C) + Outcome (D)." },
   { id: 92, parts: ["the 'universal grammar' theory posits", "that all human languages", "share a common underlying structure", "innate to the human mind"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Theory (A) + Scope (B) + Feature (C) + Source (D)." },
   { id: 93, parts: ["the 'morphology' of a language", "studies the internal structure of words", "and how they are formed", "from smaller units called morphemes"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Definition (B) + Process (C) + Units (D)." },
@@ -144,8 +143,6 @@ const REARRANGE_QUIZ_DATA: Question[] = [
   { id: 98, parts: ["the 'etymology' of a word", "traces its historical origins", "and how its form and meaning", "have changed over time"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Function (B) + Nature of change (C) + Timing (D)." },
   { id: 99, parts: ["the 'sociolinguistics' field", "studies the relationship between", "language use and social factors", "such as class, gender, and ethnicity"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Function (B) + Relationship (C) + Factors (D)." },
   { id: 100, parts: ["the 'computational linguistics' field", "develops algorithms and models", "to process and analyse", "natural language data at scale"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Action (B) + Goal (C) + Scope (D)." },
-
-  // Sets 11-12 would follow the same pattern if required...
 ]
 
 export default function RearrangeQuizPage() {
@@ -162,14 +159,14 @@ export default function RearrangeQuizPage() {
   const quizSets = [
     { name: "Practice Set 1", range: [0, 10] },
     { name: "Practice Set 2", range: [10, 20] },
-    { name: "Set 3: Extreme Academic", range: [20, 30] },
-    { name: "Set 4: Extreme Philosophical", range: [30, 40] },
-    { name: "Set 5: Extreme Scientific", range: [40, 50] },
-    { name: "Set 6: Extreme Socio-Economic", range: [50, 60] },
-    { name: "Set 7: Abstract Science", range: [60, 70] },
-    { name: "Set 8: Macro-History", range: [70, 80] },
-    { name: "Set 9: Policy & Law", range: [80, 90] },
-    { name: "Set 10: Linguistics", range: [90, 100] },
+    { name: "Practice Set 3", range: [20, 30] },
+    { name: "Practice Set 4", range: [30, 40] },
+    { name: "Practice Set 5", range: [40, 50] },
+    { name: "Practice Set 6", range: [50, 60] },
+    { name: "Practice Set 7", range: [60, 70] },
+    { name: "Practice Set 8", range: [70, 80] },
+    { name: "Practice Set 9", range: [80, 90] },
+    { name: "Practice Set 10", range: [90, 100] },
   ]
 
   useEffect(() => {
@@ -216,7 +213,7 @@ export default function RearrangeQuizPage() {
       setCurrentStep(currentStep + 1)
     } else {
       setIsFinished(true)
-      toast({ title: "Logic Set Complete!", description: "Check your +5/-1 accuracy." })
+      toast({ title: "Examination Complete!", description: "Check your Subject Code 101 performance." })
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }, [currentStep, questions.length, toast])
@@ -262,9 +259,9 @@ export default function RearrangeQuizPage() {
         <div className="max-w-6xl mx-auto">
           <header className="mb-12 text-center animate-fade-in-up">
             <Badge variant="outline" className="mb-4 py-1 px-4 border-primary/40 text-primary font-bold uppercase tracking-widest">
-              Section 6: Logic Selection
+              Section 6: Sequential Logic
             </Badge>
-            <h1 className="text-4xl font-headline font-bold mb-4">Sequential Logic Practice</h1>
+            <h1 className="text-4xl font-headline font-bold mb-4">Practice Sets Selector</h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Select a clinical practice set to begin. Each set follows official CUET Subject Code 101 marking protocols.
             </p>
@@ -285,7 +282,7 @@ export default function RearrangeQuizPage() {
                     <Badge variant="secondary" className="rounded-full font-bold">10 Items</Badge>
                   </div>
                   <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">{set.name}</CardTitle>
-                  <CardDescription className="mt-2">High-tier sentence rearrangement items for targeted practice.</CardDescription>
+                  <CardDescription className="mt-2">Standard logic sequences for targeted clinical practice.</CardDescription>
                 </CardHeader>
                 <CardContent className="px-8 pb-8 pt-0 mt-auto">
                   <Button variant="outline" className="w-full rounded-xl border-primary/20 hover:bg-primary hover:text-white font-bold group">
@@ -333,7 +330,7 @@ export default function RearrangeQuizPage() {
                 <RefreshCw className="w-4 h-4 mr-2" /> Retake this Set
               </Button>
               <Button variant="outline" size="lg" className="rounded-xl h-12 font-bold" onClick={() => setSelectedSetIndex(null)}>
-                Pick Another Set
+                Back to Dashboard
               </Button>
             </div>
           </Card>
@@ -341,7 +338,7 @@ export default function RearrangeQuizPage() {
           <section className="space-y-4">
             <h3 className="text-xl font-bold flex items-center gap-2 px-2">
               <Info className="w-5 h-5 text-primary" />
-              Strategic Item Analysis
+              Strategic Review
             </h3>
             {questions.map((q, idx) => {
               const userAns = answers[q.id]
@@ -413,7 +410,7 @@ export default function RearrangeQuizPage() {
               <Keyboard className="w-3 h-3" />
               PRESS ENTER
             </div>
-            <Badge variant="outline" className="h-8 px-4 rounded-full border-primary/20 text-primary font-bold">Subject Code 101</Badge>
+            <Badge variant="outline" className="h-8 px-4 rounded-full border-primary/20 text-primary font-bold">Code 101</Badge>
           </div>
         </div>
 
