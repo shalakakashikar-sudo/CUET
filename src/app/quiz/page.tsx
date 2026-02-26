@@ -32,10 +32,10 @@ type Question = {
 }
 
 // 1. COMPREHENSIVE DATA REPOSITORIES (Clinical Targets)
-const PASSAGES = [
+const PASSAGE_POOL = [
   {
     title: "The Stoic Mindset",
-    content: "Stoicism, an ancient Greek school of philosophy, teaches the development of self-control and fortitude as a means of overcoming destructive emotions. It suggests that while we cannot control external events, we have complete control over our internal responses. By aligning our will with the natural order of the universe, we can attain tranquility. The Stoic does not seek to eliminate emotion but rather to refine it, transforming reactive passions into reasoned judgments. This clinical approach to life allows for a resilience that is unshakable even in the face of immense adversity.",
+    content: "Stoicism, an ancient Greek school of philosophy, teaches the development of self-control and fortitude as a means of overcoming destructive emotions. It suggests that while we cannot control external events, we have complete control over our internal responses. By aligning our will with the natural order of the universe, we can attain tranquility. The Stoic does not seek to eliminate emotion but rather to refine it, transforming reactive passions into reasoned judgments. This clinical approach to life allows for a resilience that is unshakable even in the face of immense adversity. Ultimately, the goal is not a lack of feeling, but a clarity of mind that allows one to remain objective and virtuous in all circumstances, proving that emotional discipline is the highest form of human freedom.",
     questions: [
       { id: "rc1-1", text: "What is the core teaching of Stoicism according to the text?", options: ["Control over external events", "Development of self-control and fortitude", "Elimination of all human emotions", "Ignoring the natural order of fate"], correct: 1, explanation: "The text highlights self-control and fortitude as core means to overcome destructive emotions." },
       { id: "rc1-2", text: "What can a Stoic control according to the philosophy?", options: ["Unfolding external events", "Internal responses and will", "The natural order of nature", "Universal destiny of mankind"], correct: 1, explanation: "The passage states we have 'complete control over our internal responses'." },
@@ -45,7 +45,7 @@ const PASSAGES = [
   },
   {
     title: "Micro-Ecosystems",
-    content: "Urban rooftop gardens are transforming grey concrete jungles into vibrant micro-ecosystems. These green spaces do more than just provide aesthetic value; they actively mitigate the urban heat island effect by absorbing solar radiation. Furthermore, they support biodiversity by providing habitats for pollinators like bees and butterflies, which are often displaced by urban development. Rainwater harvesting systems integrated into these gardens reduce runoff, preventing the overwhelming of city drainage during heavy storms. As cities continue to expand, these elevated habitats represent a crucial intersection of architecture and environmental stewardship.",
+    content: "Urban rooftop gardens are transforming grey concrete jungles into vibrant micro-ecosystems. These green spaces do more than just provide aesthetic value; they actively mitigate the urban heat island effect by absorbing solar radiation. Furthermore, they support biodiversity by providing habitats for pollinators like bees and butterflies, which are often displaced by urban development. Rainwater harvesting systems integrated into these gardens reduce runoff, preventing the overwhelming of city drainage during heavy storms. As cities continue to expand, these elevated habitats represent a crucial intersection of architecture and environmental stewardship. They offer a sustainable model for future urban planning, where nature and infrastructure coexist to create healthier, more resilient living environments for all citizens.",
     questions: [
       { id: "rc2-1", text: "How do rooftop gardens affect solar radiation?", options: ["They reflect it back into space", "They absorb it to mitigate heat", "They increase it through reflection", "They ignore it entirely"], correct: 1, explanation: "Text: 'mitigate the urban heat island effect by absorbing solar radiation'." },
       { id: "rc2-2", text: "Which group specifically benefits from the biodiversity of these gardens?", options: ["Large urban mammals", "Pollinators like bees and butterflies", "Deep-sea aquatic life", "Migratory birds during winter"], correct: 1, explanation: "The text mentions habitats for pollinators like bees and butterflies." },
@@ -55,35 +55,62 @@ const PASSAGES = [
   },
   {
     title: "Dr. Moo and the Cosmic Continuum",
-    content: "In the sprawling expanse of the cosmos, there existed a peculiar dimension known as The Milky Way, a realm where time flowed not in a straight line, but in loops of past, present, and future. Guarding this timeline was an unlikely hero: Dr. Moo, a time-travelling cow with a penchant for flawless English grammar. While other celestial beings concerned themselves with black holes, Dr. Moo focused on fixing temporal paradoxes caused by misplaced modifiers and incorrect verb forms. One epoch, a rogue comet threatened to scramble the timeline, merging the past continuous with the future perfect. she galloped through the cosmic dust, actively rewriting the stars. By ensuring the subject-verb agreement of the universe was perfectly aligned, she saved the continuum from collapsing into a chaotic jumble of dangling participles.",
+    content: "In the sprawling expanse of the cosmos, there existed a peculiar dimension known as The Milky Way, a realm where time flowed not in a straight line, but in loops of past, present, and future. Guarding this timeline was an unlikely hero: Dr. Moo, a time-travelling cow with a penchant for flawless English grammar. While other celestial beings concerned themselves with black holes, Dr. Moo focused on fixing temporal paradoxes caused by misplaced modifiers and incorrect verb forms. One epoch, a rogue comet threatened to scramble the timeline, merging the past continuous with the future perfect. \"We must make your English legend-dairy with tenses,\" she bellowed, activating her temporal hooves. She galloped through the cosmic dust, actively rewriting the stars. Where the comet had passively destroyed galaxies, Dr. Moo actively restored them. By ensuring the subject-verb agreement of the universe was perfectly aligned, she saved the continuum from collapsing into a chaotic jumble of dangling participles, proving that the fabric of time is held together by good punctuation.",
     questions: [
       { id: "rc3-1", text: "Based on the passage, what is Dr. Moo’s primary mission?", options: ["To study black hole physics", "To fix grammatical temporal paradoxes", "To rewrite celestial star maps", "To teach time-travel logic"], correct: 1, explanation: "Dr. Moo focused on fixing temporal paradoxes caused by misplaced modifiers and incorrect verb forms." },
       { id: "rc3-2", text: "Choose the correct meaning of 'penchant' as used in the passage:", options: ["Strong dislike or aversion", "Deep scientific understanding", "Strong or habitual liking", "Magical time-travel ability"], correct: 2, explanation: "'Penchant' refers to a habitual liking or inclination." },
       { id: "rc3-3", text: "Identify the Figure of Speech used in 'legend-dairy':", options: ["Clever Pun", "Direct Simile", "Sharp Oxymoron", "Literal Personification"], correct: 0, explanation: "It uses a play on words 'legendary' and 'dairy'." },
       { id: "rc3-4", text: "What saved the continuum from collapsing according to the text?", options: ["Perfect Punctuation", "Correct Subject-verb agreement", "Quantum mechanics rules", "The Milky Way's gravity"], correct: 1, explanation: "The text says subject-verb agreement perfectly aligned saved the continuum." }
     ]
+  },
+  {
+    title: "The Evolution of Smart Classrooms",
+    content: "The landscape of modern education is undergoing a seismic shift, driven by the advent of artificial intelligence. Traditional classrooms, once reliant entirely on static textbooks, are now embracing dynamic digital ecosystems. Central to this transformation are AI-powered smart test applications designed to assess student learning outcomes with unprecedented accuracy. These intelligent testing platforms adapt to a student's proficiency level in real-time, offering personalized quizzes that identify specific areas of improvement. Furthermore, specialized AI frameworks are being developed to assist teachers in navigating dense literature. For example, micro-analysis apps can quickly break down classic literary texts into easily digestible summaries, character arcs, and thematic explorations. This allows educators to spend less time on basic reading comprehension and more time fostering critical thinking and debate. As these educational technologies evolve, the focus is shifting from rote memorization to active engagement. The ultimate goal is not to replace the educator, but to equip them with highly targeted, efficient tools that make the process of teaching both literature and language more intuitive and engaging for the digital generation.",
+    questions: [
+      { id: "rc4-1", text: "What is the central idea of the passage?", options: ["AI will soon replace teachers entirely", "Modern education is failing due to technology", "AI tools are transforming education by enhancing assessment and teaching", "Static textbooks are more reliable than AI"], correct: 2, explanation: "The passage focuses on the transformative and assisting role of AI in modern education." },
+      { id: "rc4-2", text: "Choose the antonym of 'dynamic' as used in context:", options: ["Energetic", "Static", "Vibrant", "Active"], correct: 1, explanation: "'Dynamic' implies movement/change; 'static' is its direct opposite." },
+      { id: "rc4-3", text: "What do micro-analysis apps help teachers with?", options: ["Grading attendance", "Simplifying complex literary texts", "Replacing classroom discussion", "Creating static textbooks"], correct: 1, explanation: "The text states they break down classic texts into digestible summaries." },
+      { id: "rc4-4", text: "The 'ultimate goal' of these technologies is to:", options: ["Replace the human educator", "Equip teachers with efficient tools", "Enforce rote memorization", "Limit student engagement"], correct: 1, explanation: "Text: 'The ultimate goal is... to equip them [educators] with highly targeted, efficient tools'." }
+    ]
+  },
+  {
+    title: "The Echoes of the Morning Assembly",
+    content: "The morning assembly in a school is far more than a routine administrative gathering; it is the heartbeat of the educational community. When the sun first crests the horizon, casting long shadows across the courtyard, hundreds of voices unite in a collective pause before the chaos of the day begins. A well-crafted assembly script does not merely announce upcoming events; it weaves a narrative of inspiration, often drawing upon the profound lessons hidden within classic literature. Whether reflecting on the quiet resilience of a protagonist facing adversity or the poetic beauty of an untrodden path, the spoken word has the power to set the moral compass for the entire day. The microphone becomes a conduit for empathy, transforming sleepy-eyed students into active participants in a shared cultural experience. It is a fleeting window where stories of triumph, ethical dilemmas, and historical courage are breathed into life. Ultimately, the true magic of the morning assembly lies in its ability to anchor the wandering mind, reminding every student and teacher that they are part of a larger, unfolding story, and that every new dawn is a blank page waiting to be written with purpose.",
+    questions: [
+      { id: "rc5-1", text: "Identify the figure of speech: 'it is the heartbeat of the educational community'.", options: ["Simile", "Metaphor", "Personification", "Hyperbole"], correct: 1, explanation: "Direct comparison without 'like' or 'as'." },
+      { id: "rc5-2", text: "What is the function of a 'well-crafted assembly script'?", options: ["To list the daily lunch menu", "To weave an inspiring narrative and set a moral compass", "To provide a routine administrative checklist", "To broadcast loud announcements"], correct: 1, explanation: "The text explicitly states it 'weaves a narrative of inspiration' and 'sets the moral compass'." },
+      { id: "rc5-3", text: "The phrase 'every new dawn is a blank page' implies:", options: ["The school is running out of paper", "Each day is a fresh opportunity to act with purpose", "Morning assemblies are boring", "Students must write essays every morning"], correct: 1, explanation: "It is a metaphorical representation of a new beginning." },
+      { id: "rc5-4", text: "Choose the synonym for 'conduit' as used in the passage:", options: ["Barrier", "Channel", "Obstacle", "Restriction"], correct: 1, explanation: "'Conduit' refers to a medium or channel for transmission." }
+    ]
   }
 ]
 
 const VOCAB_POOL = [
-  { word: "EPHEMERAL", syn: "Transient", ant: "Permanent", exp: "Ephemeral means short-lived." },
-  { word: "LOQUACIOUS", syn: "Talkative", ant: "Reticent", exp: "Loquacious means very talkative." },
-  { word: "PRUDENT", syn: "Judicious", ant: "Reckless", exp: "Prudent means acting with care." },
-  { word: "CANDID", syn: "Frank", ant: "Deceptive", exp: "Candid means straightforward." },
-  { word: "UBIQUITOUS", syn: "Omnipresent", ant: "Rare", exp: "Ubiquitous means present everywhere." },
-  { word: "ZEALOUS", syn: "Fervent", ant: "Apathetic", exp: "Zealous means showing great energy." },
-  { word: "AMELIORATE", syn: "Enhance", ant: "Exacerbate", exp: "Ameliorate means to make something better." },
-  { word: "ANTIPATHY", syn: "Aversion", ant: "Affinity", exp: "Antipathy is a deep dislike." },
-  { word: "AUDACIOUS", syn: "Daring", ant: "Timid", exp: "Audacious means taking bold risks." },
-  { word: "FASTIDIOUS", syn: "Meticulous", ant: "Sloppy", exp: "Fastidious means attentive to detail." }
+  { word: "EPHEMERAL", syn: "Transient", ant: "Permanent", exp: "Short-lived." },
+  { word: "LOQUACIOUS", syn: "Talkative", ant: "Reticent", exp: "Very talkative." },
+  { word: "PRUDENT", syn: "Judicious", ant: "Reckless", exp: "Acting with care." },
+  { word: "CANDID", syn: "Frank", ant: "Deceptive", exp: "Straightforward." },
+  { word: "UBIQUITOUS", syn: "Omnipresent", ant: "Rare", exp: "Present everywhere." },
+  { word: "ZEALOUS", syn: "Fervent", ant: "Apathetic", exp: "Energetic/passionate." },
+  { word: "AMELIORATE", syn: "Enhance", ant: "Exacerbate", exp: "To make better." },
+  { word: "ANTIPATHY", syn: "Aversion", ant: "Affinity", exp: "Deep dislike." },
+  { word: "AUDACIOUS", syn: "Daring", ant: "Timid", exp: "Taking bold risks." },
+  { word: "FASTIDIOUS", syn: "Meticulous", ant: "Sloppy", exp: "Attentive to detail." },
+  { word: "LACONIC", syn: "Terse", ant: "Verbose", exp: "Using few words." },
+  { word: "INCHOATE", syn: "Nascent", ant: "Developed", exp: "Just begun/incomplete." },
+  { word: "OBDURATE", syn: "Obstinate", ant: "Yielding", exp: "Stubborn." },
+  { word: "MUNIFICENT", syn: "Bounteous", ant: "Parsimonious", exp: "Very generous." },
+  { word: "PERNICIOUS", syn: "Noxious", ant: "Salubrious", exp: "Harmful in a subtle way." }
 ]
 
 const IDIOMS_POOL = [
-  { text: "At the eleventh hour", meaning: "At the last possible moment", wrong: ["Exactly at 11:00", "In the morning", "An auspicious time"], exp: "Refers to doing something just before it's too late." },
-  { text: "Bite the bullet", meaning: "Accept something unpleasant bravely", wrong: ["To speak aggressively", "To make a quick decision", "To undertake a challenge"], exp: "Facing a difficult situation with courage." },
+  { text: "At the eleventh hour", meaning: "At the last possible moment", wrong: ["Exactly at 11:00", "In the morning", "A lucky time"], exp: "Just before it's too late." },
+  { text: "Bite the bullet", meaning: "Accept something unpleasant bravely", wrong: ["To speak aggressively", "To make a rash decision", "To undertake a challenge"], exp: "Facing difficulty with courage." },
   { text: "Piece of cake", meaning: "Something very easy", wrong: ["A shared secret", "A small celebration", "A difficult task"], exp: "Extremely simple task." },
   { text: "Under the weather", meaning: "Feeling slightly ill", wrong: ["In the rain", "Predicting storms", "Under pressure"], exp: "Not feeling well." },
-  { text: "Once in a blue moon", meaning: "Very rarely", wrong: ["Every month", "During full moon", "Frequently"], exp: "Something that happens infrequently." }
+  { text: "Once in a blue moon", meaning: "Very rarely", wrong: ["Every month", "During full moon", "Frequently"], exp: "Infrequent event." },
+  { text: "Burn the midnight oil", meaning: "Working late into the night", wrong: ["Cooking late", "Wasting resources", "Lighting a lamp"], exp: "Studying or working past midnight." },
+  { text: "Spill the beans", meaning: "Reveal a secret", wrong: ["Cooking error", "Planting seeds", "Wasting food"], exp: "Disclosing hidden info." }
 ]
 
 const FILLERS_POOL = [
@@ -91,12 +118,15 @@ const FILLERS_POOL = [
   { text: "You must abstain ______ smoking.", options: ["from", "to", "against", "with"], correct: 0, exp: "Abstain always takes 'from'." },
   { text: "If I ______ you, I would apologise.", options: ["am", "was", "were", "had been"], correct: 2, exp: "Subjunctive 'were' for hypotheticals." },
   { text: "Each of the boys ______ present.", options: ["was", "were", "are", "have been"], correct: 0, exp: "Each is singular." },
-  { text: "No sooner had he left ______ it rained.", options: ["when", "then", "than", "that"], correct: 2, exp: "No sooner...than." }
+  { text: "No sooner had he left ______ it rained.", options: ["when", "then", "than", "that"], correct: 2, exp: "No sooner...than." },
+  { text: "He was acquitted ______ all charges.", options: ["from", "of", "with", "off"], correct: 1, exp: "Acquitted of." },
+  { text: "The climate is conducive ______ health.", options: ["for", "to", "with", "in"], correct: 1, exp: "Conducive to." }
 ]
 
 const REARRANGE_POOL = [
   { parts: ["the fragrance of jasmine", "as the evening breeze", "passed through", "the open gate"], options: ["B-C-A-D", "A-B-C-D", "D-C-B-A", "C-A-D-B"], correct: 0, exp: "Setting + Action + Subject + Result." },
-  { parts: ["the committee decided", "due to the storm", "to postpone the game", "at the last minute"], options: ["A-C-D-B", "B-A-C-D", "C-D-A-B", "D-B-C-A"], correct: 0, exp: "Subject + Verb + Time + Reason." }
+  { parts: ["the committee decided", "due to the storm", "to postpone the game", "at the last minute"], options: ["A-C-D-B", "B-A-C-D", "C-D-A-B", "D-B-C-A"], correct: 0, exp: "Subject + Verb + Time + Reason." },
+  { parts: ["to understand the universe", "physicists must look", "beyond the observable", "into the quantum realm"], options: ["A-B-C-D", "B-C-D-A", "D-C-B-A", "C-A-B-D"], correct: 0, exp: "Purpose + Subject + Action + Destination." }
 ]
 
 const SHUFFLE = <T,>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
@@ -104,8 +134,8 @@ const SHUFFLE = <T,>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
 const GENERATE_EXAM = (): Question[] => {
   const qSet: Question[] = []
 
-  // 1. DYNAMIC RC POOLING (Pick 3 random passages)
-  const selectedPassages = SHUFFLE(PASSAGES).slice(0, 3);
+  // 1. DYNAMIC RC POOLING (Pick 3 full passages)
+  const selectedPassages = SHUFFLE(PASSAGE_POOL).slice(0, 3);
   selectedPassages.forEach((p) => {
     p.questions.forEach(q => {
       qSet.push({
@@ -113,11 +143,11 @@ const GENERATE_EXAM = (): Question[] => {
         section: "Reading Comprehension",
         passage: p.content,
         passageTitle: p.title
-      })
+      } as Question)
     })
   });
 
-  // 2. DYNAMIC LEXICAL POOLING (Pick 10 random from full pool)
+  // 2. DYNAMIC LEXICAL POOLING (Pick 10)
   const selectedVocab = SHUFFLE(VOCAB_POOL).slice(0, 10);
   selectedVocab.forEach((v, i) => {
     const isSyn = Math.random() > 0.5;
@@ -131,9 +161,10 @@ const GENERATE_EXAM = (): Question[] => {
     })
   });
 
-  // 3. DYNAMIC MATCH POOLING (Pick 10 random)
+  // 3. DYNAMIC MATCH POOLING (Pick 10)
   const selectedIdioms = SHUFFLE(IDIOMS_POOL).slice(0, 10);
-  selectedIdioms.forEach((idiom, i) => {
+  const finalIdioms = selectedIdioms.length < 10 ? [...selectedIdioms, ...SHUFFLE(IDIOMS_POOL).slice(0, 10 - selectedIdioms.length)] : selectedIdioms;
+  finalIdioms.slice(0, 10).forEach((idiom, i) => {
     qSet.push({
       id: `match-${i}`,
       section: "Match Proficiency",
@@ -144,9 +175,10 @@ const GENERATE_EXAM = (): Question[] => {
     })
   });
 
-  // 4. DYNAMIC SYNTACTIC POOLING (Pick 10 random)
+  // 4. DYNAMIC SYNTACTIC POOLING (Pick 10)
   const selectedFillers = SHUFFLE(FILLERS_POOL).slice(0, 10);
-  selectedFillers.forEach((f, i) => {
+  const finalFillers = selectedFillers.length < 10 ? [...selectedFillers, ...SHUFFLE(FILLERS_POOL).slice(0, 10 - selectedFillers.length)] : selectedFillers;
+  finalFillers.slice(0, 10).forEach((f, i) => {
     qSet.push({
       id: `filler-${i}`,
       section: "Syntactic Precision",
@@ -157,9 +189,10 @@ const GENERATE_EXAM = (): Question[] => {
     })
   });
 
-  // 5. DYNAMIC SEQUENTIAL POOLING (Pick 8 random)
+  // 5. DYNAMIC SEQUENTIAL POOLING (Pick 8)
   const selectedRearrange = SHUFFLE(REARRANGE_POOL).slice(0, 8);
-  selectedRearrange.forEach((r, i) => {
+  const finalRearrange = selectedRearrange.length < 8 ? [...selectedRearrange, ...SHUFFLE(REARRANGE_POOL).slice(0, 8 - selectedRearrange.length)] : selectedRearrange;
+  finalRearrange.slice(0, 8).forEach((r, i) => {
     qSet.push({
       id: `rearrange-${i}`,
       section: "Sequential Logic",
@@ -171,7 +204,8 @@ const GENERATE_EXAM = (): Question[] => {
     })
   });
 
-  return SHUFFLE(qSet).slice(0, 50); // Ensure exactly 50 items
+  // Final total 50 items
+  return qSet.slice(0, 50);
 }
 
 export default function CBTExamPage() {
@@ -183,7 +217,7 @@ export default function CBTExamPage() {
   const [timeLeft, setTimeLeft] = useState(3600) // 60 minutes
   const [isExamStarted, setIsExamStarted] = useState(false)
 
-  // Initialization with Anti-Guessing option shuffling
+  // CBT System Start
   const startExam = () => {
     const rawSet = GENERATE_EXAM()
     const randomizedSet = rawSet.map(q => {
@@ -201,7 +235,7 @@ export default function CBTExamPage() {
   const submitExam = useCallback(() => {
     if (isFinished) return
     setIsFinished(true)
-    toast({ title: "Examination Submitted", description: "Your protocol response has been successfully logged." })
+    toast({ title: "Protocol Complete", description: "Your examination response has been logged." })
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [isFinished, toast])
 
@@ -262,23 +296,23 @@ export default function CBTExamPage() {
           <div className="space-y-4 text-left mb-12 bg-muted/30 p-8 rounded-3xl border border-primary/10">
             <div className="flex items-center gap-3 font-bold text-foreground">
               <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>Total Questions: 50 Compulsory Items</span>
+              <span>Total Questions: 50 Items</span>
             </div>
             <div className="flex items-center gap-3 font-bold text-foreground">
               <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>Duration: 60 Minutes (3,600 Seconds)</span>
+              <span>Duration: 60 Minutes</span>
             </div>
             <div className="flex items-center gap-3 font-bold text-foreground">
               <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>Scoring: +5 for Accuracy | -1 for Errors</span>
+              <span>Scoring: +5 / -1 Protocol</span>
             </div>
             <div className="flex items-center gap-3 font-bold text-foreground">
               <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>Anti-Guess: Dynamically sampled pools.</span>
+              <span>Anti-Guess: Shuffled options applied.</span>
             </div>
           </div>
           <Button size="lg" className="w-full h-16 rounded-2xl text-xl font-bold shadow-xl" onClick={startExam}>
-            Initialise CBT Session
+            Start CBT Session
           </Button>
         </Card>
       </div>
@@ -315,25 +349,24 @@ export default function CBTExamPage() {
             <div className="bg-foreground text-background p-10 rounded-[2.5rem] shadow-2xl flex justify-between items-center mb-12">
               <div className="text-left">
                 <span className="text-lg opacity-60 font-bold uppercase tracking-widest">Final Weighted Score</span>
-                <p className="text-sm opacity-40">Elite 100th Percentile Calculation Applied</p>
+                <p className="text-sm opacity-40">100th Percentile Scaling Applied</p>
               </div>
               <div className="text-6xl font-bold">{total} <span className="text-2xl opacity-30">/ 250</span></div>
             </div>
 
             <div className="flex gap-4">
               <Button size="lg" className="flex-1 h-16 rounded-2xl text-xl font-bold shadow-lg" onClick={() => window.location.reload()}>
-                <RefreshCw className="mr-3" /> Start New Session
+                <RefreshCw className="mr-3" /> New Exam Session
               </Button>
               <Button variant="outline" size="lg" className="flex-1 h-16 rounded-2xl text-xl font-bold" asChild>
-                <Link href="/">Return to Academy</Link>
+                <Link href="/">Return to Dashboard</Link>
               </Button>
             </div>
           </Card>
 
-          {/* Item-by-Item Review */}
           <section className="space-y-8">
             <h2 className="text-3xl font-bold px-4 flex items-center gap-3">
-              <Info className="w-8 h-8 text-primary" /> Comprehensive Strategic Review
+              <Info className="w-8 h-8 text-primary" /> Strategic Item Review
             </h2>
             <div className="space-y-6">
               {questions.map((q, idx) => {
@@ -343,7 +376,7 @@ export default function CBTExamPage() {
                   <Card key={idx} className="border-none shadow-md overflow-hidden rounded-[2.5rem]">
                     <div className={cn("px-8 py-4 flex justify-between items-center", userAns === undefined ? "bg-muted" : isCorrect ? "bg-green-50" : "bg-red-50")}>
                       <Badge variant={userAns === undefined ? "secondary" : isCorrect ? "default" : "destructive"} className="px-4 py-1 rounded-full font-bold">
-                        {userAns === undefined ? "SKIPPED (0)" : isCorrect ? "CORRECT (+5)" : "MISTAKE (-1)"}
+                        {userAns === undefined ? "SKIPPED" : isCorrect ? "CORRECT (+5)" : "MISTAKE (-1)"}
                       </Badge>
                       <span className="text-xs font-black uppercase tracking-widest opacity-40">{q.section}</span>
                     </div>
@@ -361,21 +394,21 @@ export default function CBTExamPage() {
                           {userAns === undefined ? <AlertCircle className="w-6 h-6 text-muted-foreground" /> : isCorrect ? <CheckCircle2 className="w-6 h-6 text-green-600" /> : <XCircle className="w-6 h-6 text-red-600" />}
                           <div className="text-lg">
                             <span className="font-bold">Your Response: </span>
-                            {userAns !== undefined ? q.options[userAns] : "No Response Provided"}
+                            {userAns !== undefined ? q.options[userAns] : "Not Attempted"}
                           </div>
                         </div>
                         {!isCorrect && (
                           <div className="p-5 rounded-2xl flex items-center gap-4 border bg-green-100/30 border-green-200">
                             <CheckCircle2 className="w-6 h-6 text-green-600" />
                             <div className="text-lg">
-                              <span className="font-bold">Clinical Correctness: </span>
+                              <span className="font-bold">Clinical Target: </span>
                               {q.options[q.correct]}
                             </div>
                           </div>
                         )}
                       </div>
                       <div className="pt-6 border-t border-dashed">
-                        <p className="text-muted-foreground italic leading-relaxed">
+                        <p className="text-muted-foreground italic leading-relaxed text-sm">
                           <strong className="text-foreground not-italic">Clinical Strategy: </strong> {q.explanation}
                         </p>
                       </div>
@@ -391,7 +424,7 @@ export default function CBTExamPage() {
   }
 
   const question = questions[currentStep]
-  const isRC = !!question.passage
+  const isRC = !!question?.passage
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -402,7 +435,7 @@ export default function CBTExamPage() {
             <Compass className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-primary">CBT EXAMINATION SYSTEM</h1>
+            <h1 className="text-lg font-bold text-primary uppercase tracking-tight">CBT Examination System</h1>
             <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Subject Code: 101 | English Proficiency</p>
           </div>
         </div>
@@ -418,7 +451,7 @@ export default function CBTExamPage() {
           
           <div className="hidden md:flex flex-col items-end">
             <span className="text-[10px] font-black uppercase text-muted-foreground">Candidate ID</span>
-            <span className="font-bold">CUET-2026-EXAM</span>
+            <span className="font-bold">CUET-2026-PROTOCOL</span>
           </div>
         </div>
       </header>
@@ -552,11 +585,11 @@ export default function CBTExamPage() {
           <div className="space-y-4 mt-auto">
             <div className="p-4 bg-muted/30 rounded-2xl border border-dashed border-muted-foreground/20 text-[10px] font-bold">
               <div className="flex justify-between mb-2">
-                <span className="text-muted-foreground">Attempted:</span>
+                <span className="text-muted-foreground uppercase">Attempted:</span>
                 <span className="text-green-600">{Object.keys(answers).length}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Remaining:</span>
+                <span className="text-muted-foreground uppercase">Remaining:</span>
                 <span className="text-red-600">{50 - Object.keys(answers).length}</span>
               </div>
             </div>
