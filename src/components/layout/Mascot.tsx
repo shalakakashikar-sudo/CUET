@@ -212,7 +212,7 @@ export function Mascot() {
     return () => clearTimeout(introTimer)
   }, [pathname, mounted])
 
-  if (!mounted) return null
+  if (!mounted || pathname === "/quiz") return null
 
   return (
     <div className={cn(

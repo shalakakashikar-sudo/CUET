@@ -1,17 +1,15 @@
-
 "use client"
 
-import { useState, useEffect, useCallback, useRef, useMemo } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { 
-  Trophy, RefreshCw, ChevronLeft, Target, Award, 
-  CheckCircle2, XCircle, Info, Keyboard, ArrowRight, 
+  Trophy, RefreshCw, ChevronLeft, Award, 
+  CheckCircle2, XCircle, Info, ArrowRight, 
   AlertCircle, LayoutGrid, BookOpen, Clock, 
   MessageSquare, Hash, PenTool, Layers, Compass
 } from "lucide-react"
@@ -33,7 +31,7 @@ type Question = {
   parts?: string[]
 }
 
-// 1. COMPREHENSIVE DATA REPOSITORIES
+// 1. COMPREHENSIVE DATA REPOSITORIES (Clinical Targets)
 const PASSAGES = [
   {
     title: "The Stoic Mindset",
@@ -119,7 +117,7 @@ const GENERATE_EXAM = (): Question[] => {
     })
   });
 
-  // 2. DYNAMIC LEXICAL POOLING (Pick 10 random)
+  // 2. DYNAMIC LEXICAL POOLING (Pick 10 random from full pool)
   const selectedVocab = SHUFFLE(VOCAB_POOL).slice(0, 10);
   selectedVocab.forEach((v, i) => {
     const isSyn = Math.random() > 0.5;
@@ -173,7 +171,7 @@ const GENERATE_EXAM = (): Question[] => {
     })
   });
 
-  return qSet;
+  return SHUFFLE(qSet).slice(0, 50); // Ensure exactly 50 items
 }
 
 export default function CBTExamPage() {
@@ -431,17 +429,15 @@ export default function CBTExamPage() {
           <div className="max-w-5xl mx-auto space-y-8">
             <div className={cn("grid gap-8 items-start", isRC ? "lg:grid-cols-2" : "grid-cols-1")}>
               {isRC && (
-                <Card className="border-none shadow-xl bg-white/80 p-8 rounded-[2.5rem] lg:sticky lg:top-0 h-fit">
+                <Card className="border-none shadow-xl bg-white/80 p-8 rounded-[2.5rem] lg:sticky lg:top-4 h-fit">
                   <div className="flex items-center gap-2 mb-6 text-primary font-bold text-xs tracking-widest uppercase border-b pb-4">
                     <BookOpen className="w-4 h-4" /> {question.passageTitle}
                   </div>
-                  <ScrollArea className="h-[400px] lg:h-[500px] pr-4">
-                    <div className="text-foreground leading-relaxed italic text-lg space-y-4">
-                      {question.passage?.split('\n').map((para, i) => (
-                        <p key={i}>{para}</p>
-                      ))}
-                    </div>
-                  </ScrollArea>
+                  <div className="text-foreground leading-relaxed italic text-lg space-y-4 pr-4">
+                    {question.passage?.split('\n').map((para, i) => (
+                      <p key={i}>{para}</p>
+                    ))}
+                  </div>
                 </Card>
               )}
 
