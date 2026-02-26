@@ -45,7 +45,7 @@ const VOCAB_QUIZ_DATA: Question[] = [
   { id: 18, q: "Choose the antonym of BENEVOLENT:", options: ["Kind", "Charitable", "Malevolent", "Generous"], correct: 2, explanation: "'Benevolent' means well-meaning and kindly. 'Malevolent' means wishing evil to others." },
   { id: 19, q: "Choose the synonym of CACOPHONY:", options: ["Harmony", "Din", "Euphony", "Silence"], correct: 1, explanation: "'Cacophony' is a harsh, discordant mixture of sounds." },
   { id: 20, q: "Choose the antonym of CAPRICIOUS:", options: ["Fickle", "Inconstant", "Stable", "Variable"], correct: 2, explanation: "'Capricious' means given to sudden changes. 'Stable' is its opposite." },
-  // Additional 80 questions follow similar patterns... (truncated for brevity but included in full sets)
+  // Set 3
   { id: 21, q: "Choose the synonym of CASTIGATE:", options: ["Praise", "Chastise", "Commend", "Approve"], correct: 1, explanation: "'Castigate' means to reprimand someone severely." },
   { id: 22, q: "Choose the antonym of COGENT:", options: ["Compelling", "Vague", "Convincing", "Valid"], correct: 1, explanation: "'Cogent' means clear, logical, and convincing. 'Vague' lacks clarity." },
   { id: 23, q: "Choose the synonym of DELETERIOUS:", options: ["Helpful", "Harmful", "Beneficial", "Salubrious"], correct: 1, explanation: "'Deleterious' means causing harm or damage." },
@@ -56,7 +56,7 @@ const VOCAB_QUIZ_DATA: Question[] = [
   { id: 28, q: "Choose the antonym of GREGARIOUS:", options: ["Sociable", "Reclusive", "Convivial", "Friendly"], correct: 1, explanation: "'Gregarious' means fond of company; sociable." },
   { id: 29, q: "Choose the synonym of IMPECCABLE:", options: ["Flawed", "Faultless", "Defective", "Corrupt"], correct: 1, explanation: "'Impeccable' means in accordance with the highest standards; faultless." },
   { id: 30, q: "Choose the antonym of INDOLENT:", options: ["Lazy", "Industrious", "Idle", "Slothful"], correct: 1, explanation: "'Indolent' means wanting to avoid activity or exertion; lazy." },
-  // ... (Sets 4-10)
+  // Set 4
   { id: 31, q: "Choose the synonym of INGENUOUS:", options: ["Naive", "Cunning", "Deceitful", "Artful"], correct: 0, explanation: "'Ingenuous' means innocent and unsuspecting." },
   { id: 32, q: "Choose the antonym of IRASCIBLE:", options: ["Irritable", "Placid", "Choleric", "Petulant"], correct: 1, explanation: "'Irascible' means having a tendency to be easily angered. 'Placid' means calm." },
   { id: 33, q: "Choose the synonym of LACONIC:", options: ["Verbose", "Brief", "Wordy", "Garrulous"], correct: 1, explanation: "'Laconic' means using very few words." },
@@ -67,7 +67,7 @@ const VOCAB_QUIZ_DATA: Question[] = [
   { id: 38, q: "Choose the antonym of OSTENTATIOUS:", options: ["Showy", "Modest", "Pretentious", "Flamboyant"], correct: 1, explanation: "'Ostentatious' means characterized by pretentious display." },
   { id: 39, q: "Choose the synonym of PAUCITY:", options: ["Abundance", "Scarcity", "Plethora", "Surfeit"], correct: 1, explanation: "'Paucity' means the presence of something only in small or insufficient quantities." },
   { id: 40, q: "Choose the antonym of PERNICIOUS:", options: ["Harmful", "Beneficial", "Damaging", "Noxious"], correct: 1, explanation: "'Pernicious' means having a harmful effect, especially in a gradual or subtle way." },
-  // Set 5 (41-50)
+  // Set 5
   { id: 41, q: "Choose the synonym of QUERULOUS:", options: ["Contented", "Petulant", "Cheerful", "Placid"], correct: 1, explanation: "'Querulous' means complaining in a petulant or whining manner." },
   { id: 42, q: "Choose the antonym of SAGACIOUS:", options: ["Wise", "Foolish", "Prudent", "Astute"], correct: 1, explanation: "'Sagacious' means having or showing keen mental discernment and good judgement." },
   { id: 43, q: "Choose the synonym of TACITURN:", options: ["Talkative", "Reticent", "Loquacious", "Garrulous"], correct: 1, explanation: "'Taciturn' means reserved or uncommunicative in speech." },
@@ -78,7 +78,7 @@ const VOCAB_QUIZ_DATA: Question[] = [
   { id: 48, q: "Choose the antonym of ABSTRUSE:", options: ["Obscure", "Lucid", "Esoteric", "Recondite"], correct: 1, explanation: "'Abstruse' means difficult to understand. 'Lucid' means easy to understand." },
   { id: 49, q: "Choose the synonym of BELLIGERENT:", options: ["Peaceable", "Pugnacious", "Friendly", "Amiable"], correct: 1, explanation: "'Belligerent' means hostile and aggressive." },
   { id: 50, q: "Choose the antonym of COMPLACENT:", options: ["Smug", "Dissatisfied", "Contented", "Satisfied"], correct: 1, explanation: "'Complacent' means showing uncritical satisfaction with oneself. 'Dissatisfied' is the opposite." },
-  // (Items 51-100 would follow similar clinical themes)
+  // Set 6
   { id: 51, q: "Choose the synonym of DESULTORY:", options: ["Systematic", "Casual", "Methodical", "Orderly"], correct: 1, explanation: "'Desultory' means lacking a plan, purpose, or enthusiasm." },
   { id: 52, q: "Choose the antonym of EBULLIENT:", options: ["Buoyant", "Depressed", "Cheerful", "Animated"], correct: 1, explanation: "'Ebullient' means cheerful and full of energy." },
   { id: 53, q: "Choose the synonym of ENERVATE:", options: ["Energise", "Exhaust", "Invigorate", "Strengthen"], correct: 1, explanation: "'Enervate' means to make someone feel drained of energy." },
@@ -89,6 +89,7 @@ const VOCAB_QUIZ_DATA: Question[] = [
   { id: 58, q: "Choose the antonym of HARANGUE:", options: ["Tirade", "Conversation", "Lecture", "Diatribe"], correct: 1, explanation: "'Harangue' is a lengthy and aggressive speech." },
   { id: 59, q: "Choose the synonym of ICONOCLAST:", options: ["Believer", "Heretic", "Conformist", "Follower"], correct: 1, explanation: "'Iconoclast' is a person who attacks cherished beliefs or institutions." },
   { id: 60, q: "Choose the antonym of IMMUTABLE:", options: ["Fixed", "Variable", "Constant", "Eternal"], correct: 1, explanation: "'Immutable' means unchanging over time or unable to be changed." },
+  // Set 7
   { id: 61, q: "Choose the synonym of IMPLACABLE:", options: ["Relentless", "Forgiving", "Merciful", "Yielding"], correct: 0, explanation: "'Implacable' means unable to be appeased or placated." },
   { id: 62, q: "Choose the antonym of INCHOATE:", options: ["Rudimentary", "Developed", "Formless", "Emerging"], correct: 1, explanation: "'Inchoate' means just begun and so not fully formed or developed." },
   { id: 63, q: "Choose the synonym of INSIPID:", options: ["Bland", "Exciting", "Flavourful", "Savory"], correct: 0, explanation: "'Insipid' means lacking flavour or interest." },
@@ -99,6 +100,7 @@ const VOCAB_QUIZ_DATA: Question[] = [
   { id: 68, q: "Choose the antonym of OBSEQUIOUS:", options: ["Servile", "Domineering", "Fawning", "Sycophantic"], correct: 1, explanation: "'Obsequious' means obedient or attentive to an excessive degree." },
   { id: 69, q: "Choose the synonym of PENCHANT:", options: ["Dislike", "Inclination", "Aversion", "Hatred"], correct: 1, explanation: "'Penchant' means a strong or habitual liking for something." },
   { id: 70, q: "Choose the antonym of PRODIGAL:", options: ["Wasteful", "Parsimonious", "Extravagant", "Lavish"], correct: 1, explanation: "'Prodigal' means spending money freely and recklessly. 'Parsimonious' means very unwilling to spend." },
+  // Set 8
   { id: 71, q: "Choose the synonym of RANCOR:", options: ["Amity", "Malice", "Goodwill", "Friendship"], correct: 1, explanation: "'Rancor' means bitterness or resentfulness." },
   { id: 72, q: "Choose the antonym of RETICENT:", options: ["Reserved", "Garrulous", "Quiet", "Taciturn"], correct: 1, explanation: "'Reticent' means not revealing one's thoughts easily." },
   { id: 73, q: "Choose the synonym of SALUBRIOUS:", options: ["Healthy", "Noxious", "Harmful", "Unwholesome"], correct: 0, explanation: "'Salubrious' means health-giving; healthy." },
@@ -109,6 +111,7 @@ const VOCAB_QUIZ_DATA: Question[] = [
   { id: 78, q: "Choose the antonym of VENERATE:", options: ["Revere", "Dishonour", "Hallow", "Worship"], correct: 1, explanation: "'Venerate' means to regard with great respect." },
   { id: 79, q: "Choose the synonym of VOLATILE:", options: ["Stable", "Unstable", "Constant", "Steady"], correct: 1, explanation: "'Volatile' means liable to change rapidly and unpredictably." },
   { id: 80, q: "Choose the antonym of WARY:", options: ["Cautious", "Trusting", "Circumspect", "Alert"], correct: 1, explanation: "'Wary' means feeling or showing caution about possible dangers." },
+  // Set 9
   { id: 81, q: "Choose the synonym of ABSTRUSE:", options: ["Lucid", "Recondite", "Simple", "Plain"], correct: 1, explanation: "'Abstruse' means difficult to understand; obscure." },
   { id: 82, q: "Choose the antonym of AMENABLE:", options: ["Compliant", "Intractable", "Docile", "Responsive"], correct: 1, explanation: "'Amenable' means open and responsive to suggestion." },
   { id: 83, q: "Choose the synonym of CAUSTIC:", options: ["Mild", "Acerbic", "Kind", "Soothing"], correct: 1, explanation: "'Caustic' means sarcastic in a scathing and bitter way." },
@@ -119,6 +122,7 @@ const VOCAB_QUIZ_DATA: Question[] = [
   { id: 88, q: "Choose the antonym of HAPLESS:", options: ["Unfortunate", "Lucky", "Wretched", "Miserable"], correct: 1, explanation: "'Hapless' means unfortunate." },
   { id: 89, q: "Choose the synonym of INURED:", options: ["Sensitive", "Hardened", "Fragile", "Delicate"], correct: 1, explanation: "'Inured' means accustomed to something, especially something unpleasant." },
   { id: 90, q: "Choose the antonym of JUXTAPOSE:", options: ["Collocate", "Separate", "Compare", "Match"], correct: 1, explanation: "'Juxtapose' means to place side by side for contrast." },
+  // Set 10
   { id: 91, q: "Choose the synonym of MALIGN:", options: ["Praise", "Slander", "Commend", "Applaud"], correct: 1, explanation: "'Malign' means to speak about someone in a spitefully critical manner." },
   { id: 92, q: "Choose the antonym of NONCHALANT:", options: ["Calm", "Anxious", "Composed", "Indifferent"], correct: 1, explanation: "'Nonchalant' means feeling or appearing casually calm and relaxed." },
   { id: 93, q: "Choose the synonym of OPULENT:", options: ["Poor", "Wealthy", "Destitute", "Indigent"], correct: 1, explanation: "'Opulent' means ostentatiously costly and luxurious." },
@@ -128,7 +132,117 @@ const VOCAB_QUIZ_DATA: Question[] = [
   { id: 97, q: "Choose the synonym of TENUOUS:", options: ["Robust", "Flimsy", "Strong", "Sturdy"], correct: 1, explanation: "'Tenuous' means very weak or slight." },
   { id: 98, q: "Choose the antonym of UPBRAID:", options: ["Scold", "Commend", "Chastise", "Reprimand"], correct: 1, explanation: "'Upbraid' means to find fault with someone; scold." },
   { id: 99, q: "Choose the synonym of WIZENED:", options: ["Youthful", "Shrivelled", "Fresh", "Smooth"], correct: 1, explanation: "'Wizened' means shrivelled or wrinkled with age." },
-  { id: 100, q: "Choose the antonym of ZENITH:", options: ["Peak", "Nadir", "Summit", "Apex"], correct: 1, explanation: "'Zenith' is the time at which something is most powerful. 'Nadir' is the lowest point." }
+  { id: 100, q: "Choose the antonym of ZENITH:", options: ["Peak", "Nadir", "Summit", "Apex"], correct: 1, explanation: "'Zenith' is the time at which something is most powerful. 'Nadir' is the lowest point." },
+  // Set 11
+  { id: 101, q: "Choose the synonym of ABERRATION:", options: ["Normality", "Deviation", "Standard", "Regularity"], correct: 1, explanation: "'Aberration' refers to a departure from what is normal or expected." },
+  { id: 102, q: "Choose the antonym of ABEYANCE:", options: ["Suspension", "Continuation", "Inactivity", "Dormancy"], correct: 1, explanation: "'Abeyance' means a state of temporary disuse or suspension. 'Continuation' is its direct opposite." },
+  { id: 103, q: "Choose the synonym of ABJECT:", options: ["Proud", "Wretched", "Exalted", "Sublime"], correct: 1, explanation: "'Abject' describes something extremely bad, unpleasant, and degrading." },
+  { id: 104, q: "Choose the antonym of ADMONISH:", options: ["Reprimand", "Praise", "Scold", "Chastise"], correct: 1, explanation: "'Admonish' means to warn or reprimand someone firmly." },
+  { id: 105, q: "Choose the synonym of ADROIT:", options: ["Clumsy", "Skillful", "Awkward", "Incompetent"], correct: 1, explanation: "'Adroit' means clever or skillful in using the hands or mind." },
+  { id: 106, q: "Choose the antonym of AFFLUENCE:", options: ["Wealth", "Poverty", "Riches", "Prosperity"], correct: 1, explanation: "'Affluence' is the state of having a great deal of money; wealth." },
+  { id: 107, q: "Choose the synonym of AGGREGATE:", options: ["Individual", "Total", "Separate", "Single"], correct: 1, explanation: "'Aggregate' refers to a whole formed by combining several separate elements." },
+  { id: 108, q: "Choose the antonym of ALOOF:", options: ["Reserved", "Friendly", "Distant", "Detached"], correct: 1, explanation: "'Aloof' means not friendly or forthcoming; cool and distant." },
+  { id: 109, q: "Choose the synonym of AMBIGUOUS:", options: ["Clear", "Equivocal", "Explicit", "Definite"], correct: 1, explanation: "'Ambiguous' means open to more than one interpretation; not having one obvious meaning." },
+  { id: 110, q: "Choose the antonym of AMBIVALENT:", options: ["Uncertain", "Decisive", "Irresolute", "Doubtful"], correct: 1, explanation: "'Ambivalent' means having mixed feelings or contradictory ideas about something." },
+  // Set 12
+  { id: 111, q: "Choose the synonym of AMORPHOUS:", options: ["Shapely", "Formless", "Structured", "Definite"], correct: 1, explanation: "'Amorphous' means without a clearly defined shape or form." },
+  { id: 112, q: "Choose the antonym of ANOMALY:", options: ["Irregularity", "Normality", "Abnormality", "Deviation"], correct: 1, explanation: "'Anomaly' is something that deviates from what is standard, normal, or expected." },
+  { id: 113, q: "Choose the synonym of ARCHAIC:", options: ["Modern", "Obsolete", "Contemporary", "Current"], correct: 1, explanation: "'Archaic' means very old or old-fashioned." },
+  { id: 114, q: "Choose the antonym of ARDENT:", options: ["Passionate", "Indifferent", "Fervent", "Zealous"], correct: 1, explanation: "'Ardent' means very enthusiastic or passionate." },
+  { id: 115, q: "Choose the synonym of ASCETIC:", options: ["Indulgent", "Austere", "Luxurious", "Sybaritic"], correct: 1, explanation: "'Ascetic' describes a person who practices severe self-discipline and abstention." },
+  { id: 116, q: "Choose the antonym of ASSUAGE:", options: ["Relieve", "Exacerbate", "Soothe", "Calm"], correct: 1, explanation: "'Assuage' means to make an unpleasant feeling less intense." },
+  { id: 117, q: "Choose the synonym of ATROPHY:", options: ["Growth", "Wither", "Flourish", "Strengthen"], correct: 1, explanation: "'Atrophy' means to waste away, typically due to the degeneration of cells." },
+  { id: 118, q: "Choose the antonym of AVARICE:", options: ["Greed", "Generosity", "Cupidity", "Covetousness"], correct: 1, explanation: "'Avarice' is extreme greed for wealth or material gain." },
+  { id: 119, q: "Choose the synonym of BELLICOSE:", options: ["Peaceful", "Pugnacious", "Amiable", "Conciliatory"], correct: 1, explanation: "'Bellicose' means demonstrating aggression and willingness to fight." },
+  { id: 120, q: "Choose the antonym of BLITHE:", options: ["Happy", "Melancholy", "Cheerful", "Carefree"], correct: 1, explanation: "'Blithe' means showing a casual and cheerful indifference considered to be callous or improper." },
+  // Set 13
+  { id: 121, q: "Choose the synonym of BURGEON:", options: ["Decline", "Flourish", "Decrease", "Wither"], correct: 1, explanation: "'Burgeon' means to begin to grow or increase rapidly." },
+  { id: 122, q: "Choose the antonym of CALLOUS:", options: ["Insensitive", "Compassionate", "Heartless", "Unfeeling"], correct: 1, explanation: "'Callous' means showing or having an insensitive and cruel disregard for others." },
+  { id: 123, q: "Choose the synonym of CANONICAL:", options: ["Unorthodox", "Standard", "Unconventional", "Heretical"], correct: 1, explanation: "'Canonical' refers to something that is included in the list of sacred books or accepted as genuine." },
+  { id: 124, q: "Choose the antonym of CASTIGATE:", options: ["Reprimand", "Praise", "Scold", "Chastise"], correct: 1, explanation: "'Castigate' means to reprimand someone severely." },
+  { id: 125, q: "Choose the synonym of CATALYST:", options: ["Inhibitor", "Stimulant", "Hinderance", "Blockage"], correct: 1, explanation: "'Catalyst' is a person or thing that precipitates an event." },
+  { id: 126, q: "Choose the antonym of CAUSTIC:", options: ["Sarcastic", "Gentle", "Biting", "Acerbic"], correct: 1, explanation: "'Caustic' means sarcastic in a scathing and bitter way." },
+  { id: 127, q: "Choose the synonym of CHAUVINISM:", options: ["Tolerance", "Jingoism", "Open-mindedness", "Neutrality"], correct: 1, explanation: "'Chauvinism' is exaggerated or aggressive patriotism." },
+  { id: 128, q: "Choose the antonym of CHICANERY:", options: ["Deception", "Honesty", "Trickery", "Duplicity"], correct: 1, explanation: "'Chicanery' is the use of trickery to achieve a political, financial, or legal purpose." },
+  { id: 129, q: "Choose the synonym of CIRCUMSPECT:", options: ["Reckless", "Cautious", "Careless", "Rash"], correct: 1, explanation: "'Circumspect' means wary and unwilling to take risks." },
+  { id: 130, q: "Choose the antonym of COALESCE:", options: ["Merge", "Separate", "Combine", "Unite"], correct: 1, explanation: "'Coalesce' means to come together to form one mass or whole." },
+  // Set 14
+  { id: 131, q: "Choose the synonym of CONFLUENCE:", options: ["Divergence", "Junction", "Separation", "Split"], correct: 1, explanation: "'Confluence' is the process of merging or joining." },
+  { id: 132, q: "Choose the antonym of CONTENTIOUS:", options: ["Argumentative", "Agreeable", "Quarrelsome", "Combative"], correct: 1, explanation: "'Contentious' means causing or likely to cause an argument." },
+  { id: 133, q: "Choose the synonym of CONTRITE:", options: ["Unrepentant", "Penitent", "Defiant", "Obdurate"], correct: 1, explanation: "'Contrite' means feeling or expressing remorse or penitence." },
+  { id: 134, q: "Choose the antonym of CONVOLUTED:", options: ["Complex", "Simple", "Intricate", "Complicated"], correct: 1, explanation: "'Convoluted' means extremely complex and difficult to follow." },
+  { id: 135, q: "Choose the synonym of CREDULITY:", options: ["Skepticism", "Gullibility", "Disbelief", "Suspicion"], correct: 1, explanation: "'Credulity' is a tendency to be too ready to believe that something is real or true." },
+  { id: 136, q: "Choose the antonym of DEARTH:", options: ["Scarcity", "Abundance", "Lack", "Shortage"], correct: 1, explanation: "'Dearth' is a scarcity or lack of something." },
+  { id: 137, q: "Choose the synonym of DECORUM:", options: ["Impropriety", "Propriety", "Rudeness", "Coarseness"], correct: 1, explanation: "'Decorum' is behavior in keeping with good taste and propriety." },
+  { id: 138, q: "Choose the antonym of DEFERENCE:", options: ["Respect", "Disrespect", "Homage", "Reverence"], correct: 1, explanation: "'Deference' is humble submission and respect." },
+  { id: 139, q: "Choose the synonym of DELINEATE:", options: ["Confuse", "Describe", "Distort", "Muddle"], correct: 1, explanation: "'Delineate' means to describe or portray something precisely." },
+  { id: 140, q: "Choose the antonym of DEMUR:", options: ["Object", "Accept", "Protest", "Dissent"], correct: 1, explanation: "'Demur' means to raise doubts or objections or show reluctance." },
+  // Set 15
+  { id: 141, q: "Choose the synonym of DERISION:", options: ["Respect", "Mockery", "Admiration", "Praise"], correct: 1, explanation: "'Derision' is contemptuous ridicule or mockery." },
+  { id: 142, q: "Choose the antonym of DESICCATE:", options: ["Dry", "Moisten", "Dehydrate", "Parch"], correct: 1, explanation: "'Desiccate' means to remove the moisture from something." },
+  { id: 143, q: "Choose the synonym of DIATRIBE:", options: ["Encomium", "Tirade", "Praise", "Eulogy"], correct: 1, explanation: "'Diatribe' is a forceful and bitter verbal attack against someone or something." },
+  { id: 144, q: "Choose the antonym of DIFFIDENT:", options: ["Shy", "Confident", "Timid", "Modest"], correct: 1, explanation: "'Diffident' means modest or shy due to a lack of self-confidence." },
+  { id: 145, q: "Choose the synonym of DISPARATE:", options: ["Similar", "Distinct", "Uniform", "Alike"], correct: 1, explanation: "'Disparate' describes things that are essentially different in kind." },
+  { id: 146, q: "Choose the antonym of DISSEMBLE:", options: ["Feign", "Reveal", "Pretend", "Disguise"], correct: 1, explanation: "'Dissemble' means to conceal one's true motives, feelings, or beliefs." },
+  { id: 147, q: "Choose the synonym of DISSONANCE:", options: ["Harmony", "Discord", "Accord", "Agreement"], correct: 1, explanation: "'Dissonance' is a lack of harmony among musical notes or people." },
+  { id: 148, q: "Choose the antonym of EBULLIENT:", options: ["Exuberant", "Depressed", "Cheerful", "Vivacious"], correct: 1, explanation: "'Ebullient' means cheerful and full of energy." },
+  { id: 149, q: "Choose the synonym of ECLECTIC:", options: ["Narrow", "Diverse", "Restricted", "Uniform"], correct: 1, explanation: "'Eclectic' means deriving ideas, style, or taste from a broad and diverse range of sources." },
+  { id: 150, q: "Choose the antonym of EFFICACY:", options: ["Effectiveness", "Incompetence", "Potency", "Success"], correct: 1, explanation: "'Efficacy' is the ability to produce a desired or intended result." },
+  // Set 16
+  { id: 151, q: "Choose the synonym of ELUCIDATE:", options: ["Confuse", "Clarify", "Obscure", "Cloud"], correct: 1, explanation: "'Elucidate' means to make something clear; explain." },
+  { id: 152, q: "Choose the antonym of ENERVATE:", options: ["Exhaust", "Energise", "Fatigue", "Drain"], correct: 1, explanation: "'Enervate' means to cause someone to feel drained of energy or vitality." },
+  { id: 153, q: "Choose the synonym of ENGENDER:", options: ["Stifle", "Produce", "Prevent", "Halt"], correct: 1, explanation: "'Engender' means to cause or give rise to a feeling, situation, or condition." },
+  { id: 154, q: "Choose the antonym of ENIGMATIC:", options: ["Mysterious", "Clear", "Puzzling", "Perplexing"], correct: 1, explanation: "'Enigmatic' describes someone or something that is difficult to interpret or understand." },
+  { id: 155, q: "Choose the synonym of ENUMERATE:", options: ["Guess", "List", "Estimate", "Appraise"], correct: 1, explanation: "'Enumerate' means to mention a number of things one by one." },
+  { id: 156, q: "Choose the antonym of EPHEMERAL:", options: ["Transient", "Permanent", "Fleeting", "Short-lived"], correct: 1, explanation: "'Ephemeral' refers to something that lasts for a very short time." },
+  { id: 157, q: "Choose the synonym of EQUIVOCATE:", options: ["Confront", "Prevaricate", "Be honest", "Clarify"], correct: 1, explanation: "'Equivocate' means to use ambiguous language so as to conceal the truth." },
+  { id: 158, q: "Choose the antonym of ERUDITE:", options: ["Scholarly", "Ignorant", "Learned", "Academic"], correct: 1, explanation: "'Erudite' means having or showing great knowledge or learning." },
+  { id: 159, q: "Choose the synonym of ESOTERIC:", options: ["Common", "Abstruse", "Public", "Universal"], correct: 1, explanation: "'Esoteric' refers to knowledge intended for or likely to be understood by only a small number of people." },
+  { id: 160, q: "Choose the antonym of EUPHEMISM:", options: ["Substitute", "Dysphemism", "Polite term", "Understatement"], correct: 1, explanation: "'Euphemism' is a mild or indirect word or expression substituted for one considered to be too harsh." },
+  // Set 17
+  { id: 161, q: "Choose the synonym of EXACERBATE:", options: ["Alleviate", "Aggravate", "Soothe", "Calm"], correct: 1, explanation: "'Exacerbate' means to make a problem, bad situation, or negative feeling worse." },
+  { id: 162, q: "Choose the antonym of EXCULPATE:", options: ["Exonerate", "Convict", "Acquit", "Clear"], correct: 1, explanation: "'Exculpate' means to show or declare that someone is not guilty of wrongdoing." },
+  { id: 163, q: "Choose the synonym of EXIGENT:", options: ["Trivial", "Urgent", "Easy", "Facile"], correct: 1, explanation: "'Exigent' means pressing; demanding." },
+  { id: 164, q: "Choose the antonym of EXONERATE:", options: ["Acquit", "Condemn", "Clear", "Exculpate"], correct: 1, explanation: "'Exonerate' means to absolve someone from blame for a fault or wrongdoing." },
+  { id: 165, q: "Choose the synonym of FACETIOUS:", options: ["Serious", "Flippant", "Solemn", "Grave"], correct: 1, explanation: "'Facetious' means treating serious issues with deliberately inappropriate humor." },
+  { id: 166, q: "Choose the antonym of FACILITATE:", options: ["Assist", "Hinder", "Ease", "Help"], correct: 1, explanation: "'Facilitate' means to make an action or process easy or easier." },
+  { id: 167, q: "Choose the synonym of FALLACIOUS:", options: ["Truthful", "Erroneous", "Valid", "Authentic"], correct: 1, explanation: "'Fallacious' describes something based on a mistaken belief." },
+  { id: 168, q: "Choose the antonym of FASTIDIOUS:", options: ["Meticulous", "Careless", "Scrupulous", "Exact"], correct: 1, explanation: "'Fastidious' means very attentive to and concerned about accuracy and detail." },
+  { id: 169, q: "Choose the synonym of FATUOUS:", options: ["Sensible", "Inane", "Wise", "Intelligent"], correct: 1, explanation: "'Fatuous' means silly and pointless." },
+  { id: 170, q: "Choose the antonym of FAWNING:", options: ["Sycophantic", "Arrogant", "Obsequious", "Servile"], correct: 1, explanation: "'Fawning' describes someone displaying exaggerated flattery or affection." },
+  // Set 18
+  { id: 171, q: "Choose the synonym of FERVID:", options: ["Indifferent", "Ardent", "Cold", "Apathetic"], correct: 1, explanation: "'Fervid' means intensely enthusiastic or passionate, especially to an excessive degree." },
+  { id: 172, q: "Choose the antonym of FRUGALITY:", options: ["Thrift", "Prodigality", "Parsimony", "Economy"], correct: 1, explanation: "'Frugality' is the quality of being economical with money or food. 'Prodigality' is wasteful extravagance." },
+  { id: 173, q: "Choose the synonym of GARRULOUS:", options: ["Reticent", "Voluble", "Taciturn", "Silent"], correct: 1, explanation: "'Garrulous' means excessively talkative, especially on trivial matters." },
+  { id: 174, q: "Choose the antonym of GREGARIOUS:", options: ["Sociable", "Antisocial", "Convivial", "Friendly"], correct: 1, explanation: "'Gregarious' means fond of company; sociable." },
+  { id: 175, q: "Choose the synonym of GUILE:", options: ["Candor", "Duplicity", "Honesty", "Sincerity"], correct: 1, explanation: "'Guile' means sly or cunning intelligence." },
+  { id: 176, q: "Choose the antonym of HARANGUE:", options: ["Tirade", "Chat", "Lecture", "Diatribe"], correct: 1, explanation: "'Harangue' is a lengthy and aggressive speech." },
+  { id: 177, q: "Choose the synonym of HOMOGENEOUS:", options: ["Varied", "Uniform", "Heterogeneous", "Diverse"], correct: 1, explanation: "'Homogeneous' describes things of the same kind; alike." },
+  { id: 178, q: "Choose the antonym of HYPERBOLE:", options: ["Overstatement", "Understatement", "Exaggeration", "Excess"], correct: 1, explanation: "'Hyperbole' is exaggerated statements or claims not meant to be taken literally." },
+  { id: 179, q: "Choose the synonym of ICONOCLAST:", options: ["Conformist", "Heretic", "Believer", "Follower"], correct: 1, explanation: "'Iconoclast' is a person who attacks cherished beliefs or institutions." },
+  { id: 180, q: "Choose the antonym of IDOLATRY:", options: ["Adoration", "Contempt", "Veneration", "Devotion"], correct: 1, explanation: "'Idolatry' is extreme admiration, love, or reverence for something or someone." },
+  // Set 19
+  { id: 181, q: "Choose the synonym of IMMUTABLE:", options: ["Variable", "Fixed", "Changing", "Erratic"], correct: 1, explanation: "'Immutable' means unchanging over time or unable to be changed." },
+  { id: 182, q: "Choose the antonym of IMPASSIVE:", options: ["Stolid", "Expressive", "Unemotional", "Apathetic"], correct: 1, explanation: "'Impassive' describes someone not feeling or showing emotion." },
+  { id: 183, q: "Choose the synonym of IMPEDE:", options: ["Facilitate", "Obstruct", "Advance", "Help"], correct: 1, explanation: "'Impede' means to delay or prevent someone or something by obstructing them." },
+  { id: 184, q: "Choose the antonym of IMPERVIOUS:", options: ["Vulnerable", "Unmoved", "Closed", "Resistant"], correct: 0, explanation: "'Impervious' means unable to be affected by. 'Vulnerable' is the opposite." },
+  { id: 185, q: "Choose the synonym of IMPLACABLE:", options: ["Forgiving", "Relentless", "Yielding", "Merciful"], correct: 1, explanation: "'Implacable' means unable to be placated." },
+  { id: 186, q: "Choose the antonym of IMPLICIT:", options: ["Inherent", "Explicit", "Tacit", "Indirect"], correct: 1, explanation: "'Implicit' means suggested though not directly expressed." },
+  { id: 187, q: "Choose the synonym of INADVERTENTLY:", options: ["Deliberately", "Unintentionally", "Purposely", "Intentionally"], correct: 1, explanation: "'Inadvertently' means without intention; accidentally." },
+  { id: 188, q: "Choose the antonym of INCHOATE:", options: ["Formless", "Mature", "Rudimentary", "Developing"], correct: 1, explanation: "'Inchoate' means just begun and so not fully formed or developed." },
+  { id: 189, q: "Choose the synonym of INCONSEQUENTIAL:", options: ["Crucial", "Trivial", "Vital", "Significant"], correct: 1, explanation: "'Inconsequential' means not important or significant." },
+  { id: 190, q: "Choose the antonym of INDIGENT:", options: ["Poor", "Wealthy", "Destitute", "Penniless"], correct: 1, explanation: "'Indigent' means poor; needy." },
+  // Set 20
+  { id: 191, q: "Choose the synonym of INDOLENT:", options: ["Industrious", "Slothful", "Diligent", "Active"], correct: 1, explanation: "'Indolent' means wanting to avoid activity or exertion; lazy." },
+  { id: 192, q: "Choose the antonym of INGENUOUS:", options: ["Naive", "Disingenuous", "Innocent", "Trusting"], correct: 1, explanation: "'Ingenuous' means innocent and unsuspecting. 'Disingenuous' is the opposite." },
+  { id: 193, q: "Choose the synonym of INNOCUOUS:", options: ["Harmful", "Harmless", "Toxic", "Noxious"], correct: 1, explanation: "'Innocuous' means not harmful or offensive." },
+  { id: 194, q: "Choose the antonym of INSIPID:", options: ["Bland", "Flavourful", "Dull", "Uninteresting"], correct: 1, explanation: "'Insipid' means lacking flavor or interest." },
+  { id: 195, q: "Choose the synonym of INTRACTABLE:", options: ["Docile", "Stubborn", "Compliant", "Manageable"], correct: 1, explanation: "'Intractable' means hard to control or deal with." },
+  { id: 196, q: "Choose the antonym of INTREPID:", options: ["Brave", "Timid", "Fearless", "Dauntless"], correct: 1, explanation: "'Intrepid' means fearless; adventurous." },
+  { id: 197, q: "Choose the synonym of INURED:", options: ["Sensitive", "Hardened", "Fragile", "Delicate"], correct: 1, explanation: "'Inured' means accustomed to something, especially something unpleasant." },
+  { id: 198, q: "Choose the antonym of INVECTIVE:", options: ["Abuse", "Praise", "Vitriol", "Insult"], correct: 1, explanation: "'Invective' is insulting, abusive, or highly critical language." },
+  { id: 199, q: "Choose the synonym of IRASCIBLE:", options: ["Amiable", "Irritable", "Placid", "Calm"], correct: 1, explanation: "'Irascible' means having a tendency to be easily angered." },
+  { id: 200, q: "Choose the antonym of JUXTAPOSE:", options: ["Collocate", "Separate", "Compare", "Match"], correct: 1, explanation: "'Juxtapose' means to place side by side for contrast. 'Separate' is the opposite." }
 ]
 
 export default function VocabQuizPage() {
@@ -143,7 +257,7 @@ export default function VocabQuizPage() {
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [isFinished, setIsFinished] = useState(false)
 
-  const quizSets = Array.from({ length: 10 }, (_, i) => ({
+  const quizSets = Array.from({ length: 20 }, (_, i) => ({
     name: `Practice Set ${i + 1}`,
     range: [i * 10, (i + 1) * 10],
     desc: `Targets high-yield word families ${i * 10 + 1}-${(i + 1) * 10}.`
@@ -203,8 +317,8 @@ export default function VocabQuizPage() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter' && selectedSetIndex !== null && !isFinished && questions.length > 0) {
-        const q = questions[currentStep]
-        if (answers[q.id] !== undefined) {
+        const qId = questions[currentStep].id
+        if (answers[qId] !== undefined) {
           nextQuestion()
         }
       }
@@ -249,7 +363,7 @@ export default function VocabQuizPage() {
             </p>
           </header>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in-up">
             {quizSets.map((set, idx) => (
               <Card 
                 key={idx} 
@@ -305,7 +419,7 @@ export default function VocabQuizPage() {
             </div>
             <div className="flex flex-col gap-3">
               <Button size="lg" className="rounded-xl h-12 font-bold shadow-md" onClick={() => {
-                const { range } = quizSets[selectedSetIndex]
+                const { range } = quizSets[selectedSetIndex!]
                 const selectedQuestions = VOCAB_QUIZ_DATA.slice(range[0], range[1]).map(q => {
                   const cloned = { ...q, options: [...q.options] }
                   const initialCorrectOpt = cloned.options[cloned.correct]
