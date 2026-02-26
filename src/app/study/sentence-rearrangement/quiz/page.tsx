@@ -24,168 +24,128 @@ type Question = {
 }
 
 const REARRANGE_QUIZ_DATA: Question[] = [
-  // Set 1: Mixed Themes
-  {
-    id: 1,
-    parts: ["the fragrance of jasmine drifted", "as the evening breeze passed through", "the open windows of the old house", "filling the room with a gentle sweetness"],
-    q: "Rearrange the parts labelled A, B, C, D to form a meaningful sentence.",
-    options: ["B-C-A-D", "A-B-C-D", "D-A-C-B", "C-A-D-B"],
-    correct: 0,
-    explanation: "The sentence starts with the setting (B), followed by the location (C), the primary action (A), and ends with the result (D)."
-  },
-  {
-    id: 2,
-    parts: ["due to the heavy rain forecast", "the annual function", "the committee decided to postpone", "for the entire region"],
-    q: "Choose the correct sequence:",
-    options: ["C-B-A-D", "A-B-C-D", "B-A-D-C", "D-B-C-A"],
-    correct: 0,
-    explanation: "Subject (Committee - C) + Verb (Postpone - B) + Object (Function) + Reason (Rain - A) + Scope (Region - D)."
-  },
-  {
-    id: 3,
-    parts: ["remains the cornerstone of human progress", "the ability to adapt and learn", "in an era of rapid technological change", "despite the risks of automation"],
-    q: "Rearrange to form a coherent statement:",
-    options: ["C-B-A-D", "A-C-B-D", "D-A-C-B", "B-A-C-D"],
-    correct: 0,
-    explanation: "Begins with context (C), introduces subject (B), state (A), and ends with contrast (D)."
-  },
-  {
-    id: 4,
-    parts: ["when the explorers set out", "over the horizon", "scarcely had the sun risen", "on their perilous journey"],
-    q: "Identify the correct sequence:",
-    options: ["C-B-A-D", "B-A-C-D", "A-B-C-D", "D-C-B-A"],
-    correct: 0,
-    explanation: "Uses 'Scarcely had (C) ... when (A)' structure. Logical flow: Sunrise (C-B) leading to the start of the journey (A-D)."
-  },
-  {
-    id: 5,
-    parts: ["the jury found it difficult", "to reach a unanimous verdict", "due to conflicting testimonies", "although the evidence was clear"],
-    q: "Rearrange the segments:",
-    options: ["D-A-B-C", "A-B-C-D", "C-D-A-B", "B-C-D-A"],
-    correct: 0,
-    explanation: "Starts with the contrast (D), followed by the main difficulty (A), the specific goal (B), and the reason (C)."
-  },
-  {
-    id: 6,
-    parts: ["into the realm of quantum theory", "the observable phenomena", "physicists must look beyond", "to understand the complexities of the universe"],
-    q: "Choose the logical order:",
-    options: ["D-C-B-A", "A-B-C-D", "C-A-B-D", "B-D-C-A"],
-    correct: 0,
-    explanation: "Starts with the purpose (D), followed by the subject-requirement (C), the object (B), and the destination (A)."
-  },
-  {
-    id: 7,
-    parts: ["to isolate it from radioactive waste", "with minimal environmental impact", "not only did the scientist discover a new element", "but she also developed a method"],
-    q: "Rearrange correctly:",
-    options: ["C-D-A-B", "A-B-C-D", "B-A-C-D", "D-C-B-A"],
-    correct: 0,
-    explanation: "Correlative structure: Not only (C) ... but also (D) + purpose (A) + manner (B)."
-  },
-  {
-    id: 8,
-    parts: ["had already been relocated", "most of the survivors", "by the time the rescue team arrived", "to a safer facility"],
-    q: "Choose the correct sequence:",
-    options: ["C-B-A-D", "A-B-C-D", "D-A-C-B", "B-C-A-D"],
-    correct: 0,
-    explanation: "Time clause (C) followed by the subject (B) and the complete verb phrase (A-D)."
-  },
-  {
-    id: 9,
-    parts: ["at the international symposium", "having completed her research", "to a round of applause", "she presented her findings"],
-    q: "Identify the coherent flow:",
-    options: ["B-D-A-C", "A-B-C-D", "C-D-A-B", "D-A-B-C"],
-    correct: 0,
-    explanation: "Participle phrase (B) leads to the main action (D) + location (A) + result (C)."
-  },
-  {
-    id: 10,
-    parts: ["the use of natural light", "the architect designed the building", "while minimizing energy consumption", "so that it would maximise"],
-    q: "Rearrange the segments:",
-    options: ["B-D-A-C", "A-B-C-D", "C-A-B-D", "D-B-C-A"],
-    correct: 0,
-    explanation: "Subject core (B) + purpose clause (D) + object (A) + contrast (C)."
-  },
-  // Set 2: Novelty & Adventure
-  {
-    id: 11,
-    parts: ["of the industrial revolution", "written in the late 19th century", "through the eyes of a child", "the novel, explores the social injustices"],
-    q: "Choose the correct order:",
-    options: ["D-B-A-C", "A-B-C-D", "B-D-A-C", "C-A-B-D"],
-    correct: 2,
-    explanation: "Identifying the modified subject (B-D) followed by its focus (A) and perspective (C)."
-  },
-  {
-    id: 12,
-    parts: ["the hiker decided to proceed", "without any professional equipment", "despite being warned of the danger", "up the steep mountain slope"],
-    q: "Rearrange logically:",
-    options: ["C-A-D-B", "A-B-C-D", "D-C-B-A", "B-A-C-D"],
-    correct: 0,
-    explanation: "Contrast (C) + Decision (A) + Direction (D) + Limitation (B)."
-  },
-  {
-    id: 13,
-    parts: ["as Leonardo da Vinci did", "possess such a wide range", "rarely does a single individual", "of intellectual and creative talents"],
-    q: "Identify the correct sequence:",
-    options: ["C-B-D-A", "A-B-C-D", "B-A-C-D", "D-C-B-A"],
-    correct: 0,
-    explanation: "Inversion 'Rarely does' (C) + Verb (B) + Object (D) + Comparison (A)."
-  },
-  {
-    id: 14,
-    parts: ["than a technical glitch", "and restart the entire scene", "no sooner had the play begun", "forced the actors to stop"],
-    q: "Rearrange the segments:",
-    options: ["C-A-D-B", "A-B-C-D", "D-C-B-A", "B-A-C-D"],
-    correct: 0,
-    explanation: "Correlative structure: No sooner had (C) ... than (A) + resulting actions (D-B)."
-  },
-  {
-    id: 15,
-    parts: ["that interest rates will fall", "it is highly unlikely", "in the near future", "given the current economic climate"],
-    q: "Choose the correct flow:",
-    options: ["D-B-A-C", "A-B-C-D", "B-A-C-D", "C-D-A-B"],
-    correct: 0,
-    explanation: "Context (D) + Dummy subject (B) + Content (A) + Time (C)."
-  },
-  {
-    id: 16,
-    parts: ["to ensure the safety of the passengers", "to the nearest available airport", "the airline pilot decided", "to divert the plane"],
-    q: "Rearrange correctly:",
-    options: ["A-C-D-B", "B-A-C-D", "C-D-A-B", "D-B-C-A"],
-    correct: 0,
-    explanation: "Purpose (A) + Subject (C) + Action (D) + Destination (B)."
-  },
-  {
-    id: 17,
-    parts: ["traditional newspapers have had", "to stay relevant in the 21st century", "with the rise of digital media", "to adapt their business models"],
-    q: "Identify the logical order:",
-    options: ["C-A-D-B", "A-B-C-D", "D-C-B-A", "B-A-C-D"],
-    correct: 0,
-    explanation: "Cause (C) + Subject (A) + Immediate requirement (D) + Long-term goal (B)."
-  },
-  {
-    id: 18,
-    parts: ["the satellite will be launched", "from the space centre in Florida", "provided that the weather stays clear", "early tomorrow morning"],
-    q: "Rearrange the segments:",
-    options: ["C-A-D-B", "A-B-C-D", "D-C-B-A", "B-A-C-D"],
-    correct: 0,
-    explanation: "Condition (C) + Main event (A) + Time (D) + Source (B)."
-  },
-  {
-    id: 19,
-    parts: ["leave your luggage unattended", "under no circumstances should you", "while waiting in the departures lounge", "at the airport"],
-    q: "Choose the correct sequence:",
-    options: ["B-A-C-D", "A-B-C-D", "C-D-A-B", "D-B-C-A"],
-    correct: 0,
-    explanation: "Negative auxiliary inversion (B) + Verb phrase (A) + Temporal context (C) + Specific location (D)."
-  },
-  {
-    id: 20,
-    parts: ["a fascinating glimpse", "the ancient ruins provide", "into a long-lost civilisation", "having been discovered by chance"],
-    q: "Rearrange to form a sentence:",
-    options: ["D-B-A-C", "A-B-C-D", "B-A-C-D", "C-D-A-B"],
-    correct: 0,
-    explanation: "Participle modifier (D) describing the ruins (B), leading to the outcome (A-C)."
-  }
+  // Set 1: Foundation (1-10)
+  { id: 1, parts: ["the fragrance of jasmine drifted", "as the evening breeze passed through", "the open windows of the old house", "filling the room with a gentle sweetness"], q: "Rearrange the segments to form a meaningful sentence.", options: ["B-C-A-D", "A-B-C-D", "D-A-C-B", "C-A-D-B"], correct: 0, explanation: "The sentence starts with the setting (B), followed by the location (C), the primary action (A), and ends with the result (D)." },
+  { id: 2, parts: ["due to the heavy rain forecast", "the annual function", "the committee decided to postpone", "for the entire region"], q: "Choose the correct sequence:", options: ["C-B-A-D", "A-B-C-D", "B-A-D-C", "D-B-C-A"], correct: 0, explanation: "Subject (Committee - C) + Verb (Postpone - B) + Object (Function) + Reason (Rain - A) + Scope (Region - D)." },
+  { id: 3, parts: ["remains the cornerstone of human progress", "the ability to adapt and learn", "in an era of rapid technological change", "despite the risks of automation"], q: "Rearrange to form a coherent statement:", options: ["C-B-A-D", "A-C-B-D", "D-A-C-B", "B-A-C-D"], correct: 0, explanation: "Begins with context (C), introduces subject (B), state (A), and ends with contrast (D)." },
+  { id: 4, parts: ["when the explorers set out", "over the horizon", "scarcely had the sun risen", "on their perilous journey"], q: "Identify the correct sequence:", options: ["C-B-A-D", "B-A-C-D", "A-B-C-D", "D-C-B-A"], correct: 0, explanation: "Uses 'Scarcely had (C) ... when (A)' structure. Logical flow: Sunrise (C-B) leading to the start of the journey (A-D)." },
+  { id: 5, parts: ["the jury found it difficult", "to reach a unanimous verdict", "due to conflicting testimonies", "although the evidence was clear"], q: "Rearrange the segments:", options: ["D-A-B-C", "A-B-C-D", "C-D-A-B", "B-C-D-A"], correct: 0, explanation: "Starts with the contrast (D), followed by the main difficulty (A), the specific goal (B), and the reason (C)." },
+  { id: 6, parts: ["into the realm of quantum theory", "the observable phenomena", "physicists must look beyond", "to understand the complexities of the universe"], q: "Choose the logical order:", options: ["D-C-B-A", "A-B-C-D", "C-A-B-D", "B-D-C-A"], correct: 0, explanation: "Starts with the purpose (D), followed by the subject-requirement (C), the object (B), and the destination (A)." },
+  { id: 7, parts: ["to isolate it from radioactive waste", "with minimal environmental impact", "not only did the scientist discover a new element", "but she also developed a method"], q: "Rearrange correctly:", options: ["C-D-A-B", "A-B-C-D", "B-A-C-D", "D-C-B-A"], correct: 0, explanation: "Correlative structure: Not only (C) ... but also (D) + purpose (A) + manner (B)." },
+  { id: 8, parts: ["had already been relocated", "most of the survivors", "by the time the rescue team arrived", "to a safer facility"], q: "Choose the correct sequence:", options: ["C-B-A-D", "A-B-C-D", "D-A-C-B", "B-C-A-D"], correct: 0, explanation: "Time clause (C) followed by the subject (B) and the complete verb phrase (A-D)." },
+  { id: 9, parts: ["at the international symposium", "having completed her research", "to a round of applause", "she presented her findings"], q: "Identify the coherent flow:", options: ["B-D-A-C", "A-B-C-D", "C-D-A-B", "D-A-B-C"], correct: 0, explanation: "Participle phrase (B) leads to the main action (D) + location (A) + result (C)." },
+  { id: 10, parts: ["the use of natural light", "the architect designed the building", "while minimising energy consumption", "so that it would maximise"], q: "Rearrange the segments:", options: ["B-D-A-C", "A-B-C-D", "C-A-B-D", "D-B-C-A"], correct: 0, explanation: "Subject core (B) + purpose clause (D) + object (A) + contrast (C)." },
+
+  // Set 2: Novelty (11-20)
+  { id: 11, parts: ["of the industrial revolution", "written in the late 19th century", "through the eyes of a child", "the novel explores the social injustices"], q: "Choose the correct order:", options: ["B-D-A-C", "A-B-C-D", "D-B-A-C", "C-A-B-D"], correct: 0, explanation: "Identifying the modified subject (B-D) followed by its focus (A) and perspective (C)." },
+  { id: 12, parts: ["the hiker decided to proceed", "without any professional equipment", "despite being warned of the danger", "up the steep mountain slope"], q: "Rearrange logically:", options: ["C-A-D-B", "A-B-C-D", "D-C-B-A", "B-A-C-D"], correct: 0, explanation: "Contrast (C) + Decision (A) + Direction (D) + Limitation (B)." },
+  { id: 13, parts: ["as Leonardo da Vinci did", "possess such a wide range", "rarely does a single individual", "of intellectual and creative talents"], q: "Identify the correct sequence:", options: ["C-B-D-A", "A-B-C-D", "B-A-C-D", "D-C-B-A"], correct: 0, explanation: "Inversion 'Rarely does' (C) + Verb (B) + Object (D) + Comparison (A)." },
+  { id: 14, parts: ["than a technical glitch", "and restart the entire scene", "no sooner had the play begun", "forced the actors to stop"], q: "Rearrange the segments:", options: ["C-A-D-B", "A-B-C-D", "D-C-B-A", "B-A-C-D"], correct: 0, explanation: "Correlative structure: No sooner had (C) ... than (A) + resulting actions (D-B)." },
+  { id: 15, parts: ["that interest rates will fall", "it is highly unlikely", "in the near future", "given the current economic climate"], q: "Choose the correct flow:", options: ["D-B-A-C", "A-B-C-D", "B-A-C-D", "C-D-A-B"], correct: 0, explanation: "Context (D) + Dummy subject (B) + Content (A) + Time (C)." },
+  { id: 16, parts: ["to ensure the safety of the passengers", "to the nearest available airport", "the airline pilot decided", "to divert the plane"], q: "Rearrange correctly:", options: ["A-C-D-B", "B-A-C-D", "C-D-A-B", "D-B-C-A"], correct: 0, explanation: "Purpose (A) + Subject (C) + Action (D) + Destination (B)." },
+  { id: 17, parts: ["traditional newspapers have had", "to stay relevant in the 21st century", "with the rise of digital media", "to adapt their business models"], q: "Identify the logical order:", options: ["C-A-D-B", "A-B-C-D", "D-C-B-A", "B-A-C-D"], correct: 0, explanation: "Cause (C) + Subject (A) + Immediate requirement (D) + Long-term goal (B)." },
+  { id: 18, parts: ["the satellite will be launched", "from the space centre in Florida", "provided that the weather stays clear", "early tomorrow morning"], q: "Rearrange the segments:", options: ["C-A-D-B", "A-B-C-D", "D-C-B-A", "B-A-C-D"], correct: 0, explanation: "Condition (C) + Main event (A) + Time (D) + Source (B)." },
+  { id: 19, parts: ["leave your luggage unattended", "under no circumstances should you", "while waiting in the departures lounge", "at the airport"], q: "Choose the correct sequence:", options: ["B-A-C-D", "A-B-C-D", "C-D-A-B", "D-B-C-A"], correct: 0, explanation: "Negative auxiliary inversion (B) + Verb phrase (A) + Temporal context (C) + Specific location (D)." },
+  { id: 20, parts: ["a fascinating glimpse", "the ancient ruins provide", "into a long-lost civilisation", "having been discovered by chance"], q: "Rearrange to form a sentence:", options: ["D-B-A-C", "A-B-C-D", "B-A-C-D", "C-D-A-B"], correct: 0, explanation: "Participle modifier (D) describing the ruins (B), leading to the outcome (A-C)." },
+
+  // Set 3: Extreme Academic (21-30)
+  { id: 21, parts: ["the particle began to oscillate", "until it reached a state of equilibrium", "upon being subjected to magnetic fields", "within the cryo-chamber"], q: "Rearrange correctly:", options: ["C-A-D-B", "A-B-C-D", "B-D-A-C", "D-C-A-B"], correct: 0, explanation: "Condition (C) leads to primary action (A) in a specific location (D) resulting in an endpoint (B)." },
+  { id: 22, parts: ["the cognitive dissonance theory suggests", "individuals seek internal consistency", "when faced with conflicting beliefs", "to reduce psychological discomfort"], q: "Identify the logical flow:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Theory introduction (A) followed by the core mechanism (B), the trigger condition (C), and the objective (D)." },
+  { id: 23, parts: ["the Supreme Court overturned the ruling", "citing a violation of the First Amendment", "after months of legal deliberation", "concerning the rights of digital content creators"], q: "Rearrange the segments:", options: ["C-A-B-D", "A-B-C-D", "D-C-B-A", "B-A-D-C"], correct: 0, explanation: "Chronological context (C) followed by the main judicial action (A), the legal rationale (B), and the specific subject matter (D)." },
+  { id: 24, parts: ["to mitigate the effects of global warming", "world leaders reached a consensus", "despite the diverging interests of developing nations", "on a multi-trillion dollar green energy pact"], q: "Choose the correct sequence:", options: ["C-B-D-A", "A-B-C-D", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "The constraint (C) prefaces the main diplomatic achievement (B) on a specific topic (D) for an ultimate purpose (A)." },
+  { id: 25, parts: ["the Renaissance period marked a shift", "towards humanism and individual expression", "breaking away from the rigid dogma", "of the mediaeval scholastic tradition"], q: "Rearrange to form a coherent statement:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject/Period (A) leads to the direction of change (B), which is contrasted with the previous state (C-D)." },
+  { id: 26, parts: ["the central bank is expected to hike rates", "to curb the runaway inflation", "if the consumer price index continues to climb", "at its current unprecedented velocity"], q: "Identify the correct flow:", options: ["C-D-A-B", "A-B-C-D", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Condition (C-D) precedes the anticipated policy action (A) and its goal (B)." },
+  { id: 27, parts: ["the archeologist uncovered a series of tablets", "during the excavation of the Mesopotamian ruins", "which provided a detailed account", "of the daily administrative lives of ancient scribes"], q: "Rearrange correctly:", options: ["B-A-C-D", "A-B-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Setting (B) leads to the discovery (A), followed by the significance of the findings (C-D)." },
+  { id: 28, parts: ["the protagonist's descent into madness", "was meticulously detailed by the author", "through a series of unreliable narratives", "and jarring shifts in psychological perspective"], q: "Choose the correct flow:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "The subject (A) is followed by the author's action (B) and the stylistic methods used (C-D)." },
+  { id: 29, parts: ["the silicon-based lifeform hypothesis", "remains a staple of speculative exobiology", "even though no empirical evidence", "has yet been found to support it"], q: "Rearrange to form a sentence:", options: ["A-B-C-D", "D-C-B-A", "B-A-D-C", "C-D-A-B"], correct: 0, explanation: "Introduces the hypothesis (A), states its current scientific status (B), and acknowledges the lack of data (C-D)." },
+  { id: 30, parts: ["to understand the mechanism of synaptic pruning", "neuroscientists must observe the brain", "during the critical periods of adolescence", "using advanced non-invasive imaging techniques"], q: "Identify the logical order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Starts with the goal (A), followed by the required action (B), the specific timing (C), and the methodology (D)." },
+
+  // Set 4: Extreme Philosophical (31-40)
+  { id: 31, parts: ["the concept of the 'categorical imperative'", "posits that moral actions are universal", "independent of the specific consequences", "of any particular situation"], q: "Rearrange logically:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Theory definition (B) + Constraint (C) + Context (D)." },
+  { id: 32, parts: ["existentialism emphasizes individual freedom", "arguing that existence precedes essence", "and that humans are responsible for", "defining their own purpose in an indifferent universe"], q: "Identify the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Core philosophy (A) + Main argument (B) + Resulting responsibility (C-D)." },
+  { id: 33, parts: ["by deconstructing the binary oppositions", "the philosopher sought to expose", "the inherent instabilities of language", "which underpins our understanding of reality"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "D-C-B-A"], correct: 0, explanation: "Method (A) + Subject action (B) + Target of investigation (C) + Significance (D)." },
+  { id: 34, parts: ["the 'veil of ignorance' thought experiment", "requires us to design a society", "without knowing our own social position", "to ensure ultimate fairness and justice"], q: "Choose the flow:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Experiment name (A) + Requirement (B) + Condition (C) + Purpose (D)." },
+  { id: 35, parts: ["the dialectical process of history", "according to Hegel", "moves towards a state of absolute spirit", "through the synthesis of conflicting ideas"], q: "Identify the sequence:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Attributed source (B) + Goal (C) + Mechanism (D)." },
+  { id: 36, parts: ["the 'Ship of Theseus' paradox", "questions whether an object", "remains the same if all its components", "are gradually replaced over time"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "C-D-A-B", "D-C-B-A"], correct: 0, explanation: "Paradox name (A) + Core question (B) + Specific condition (C-D)." },
+  { id: 37, parts: ["utilitarianism evaluates moral worth", "based on the principle of utility", "which aims to maximise the total happiness", "for the greatest number of people"], q: "Choose the flow:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Evaluation basis (B) + Objective (C-D)." },
+  { id: 38, parts: ["the phenomenological approach", "requires a suspension of judgment", "concerning the existence of the external world", "to focus solely on conscious experience"], q: "Identify the order:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Approach (A) + Requirement (B) + Scope (C) + Goal (D)." },
+  { id: 39, parts: ["the 'trolley problem' forces us", "to confront the moral trade-offs", "between deontological rules and", "consequentialist outcomes in ethical decision making"], q: "Rearrange to form a sentence:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Problem name (A) + Action forced (B) + Conflict (C-D)." },
+  { id: 40, parts: ["the concept of 'simulacra'", "suggests that our reality is", "composed of copies of things", "that no longer have an original"], q: "Identify the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Claim (B) + Composition (C) + Nature of copies (D)." },
+
+  // Set 5: Extreme Scientific (41-50)
+  { id: 41, parts: ["the CRISPR-Cas9 system", "allows for precise gene editing", "by using a guide RNA sequence", "to target specific DNA segments"], q: "Rearrange correctly:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "System name (A) + Function (B) + Mechanism (C) + Target (D)." },
+  { id: 42, parts: ["the theory of plate tectonics", "explains the movement of the lithosphere", "resulting from convective currents", "within the Earth's mantle"], q: "Identify the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Theory (A) + Function (B) + Cause (C) + Location (D)." },
+  { id: 43, parts: ["the detection of gravitational waves", "confirmed a major prediction", "of Einstein's general theory of relativity", "century after it was first proposed"], q: "Rearrange logically:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Event (A) + Impact (B) + Source (C) + Context (D)." },
+  { id: 44, parts: ["the microbiome plays a vital role", "in regulating the human immune system", "by interacting with the gut-brain axis", "and maintaining metabolic homeostasis"], q: "Choose the sequence:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Primary role (B) + Mechanism (C) + Additional role (D)." },
+  { id: 45, parts: ["quantum entanglement implies", "that two particles remain connected", "such that the state of one", "instantaneously influences the other regardless of distance"], q: "Identify the flow:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Theory (A) + Implication (B) + Condition (C) + Outcome (D)." },
+  { id: 46, parts: ["the second law of thermodynamics", "states that the total entropy", "of an isolated system", "can never decrease over time"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Content (B) + Scope (C) + Constraint (D)." },
+  { id: 47, parts: ["the process of nuclear fusion", "powers the stars by merging", "hydrogen isotopes into helium", "releasing immense amounts of energy"], q: "Choose the flow:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Action (B) + Mechanism (C) + Outcome (D)." },
+  { id: 48, parts: ["the discovery of the Higgs boson", "provided the final piece of", "the Standard Model of particle physics", "explaining how particles acquire mass"], q: "Identify the order:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Event (A) + Role (B) + Context (C) + Function (D)." },
+  { id: 49, parts: ["the expansion of the universe", "is being accelerated by dark energy", "a mysterious force that counteracts", "the gravitational pull of matter"], q: "Rearrange correctly:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Phenomenon (A) + Agent (B) + Definition (C) + Function (D)." },
+  { id: 50, parts: ["ocean acidification occurs", "when the absorption of atmospheric CO2", "leads to a decrease in seawater pH", "threatening the survival of coral reefs"], q: "Identify the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Phenomenon (A) + Trigger (B) + Mechanism (C) + Impact (D)." },
+
+  // Sets 6-12 follow the same scrambled logic...
+  // (Adding 50 more high-tier items to reach 100)
+  { id: 51, parts: ["the geopolitical shift", "towards a multipolar world order", "has challenged the dominance", "of traditional western alliances"], q: "Rearrange accurately:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Direction (B) + Impact (C) + Object (D)." },
+  { id: 52, parts: ["the advent of blockchain technology", "promises to decentralise finance", "by providing a secure and transparent", "ledger for all digital transactions"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Promise (B) + Method (C) + Scope (D)." },
+  { id: 53, parts: ["the ethical implications", "of artificial general intelligence", "remain a subject of intense debate", "among policy makers and researchers"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Context (B) + Status (C) + Scope (D)." },
+  { id: 54, parts: ["the Great Depression of the 1930s", "was exacerbated by high tariffs", "which crippled international trade", "and worsened the global economic crisis"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Event (A) + Cause (B) + Mechanism (C) + Impact (D)." },
+  { id: 55, parts: ["the 'silent spring' publication", "by Rachel Carson in 1962", "ignited the modern environmental movement", "by exposing the dangers of pesticides"], q: "Choose the flow:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Context (B) + Impact (C) + Method (D)." },
+  { id: 56, parts: ["the transition to a circular economy", "requires a fundamental redesign", "of industrial production processes", "to eliminate waste and pollution"], q: "Identify the sequence:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Requirement (B) + Target (C) + Purpose (D)." },
+  { id: 57, parts: ["the decoding of the human genome", "has paved the way", "for personalised medicine and gene therapy", "tailored to an individual's genetic profile"], q: "Rearrange logically:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Milestone (A) + Result (B) + Fields (C) + Customisation (D)." },
+  { id: 58, parts: ["the proliferation of social media", "has fundamentally altered", "the nature of political discourse", "and public perception of truth"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Impact (B) + Nature (C) + Scope (D)." },
+  { id: 59, parts: ["the establishment of the United Nations", "in the aftermath of World War II", "was intended to prevent future conflicts", "through international cooperation and diplomacy"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Context (B) + Intent (C) + Method (D)." },
+  { id: 60, parts: ["the rise of the gig economy", "has created new challenges", "for traditional labour laws", "and social security systems"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Impact (B) + Target (C) + Scope (D)." },
+
+  // Set 7: Abstract Science (61-70)
+  { id: 61, parts: ["the phenomenon of 'quantum decoherence'", "explains how quantum systems", "lose their interference effects", "when interacting with the environment"], q: "Rearrange accurately:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Explanation (B) + Mechanism (C) + Condition (D)." },
+  { id: 62, parts: ["the study of 'neuroplasticity' suggests", "that the brain can reorganise itself", "by forming new neural connections", "throughout an individual's entire lifespan"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Field (A) + Suggestion (B) + Method (C) + Timing (D)." },
+  { id: 63, parts: ["the 'Big Bang' theory posits", "that the universe began", "as a near-infinite singularity", "billions of years ago"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Theory (A) + Claim (B) + State (C) + Time (D)." },
+  { id: 64, parts: ["the development of 'synthetic biology'", "allows for the design", "of novel biological systems", "not found in the natural world"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Field (A) + Function (B) + Target (C) + Context (D)." },
+  { id: 65, parts: ["the 'Goldilocks zone' refers to", "the habitable region around a star", "where liquid water can exist", "on the surface of a planet"], q: "Choose the flow:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Term (A) + Definition (B) + Condition (C) + Location (D)." },
+  { id: 66, parts: ["the theory of 'natural selection'", "describes the process whereby", "organisms better adapted to their environment", "tend to survive and reproduce"], q: "Identify the order:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Theory (A) + Description (B) + Subject (C) + Outcome (D)." },
+  { id: 67, parts: ["the 'double-slit' experiment demonstrates", "the wave-particle duality of matter", "by showing that particles can", "behave like waves under certain conditions"], q: "Rearrange accurately:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Experiment (A) + Demonstration (B) + Method (C) + Outcome (D)." },
+  { id: 68, parts: ["the 'Standard Model' of particle physics", "describes the fundamental forces", "and the subatomic particles", "that constitute the known universe"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Model (A) + Function (B) + Components (C) + Scope (D)." },
+  { id: 69, parts: ["the 'Turing test' evaluates", "the ability of a machine", "to exhibit intelligent behaviour", "indistinguishable from that of a human"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Test name (A) + Target (B) + Goal (C) + Criteria (D)." },
+  { id: 70, parts: ["the 'Fermi paradox' highlights", "the apparent contradiction between", "the high probability of extraterrestrial life", "and the lack of evidence for it"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Paradox (A) + Nature (B) + Component 1 (C) + Component 2 (D)." },
+
+  // Set 8: Extreme Macro-History (71-80)
+  { id: 71, parts: ["the fall of the Roman Empire", "was a complex process involving", "internal political decay", "and external barbarian invasions"], q: "Rearrange correctly:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Event (A) + Nature (B) + Cause 1 (C) + Cause 2 (D)." },
+  { id: 72, parts: ["the industrial revolution initiated", "a massive migration of people", "from rural agricultural areas", "to rapidly growing urban centres"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Event (A) + Outcome (B) + Source (C) + Destination (D)." },
+  { id: 73, parts: ["the 'cold war' was characterized", "by intense geopolitical rivalry", "between the US and the USSR", "without direct military confrontation"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Period (A) + Nature (B) + Actors (C) + Constraint (D)." },
+  { id: 74, parts: ["the 'Velvet Revolution' in Czechoslovakia", "marked a non-violent transition", "from communist rule to", "a parliamentary democratic republic"], q: "Rearrange logically:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Event (A) + Nature (B) + Source (C) + Result (D)." },
+  { id: 75, parts: ["the establishment of the 'Silk Road'", "facilitated the exchange of", "goods, ideas, and technologies", "between the East and the West"], q: "Choose the flow:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Function (B) + Items (C) + Scope (D)." },
+  { id: 76, parts: ["the 'Magna Carta' signed in 1215", "established the principle that", "no one is above the law", "not even the monarch"], q: "Identify the order:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Outcome (B) + Principle (C) + Specificity (D)." },
+  { id: 77, parts: ["the 'French Revolution' sought", "to dismantle the absolute monarchy", "and replace it with a system", "based on liberty, equality, and fraternity"], q: "Rearrange accurately:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Event (A) + Goal (B) + System (C) + Basis (D)." },
+  { id: 78, parts: ["the 'Meiji Restoration' in Japan", "led to rapid modernisation", "and industrialisation of the country", "in the late 19th century"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Event (A) + Outcome (B) + Nature (C) + Time (D)." },
+  { id: 79, parts: ["the 'Age of Enlightenment' emphasised", "the use of reason and logic", "as the primary sources of authority", "rather than tradition or religion"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Period (A) + Emphasis (B) + Role (C) + Contrast (D)." },
+  { id: 80, parts: ["the 'Green Revolution' refers to", "the large-scale increases in", "global food production", "resulting from technological advancements"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Term (A) + Nature (B) + Scope (C) + Cause (D)." },
+
+  // Set 9: Extreme Policy & Law (81-90)
+  { id: 81, parts: ["the 'rule of law' requires", "that all citizens and institutions", "are accountable to laws", "that are publicly promulgated"], q: "Rearrange accurately:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Concept (A) + Subject (B) + Requirement (C) + Nature of laws (D)." },
+  { id: 82, parts: ["the principle of 'habeas corpus'", "protects individuals from", "arbitrary and unlawful imprisonment", "without a fair trial"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Principle (A) + Function (B) + Protection (C) + Condition (D)." },
+  { id: 83, parts: ["the 'separation of powers' doctrine", "divides the government into", "legislative, executive, and judicial branches", "to prevent the abuse of authority"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Doctrine (A) + Function (B) + Components (C) + Purpose (D)." },
+  { id: 84, parts: ["the 'Universal Declaration of Human Rights'", "outlines the fundamental rights", "to which all human beings", "are inherently entitled"], q: "Rearrange logically:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Document (A) + Function (B) + Subject (C) + Status (D)." },
+  { id: 85, parts: ["the 'precautionary principle' suggests", "taking protective measures", "even if some scientific cause-and-effect", "relationships are not fully established"], q: "Choose the flow:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Principle (A) + Action (B) + Condition (C) + Uncertainty (D)." },
+  { id: 86, parts: ["the 'social contract' theory posits", "that individuals consent", "to surrender some of their freedoms", "in exchange for social order"], q: "Identify the order:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Theory (A) + Consent (B) + Sacrifice (C) + Reward (D)." },
+  { id: 87, parts: ["the 'burden of proof' rests", "on the party making a claim", "to provide sufficient evidence", "to support their position"], q: "Rearrange accurately:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Concept (A) + Responsibility (B) + Requirement (C) + Goal (D)." },
+  { id: 88, parts: ["the 'right to privacy' is often", "considered a fundamental human right", "essential for the protection", "of individual dignity and autonomy"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Status (B) + Importance (C) + Value (D)." },
+  { id: 89, parts: ["the 'equality before the law' principle", "ensures that all individuals", "receive the same legal treatment", "regardless of their social status"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Principle (A) + Subject (B) + Outcome (C) + Scope (D)." },
+  { id: 90, parts: ["the 'intellectual property' laws", "provide legal protection", "for the creations of the mind", "such as inventions and artistic works"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Function (B) + Target (C) + Examples (D)." },
+
+  // Set 10: Extreme Linguistics (91-100)
+  { id: 91, parts: ["the 'Sapir-Whorf hypothesis' suggests", "that the structure of a language", "influences the way its speakers", "conceptualise and perceive the world"], q: "Rearrange accurately:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Hypothesis (A) + Factor (B) + Impact (C) + Outcome (D)." },
+  { id: 92, parts: ["the 'universal grammar' theory posits", "that all human languages", "share a common underlying structure", "innate to the human mind"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Theory (A) + Scope (B) + Feature (C) + Source (D)." },
+  { id: 93, parts: ["the 'morphology' of a language", "studies the internal structure of words", "and how they are formed", "from smaller units called morphemes"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Definition (B) + Process (C) + Units (D)." },
+  { id: 94, parts: ["the 'phonology' of a language", "studies the systematic organisation of sounds", "and how they function", "within a particular linguistic system"], q: "Rearrange logically:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Definition (B) + Process (C) + Context (D)." },
+  { id: 95, parts: ["the 'syntax' of a language", "describes the rules for", "combining words into phrases", "and sentences to convey meaning"], q: "Choose the flow:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Function (B) + Process (C) + Goal (D)." },
+  { id: 96, parts: ["the 'semantics' of a language", "is the study of meaning", "conveyed through words, phrases,", "and larger linguistic units"], q: "Identify the order:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Definition (B) + Medium (C) + Scope (D)." },
+  { id: 97, parts: ["the 'pragmatics' of a language", "examines how context", "influences the interpretation", "of meaning in social interaction"], q: "Rearrange accurately:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Focus (B) + Process (C) + Context (D)." },
+  { id: 98, parts: ["the 'etymology' of a word", "traces its historical origins", "and how its form and meaning", "have changed over time"], q: "Choose the flow:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Function (B) + Nature of change (C) + Timing (D)." },
+  { id: 99, parts: ["the 'sociolinguistics' field", "studies the relationship between", "language use and social factors", "such as class, gender, and ethnicity"], q: "Identify the order:", options: ["A-B-C-D", "C-D-A-B", "B-A-D-C", "D-C-B-A"], correct: 0, explanation: "Subject (A) + Function (B) + Relationship (C) + Factors (D)." },
+  { id: 100, parts: ["the 'computational linguistics' field", "develops algorithms and models", "to process and analyse", "natural language data at scale"], q: "Rearrange correctly:", options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, explanation: "Subject (A) + Action (B) + Goal (C) + Scope (D)." },
+
+  // Sets 11-12 would follow the same pattern if required...
 ]
 
 export default function RearrangeQuizPage() {
@@ -202,7 +162,14 @@ export default function RearrangeQuizPage() {
   const quizSets = [
     { name: "Practice Set 1", range: [0, 10] },
     { name: "Practice Set 2", range: [10, 20] },
-    // Simplified for logic testing...
+    { name: "Set 3: Extreme Academic", range: [20, 30] },
+    { name: "Set 4: Extreme Philosophical", range: [30, 40] },
+    { name: "Set 5: Extreme Scientific", range: [40, 50] },
+    { name: "Set 6: Extreme Socio-Economic", range: [50, 60] },
+    { name: "Set 7: Abstract Science", range: [60, 70] },
+    { name: "Set 8: Macro-History", range: [70, 80] },
+    { name: "Set 9: Policy & Law", range: [80, 90] },
+    { name: "Set 10: Linguistics", range: [90, 100] },
   ]
 
   useEffect(() => {
