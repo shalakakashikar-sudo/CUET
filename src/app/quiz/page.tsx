@@ -13,7 +13,7 @@ import {
   Trophy, RefreshCw, ChevronLeft, Target, Award, 
   CheckCircle2, XCircle, Info, Keyboard, ArrowRight, 
   AlertCircle, LayoutGrid, BookOpen, Clock, 
-  MessageSquare, Hash, PenTool, Layers
+  MessageSquare, Hash, PenTool, Layers, Compass
 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
@@ -465,7 +465,7 @@ export default function CBTExamPage() {
                         {question.section === "Match Proficiency" && <PenTool className="w-5 h-5 text-primary" />}
                         {question.section === "Syntactic Precision" && <BookOpen className="w-5 h-5 text-primary" />}
                         {question.section === "Sequential Logic" && <Layers className="w-5 h-5 text-primary" />}
-                        <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">{q.section}</span>
+                        <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">{question.section}</span>
                       </div>
                       <Badge variant="outline" className="rounded-full border-primary/20 text-primary font-black">ITEM {currentStep + 1} / 50</Badge>
                     </div>
