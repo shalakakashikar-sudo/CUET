@@ -33,7 +33,7 @@ type Question = {
   parts?: string[]
 }
 
-// 1. DATA REPOSITORIES (Consolidated for the 50-item mock)
+// 1. COMPREHENSIVE DATA REPOSITORIES
 const PASSAGES = [
   {
     title: "The Stoic Mindset",
@@ -56,13 +56,13 @@ const PASSAGES = [
     ]
   },
   {
-    title: "The Silent Pioneers",
-    content: "The arctic tundra is often perceived as a desolate wasteland, but it is actually a complex ecosystem teeming with life adapted to extreme conditions. Lichens, for instance, are symbiotic organisms composed of fungi and algae that can survive temperatures as low as -60 degrees Celsius. They play a crucial role in soil formation by slowly breaking down rock surfaces through chemical weathering. This process, which takes centuries, creates the foundation for other plant life. Furthermore, lichens serve as a vital food source for caribou during the harsh winter months. As climate change accelerates, the delicate balance of the tundra is being threatened.",
+    title: "Dr. Moo and the Cosmic Continuum",
+    content: "In the sprawling expanse of the cosmos, there existed a peculiar dimension known as The Milky Way, a realm where time flowed not in a straight line, but in loops of past, present, and future. Guarding this timeline was an unlikely hero: Dr. Moo, a time-travelling cow with a penchant for flawless English grammar. While other celestial beings concerned themselves with black holes, Dr. Moo focused on fixing temporal paradoxes caused by misplaced modifiers and incorrect verb forms. One epoch, a rogue comet threatened to scramble the timeline, merging the past continuous with the future perfect. she galloped through the cosmic dust, actively rewriting the stars. By ensuring the subject-verb agreement of the universe was perfectly aligned, she saved the continuum from collapsing into a chaotic jumble of dangling participles.",
     questions: [
-      { id: "rc3-1", text: "What is the primary role of lichens in the tundra ecosystem?", options: ["Providing shelter for caribou", "Breaking down rock surfaces", "Releasing methane", "Protecting invasive species"], correct: 1, explanation: "The text states lichens 'play a crucial role in soil formation by slowly breaking down rock surfaces'." },
-      { id: "rc3-2", text: "Choose the antonym of the word 'desolate' as used in the passage:", options: ["Barren", "Populated", "Isolated", "Gloomy"], correct: 1, explanation: "'Desolate' means empty/abandoned; 'Populated' is its opposite." },
-      { id: "rc3-3", text: "Lichens are a vital food source for:", options: ["Polar bears", "Invasive species", "Caribou", "Arctic foxes"], correct: 2, explanation: "The passage says 'lichens serve as a vital food source for caribou'." },
-      { id: "rc3-4", text: "How long does the soil formation process take?", options: ["Decades", "Centuries", "A few years", "Millennia"], correct: 1, explanation: "The passage notes: 'This process, which takes centuries'." }
+      { id: "rc3-1", text: "Based on the passage, what is Dr. Moo’s primary mission?", options: ["To study black holes", "To guard the timeline by fixing grammatical paradoxes", "To rewrite celestial maps", "To teach time-travel"], correct: 1, explanation: "Dr. Moo focused on fixing temporal paradoxes caused by misplaced modifiers and incorrect verb forms." },
+      { id: "rc3-2", text: "Choose the correct meaning of 'penchant' as used in the passage:", options: ["Strong dislike", "Deep understanding", "Strong or habitual liking", "Magical ability"], correct: 2, explanation: "'Penchant' refers to a habitual liking or inclination." },
+      { id: "rc3-3", text: "Identify the Figure of Speech used in 'legend-dairy':", options: ["Pun", "Simile", "Oxymoron", "Personification"], correct: 0, explanation: "It uses a play on words 'legendary' and 'dairy'." },
+      { id: "rc3-4", text: "What saved the continuum from collapsing?", options: ["Punctuation", "Subject-verb agreement", "Quantum mechanics", "The Milky Way"], correct: 1, explanation: "The text says subject-verb agreement perfectly aligned saved the continuum." }
     ]
   }
 ]
@@ -77,7 +77,17 @@ const VOCAB_POOL = [
   { word: "AMELIORATE", syn: "Improve", ant: "Worsen", exp: "Ameliorate means to make something better." },
   { word: "ANTIPATHY", syn: "Aversion", ant: "Affinity", exp: "Antipathy is a deep dislike." },
   { word: "AUDACIOUS", syn: "Daring", ant: "Timid", exp: "Audacious means taking bold risks." },
-  { word: "FASTIDIOUS", syn: "Meticulous", ant: "Sloppy", exp: "Fastidious means attentive to detail." }
+  { word: "FASTIDIOUS", syn: "Meticulous", ant: "Sloppy", exp: "Fastidious means attentive to detail." },
+  { word: "ABERRATION", syn: "Deviation", ant: "Normality", exp: "Departure from what is normal." },
+  { word: "ADROIT", syn: "Skillful", ant: "Clumsy", exp: "Clever or skillful." },
+  { word: "BLITHE", syn: "Cheerful", ant: "Melancholy", exp: "Casual and cheerful indifference." },
+  { word: "CALLOUS", syn: "Insensitive", ant: "Compassionate", exp: "Insensitive and cruel disregard." },
+  { word: "DEARTH", syn: "Scarcity", ant: "Abundance", exp: "A lack of something." },
+  { word: "ERUDITE", syn: "Scholarly", ant: "Ignorant", exp: "Having great knowledge." },
+  { word: "GREGARIOUS", syn: "Sociable", ant: "Reclusive", exp: "Fond of company." },
+  { word: "IMPECCABLE", syn: "Faultless", ant: "Flawed", exp: "In accordance with highest standards." },
+  { word: "LACONIC", syn: "Brief", ant: "Verbose", exp: "Using very few words." },
+  { word: "METICULOUS", syn: "Careful", ant: "Sloppy", exp: "Showing great attention to detail." }
 ]
 
 const IDIOMS_POOL = [
@@ -90,7 +100,17 @@ const IDIOMS_POOL = [
   { text: "Break the ice", meaning: "Start a conversation", exp: "Relieving tension in a social setting." },
   { text: "Last straw", meaning: "Final problem in a series", exp: "The absolute limit of patience." },
   { text: "In a nutshell", meaning: "Briefly", exp: "Summarising quickly." },
-  { text: "See eye to eye", meaning: "Agree completely", exp: "Having the same opinion." }
+  { text: "See eye to eye", meaning: "Agree completely", exp: "Having the same opinion." },
+  { text: "Bolt from the blue", meaning: "A total surprise", exp: "Sudden and unexpected." },
+  { text: "Cold feet", meaning: "Become nervous about a plan", exp: "Hesitation before an event." },
+  { text: "A dime a dozen", meaning: "Something very common", exp: "Easily found everywhere." },
+  { text: "Elephant in the room", meaning: "Major problem ignored", exp: "Obvious issue avoided." },
+  { text: "Face the music", meaning: "Accept consequences", exp: "Taking responsibility." },
+  { text: "Get out of hand", meaning: "Become difficult to control", exp: "Losing control." },
+  { text: "Keep at arm's length", meaning: "Avoid intimacy", exp: "Maintaining distance." },
+  { text: "Make ends meet", meaning: "Earn enough to live", exp: "Survival on budget." },
+  { text: "Miss the boat", meaning: "Too late for chance", exp: "Lost opportunity." },
+  { text: "No pain, no gain", meaning: "Effort for success", exp: "Hard work required." }
 ]
 
 const FILLERS_POOL = [
@@ -103,7 +123,12 @@ const FILLERS_POOL = [
   { text: "Neither he nor I ______ responsible.", options: ["am", "is", "are", "were"], correct: 0, exp: "Verb agrees with closest subject (I)." },
   { text: "The train ______ before we arrived.", options: ["left", "had left", "has left", "leaves"], correct: 1, exp: "Past perfect for earlier action." },
   { text: "He is ______ honest man.", options: ["a", "an", "the", "no article"], correct: 1, exp: "An (silent h)." },
-  { text: "They ______ since morning.", options: ["play", "are playing", "have been playing", "played"], correct: 2, exp: "Present perfect continuous for ongoing duration." }
+  { text: "They ______ since morning.", options: ["play", "are playing", "have been playing", "played"], correct: 2, exp: "Present perfect continuous for ongoing duration." },
+  { text: "The quality of these mangoes ______ not good.", options: ["is", "are", "were", "have been"], correct: 0, exp: "Subject is 'Quality' (singular)." },
+  { text: "Politics ______ a dirty game.", options: ["is", "are", "were", "have been"], correct: 0, exp: "'Politics' is treated as singular." },
+  { text: "Ten miles ______ a long distance.", options: ["is", "are", "were", "have been"], correct: 0, exp: "Distances take singular verbs." },
+  { text: "Neither of the two candidates ______ suitable.", options: ["is", "are", "were", "have been"], correct: 0, exp: "'Neither' takes a singular verb." },
+  { text: "Slow and steady ______ the race.", options: ["win", "wins", "is winning", "has won"], correct: 1, exp: "Compound subject expressing one idea." }
 ]
 
 const REARRANGE_POOL = [
@@ -114,14 +139,19 @@ const REARRANGE_POOL = [
   { parts: ["the cognitive theory", "human memory", "suggests that", "is associative"], options: ["A-C-B-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Subject + Linker + Sub-subject + State." },
   { parts: ["to the new laws", "despite the protest", "the citizens", "had to comply"], options: ["B-C-D-A", "A-B-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Constraint + Subject + Action + Target." },
   { parts: ["the space shuttle", "launched successfully", "into orbit", "at dawn"], options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Subject + Action + Destination + Time." },
-  { parts: ["the young pianist", "received a standing ovation", "after the performance", "at the Royal Hall"], options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Subject + Verb + Time + Location." }
+  { parts: ["the young pianist", "received a standing ovation", "after the performance", "at the Royal Hall"], options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Subject + Verb + Time + Location." },
+  { parts: ["the archeologist uncovered", "during the excavation", "which provided accounts", "of ancient scribes"], options: ["B-A-C-D", "A-B-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Setting + Action + Relative Clause." },
+  { parts: ["the renaissance period", "towards humanism", "marked a shift", "breaking away from dogma"], options: ["A-C-B-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Subject + Verb + Direction + Detail." }
 ]
+
+const SHUFFLE = <T,>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
 
 const GENERATE_EXAM = (): Question[] => {
   const qSet: Question[] = []
 
-  // 12 RC (3 passages * 4 Qs)
-  PASSAGES.forEach((p, pIdx) => {
+  // 1. DYNAMIC RC POOLING (Pick 3 random passages)
+  const selectedPassages = SHUFFLE(PASSAGES).slice(0, 3);
+  selectedPassages.forEach((p) => {
     p.questions.forEach(q => {
       qSet.push({
         ...q,
@@ -130,11 +160,12 @@ const GENERATE_EXAM = (): Question[] => {
         passageTitle: p.title
       })
     })
-  })
+  });
 
-  // 10 Lexical Intelligence
-  VOCAB_POOL.forEach((v, i) => {
-    const isSyn = i % 2 === 0
+  // 2. DYNAMIC LEXICAL POOLING (Pick 10 random)
+  const selectedVocab = SHUFFLE(VOCAB_POOL).slice(0, 10);
+  selectedVocab.forEach((v, i) => {
+    const isSyn = Math.random() > 0.5;
     qSet.push({
       id: `vocab-${i}`,
       section: "Lexical Intelligence",
@@ -143,10 +174,11 @@ const GENERATE_EXAM = (): Question[] => {
       correct: 0,
       explanation: v.exp
     })
-  })
+  });
 
-  // 10 Match Proficiency
-  IDIOMS_POOL.forEach((idiom, i) => {
+  // 3. DYNAMIC MATCH POOLING (Pick 10 random)
+  const selectedIdioms = SHUFFLE(IDIOMS_POOL).slice(0, 10);
+  selectedIdioms.forEach((idiom, i) => {
     qSet.push({
       id: `match-${i}`,
       section: "Match Proficiency",
@@ -155,10 +187,11 @@ const GENERATE_EXAM = (): Question[] => {
       correct: 0,
       explanation: idiom.exp
     })
-  })
+  });
 
-  // 10 Syntactic Precision
-  FILLERS_POOL.forEach((f, i) => {
+  // 4. DYNAMIC SYNTACTIC POOLING (Pick 10 random)
+  const selectedFillers = SHUFFLE(FILLERS_POOL).slice(0, 10);
+  selectedFillers.forEach((f, i) => {
     qSet.push({
       id: `filler-${i}`,
       section: "Syntactic Precision",
@@ -167,10 +200,11 @@ const GENERATE_EXAM = (): Question[] => {
       correct: f.correct,
       explanation: f.exp
     })
-  })
+  });
 
-  // 8 Sequential Logic
-  REARRANGE_POOL.forEach((r, i) => {
+  // 5. DYNAMIC SEQUENTIAL POOLING (Pick 8 random)
+  const selectedRearrange = SHUFFLE(REARRANGE_POOL).slice(0, 8);
+  selectedRearrange.forEach((r, i) => {
     qSet.push({
       id: `rearrange-${i}`,
       section: "Sequential Logic",
@@ -180,9 +214,9 @@ const GENERATE_EXAM = (): Question[] => {
       correct: r.correct,
       explanation: r.exp
     })
-  })
+  });
 
-  return qSet
+  return qSet;
 }
 
 export default function CBTExamPage() {
@@ -194,7 +228,7 @@ export default function CBTExamPage() {
   const [timeLeft, setTimeLeft] = useState(3600) // 60 minutes
   const [isExamStarted, setIsExamStarted] = useState(false)
 
-  // Initialization
+  // Initialization with Anti-Guessing option shuffling
   const startExam = () => {
     const rawSet = GENERATE_EXAM()
     const randomizedSet = rawSet.map(q => {
@@ -285,7 +319,7 @@ export default function CBTExamPage() {
             </div>
             <div className="flex items-center gap-3 font-bold text-foreground">
               <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>Navigation: Non-linear mode active. Skip or return at will.</span>
+              <span>Pooling: Dynamic repository sampling active.</span>
             </div>
           </div>
           <Button size="lg" className="w-full h-16 rounded-2xl text-xl font-bold shadow-xl" onClick={startExam}>
@@ -487,26 +521,29 @@ export default function CBTExamPage() {
                       value={answers[currentStep]?.toString()} 
                       className="grid gap-3"
                     >
-                      {question.options.map((opt, i) => (
-                        <div 
-                          key={i} 
-                          onClick={() => handleAnswer(i)}
-                          className={cn(
-                            "flex items-center space-x-3 border p-5 rounded-2xl transition-all cursor-pointer group",
-                            answers[currentStep] === i ? "border-primary bg-primary/5 ring-1 ring-primary/20 shadow-md" : "hover:bg-muted/50 border-border"
-                          )}
-                        >
-                          <RadioGroupItem value={i.toString()} id={`q-opt-${i}`} className="pointer-events-none" />
-                          <Label 
-                            htmlFor={`q-opt-${i}`} 
-                            className="flex-1 cursor-pointer text-lg font-bold text-foreground leading-tight"
-                            onClick={(e) => e.stopPropagation()}
+                      {question.options.map((opt, i) => {
+                        const isSelected = answers[currentStep] === i
+                        return (
+                          <div 
+                            key={i} 
+                            onClick={() => handleAnswer(i)}
+                            className={cn(
+                              "flex items-center space-x-3 border p-5 rounded-2xl transition-all cursor-pointer group",
+                              isSelected ? "border-primary bg-primary/5 ring-1 ring-primary/20 shadow-md" : "hover:bg-muted/50 border-border"
+                            )}
                           >
-                            <span className="inline-block w-8 text-primary font-mono">{String.fromCharCode(65 + i)}.</span>
-                            {opt}
-                          </Label>
-                        </div>
-                      ))}
+                            <RadioGroupItem value={i.toString()} id={`q-opt-${i}`} className="pointer-events-none" />
+                            <Label 
+                              htmlFor={`q-opt-${i}`} 
+                              className="flex-1 cursor-pointer text-lg font-bold text-foreground leading-tight"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <span className="inline-block w-8 text-primary font-mono">{String.fromCharCode(65 + i)}.</span>
+                              {opt}
+                            </Label>
+                          </div>
+                        )
+                      })}
                     </RadioGroup>
                   </CardContent>
                 </Card>
