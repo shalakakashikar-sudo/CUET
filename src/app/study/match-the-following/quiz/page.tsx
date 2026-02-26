@@ -92,7 +92,22 @@ export default function MatchQuizPage() {
   const [isFinished, setIsFinished] = useState(false)
 
   useEffect(() => {
-    setQuestions([...MATCH_QUIZ_DATA].sort(() => Math.random() - 0.5))
+    const shuffledQuestions = [...MATCH_QUIZ_DATA].map(q => {
+      const cloned = { ...q, options: [...q.options] }
+      
+      const oldCorrectIndices = Array.isArray(q.correct) ? q.correct : [q.correct];
+      const correctOptions = oldCorrectIndices.map(idx => q.options[idx]);
+      
+      const shuffled = [...cloned.options].sort(() => Math.random() - 0.5)
+      cloned.options = shuffled
+      
+      const newCorrectIndices = correctOptions.map(opt => shuffled.indexOf(opt));
+      cloned.correct = Array.isArray(q.correct) ? newCorrectIndices : newCorrectIndices[0];
+      
+      return cloned
+    }).sort(() => Math.random() - 0.5)
+    
+    setQuestions(shuffledQuestions)
   }, [])
 
   const scrollToTarget = useCallback(() => {

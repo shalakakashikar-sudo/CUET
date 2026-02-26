@@ -172,7 +172,14 @@ export default function FillersQuizPage() {
   useEffect(() => {
     if (selectedSetIndex !== null) {
       const { range } = quizSets[selectedSetIndex]
-      const selectedQuestions = FILLERS_QUIZ_DATA.slice(range[0], range[1])
+      const selectedQuestions = FILLERS_QUIZ_DATA.slice(range[0], range[1]).map(q => {
+        const cloned = { ...q, options: [...q.options] }
+        const initialCorrectOpt = cloned.options[cloned.correct]
+        const shuffled = [...cloned.options].sort(() => Math.random() - 0.5)
+        cloned.options = shuffled
+        cloned.correct = shuffled.indexOf(initialCorrectOpt)
+        return cloned
+      })
       setQuestions([...selectedQuestions].sort(() => Math.random() - 0.5))
       setCurrentStep(0)
       setAnswers({})
@@ -258,7 +265,7 @@ export default function FillersQuizPage() {
             </Badge>
             <h1 className="text-4xl font-headline font-bold mb-4 text-foreground">Practice Selection</h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Select a clinical set to target specific grammar patterns. Each set contains 10 high-yield items.
+              Select a clinical set to target specific grammar patterns. Each set contains 10 high-yield items with anti-guess logic applied.
             </p>
           </header>
 
@@ -321,6 +328,17 @@ export default function FillersQuizPage() {
                 setIsFinished(false)
                 setCurrentStep(0)
                 setAnswers({})
+                // Force reshuffle
+                const { range } = quizSets[selectedSetIndex]
+                const selectedQuestions = FILLERS_QUIZ_DATA.slice(range[0], range[1]).map(q => {
+                  const cloned = { ...q, options: [...q.options] }
+                  const initialCorrectOpt = cloned.options[cloned.correct]
+                  const shuffled = [...cloned.options].sort(() => Math.random() - 0.5)
+                  cloned.options = shuffled
+                  cloned.correct = shuffled.indexOf(initialCorrectOpt)
+                  return cloned
+                })
+                setQuestions([...selectedQuestions].sort(() => Math.random() - 0.5))
               }}>
                 <RefreshCw className="w-4 h-4 mr-2" /> Retake this Set
               </Button>
