@@ -81,7 +81,67 @@ const FILLERS_QUIZ_DATA: Question[] = [
   { id: 47, q: "He jumped ______ the river to save the drowning child.", options: ["in", "into", "to", "on"], correct: 1, explanation: "'Into' indicates motion towards the inside of something." },
   { id: 48, q: "She is good ______ English but weak ______ Mathematics.", options: ["in, in", "at, at", "at, in", "in, at"], correct: 2, explanation: "'Good at' and 'Weak in' are the standard clinical pairings." },
   { id: 49, q: "Please wait ______ me at the bus stop.", options: ["on", "for", "by", "to"], correct: 1, explanation: "'Wait for' someone; 'Wait on' means to serve someone (like in a restaurant)." },
-  { id: 50, q: "The meeting was put ______ because of the storm.", options: ["out", "off", "up", "away"], correct: 1, explanation: "'Put off' means to postpone." }
+  { id: 50, q: "The meeting was put ______ because of the storm.", options: ["out", "off", "up", "away"], correct: 1, explanation: "'Put off' means to postpone." },
+
+  // SET 6: Tense Nuance (Advanced)
+  { id: 51, q: "If the plane ______ late, I will miss my connecting flight.", options: ["arrives", "arrived", "will arrive", "has arrived"], correct: 0, explanation: "In First Conditional, the 'if' clause takes Present Simple." },
+  { id: 52, q: "I ______ the report before the deadline yesterday.", options: ["completed", "have completed", "had completed", "was completing"], correct: 2, explanation: "Past Perfect is used for an action completed before a specific past point." },
+  { id: 53, q: "The sun ______ in the east and sets in the west.", options: ["rose", "is rising", "rises", "has risen"], correct: 2, explanation: "Scientific facts are expressed in Present Simple." },
+  { id: 54, q: "We ______ for three hours when it started to rain.", options: ["walked", "were walking", "have been walking", "had been walking"], correct: 3, explanation: "Past Perfect Continuous describes an ongoing action before another past event." },
+  { id: 55, q: "By next year, I ______ my graduation.", options: ["will complete", "will have completed", "completed", "have completed"], correct: 1, explanation: "Future Perfect is used for actions that will be finished by a specific time in the future." },
+  { id: 56, q: "They ______ to each other since their argument last month.", options: ["didn't speak", "aren't speaking", "haven't spoken", "won't speak"], correct: 2, explanation: "Present Perfect is used for actions spanning from the past to the present." },
+  { id: 57, q: "I wish I ______ more attention in the class.", options: ["paid", "had paid", "have paid", "was paying"], correct: 1, explanation: "Wishes about the past use Past Perfect." },
+  { id: 58, q: "If he ______ faster, he would have won the race.", options: ["runs", "ran", "had run", "was running"], correct: 2, explanation: "Third Conditional uses 'If + Past Perfect'." },
+  { id: 59, q: "The train ______ before we reached the platform.", options: ["left", "has left", "had left", "was leaving"], correct: 2, explanation: "Past Perfect for the earlier of two past actions." },
+  { id: 60, q: "I ______ coffee when the phone rang.", options: ["drank", "was drinking", "have drunk", "had drunk"], correct: 1, explanation: "Past Continuous for an action interrupted by another past action." },
+
+  // SET 7: Prepositional Mastery
+  { id: 61, q: "He is jealous ______ his brother's success.", options: ["of", "for", "with", "at"], correct: 0, explanation: "'Jealous' is always followed by 'of'." },
+  { id: 62, q: "The cat jumped ______ the table.", options: ["on", "onto", "at", "to"], correct: 1, explanation: "'Onto' indicates movement towards a surface." },
+  { id: 63, q: "She is very good ______ playing the piano.", options: ["in", "at", "with", "on"], correct: 1, explanation: "'Good at' is the correct fixed preposition for skills." },
+  { id: 64, q: "I am tired ______ waiting for the results.", options: ["from", "of", "with", "by"], correct: 1, explanation: "'Tired of' means bored or impatient." },
+  { id: 65, q: "The patient is recovering ______ his illness.", options: ["from", "of", "with", "by"], correct: 0, explanation: "'Recovering from' is the standard clinical pairing." },
+  { id: 66, q: "He was blind ______ the faults of his children.", options: ["in", "to", "with", "at"], correct: 1, explanation: "'Blind to' means unaware of or ignoring something." },
+  { id: 67, q: "This path is parallel ______ the river.", options: ["with", "to", "of", "from"], correct: 1, explanation: "'Parallel to' is the fixed prepositional pair." },
+  { id: 68, q: "You should not laugh ______ others' misfortunes.", options: ["on", "at", "for", "with"], correct: 1, explanation: "'Laugh at' is the correct pairing." },
+  { id: 69, q: "The property is adjacent ______ the park.", options: ["with", "to", "by", "near"], correct: 1, explanation: "'Adjacent to' means next to." },
+  { id: 70, q: "He was ashamed ______ his behaviour.", options: ["of", "for", "at", "with"], correct: 0, explanation: "'Ashamed of' is the correct pairing." },
+
+  // SET 8: Phrasal Power
+  { id: 71, q: "The firemen managed to ______ the blaze.", options: ["put out", "put off", "put on", "put in"], correct: 0, explanation: "'Put out' means to extinguish." },
+  { id: 72, q: "Please ______ your shoes before entering the temple.", options: ["take off", "take out", "take in", "take up"], correct: 0, explanation: "'Take off' means to remove clothing/shoes." },
+  { id: 73, q: "We should ______ our ancestors with respect.", options: ["look after", "look up to", "look into", "look for"], correct: 1, explanation: "'Look up to' means to admire or respect." },
+  { id: 74, q: "The old man ______ in his sleep last night.", options: ["passed out", "passed away", "passed by", "passed on"], correct: 1, explanation: "'Passed away' is a polite way to say died." },
+  { id: 75, q: "Don't ______ your goals, keep working hard.", options: ["give in", "give up", "give out", "give away"], correct: 1, explanation: "'Give up' means to stop trying." },
+  { id: 76, q: "The manager decided to ______ the meeting.", options: ["call off", "call on", "call out", "call in"], correct: 0, explanation: "'Call off' means to cancel." },
+  { id: 77, q: "I will ______ the matter and get back to you.", options: ["look for", "look after", "look into", "look at"], correct: 2, explanation: "'Look into' means to investigate." },
+  { id: 78, q: "How are you ______ with your new classmates?", options: ["getting along", "getting away", "getting up", "getting in"], correct: 0, explanation: "'Getting along' means having a good relationship." },
+  { id: 79, q: "The car ______ in the middle of the highway.", options: ["broke down", "broke into", "broke out", "broke up"], correct: 0, explanation: "'Broke down' means stopped working." },
+  { id: 80, q: "The soldiers had to ______ when they ran out of ammo.", options: ["fall back", "fall out", "fall through", "fall off"], correct: 0, explanation: "'Fall back' means to retreat." },
+
+  // SET 9: Subject-Verb Protocol
+  { id: 81, q: "The quality of these mangoes ______ not good.", options: ["is", "are", "were", "have been"], correct: 0, explanation: "The subject is 'Quality' (singular), not 'mangoes'." },
+  { id: 82, q: "Neither of the two candidates ______ suitable.", options: ["is", "are", "were", "have been"], correct: 0, explanation: "'Neither' takes a singular verb." },
+  { id: 83, q: "Bread and butter ______ my favourite breakfast.", options: ["is", "are", "were", "have been"], correct: 0, explanation: "Compound subjects referring to a single idea take a singular verb." },
+  { id: 84, q: "Ten miles ______ a long distance to walk.", options: ["is", "are", "were", "have been"], correct: 0, explanation: "Distances and sums take singular verbs when viewed as a whole." },
+  { id: 85, q: "Politics ______ a dirty game.", options: ["is", "are", "were", "have been"], correct: 0, explanation: "'Politics' is treated as a singular noun." },
+  { id: 86, q: "Each of the boys ______ rewarded.", options: ["was", "were", "have been", "are"], correct: 0, explanation: "'Each' always takes a singular verb." },
+  { id: 87, q: "The jury ______ divided in their opinion.", options: ["is", "are", "was", "has been"], correct: 1, explanation: "Collective nouns take plural verbs when members act individually." },
+  { id: 88, q: "Slow and steady ______ the race.", options: ["win", "wins", "is winning", "has won"], correct: 1, explanation: "Singular verb for a compound subject expressing one idea." },
+  { id: 89, q: "A large number of people ______ present.", options: ["was", "is", "were", "has been"], correct: 2, explanation: "'A number of' takes a plural verb." },
+  { id: 90, q: "The principal, along with the teachers, ______ coming.", options: ["is", "are", "were", "have been"], correct: 0, explanation: "Verb agrees with the first subject when joined by 'along with'." },
+
+  // SET 10: Lexical Precision
+  { id: 91, q: "He is ______ honest man.", options: ["a", "an", "the", "no article"], correct: 1, explanation: "Use 'an' before silent 'h'." },
+  { id: 92, q: "There is ______ milk in the jug.", options: ["many", "much", "few", "a few"], correct: 1, explanation: "Use 'much' for uncountable nouns." },
+  { id: 93, q: "I have ______ friends in this city.", options: ["little", "much", "a few", "a little"], correct: 2, explanation: "Use 'a few' for countable nouns (some)." },
+  { id: 94, q: "The man ______ stole my wallet was caught.", options: ["which", "who", "whom", "whose"], correct: 1, explanation: "Use 'who' for people as subjects." },
+  { id: 95, q: "This is the book ______ I was looking for.", options: ["who", "which", "whom", "whose"], correct: 1, explanation: "Use 'which' or 'that' for objects." },
+  { id: 96, q: "He works hard ______ he may pass.", options: ["so that", "lest", "because", "although"], correct: 0, explanation: "Use 'so that' to express purpose." },
+  { id: 97, q: "Wait here ______ I come back.", options: ["till", "unless", "since", "while"], correct: 0, explanation: "Use 'till' or 'until' for time limits." },
+  { id: 98, q: "I ______ not come today as I am busy.", options: ["will", "can", "may", "must"], correct: 0, explanation: "'Will' expresses future intention." },
+  { id: 99, q: "You ______ respect your elders.", options: ["ought to", "can", "may", "might"], correct: 0, explanation: "'Ought to' expresses moral obligation." },
+  { id: 100, q: "He is ______ superior to me.", options: ["much", "more", "very", "too"], correct: 0, explanation: "Use 'much' with comparative forms." }
 ]
 
 export default function FillersQuizPage() {
@@ -102,6 +162,11 @@ export default function FillersQuizPage() {
     { name: "Practice Set 3", range: [20, 30], desc: "Phrasal Verbs & Vocab" },
     { name: "Practice Set 4", range: [30, 40], desc: "Determiners & Modals" },
     { name: "Practice Set 5", range: [40, 50], desc: "Mixed Proficiency" },
+    { name: "Practice Set 6", range: [50, 60], desc: "Tense Nuance (Adv)" },
+    { name: "Practice Set 7", range: [60, 70], desc: "Prepositional Mastery" },
+    { name: "Practice Set 8", range: [70, 80], desc: "Phrasal Power" },
+    { name: "Practice Set 9", range: [80, 90], desc: "Subject-Verb Protocol" },
+    { name: "Practice Set 10", range: [90, 100], desc: "Lexical Precision" },
   ]
 
   useEffect(() => {
