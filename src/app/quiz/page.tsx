@@ -39,109 +39,66 @@ const PASSAGES = [
     title: "The Stoic Mindset",
     content: "Stoicism, an ancient Greek school of philosophy, teaches the development of self-control and fortitude as a means of overcoming destructive emotions. It suggests that while we cannot control external events, we have complete control over our internal responses. By aligning our will with the natural order of the universe, we can attain tranquility. The Stoic does not seek to eliminate emotion but rather to refine it, transforming reactive passions into reasoned judgments. This clinical approach to life allows for a resilience that is unshakable even in the face of immense adversity.",
     questions: [
-      { id: "rc1-1", text: "What is the core teaching of Stoicism according to the text?", options: ["Control over external events", "Self-control and fortitude", "Elimination of all emotions", "Ignoring the natural order"], correct: 1, explanation: "The text highlights self-control and fortitude as core means to overcome destructive emotions." },
-      { id: "rc1-2", text: "What can a Stoic control?", options: ["External events", "Internal responses", "The natural order", "Universal destiny"], correct: 1, explanation: "The passage states we have 'complete control over our internal responses'." },
-      { id: "rc1-3", text: "The goal of a Stoic is to:", options: ["Destroy all passion", "Attain tranquility", "Escape adversity", "Master others"], correct: 1, explanation: "Attaining tranquility is mentioned as the result of aligning with the natural order." },
-      { id: "rc1-4", text: "Choose the synonym for 'fortitude':", options: ["Weakness", "Courage", "Haste", "Fear"], correct: 1, explanation: "'Fortitude' implies mental and emotional strength/courage." }
+      { id: "rc1-1", text: "What is the core teaching of Stoicism according to the text?", options: ["Control over external events", "Development of self-control and fortitude", "Elimination of all human emotions", "Ignoring the natural order of fate"], correct: 1, explanation: "The text highlights self-control and fortitude as core means to overcome destructive emotions." },
+      { id: "rc1-2", text: "What can a Stoic control according to the philosophy?", options: ["Unfolding external events", "Internal responses and will", "The natural order of nature", "Universal destiny of mankind"], correct: 1, explanation: "The passage states we have 'complete control over our internal responses'." },
+      { id: "rc1-3", text: "The ultimate goal of a Stoic is to:", options: ["Destroy all reactive passion", "Attain internal tranquility", "Escape physical adversity", "Master the actions of others"], correct: 1, explanation: "Attaining tranquility is mentioned as the result of aligning with the natural order." },
+      { id: "rc1-4", text: "Choose the synonym for 'fortitude' as used in context:", options: ["Moral weakness", "Mental courage", "Physical haste", "Irrational fear"], correct: 1, explanation: "'Fortitude' implies mental and emotional strength/courage." }
     ]
   },
   {
     title: "Micro-Ecosystems",
     content: "Urban rooftop gardens are transforming grey concrete jungles into vibrant micro-ecosystems. These green spaces do more than just provide aesthetic value; they actively mitigate the urban heat island effect by absorbing solar radiation. Furthermore, they support biodiversity by providing habitats for pollinators like bees and butterflies, which are often displaced by urban development. Rainwater harvesting systems integrated into these gardens reduce runoff, preventing the overwhelming of city drainage during heavy storms. As cities continue to expand, these elevated habitats represent a crucial intersection of architecture and environmental stewardship.",
     questions: [
-      { id: "rc2-1", text: "How do rooftop gardens affect solar radiation?", options: ["They reflect it", "They absorb it", "They increase it", "They ignore it"], correct: 1, explanation: "Text: 'mitigate the urban heat island effect by absorbing solar radiation'." },
-      { id: "rc2-2", text: "Which group benefits from the biodiversity of these gardens?", options: ["Large mammals", "Pollinators like bees", "Deep-sea fish", "Migratory birds only"], correct: 1, explanation: "The text mentions habitats for pollinators like bees and butterflies." },
-      { id: "rc2-3", text: "What is one benefit of the harvesting systems mentioned?", options: ["Increased runoff", "Reduced runoff", "Cloud seeding", "Soil erosion"], correct: 1, explanation: "Systems 'reduce runoff, preventing the overwhelming of city drainage'." },
-      { id: "rc2-4", text: "Identify the figure of speech in 'grey concrete jungles'.", options: ["Simile", "Metaphor", "Oxymoron", "Onomatopoeia"], correct: 1, explanation: "It's a metaphor comparing the city to a jungle." }
+      { id: "rc2-1", text: "How do rooftop gardens affect solar radiation?", options: ["They reflect it back into space", "They absorb it to mitigate heat", "They increase it through reflection", "They ignore it entirely"], correct: 1, explanation: "Text: 'mitigate the urban heat island effect by absorbing solar radiation'." },
+      { id: "rc2-2", text: "Which group specifically benefits from the biodiversity of these gardens?", options: ["Large urban mammals", "Pollinators like bees and butterflies", "Deep-sea aquatic life", "Migratory birds during winter"], correct: 1, explanation: "The text mentions habitats for pollinators like bees and butterflies." },
+      { id: "rc2-3", text: "What is the primary benefit of harvesting systems in these gardens?", options: ["Increased urban runoff", "Reduced rainwater runoff", "Cloud seeding initiatives", "Soil erosion prevention"], correct: 1, explanation: "Systems 'reduce runoff, preventing the overwhelming of city drainage'." },
+      { id: "rc2-4", text: "Identify the figure of speech in 'grey concrete jungles'.", options: ["Literal description", "Extended Metaphor", "Contradictory Oxymoron", "Onomatopoeic sound"], correct: 1, explanation: "It's a metaphor comparing the city to a jungle." }
     ]
   },
   {
     title: "Dr. Moo and the Cosmic Continuum",
     content: "In the sprawling expanse of the cosmos, there existed a peculiar dimension known as The Milky Way, a realm where time flowed not in a straight line, but in loops of past, present, and future. Guarding this timeline was an unlikely hero: Dr. Moo, a time-travelling cow with a penchant for flawless English grammar. While other celestial beings concerned themselves with black holes, Dr. Moo focused on fixing temporal paradoxes caused by misplaced modifiers and incorrect verb forms. One epoch, a rogue comet threatened to scramble the timeline, merging the past continuous with the future perfect. she galloped through the cosmic dust, actively rewriting the stars. By ensuring the subject-verb agreement of the universe was perfectly aligned, she saved the continuum from collapsing into a chaotic jumble of dangling participles.",
     questions: [
-      { id: "rc3-1", text: "Based on the passage, what is Dr. Moo’s primary mission?", options: ["To study black holes", "To guard the timeline by fixing grammatical paradoxes", "To rewrite celestial maps", "To teach time-travel"], correct: 1, explanation: "Dr. Moo focused on fixing temporal paradoxes caused by misplaced modifiers and incorrect verb forms." },
-      { id: "rc3-2", text: "Choose the correct meaning of 'penchant' as used in the passage:", options: ["Strong dislike", "Deep understanding", "Strong or habitual liking", "Magical ability"], correct: 2, explanation: "'Penchant' refers to a habitual liking or inclination." },
-      { id: "rc3-3", text: "Identify the Figure of Speech used in 'legend-dairy':", options: ["Pun", "Simile", "Oxymoron", "Personification"], correct: 0, explanation: "It uses a play on words 'legendary' and 'dairy'." },
-      { id: "rc3-4", text: "What saved the continuum from collapsing?", options: ["Punctuation", "Subject-verb agreement", "Quantum mechanics", "The Milky Way"], correct: 1, explanation: "The text says subject-verb agreement perfectly aligned saved the continuum." }
+      { id: "rc3-1", text: "Based on the passage, what is Dr. Moo’s primary mission?", options: ["To study black hole physics", "To fix grammatical temporal paradoxes", "To rewrite celestial star maps", "To teach time-travel logic"], correct: 1, explanation: "Dr. Moo focused on fixing temporal paradoxes caused by misplaced modifiers and incorrect verb forms." },
+      { id: "rc3-2", text: "Choose the correct meaning of 'penchant' as used in the passage:", options: ["Strong dislike or aversion", "Deep scientific understanding", "Strong or habitual liking", "Magical time-travel ability"], correct: 2, explanation: "'Penchant' refers to a habitual liking or inclination." },
+      { id: "rc3-3", text: "Identify the Figure of Speech used in 'legend-dairy':", options: ["Clever Pun", "Direct Simile", "Sharp Oxymoron", "Literal Personification"], correct: 0, explanation: "It uses a play on words 'legendary' and 'dairy'." },
+      { id: "rc3-4", text: "What saved the continuum from collapsing according to the text?", options: ["Perfect Punctuation", "Correct Subject-verb agreement", "Quantum mechanics rules", "The Milky Way's gravity"], correct: 1, explanation: "The text says subject-verb agreement perfectly aligned saved the continuum." }
     ]
   }
 ]
 
 const VOCAB_POOL = [
   { word: "EPHEMERAL", syn: "Transient", ant: "Permanent", exp: "Ephemeral means short-lived." },
-  { word: "LOQUACIOUS", syn: "Talkative", ant: "Taciturn", exp: "Loquacious means very talkative." },
-  { word: "PRUDENT", syn: "Wise", ant: "Reckless", exp: "Prudent means acting with care." },
+  { word: "LOQUACIOUS", syn: "Talkative", ant: "Reticent", exp: "Loquacious means very talkative." },
+  { word: "PRUDENT", syn: "Judicious", ant: "Reckless", exp: "Prudent means acting with care." },
   { word: "CANDID", syn: "Frank", ant: "Deceptive", exp: "Candid means straightforward." },
   { word: "UBIQUITOUS", syn: "Omnipresent", ant: "Rare", exp: "Ubiquitous means present everywhere." },
-  { word: "ZEALOUS", syn: "Passionate", ant: "Apathetic", exp: "Zealous means showing great energy." },
-  { word: "AMELIORATE", syn: "Improve", ant: "Worsen", exp: "Ameliorate means to make something better." },
+  { word: "ZEALOUS", syn: "Fervent", ant: "Apathetic", exp: "Zealous means showing great energy." },
+  { word: "AMELIORATE", syn: "Enhance", ant: "Exacerbate", exp: "Ameliorate means to make something better." },
   { word: "ANTIPATHY", syn: "Aversion", ant: "Affinity", exp: "Antipathy is a deep dislike." },
   { word: "AUDACIOUS", syn: "Daring", ant: "Timid", exp: "Audacious means taking bold risks." },
-  { word: "FASTIDIOUS", syn: "Meticulous", ant: "Sloppy", exp: "Fastidious means attentive to detail." },
-  { word: "ABERRATION", syn: "Deviation", ant: "Normality", exp: "Departure from what is normal." },
-  { word: "ADROIT", syn: "Skillful", ant: "Clumsy", exp: "Clever or skillful." },
-  { word: "BLITHE", syn: "Cheerful", ant: "Melancholy", exp: "Casual and cheerful indifference." },
-  { word: "CALLOUS", syn: "Insensitive", ant: "Compassionate", exp: "Insensitive and cruel disregard." },
-  { word: "DEARTH", syn: "Scarcity", ant: "Abundance", exp: "A lack of something." },
-  { word: "ERUDITE", syn: "Scholarly", ant: "Ignorant", exp: "Having great knowledge." },
-  { word: "GREGARIOUS", syn: "Sociable", ant: "Reclusive", exp: "Fond of company." },
-  { word: "IMPECCABLE", syn: "Faultless", ant: "Flawed", exp: "In accordance with highest standards." },
-  { word: "LACONIC", syn: "Brief", ant: "Verbose", exp: "Using very few words." },
-  { word: "METICULOUS", syn: "Careful", ant: "Sloppy", exp: "Showing great attention to detail." }
+  { word: "FASTIDIOUS", syn: "Meticulous", ant: "Sloppy", exp: "Fastidious means attentive to detail." }
 ]
 
 const IDIOMS_POOL = [
-  { text: "At the eleventh hour", meaning: "At the last possible moment", exp: "Refers to doing something just before it's too late." },
-  { text: "Bite the bullet", meaning: "Accept something unpleasant bravely", exp: "Facing a difficult situation with courage." },
-  { text: "Piece of cake", meaning: "Something very easy", exp: "Extremely simple task." },
-  { text: "Under the weather", meaning: "Feeling slightly ill", exp: "Not feeling well." },
-  { text: "Once in a blue moon", meaning: "Very rarely", exp: "Something that happens infrequently." },
-  { text: "Spill the beans", meaning: "Reveal a secret", exp: "Sharing confidential info." },
-  { text: "Break the ice", meaning: "Start a conversation", exp: "Relieving tension in a social setting." },
-  { text: "Last straw", meaning: "Final problem in a series", exp: "The absolute limit of patience." },
-  { text: "In a nutshell", meaning: "Briefly", exp: "Summarising quickly." },
-  { text: "See eye to eye", meaning: "Agree completely", exp: "Having the same opinion." },
-  { text: "Bolt from the blue", meaning: "A total surprise", exp: "Sudden and unexpected." },
-  { text: "Cold feet", meaning: "Become nervous about a plan", exp: "Hesitation before an event." },
-  { text: "A dime a dozen", meaning: "Something very common", exp: "Easily found everywhere." },
-  { text: "Elephant in the room", meaning: "Major problem ignored", exp: "Obvious issue avoided." },
-  { text: "Face the music", meaning: "Accept consequences", exp: "Taking responsibility." },
-  { text: "Get out of hand", meaning: "Become difficult to control", exp: "Losing control." },
-  { text: "Keep at arm's length", meaning: "Avoid intimacy", exp: "Maintaining distance." },
-  { text: "Make ends meet", meaning: "Earn enough to live", exp: "Survival on budget." },
-  { text: "Miss the boat", meaning: "Too late for chance", exp: "Lost opportunity." },
-  { text: "No pain, no gain", meaning: "Effort for success", exp: "Hard work required." }
+  { text: "At the eleventh hour", meaning: "At the last possible moment", wrong: ["Exactly at 11:00", "In the morning", "An auspicious time"], exp: "Refers to doing something just before it's too late." },
+  { text: "Bite the bullet", meaning: "Accept something unpleasant bravely", wrong: ["To speak aggressively", "To make a quick decision", "To undertake a challenge"], exp: "Facing a difficult situation with courage." },
+  { text: "Piece of cake", meaning: "Something very easy", wrong: ["A shared secret", "A small celebration", "A difficult task"], exp: "Extremely simple task." },
+  { text: "Under the weather", meaning: "Feeling slightly ill", wrong: ["In the rain", "Predicting storms", "Under pressure"], exp: "Not feeling well." },
+  { text: "Once in a blue moon", meaning: "Very rarely", wrong: ["Every month", "During full moon", "Frequently"], exp: "Something that happens infrequently." }
 ]
 
 const FILLERS_POOL = [
-  { text: "He is senior ______ me by five years.", options: ["than", "to", "from", "with"], correct: 1, exp: "Adjectives ending in -ior take 'to'." },
-  { text: "You must abstain ______ smoking.", options: ["from", "to", "for", "by"], correct: 0, exp: "Abstain always takes 'from'." },
-  { text: "If I ______ you, I would go.", options: ["am", "was", "were", "be"], correct: 2, exp: "Subjunctive 'were' for hypotheticals." },
-  { text: "Each of the boys ______ present.", options: ["was", "were", "been", "are"], correct: 0, exp: "Each is singular." },
-  { text: "No sooner had he left ______ it rained.", options: ["when", "then", "than", "after"], correct: 2, exp: "No sooner...than." },
-  { text: "She is fond ______ reading.", options: ["at", "of", "about", "for"], correct: 1, exp: "Fond of." },
-  { text: "Neither he nor I ______ responsible.", options: ["am", "is", "are", "were"], correct: 0, exp: "Verb agrees with closest subject (I)." },
-  { text: "The train ______ before we arrived.", options: ["left", "had left", "has left", "leaves"], correct: 1, exp: "Past perfect for earlier action." },
-  { text: "He is ______ honest man.", options: ["a", "an", "the", "no article"], correct: 1, exp: "An (silent h)." },
-  { text: "They ______ since morning.", options: ["play", "are playing", "have been playing", "played"], correct: 2, exp: "Present perfect continuous for ongoing duration." },
-  { text: "The quality of these mangoes ______ not good.", options: ["is", "are", "were", "have been"], correct: 0, exp: "Subject is 'Quality' (singular)." },
-  { text: "Politics ______ a dirty game.", options: ["is", "are", "were", "have been"], correct: 0, exp: "'Politics' is treated as singular." },
-  { text: "Ten miles ______ a long distance.", options: ["is", "are", "were", "have been"], correct: 0, exp: "Distances take singular verbs." },
-  { text: "Neither of the two candidates ______ suitable.", options: ["is", "are", "were", "have been"], correct: 0, exp: "'Neither' takes a singular verb." },
-  { text: "Slow and steady ______ the race.", options: ["win", "wins", "is winning", "has won"], correct: 1, exp: "Compound subject expressing one idea." }
+  { text: "He is senior ______ me by five years.", options: ["than", "to", "from", "over"], correct: 1, exp: "Adjectives ending in -ior take 'to'." },
+  { text: "You must abstain ______ smoking.", options: ["from", "to", "against", "with"], correct: 0, exp: "Abstain always takes 'from'." },
+  { text: "If I ______ you, I would apologise.", options: ["am", "was", "were", "had been"], correct: 2, exp: "Subjunctive 'were' for hypotheticals." },
+  { text: "Each of the boys ______ present.", options: ["was", "were", "are", "have been"], correct: 0, exp: "Each is singular." },
+  { text: "No sooner had he left ______ it rained.", options: ["when", "then", "than", "that"], correct: 2, exp: "No sooner...than." }
 ]
 
 const REARRANGE_POOL = [
-  { parts: ["the evening breeze", "as the sun set", "passed through", "the open gate"], options: ["B-A-C-D", "A-B-C-D", "D-C-B-A", "C-A-D-B"], correct: 0, exp: "Setting + Subject + Verb + Object." },
-  { parts: ["the committee", "due to the storm", "cancelled the game", "at the last minute"], options: ["A-C-D-B", "B-A-C-D", "C-D-A-B", "D-B-C-A"], correct: 0, exp: "Subject + Verb + Object + Time + Reason." },
-  { parts: ["to survive the winter", "the birds migrated", "to warmer regions", "in large flocks"], options: ["B-C-D-A", "A-B-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Action + Destination + Manner + Purpose." },
-  { parts: ["the particle began", "to oscillate rapidly", "upon being subjected", "to the magnetic field"], options: ["C-A-B-D", "A-B-C-D", "D-C-B-A", "B-A-D-C"], correct: 0, exp: "Condition leads to action + manner + target." },
-  { parts: ["the cognitive theory", "human memory", "suggests that", "is associative"], options: ["A-C-B-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Subject + Linker + Sub-subject + State." },
-  { parts: ["to the new laws", "despite the protest", "the citizens", "had to comply"], options: ["B-C-D-A", "A-B-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Constraint + Subject + Action + Target." },
-  { parts: ["the space shuttle", "launched successfully", "into orbit", "at dawn"], options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Subject + Action + Destination + Time." },
-  { parts: ["the young pianist", "received a standing ovation", "after the performance", "at the Royal Hall"], options: ["A-B-C-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Subject + Verb + Time + Location." },
-  { parts: ["the archeologist uncovered", "during the excavation", "which provided accounts", "of ancient scribes"], options: ["B-A-C-D", "A-B-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Setting + Action + Relative Clause." },
-  { parts: ["the renaissance period", "towards humanism", "marked a shift", "breaking away from dogma"], options: ["A-C-B-D", "B-A-C-D", "D-C-B-A", "C-D-A-B"], correct: 0, exp: "Subject + Verb + Direction + Detail." }
+  { parts: ["the fragrance of jasmine", "as the evening breeze", "passed through", "the open gate"], options: ["B-C-A-D", "A-B-C-D", "D-C-B-A", "C-A-D-B"], correct: 0, exp: "Setting + Action + Subject + Result." },
+  { parts: ["the committee decided", "due to the storm", "to postpone the game", "at the last minute"], options: ["A-C-D-B", "B-A-C-D", "C-D-A-B", "D-B-C-A"], correct: 0, exp: "Subject + Verb + Time + Reason." }
 ]
 
 const SHUFFLE = <T,>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
@@ -170,7 +127,7 @@ const GENERATE_EXAM = (): Question[] => {
       id: `vocab-${i}`,
       section: "Lexical Intelligence",
       text: `Choose the ${isSyn ? 'synonym' : 'antonym'} for the word: ${v.word}`,
-      options: [isSyn ? v.syn : v.ant, isSyn ? v.ant : v.syn, "Irrelevant", "Ambiguous"],
+      options: [isSyn ? v.syn : v.ant, isSyn ? v.ant : v.syn, "Contextual Trap", "Related Tone"],
       correct: 0,
       explanation: v.exp
     })
@@ -183,7 +140,7 @@ const GENERATE_EXAM = (): Question[] => {
       id: `match-${i}`,
       section: "Match Proficiency",
       text: `What is the correct meaning of the idiom: "${idiom.text}"?`,
-      options: [idiom.meaning, "To be very fast", "To be lucky", "To be confused"],
+      options: [idiom.meaning, ...idiom.wrong],
       correct: 0,
       explanation: idiom.exp
     })
@@ -243,6 +200,13 @@ export default function CBTExamPage() {
     setIsExamStarted(true)
   }
 
+  const submitExam = useCallback(() => {
+    if (isFinished) return
+    setIsFinished(true)
+    toast({ title: "Examination Submitted", description: "Your protocol response has been successfully logged." })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [isFinished, toast])
+
   // Timer logic
   useEffect(() => {
     if (!isExamStarted || isFinished || timeLeft <= 0) return
@@ -257,7 +221,7 @@ export default function CBTExamPage() {
       })
     }, 1000)
     return () => clearInterval(timer)
-  }, [isExamStarted, isFinished, timeLeft])
+  }, [isExamStarted, isFinished, timeLeft, submitExam])
 
   const formatTime = (seconds: number) => {
     const m = Math.floor(seconds / 60)
@@ -273,13 +237,6 @@ export default function CBTExamPage() {
     if (idx >= 0 && idx < questions.length) {
       setCurrentStep(idx)
     }
-  }
-
-  const submitExam = () => {
-    if (isFinished) return
-    setIsFinished(true)
-    toast({ title: "Examination Submitted", description: "Your protocol response has been successfully logged." })
-    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const calculateScore = () => {
@@ -319,7 +276,7 @@ export default function CBTExamPage() {
             </div>
             <div className="flex items-center gap-3 font-bold text-foreground">
               <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>Pooling: Dynamic repository sampling active.</span>
+              <span>Anti-Guess: Dynamically sampled pools.</span>
             </div>
           </div>
           <Button size="lg" className="w-full h-16 rounded-2xl text-xl font-bold shadow-xl" onClick={startExam}>
@@ -335,7 +292,6 @@ export default function CBTExamPage() {
     return (
       <div className="min-h-screen bg-background py-12 px-4">
         <div className="max-w-5xl mx-auto space-y-12">
-          {/* Elite Report Card */}
           <Card className="text-center p-12 border-none shadow-2xl rounded-[3rem] bg-white animate-fade-in-up">
             <div className="bg-primary/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8">
               <Award className="w-12 h-12 text-primary" />
